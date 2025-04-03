@@ -1,0 +1,270 @@
+---
+format:
+  revealjs:
+    transition: slide
+    theme:
+      - default
+      - style.scss
+    footer: ""
+    width: 2400
+    height: 1350
+    auto-animate: true
+    auto-play-media: true
+    controls: false
+    includes:
+      after_body: custom.js
+    simplemenu:
+        barhtml:
+            header: "<div class='menubar'></a><ul class='menu'></ul><div class='slide-number'></div><div>"
+        scale: 0.8
+revealjs-plugins:
+  - simplemenu
+---
+
+```{r library}
+#| cache: true
+#| echo: false
+#| eval: true
+#| warning: false
+
+library(tidyverse)
+library(Utilities.Package)
+library(sf) 
+library(rnaturalearth) 
+library(rnaturalearthdata) 
+library(rnaturalearthhires)
+library(leaflet)
+library("leaflet.extras")
+```
+
+
+```{r update gitignore}
+#| cache: true
+#| echo: false
+#| warning: false
+#| eval: false
+
+library(fs)
+
+# Define the size threshold in bytes (100 MB)
+size_threshold <- 100 * 1024 * 1024
+
+# Get a list of all files in the repository
+files <- dir_ls(path = "Slides", recurse = TRUE, type = "file")
+
+# Filter files larger than the size threshold
+large_files <- files[file_info(files)$size > size_threshold]
+
+# Check if there are large files
+if (length(large_files) > 0) {
+  # Read the existing .gitignore file if it exists
+  gitignore_path <- ".gitignore"
+  gitignore_content <- if (file_exists(gitignore_path)) {
+    readLines(gitignore_path)
+  } else {
+    character(0)
+  }
+  
+  # Identify files not already in .gitignore
+  files_to_add <- large_files[!large_files %in% gitignore_content]
+  
+  # Append new large files to .gitignore
+  if (length(files_to_add) > 0) {
+    writeLines(c(gitignore_content, files_to_add), gitignore_path)
+    message(length(files_to_add), " file(s) added to .gitignore.")
+  } else {
+    message("No new files to add to .gitignore.")
+  }
+} else {
+  message("No files larger than 100 MB found.")
+}
+```
+
+
+## {.hide data-state="hide-menubar"}
+
+::: {.gradient_box style="text-align: center; position: absolute; left: 50%; top: 22%; width: 1800px; transform: translate(-50%, -50%)"}
+[PhD Thesis Presentation]{style="color: black; font-size: 80px; font-weight: bold; line-height: 1em; margin: 0px; text-align: justify-all;"}
+:::
+
+::: {.gradient_box style="text-align: center; position: absolute; left: 50%; top: 37%; width: 1800px; transform: translate(-50%, -50%)"}
+[Characterization of Intertidal Vegetation on European Coasts Using MultiScale Remote Sensing in Response to Natural and Anthropogenic Pressures]{style="color: black; font-size: 60px; line-height: 1em; margin: 0px; text-align: justify-all;"}
+:::
+
+<!-- ::: {style="text-align: left; position: absolute; left: 25%; top: 50%; width: 1200px; transform: translate(-50%, -50%)"} -->
+<!-- [Date & Time:]{style="color: black; font-size: 35px; font-weight: bold;"} -->
+<!-- ::: -->
+::: {style="text-align: left; position: absolute; right: 0%; top: 93%; transform: translate(-50%, -50%)"}
+[The 15th of May 2025]{style="color: black; font-size: 50px;"}
+:::
+
+<!-- ::: {style="text-align: left; position: absolute; left: 25%; top: 53%; width: 1200px; transform: translate(-50%, -50%)"} -->
+<!-- [Location: ]{style="color: black; font-size: 35px; font-weight: bold;"} -->
+<!-- ::: -->
+<!-- ::: {style="text-align: left; position: absolute; left: 40%; top: 53%; width: 1200px; transform: translate(-50%, -50%)"} -->
+<!-- [Amphitéatre Pasteur, Nantes Université (France)]{style="color: black; font-size: 35px;"} -->
+<!-- ::: -->
+
+::: {style="text-align: left; position: absolute; left: 25%; top: 50%; width: 1200px; transform: translate(-50%, -50%)"}
+[Thesis supervisor: ]{style="color: black; font-size: 35px; font-weight: bold;"}
+:::
+::: {style="text-align: left; position: absolute; left: 40%; top: 50%; width: 1200px; transform: translate(-50%, -50%)"}
+[Laurent Barillé, Professor]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 25%; top: 53%; width: 1200px; transform: translate(-50%, -50%)"}
+[Co-supervisor: ]{style="color: black; font-size: 35px; font-weight: bold;"}
+:::
+::: {style="text-align: left; position: absolute; left: 40%; top: 53%; width: 1200px; transform: translate(-50%, -50%)"}
+[Pierre Gernez, Lecturer]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 25%; top: 59%; width: 1200px; transform: translate(-50%, -50%)"}
+[Jury members:]{style="color: black; font-size: 35px; font-weight: bold;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 28%; top: 64%; width: 1200px; transform: translate(-50%, -50%)"}
+[Antoine Collin]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 28%; top: 69%; width: 1200px; transform: translate(-50%, -50%)"}
+[Rodney Forster]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 28%; top: 74%; width: 1200px; transform: translate(-50%, -50%)"}
+[Evangelos Spyrakos]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 28%; top: 79%; width: 1200px; transform: translate(-50%, -50%)"}
+[Bárbara Ondiviela]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 28%; top: 84%; width: 1200px; transform: translate(-50%, -50%)"}
+[Federica Braga]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 28%; top: 89%; width: 1200px; transform: translate(-50%, -50%)"}
+[Laurent Barillé]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 28%; top: 94%; width: 1200px; transform: translate(-50%, -50%)"}
+[Pierre Gernez]{style="color: black; font-size: 35px;"}
+:::
+
+
+::: {style="text-align: left; position: absolute; left: 43%; top: 64%; width: 1200px; transform: translate(-50%, -50%)"}
+[Lecturer]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 43%; top: 69%; width: 1200px; transform: translate(-50%, -50%)"}
+[Professor]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 43%; top: 74%; width: 1200px; transform: translate(-50%, -50%)"}
+[Professor]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 43%; top: 79%; width: 1200px; transform: translate(-50%, -50%)"}
+[Senior scientist]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 43%; top: 84%; width: 1200px; transform: translate(-50%, -50%)"}
+[Senior Researcher]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 43%; top: 89%; width: 1200px; transform: translate(-50%, -50%)"}
+[Professor]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 43%; top: 94%; width: 1200px; transform: translate(-50%, -50%)"}
+[Lecturer]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 58%; top: 64%; width: 1200px; transform: translate(-50%, -50%)"}
+[École Pratique des Hautes Études (EPHE), Dinard, France]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 58%; top: 69%; width: 1200px; transform: translate(-50%, -50%)"}
+[University of Hull, United Kingdom]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 58%; top: 74%; width: 1200px; transform: translate(-50%, -50%)"}
+[University of Stirling, United Kingdom]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 58%; top: 79%; width: 1200px; transform: translate(-50%, -50%)"}
+[Universidad de Cantabria, Spain]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 58%; top: 84%; width: 1200px; transform: translate(-50%, -50%)"}
+[CNR-ISMAR, Venice, Italy]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 58%; top: 89%; width: 1200px; transform: translate(-50%, -50%)"}
+[Nantes Université, France]{style="color: black; font-size: 35px;"}
+:::
+
+::: {style="text-align: left; position: absolute; left: 58%; top: 94%; width: 1200px; transform: translate(-50%, -50%)"}
+[Nantes Université, France]{style="color: black; font-size: 35px;"}
+:::
+
+
+::: {.absolute top="65%" right="-10%" style="transform: translate(-50%, -50%);"}
+![](Images/Profile_SImon.png){height="600"}
+:::
+
+::: {.gradient_box style="text-align: center; position: absolute; right: -3%; top: 86%; width: 500px; transform: translate(-50%, -50%)"}
+[Simon Oiry]{style="color: black; font-size: 60px; line-height: 1em; margin: 0px; text-align: justify-all;"}
+:::
+
+::: {.absolute top="10%" left="5%" style="transform: translate(-50%, -50%);"}
+![](Images/nantes-universite.png){height="300"}
+:::
+
+::: {.absolute top="10%" right="-5%" style="transform: translate(-50%, -50%);"}
+![](Images/rsbe2.png){height="300"}
+:::
+
+::: {.absolute top="10%" left="50%" style="transform: translate(-50%, -50%);"}
+![](Images/LogoED.png){height="150"}
+:::
+
+## Preface {data-state="hide-menubar"}
+
+- thesis took place in ISOMER Nantes between 2021 and 2024
+- It has been found by the french government blabla
+- It was closely related to a ESA founded project called BiCOME
+
+## Table of Contents {data-state="hide-menubar"}
+<ul class="menu"><ul>
+
+# Introduction {data-name="Introduction"}
+- Blabla coastal
+- Blabla vegetation 
+- Blabla Intertidal 
+- Blabla remote sensing 
+- Blabla PhD objectives
+
+# Developing Advanced Methodologies for Intertidal Vegetation Monitoring {data-name="Challenges and Solutions"}
+
+- From Field Spectroscopy to Remote Sensors. Bede paper
+- Develpment of an algorithm to classify intertidal vegetation (DISCOV, open source, easy to update to different use cases)
+
+# Case Study 1 – Facing Biological Invasions {data-name="Invasive species"}
+
+- Introduction of the problem (Gracilaria, aquaculture, why studying it ? )
+- Mapping the algae, over space and time, with key factor influencing its distribution
+- Implication for Management
+
+# Case Study 2 – Mapping the impact of Heatwaves on intertidal seagrasses {data-name="Marine Heatwaves"}
+
+- Introduction (Seagrasses quickly, heatwaves mainly)
+- Experiment
+- Satellite observation
+- Ecological consequences
+
+# Discussion and Overview {data-name="Discussion"}
+
+- Duality Drone and Satellite (Strength, weaknesses, complementary of methods)
+- Remote sensing for coastal ecosystem Management
+- Future direction (RS for aquaculture, penology, restoration...)
