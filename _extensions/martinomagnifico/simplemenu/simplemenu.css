@@ -138,6 +138,8 @@ body.hide-menubar .reveal.ready .menubar a {
 }
 .menubar > ul li a.active, .menubar > ul li.active a {
   opacity: 1;
+  animation: glow 3s linear infinite;
+
 }
 
 .hide-menu .menu, .hide-menu .menu, [data-state=hide-menu] .menu {
@@ -187,4 +189,22 @@ body.hide-menubar .reveal.ready .menubar a {
 
 .slides ~ .menubar ~ .controls {
   margin-bottom: clamp(16px, 2.5 * var(--r-main-font-size) * var(--simplemenu-scale, 0.75), 100px);
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px rgba(83, 150, 177, 0.2),
+                 0 0 10px rgba(83, 150, 177, 0.3),
+                 0 0 15px rgba(83, 150, 177, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(83, 150, 177, 0.6),
+                 0 0 20px rgba(83, 150, 177, 0.7),
+                 0 0 30px rgba(83, 150, 177, 0.9);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(83, 150, 177, 0.2),
+                 0 0 10px rgba(83, 150, 177, 0.3),
+                 0 0 15px rgba(83, 150, 177, 0.4);
+  }
 }

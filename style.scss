@@ -108,3 +108,61 @@ background: radial-gradient(
   transform: scale(1);
 }
 
+/* Target only the ul inside the .toc-page */
+.toc-page ul {
+  list-style: none;
+  padding: 0;
+  font-size: 50px;
+  text-align: left;
+  margin-top: 50px;
+}
+
+.toc-page li {
+  margin-bottom: 30px;
+}
+
+.toc-page a {
+  color: black;
+  text-decoration: none;
+}
+
+.toc-page a:hover {
+  color: #007ACC;
+  text-decoration: underline;
+}
+
+.watercolor-container {
+  position: relative;
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.watercolor-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.2;  // adjust value from 0 (fully transparent) to 1 (fully opaque)
+}
+
+.watercolor-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  font-weight: bold;
+  color: black;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.reveal .slide-background {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.reveal .present .slide-background {
+  opacity: 1;
+}
+
+
