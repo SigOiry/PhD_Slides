@@ -20,6 +20,8 @@ format:
         scale: 0.8
 revealjs-plugins:
   - simplemenu
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r library}
@@ -386,6 +388,462 @@ Project founded by:
 
 ## Coastal Environments  
 *Areas where the land masses meet the seas*
+
+```{r map dens_pop}
+#| cache: true
+#| echo: false
+#| eval: false
+#| warning: false
+
+library(sf)
+library(tidyverse)
+
+TDC <- read_sf("Data/Intro/Trait_de_cote.shp")
+coms <- read_sf("Data/Intro/commune.shp")
+coms_buf_50km <- read_sf("Data/Intro/Coms_50km.shp")
+coms_buf_25km <- read_sf("Data/Intro/Coms_25km.shp")
+
+TDC_buf <- st_buffer(TDC, dist = 10)
+
+x_ref <- 403256
+y_ref <- 6511916
+
+#### COMS ####
+centroids <- st_centroid(coms)
+coords <- st_coordinates(centroids)
+top_left <- coords[,1] < x_ref & coords[,2] > y_ref
+coms_cropped <- coms[top_left, ]
+
+#### COMS 50km####
+centroids <- st_centroid(coms_buf_50km)
+coords <- st_coordinates(centroids)
+top_left <- coords[,1] < x_ref & coords[,2] > y_ref
+coms_50km_cropped <- coms_buf_50km[top_left, ]
+
+#### COMS 25km####
+centroids <- st_centroid(coms_buf_25km)
+coords <- st_coordinates(centroids)
+top_left <- coords[,1] < x_ref & coords[,2] > y_ref
+coms_25km_cropped <- coms_buf_25km[top_left, ]
+
+if(file.exists("Data/Intro/Coms_on_the_sea.shp")){
+  Coms_on_the_sea<- read_sf("Data/Intro/Coms_on_the_sea.shp")
+
+}else{
+  intersects <- st_intersects(coms_cropped, TDC_buf, sparse = FALSE)
+  Coms_on_the_sea <- coms_cropped[apply(intersects, 1, any), ]
+  
+  write_sf(Coms_on_the_sea.shp, "Data/Intro/Coms_on_the_sea.shp")  
+}
+
+
+nantes_lonlat <- st_sfc(st_point(c(-1.5536, 47.2184)), crs = 4326)
+nantes_l93 <- st_transform(nantes_lonlat, crs = 2154)  # Lambert-93
+
+
+plot_France <- ggplot() +
+  geom_sf(data = coms_cropped, fill = "#89a979", color = "#89a979") + 
+    geom_sf(data = nantes_l93, fill = "red", color = "black",shape = 21,size = 8) +
+# original polygons (lighter)
+  # geom_sf(data = intersecting_polygons, fill = "#6e8962", color = "#6e8962") + 
+  # selected polygons
+  coord_sf(expand = F)+
+  theme_void()
+
+plot_coms_by_the_sea <- ggplot() +
+  geom_sf(data = coms_cropped, fill = "#89a979", color = "#89a979") +  # original polygons (lighter)
+  geom_sf(data = Coms_on_the_sea, fill = "#596f50", color = "#596f50") + 
+  geom_sf(data = nantes_l93, fill = "red", color = "black",shape = 21,size = 8) +
+
+  # selected polygons
+  coord_sf(expand = F)+
+  theme_void()
+
+colscale <- c("50km" = "#7f9a6f", "25km" = "#739069", "0km"="#596f50" )
+
+plot_bands <- ggplot() +
+  geom_sf(data = coms_cropped, fill = "#89a979", color = "#89a979") +  
+  geom_sf(data = coms_50km_cropped, aes(fill = "50km", color = "50km"),show.legend = F) + 
+  geom_sf(data = coms_25km_cropped, aes(fill = "25km", color = "25km"),show.legend = F) + 
+  geom_sf(data = Coms_on_the_sea, aes(fill = "0km", color = "0km"),show.legend = F) +
+  scale_fill_manual(values = colscale)+
+  scale_color_manual(values = colscale)+
+  geom_sf(data = nantes_l93, fill = "red", color = "black",shape = 21,size = 8) +
+
+  # selected polygons
+  coord_sf(expand = F)+
+  theme_void()
+
+ggsave("Images/Intro/Coms_France.png", plot_France, height=1350*4, width = 950*4, units = "px")
+
+ggsave("Images/Intro/Coms_by_the_Sea.png", plot_coms_by_the_sea, height=1350*4, width = 950*4, units = "px")
+
+ggsave("Images/Intro/Coms_bands.png", plot_bands, height=1350*4, width = 950*4, units = "px")
+
+dens_pop_map <- ggplot() +
+  geom_sf(data = coms_cropped, aes(color = dens_pop, fill = dens_pop)) +
+  # scale_fill_manual(values = colscale)+
+  # scale_color_manual(values = colscale)+
+  geom_sf(data = nantes_l93, fill = "red", color = "black",shape = 21,size = 8) +
+  # tidyterra::scale_fill_grass_c(palette = "batlow", use_grass_range = F,limits = c(1, 6000), trans = "log10")+
+  # tidyterra::scale_color_grass_c(palette = "batlow", use_grass_range = F,limits = c(1, 6000), trans = "log10")+
+  scico::scale_fill_scico(name = "People/km²",palette = "vik", limits = c(1, 4000), trans = "log10")+
+  scico::scale_color_scico(name = "People/km²",palette = "vik", limits = c(1, 4000), trans = "log10")+
+  # selected polygons
+  coord_sf(expand = F)+
+  theme_void() +
+  theme(
+    legend.position = c(0.25, 0.25),
+    legend.key.height = unit(2, "cm"),    # taller legend
+    legend.text = element_text(size = 20),  # bigger numbers
+    legend.title = element_text(size = 22, face = "bold") # bigger title
+  )
+
+ggsave("Images/Intro/dens_pop_map.png", dens_pop_map, height=1350*4, width = 950*4, units = "px")
+
+```
+
+::: {.fragment .fade-out fragment-index="3"}
+::: {.absolute bottom="-3%" right="-11%"}
+![](Images/Intro/Coms_France.png){height="1350"}
+:::
+:::
+
+::: {.absolute bottom="-3%" right="-11%" .fragment .fade-in-then-out fragment-index="1"}
+![](Images/Intro/Coms_by_the_Sea.png){height="1350"}
+:::
+
+::: {.absolute bottom="-3%" right="-11%" .fragment .fade-in-then-out fragment-index="2"}
+![](Images/Intro/Coms_bands.png){height="1350"}
+:::
+
+::: {.absolute bottom="-3%" right="-11%" .fragment .fade-in fragment-index="3"}
+![](Images/Intro/dens_pop_map.png){height="1350"}
+:::
+
+::: {.absolute bottom="3%" left="5%" .fragment .fade-in fragment-index="4"}
+![](Images/Intro/CoastalPopulation.png){height="700"}
+:::
+
+::: {.fragment .fade-out fragment-index="3"}
+::: {.absolute .fragment .fade-in fragment-index="1" left="10%" top="15%" style="font-size: 50px; width: 900px; color: #596f50;"}
+- Directly in contact with the sea
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="2" left="10%" top="21%" style="font-size: 50px; width: 900px; color: #739069;"}
+- 25km away from the sea
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="2" left="10%" top="27%" style="font-size: 50px; width: 900px; color: #7f9a6f;"}
+- 50km away from the sea
+:::
+:::
+
+::: {.absolute left="0%" top="15%" .fragment .fade-in fragment-index="3" style="font-size: 50px;"}
+-   French Coast are densly populated:
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="3" left="10%" top="21%" style="font-size: 40px;"}
+-   4% of the french territory
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="3" left="10%" top="27%" style="font-size: 40px;"}
+-   10% of the french population
+:::
+
+::: {.absolute left="0%" top="35%" .fragment .fade-in fragment-index="4" style="font-size: 50px;"}
+-   Globaly: 
+:::
+
+::: {.absolute left="30%" bottom="0%" .fragment .fade-in fragment-index="4" style="font-size: 30px;"}
+*From* [*Cosby et al. (2024)*](https://doi.org/10.1038/s41598-024-73287-x) *and* [*Reimann et al., (2023)*](https://doi.org/10.1017/cft.2023.3) 
+:::
+
+::: {.absolute left="30%" bottom="45%" .fragment .fade-in fragment-index="4" style="font-size: 40px;"}
+1 billion people (15%) within 10km (4%)
+:::
+
+::: {.absolute left="30%" bottom="40%" .fragment .fade-in fragment-index="4" style="font-size: 40px;"}
+~3 billion by 2100
+:::
+
+## Human activities {data-transition="fade-out"}
+*Hotspots of Economic Growth*
+
+::: {.absolute right="0%" top="0%" style="font-size: 30px; color: black; z-index: 9999;"}
+[*developpement-durable.gouv.fr*](https://www.geolittoral.developpement-durable.gouv.fr/telechargement-en-ligne-donnees-geolittoral-a802.html)
+:::
+
+```{r maps coastal activities}
+#| cache: true
+#| echo: false
+#| eval: false
+#| warning: false
+
+library(sf)
+library(tidyverse)
+
+coms <- read_sf("Data/Intro/commune.shp")
+
+
+# Create bounding box as an sf object
+bbox <- st_as_sfc(st_bbox(c(xmin = 252579, xmax = 323049,
+                            ymin = 6655218, ymax = 6708566),
+                          crs = st_crs(coms)))
+cropped_coms <- st_intersection(coms, bbox)
+
+dragage <- read_sf("Data/Intro/N_zones_homogenes_dragage_S_metropole_EPSG2154.shp")%>% 
+  st_transform(st_crs(cropped_coms)) %>% 
+  st_intersection(bbox) 
+
+Port <- read_sf("Data/Intro/N_carenage_P_epsg3857_20220630.shp") %>% 
+  st_transform(st_crs(cropped_coms))%>% 
+  st_intersection(bbox) 
+
+Immersion_sed <- read_sf("Data/Intro/N_immersion_S_metropole_epsg2154_2005-2020.shp") %>% 
+  st_transform(st_crs(cropped_coms))%>% 
+  st_intersection(bbox) 
+
+Aquaculture <- read_sf("Data/Intro/cadastre_emprise_2025.shp") %>% 
+  st_transform(st_crs(cropped_coms))%>% 
+  st_intersection(bbox)
+
+Eol <- read_sf("Data/Intro/parc_emr_autorise_en_projet.shp") %>% 
+  st_transform(st_crs(cropped_coms))%>% 
+  st_intersection(bbox)
+
+Ouvrage <- read_sf("Data/Intro/N_ouvrages_littoraux_metropole_epsg2154_L.shp") %>% 
+  st_transform(st_crs(cropped_coms))%>% 
+  st_intersection(bbox)
+  
+# Crop the polygon with the bounding box
+
+plot <- ggplot() +
+  geom_sf(data = cropped_coms, fill = "#89a979", color = "#89a979") + 
+    # geom_sf(data = nantes_l93, fill = "red", color = "black",shape = 21,size = 8) +
+# original polygons (lighter)
+  # geom_sf(data = intersecting_polygons, fill = "#6e8962", color = "#6e8962") + 
+  # selected polygons
+  coord_sf(expand = F)+
+  theme_void()
+
+ggsave("Images/Intro/Map_BB.png", plot, width = 10, height=8.12, dpi=150)
+
+
+plot_port <- ggplot() +
+  geom_sf(data = cropped_coms, fill = "#89a979", color = "#89a979") +
+  geom_sf(data = Port, color = "darkred") +
+    # geom_sf(data = nantes_l93, fill = "red", color = "black",shape = 21,size = 8) +
+# original polygons (lighter)
+  # geom_sf(data = intersecting_polygons, fill = "#6e8962", color = "#6e8962") + 
+  # selected polygons
+  coord_sf(expand = F)+
+  theme_void()
+
+ggsave("Images/Intro/Map_BB_port.png", plot_port, width = 10, height=8.12, dpi=150)
+
+
+plot_dragage <- ggplot() +
+  geom_sf(data = cropped_coms, fill = "#89a979", color = "#89a979") +
+  geom_sf(data = Port, color = "darkred") +
+  geom_sf(data = dragage, color = "goldenrod3", fill = "goldenrod3") +
+  geom_sf(data = Immersion_sed, color = "goldenrod3", fill = "goldenrod3") +
+
+    # geom_sf(data = nantes_l93, fill = "red", color = "black",shape = 21,size = 8) +
+# original polygons (lighter)
+  # geom_sf(data = intersecting_polygons, fill = "#6e8962", color = "#6e8962") + 
+  # selected polygons
+  coord_sf(expand = F)+
+  theme_void()
+
+ggsave("Images/Intro/Map_BB_dragage.png", plot_dragage, width = 10, height=8.12, dpi=150)
+
+plot_aquaculture <- ggplot() +
+  geom_sf(data = cropped_coms, fill = "#89a979", color = "#89a979") +
+  geom_sf(data = Port, color = "darkred") +
+  geom_sf(data = dragage, color = "goldenrod3", fill = "goldenrod3") +
+  geom_sf(data = Immersion_sed, color = "goldenrod3", fill = "goldenrod3") +
+  geom_sf(data = Aquaculture, color = "darkblue", fill = "darkblue") +
+
+    # geom_sf(data = nantes_l93, fill = "red", color = "black",shape = 21,size = 8) +
+# original polygons (lighter)
+  # geom_sf(data = intersecting_polygons, fill = "#6e8962", color = "#6e8962") + 
+  # selected polygons
+  coord_sf(expand = F)+
+  theme_void()
+
+ggsave("Images/Intro/Map_BB_Aquaculture.png", plot_aquaculture, width = 10, height=8.12, dpi=150)
+
+plot_Eol <- ggplot() +
+  geom_sf(data = cropped_coms, fill = "#89a979", color = "#89a979") +
+  geom_sf(data = Port, color = "darkred") +
+  geom_sf(data = dragage, color = "goldenrod3", fill = "goldenrod3") +
+  geom_sf(data = Immersion_sed, color = "goldenrod3", fill = "goldenrod3") +
+  geom_sf(data = Aquaculture, color = "darkblue", fill = "darkblue") +
+  geom_sf(data = Eol, color = "darkgreen", fill = "darkgreen") +
+
+    # geom_sf(data = nantes_l93, fill = "red", color = "black",shape = 21,size = 8) +
+# original polygons (lighter)
+  # geom_sf(data = intersecting_polygons, fill = "#6e8962", color = "#6e8962") + 
+  # selected polygons
+  coord_sf(expand = F)+
+  theme_void()
+
+ggsave("Images/Intro/Map_BB_Eol.png", plot_Eol, width = 10, height=8.12, dpi=150)
+
+plot_ouvrage <- ggplot() +
+  geom_sf(data = cropped_coms, fill = "#89a979", color = "#89a979") +
+  geom_sf(data = Port, color = "darkred") +
+  geom_sf(data = dragage, color = "goldenrod3", fill = "goldenrod3") +
+  geom_sf(data = Immersion_sed, color = "goldenrod3", fill = "goldenrod3") +
+  geom_sf(data = Aquaculture, color = "darkblue", fill = "darkblue") +
+  geom_sf(data = Eol, color = "darkgreen", fill = "darkgreen") +
+  geom_sf(data = Ouvrage, color = "black", fill = "black", linewidth = 2) +
+
+    # geom_sf(data = nantes_l93, fill = "red", color = "black",shape = 21,size = 8) +
+# original polygons (lighter)
+  # geom_sf(data = intersecting_polygons, fill = "#6e8962", color = "#6e8962") + 
+  # selected polygons
+  coord_sf(expand = F)+
+  theme_void()
+
+ggsave("Images/Intro/Map_BB_ouvrage.png", plot_ouvrage, width = 10, height=8.12, dpi=150)
+
+
+```
+
+::: {.absolute bottom="-6%" right="-11%"}
+![](Images/Intro/Map_BB.png){height="1400"}
+:::
+
+::: {.absolute bottom="-6%" right="-11%" .fragment .fade-in-then-out fragment-index="1"}
+![](Images/Intro/Map_BB_port.png){height="1400"}
+:::
+
+::: {.absolute bottom="-6%" right="-11%" .fragment .fade-in-then-out fragment-index="2"}
+![](Images/Intro/Map_BB_dragage.png){height="1400"}
+:::
+
+::: {.absolute bottom="-6%" right="-11%" .fragment .fade-in-then-out fragment-index="3"}
+![](Images/Intro/Map_BB_Aquaculture.png){height="1400"}
+:::
+
+::: {.absolute bottom="-6%" right="-11%" .fragment .fade-in-then-out fragment-index="4"}
+![](Images/Intro/Map_BB_Eol.png){height="1400"}
+:::
+
+::: {.absolute bottom="-6%" right="-11%" .fragment .fade-in fragment-index="5"}
+![](Images/Intro/Map_BB_ouvrage.png){height="1400"}
+:::
+
+::: {.absolute top="15%" left="0%" .fragment .fade-in fragment-index="1"}
+![](Images/Intro/Seaport.png){height="500"}
+:::
+
+::: {.absolute top="15%" left="21%" .fragment .fade-in fragment-index="2"}
+![](Images/Intro/Dragage.png){height="500"}
+:::
+
+::: {.absolute top="15%" left="42%" .fragment .fade-in fragment-index="3"}
+![](Images/Intro/Aquaculture.png){height="500"}
+:::
+
+::: {.absolute top="55%" left="0%" .fragment .fade-in fragment-index="4"}
+![](Images/Intro/Eolienne.png){height="500"}
+:::
+
+::: {.absolute top="55%" left="21%" .fragment .fade-in fragment-index="5"}
+![](Images/Intro/Gois.png){height="500"}
+:::
+
+::: {.absolute left="6%" top="11%" .fragment .fade-in fragment-index="1" style="font-size: 50px; color: #78170e;"}
+Seaport
+:::
+
+::: {.absolute left="27%" top="11%" .fragment .fade-in fragment-index="2" style="font-size: 50px; color: #a98a36;"}
+Dredging
+:::
+
+::: {.absolute left="47%" top="11%" .fragment .fade-in fragment-index="3" style="font-size: 50px; color: #130985;"}
+Aquaculture
+:::
+
+::: {.absolute left="2%" bottom="0%" .fragment .fade-in fragment-index="4" style="font-size: 50px; color: #31621a;"}
+Energy Production
+:::
+
+::: {.absolute left="25%" bottom="0%" .fragment .fade-in fragment-index="5" style="font-size: 50px; color: black;"}
+Artificialization
+:::
+
+::: {.absolute left="43%" top="56%" .fragment .fade-in fragment-index="6" style="font-size: 50px; color: black;"}
+- Fishing activities
+- Tourism
+- Industries
+- ...
+:::
+
+
+
+## Environmental Impact {data-transition="fade"}
+*The mark of human activity on nature*
+
+::: {.absolute right="0%" top="0%" style="font-size: 30px; color: black; z-index: 9999;"}
+[*developpement-durable.gouv.fr*](https://www.geolittoral.developpement-durable.gouv.fr/telechargement-en-ligne-donnees-geolittoral-a802.html)
+:::
+
+::: {.absolute bottom="-6%" right="-11%"}
+![](Images/Intro/Map_BB_ouvrage.png){height="1400"}
+:::
+
+::: {.absolute top="15%" left="0%"}
+![](Images/Intro/Spills.png){height="500"}
+:::
+
+::: {.absolute top="15%" left="21%"}
+![](Images/Intro/Erosion.png){height="500"}
+:::
+
+::: {.absolute top="15%" left="42%"}
+![](Video/Intro/Oyster_reef.mp4){height="525"}
+:::
+
+::: {.absolute top="55%" left="0%"}
+![](Images/Intro/energy.png){height="500"}
+:::
+
+::: {.absolute top="55%" left="21%"}
+![](Images/Intro/habitat_destruction.png){height="500"}
+:::
+
+::: {.absolute left="6%" top="11%" style="font-size: 50px; color: #78170e;"}
+Oil spills
+:::
+
+::: {.absolute left="27%" top="11%" style="font-size: 50px; color: #a98a36;"}
+Erosion
+:::
+
+::: {.absolute left="41%" top="11%" style="font-size: 50px; color: #130985;"}
+Alien Species Introduction
+:::
+
+::: {.absolute left="1%" bottom="0%" style="font-size: 50px; color: #31621a;"}
+Energy introduction
+:::
+
+::: {.absolute left="23%" bottom="0%" style="font-size: 50px; color: black;"}
+Habitat destruction
+:::
+
+::: {.absolute left="43%" top="56%" style="font-size: 50px; color: black;"}
+- Fishing activities
+- Pollutions
+- ...
+:::
+
+## Intertidal habitat
+
 
 # Developing Advanced Methodologies for Intertidal Vegetation Monitoring {data-name="Challenges and Solutions"}
 
