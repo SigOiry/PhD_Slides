@@ -12,8 +12,9 @@ format:
     auto-play-media: true
     backgroundTransition: fade
     controls: false
-    includes:
-      after_body: custom.js
+    slide-number: true
+    # includes:
+    #   before_body: custom.js
     simplemenu:
         barhtml:
             header: "<div class='menubar'></a><ul class='menu'></ul><div class='slide-number'></div><div>"
@@ -235,7 +236,7 @@ if (length(large_files) > 0) {
 ## Preface {data-state="hide-menubar"}
 
 ::: {.fragment .fade-out fragment-index="2"}
-::: {.absolute bottom="3%" left="0%"}
+::: {.absolute bottom="0%" left="0%"}
 ![](Images/Preface/Photo_Labo.jpg){height="1200"}
 :::
 
@@ -284,7 +285,7 @@ Project related to the PhD
 ![](Images/Preface/Watercolor_background_green.png){height="1200"}
 :::
 
-::: {.absolute .fragment .fade-in fragment-index="3" left="-2%" top="2%"}
+::: {.absolute .fragment .fade-in fragment-index="3" left="1%" top="2%" style="z-index: -1;"}
 
 ![](Images/Others/BiCOME Logo.png){height="300"}
 :::
@@ -372,7 +373,7 @@ Project founded by:
 <!-- - It has been found by the french government blabla -->
 <!-- - It was closely related to a ESA founded project called BiCOME -->
 
-## Table of Contents {.toc-page data-state="hide-menubar" data-name="T.O.C"}
+## Table of Contents {.toc-page data-state="hide-menubar"}
 <!-- <ul class="menu"></ul> -->
 - [Introduction](#introduction)
 - [Challenges and Solutions](#developing-advanced-methodologies-for-intertidal-vegetation-monitoring)
@@ -381,13 +382,18 @@ Project founded by:
 - [Discussion](#discussion-and-overview)
 
 # Introduction {data-stack-name="Introduction" background-image="Images/Intro/title_background.png"}
-- Coastal areas
-- Interidal Habitats 
-- Remote Sensing 
+- [Coastal Environments](#coastal-environments)
+- [Human Activities](#human-activities)
+- [Environmental Impacts](#environmental-impacts)
+- [Interidal Habitats](#intertidal-habitats)
+- [Remote Sensing](#remote-sensing) 
 - Objectives of this work
 
-## Coastal Environments  
+## Coastal Environments
+
+::: {.absolute top="6%"}
 *Areas where the land masses meet the seas*
+:::
 
 ```{r map dens_pop}
 #| cache: true
@@ -556,7 +562,7 @@ ggsave("Images/Intro/dens_pop_map.png", dens_pop_map, height=1350*4, width = 950
 :::
 
 ::: {.absolute left="30%" bottom="0%" .fragment .fade-in fragment-index="4" style="font-size: 30px;"}
-*From* [*Cosby et al. (2024)*](https://doi.org/10.1038/s41598-024-73287-x) *and* [*Reimann et al., (2023)*](https://doi.org/10.1017/cft.2023.3) 
+*Source:* [*Cosby et al. (2024)*](https://doi.org/10.1038/s41598-024-73287-x) *,* [*Reimann et al., (2023)*](https://doi.org/10.1017/cft.2023.3) 
 :::
 
 ::: {.absolute left="30%" bottom="45%" .fragment .fade-in fragment-index="4" style="font-size: 40px;"}
@@ -567,11 +573,14 @@ ggsave("Images/Intro/dens_pop_map.png", dens_pop_map, height=1350*4, width = 950
 ~3 billion by 2100
 :::
 
-## Human activities {data-transition="fade-out"}
+## Human activities {data-transition="fade"}
+
+::: {.absolute top="6%"}
 *Hotspots of Economic Growth*
+:::
 
 ::: {.absolute right="0%" top="0%" style="font-size: 30px; color: black; z-index: 9999;"}
-[*developpement-durable.gouv.fr*](https://www.geolittoral.developpement-durable.gouv.fr/telechargement-en-ligne-donnees-geolittoral-a802.html)
+[*source: developpement-durable.gouv.fr*](https://www.geolittoral.developpement-durable.gouv.fr/telechargement-en-ligne-donnees-geolittoral-a802.html)
 :::
 
 ```{r maps coastal activities}
@@ -740,19 +749,19 @@ ggsave("Images/Intro/Map_BB_ouvrage.png", plot_ouvrage, width = 10, height=8.12,
 ![](Images/Intro/Seaport.png){height="500"}
 :::
 
-::: {.absolute top="15%" left="21%" .fragment .fade-in fragment-index="2"}
+::: {.absolute top="55%" left="0%" .fragment .fade-in fragment-index="2"}
 ![](Images/Intro/Dragage.png){height="500"}
 :::
 
-::: {.absolute top="15%" left="42%" .fragment .fade-in fragment-index="3"}
-![](Images/Intro/Aquaculture.png){height="500"}
+::: {.absolute top="15%" left="21%" .fragment .fade-in fragment-index="3"}
+![](Video/Intro/Oyster_farm.mp4){height="525"}
 :::
 
-::: {.absolute top="55%" left="0%" .fragment .fade-in fragment-index="4"}
+::: {.absolute top="55%" left="21%" .fragment .fade-in fragment-index="4"}
 ![](Images/Intro/Eolienne.png){height="500"}
 :::
 
-::: {.absolute top="55%" left="21%" .fragment .fade-in fragment-index="5"}
+::: {.absolute top="15%" left="42%" .fragment .fade-in fragment-index="5"}
 ![](Images/Intro/Gois.png){height="500"}
 :::
 
@@ -760,19 +769,19 @@ ggsave("Images/Intro/Map_BB_ouvrage.png", plot_ouvrage, width = 10, height=8.12,
 Seaport
 :::
 
-::: {.absolute left="27%" top="11%" .fragment .fade-in fragment-index="2" style="font-size: 50px; color: #a98a36;"}
+::: {.absolute left="5%" bottom="0%" .fragment .fade-in fragment-index="2" style="font-size: 50px; color: #a98a36;"}
 Dredging
 :::
 
-::: {.absolute left="47%" top="11%" .fragment .fade-in fragment-index="3" style="font-size: 50px; color: #130985;"}
+::: {.absolute left="26%" top="11%" .fragment .fade-in fragment-index="3" style="font-size: 50px; color: #130985;"}
 Aquaculture
 :::
 
-::: {.absolute left="2%" bottom="0%" .fragment .fade-in fragment-index="4" style="font-size: 50px; color: #31621a;"}
+::: {.absolute left="23%" bottom="0%" .fragment .fade-in fragment-index="4" style="font-size: 50px; color: #31621a;"}
 Energy Production
 :::
 
-::: {.absolute left="25%" bottom="0%" .fragment .fade-in fragment-index="5" style="font-size: 50px; color: black;"}
+::: {.absolute left="46%" top="11%" .fragment .fade-in fragment-index="5" style="font-size: 50px; color: black;"}
 Artificialization
 :::
 
@@ -785,8 +794,10 @@ Artificialization
 
 
 
-## Environmental Impact {data-transition="fade"}
+## Environmental Impacts {data-transition="fade"}
+::: {.absolute top="6%"}
 *The mark of human activity on nature*
+:::
 
 ::: {.absolute right="0%" top="0%" style="font-size: 30px; color: black; z-index: 9999;"}
 [*developpement-durable.gouv.fr*](https://www.geolittoral.developpement-durable.gouv.fr/telechargement-en-ligne-donnees-geolittoral-a802.html)
@@ -800,19 +811,19 @@ Artificialization
 ![](Images/Intro/Spills.png){height="500"}
 :::
 
-::: {.absolute top="15%" left="21%"}
+::: {.absolute top="55%" left="0%"}
 ![](Images/Intro/Erosion.png){height="500"}
 :::
 
-::: {.absolute top="15%" left="42%"}
-![](Video/Intro/Oyster_reef.mp4){height="525"}
-:::
-
-::: {.absolute top="55%" left="0%"}
-![](Images/Intro/energy.png){height="500"}
+::: {.absolute top="15%" left="21%"}
+![](Video/Intro/Oyster_reef2.mp4){height="525"}
 :::
 
 ::: {.absolute top="55%" left="21%"}
+![](Images/Intro/energy.png){height="500"}
+:::
+
+::: {.absolute top="15%" left="42%"}
 ![](Images/Intro/habitat_destruction.png){height="500"}
 :::
 
@@ -820,19 +831,19 @@ Artificialization
 Oil spills
 :::
 
-::: {.absolute left="27%" top="11%" style="font-size: 50px; color: #a98a36;"}
+::: {.absolute left="5%" bottom="0%" style="font-size: 50px; color: #a98a36;"}
 Erosion
 :::
 
-::: {.absolute left="41%" top="11%" style="font-size: 50px; color: #130985;"}
+::: {.absolute left="19%" top="11%" style="font-size: 50px; color: #130985;"}
 Alien Species Introduction
 :::
 
-::: {.absolute left="1%" bottom="0%" style="font-size: 50px; color: #31621a;"}
+::: {.absolute left="23%" bottom="0%" style="font-size: 50px; color: #31621a;"}
 Energy introduction
 :::
 
-::: {.absolute left="23%" bottom="0%" style="font-size: 50px; color: black;"}
+::: {.absolute left="43%" top="11%" style="font-size: 50px; color: black;"}
 Habitat destruction
 :::
 
@@ -842,8 +853,214 @@ Habitat destruction
 - ...
 :::
 
-## Intertidal habitat
+## Intertidal habitats
 
+::: {.absolute top="6%"}
+*Living on the edge of land and sea*
+:::
+
+::: {.fragment .fade-out fragment-index="1"}
+::: {.absolute top="10%" left="0%"}
+![](Images/Intro/saltmarsh.jpg){height="500"}
+:::
+
+::: {.absolute top="10%" left="28%"}
+![](Images/Intro/mangroves.jpg){height="500"}
+:::
+
+::: {.absolute top="10%" left="59%"}
+![](Images/Intro/polychaete_reef.jpg){height="500"}
+:::
+
+::: {.absolute bottom="10%" left="39%"}
+![](Images/Intro/mudflat.png){height="500"}
+:::
+
+::: {.absolute bottom="10%" left="67.2%"}
+![](Images/Intro/Oyster_reefs.png){height="500"}
+:::
+
+::: {.absolute bottom="10%" left="0%"}
+![](Images/Intro/DJI_0485.png){height="500"}
+:::
+
+::: {.absolute left="1%" top="12%" style="font-size: 40px; color: black;"}
+Saltmarshes
+:::
+
+::: {.absolute left="29%" top="12%" style="font-size: 40px; color: white;"}
+Mangroves
+:::
+
+::: {.absolute left="60%" top="12%" style="font-size: 40px; color: black;"}
+Polychaete reefs
+:::
+
+::: {.absolute left="1%" top="50%" style="font-size: 40px; color: black;"}
+Rocky reefs
+:::
+
+::: {.absolute left="40%" top="50%" style="font-size: 40px; color: white;"}
+Mudflats
+:::
+
+::: {.absolute left="68.2%" top="50%" style="font-size: 40px; color: black;"}
+Oyster reefs
+:::
+
+::: {.absolute bottom="5%" right="6%"}
+*A rich variety of intertidal habitats*
+:::
+:::
+
+::: {.fragment .fade-out fragment-index="4"}
+::: {style="position:absolute; top:10%; left:0%; transition: top 1s ease;" .fragment .fade-in fragment-index="1"}
+::: {.absolute bottom="-5%" .fragment .fade-out fragment-index="2"}
+Soft-bottom Substrats
+:::
+::: {.absolute top="-4%" right="7%" style="font-size: 30px;"}
+*Guadalquivir River, Spain*
+:::
+![](Video/Intro/soft_bottom.mp4){height="650"}
+
+::: {.absolute left="60%" top="110%" .fragment .fade-in-then-out fragment-index="2"}
+- A - Magnoliopsida
+- B - Bacillariophyceae
+- C - Phaeophyceae
+- D - Florideophyceae
+- E - Chlorophyceae
+:::
+
+::: {.absolute left="5%" top="115%" .fragment .fade-in-then-out fragment-index="2" style="font-size: 60px;"}
+Five Taxonomic Classes
+:::
+
+::: {.absolute left="14%" top="125%" .fragment .fade-in-then-out fragment-index="2" style="font-size: 60px;"}
+of Vegetation
+:::
+
+:::
+:::
+
+::: {.absolute top="10%" right="0%" .fragment .fade-in-then-out fragment-index="1"}
+::: {.absolute bottom="-5%"}
+Hard-bottom Substrats
+:::
+::: {.absolute top="-4%" right="7%" .fragment .fade-out fragment-index="2" style="font-size: 30px;"}
+*Vigo, Spain*
+:::
+![](Video/Intro/site_2_vigo_1bis.mp4){height="650"}
+:::
+
+::: {.absolute top="0%" right="10%" .fragment .fade-in-then-out fragment-index="2"}
+![](Images/Intro/Figs_vegetations.png){height="1370"}
+:::
+
+::: {.absolute top="10%" right="0%" .fragment .fade-in fragment-index="3"}
+:::
+
+::: {.absolute top="5%" left="48%" .fragment .fade-in fragment-index="3"}
+::: {.absolute top="-5%" right="10%" style="font-size: 30px; color: black;"}
+[*Hope et al. 2019*](https://doi.org/10.1111/1365-2745.13322)
+:::
+
+![](Images/Intro/MPB-Biofilm.jpg){height="500"}
+
+:::
+
+::: {style="position:absolute; top:10%; left:0%;" .fragment .fade-in fragment-index="4"}
+![](Images/Intro/Carbon_seagrass.jpg){height="650"}
+:::
+
+::: {.absolute top="5%" right="16%" .fragment .fade-in fragment-index="5"}
+![](Images/Intro/seagrass_hypo.png){height="500"}
+:::
+
+::: {.absolute top="5%" right="0%" .fragment .fade-in fragment-index="5"}
+![](Images/Intro/seagrass_dugong.png){height="500"}
+:::
+
+::: {.absolute top="59%" left="22.7%" .fragment .fade-in fragment-index="5"}
+![](Images/Intro/bernache_seagrass.png){height="462"}
+:::
+
+::: {.absolute top="43%" right="-2%" .fragment .fade-in fragment-index="6"}
+::: {.absolute bottom="-3%" right="8%" style="font-size: 30px; color: black;"}
+*Saja estuary, Spain*
+:::
+
+![](Video/Intro/Santander_green_and_red_algae.mp4){height="730"}
+:::
+
+::: {.absolute left="1%" top="60%" .fragment .fade-in fragment-index="3" style="font-size: 60px;"}
+Ecosystem Services
+:::
+
+::: {.absolute left="2%" top="65%" .fragment .fade-in fragment-index="3"}
+- Protection against Erosion
+:::
+
+::: {.absolute left="2%" top="70%" .fragment .fade-in fragment-index="4"}
+- Carbon fixation
+:::
+
+::: {.absolute left="2%" top="75%" .fragment .fade-in fragment-index="5"}
+- Nursery & Shelter
+:::
+
+::: {.absolute left="2%" top="80%" .fragment .fade-in fragment-index="6"}
+- Nutrient Fixation
+:::
+
+## Remote Sensing
+::: {.absolute top="6%"}
+*A tool to map them all !*
+:::
+
+
+::: {.absolute top="-4%" right="-10%"}
+
+```{=html}
+<video class="fragment fade-out" data-fragment-index="1" autoplay muted loop playsinline height="1450">
+  <source src="Video/Intro/Oyster_reef_intertidal1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+```
+:::
+
+::: {.absolute top="-4%" right="-10%"}
+
+```{=html}
+<video class="fragment fade-in" data-fragment-index="1" autoplay muted loop playsinline height="1450">
+  <source src="Video/Intro/Drone_Flight.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+```
+:::
+
+::: {.absolute left="2%" top="15%" style="font-size: 50px;"}
+Traditional sampling methods: 
+:::
+
+::: {.absolute left="5%" top="20%"}
+  - Expensive
+  - Time consuming
+  - Low extent and temporal resolution
+  - Hard to access
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="1" left="2%" top="45%" style="font-size: 50px;"}
+Remote Sensing: 
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="1" left="5%" top="50%"}
+  - Cost effective
+  - Good coverage/Time ratio
+  - Synchronous broad-scale view
+  - Simplifies the field work
+:::
 
 # Developing Advanced Methodologies for Intertidal Vegetation Monitoring {data-name="Challenges and Solutions"}
 

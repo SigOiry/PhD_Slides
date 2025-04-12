@@ -18,6 +18,15 @@ $p: 80px;
 
 $font-size: 40px;
 
+/* Increase size for h1 */
+.reveal h1 {
+  font-size: 3.5em !important;
+}
+
+/* Increase size for h2 */
+.reveal h2 {
+  font-size: 2.5em !important;
+}
 /*-- scss:rules --*/
 
 .reveal .slide-logo {
