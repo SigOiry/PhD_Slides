@@ -174,4 +174,17 @@ background: radial-gradient(
   opacity: 1;
 }
 
+.circular-fade {
+  border-radius: 10%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  background-color: white;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.9); /* ajoute une lumière blanche douce autour */
+}
+
+
+
 

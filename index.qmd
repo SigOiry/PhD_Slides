@@ -1013,7 +1013,7 @@ Ecosystem Services
 :::
 
 ## Remote Sensing
-::: {.absolute top="6%"}
+::: {.absolute top="6%" .fragment .fade-out fragment-index="2"}
 *A tool to map them all !*
 :::
 
@@ -1040,27 +1040,178 @@ Ecosystem Services
 ```
 :::
 
-::: {.absolute left="2%" top="15%" style="font-size: 50px;"}
+::: {.absolute .fragment .fade-out fragment-index="2" left="2%" top="15%" style="font-size: 50px;"}
 Traditional sampling methods: 
 :::
 
-::: {.absolute left="5%" top="20%"}
+::: {.absolute .fragment .fade-out fragment-index="2" left="5%" top="20%"}
   - Expensive
   - Time consuming
   - Low extent and temporal resolution
   - Hard to access
 :::
 
-::: {.absolute .fragment .fade-in fragment-index="1" left="2%" top="45%" style="font-size: 50px;"}
+::: {.absolute .fragment .fade-in-then-out fragment-index="1" left="2%" top="45%" style="font-size: 50px;"}
 Remote Sensing: 
 :::
 
-::: {.absolute .fragment .fade-in fragment-index="1" left="5%" top="50%"}
+::: {.absolute .fragment .fade-in-then-out fragment-index="1" left="5%" top="50%"}
   - Cost effective
   - Good coverage/Time ratio
   - Synchronous broad-scale view
   - Simplifies the field work
 :::
+
+::: {.absolute top="6%" .fragment .fade-in fragment-index="2"} 
+*Remote Sensing platforms from the sky to the sea *
+:::
+
+::: {.absolute top="15%" .fragment .fade-in fragment-index="2"} 
+The science of obtaining information about objects or areas from a distance
+:::
+
+
+::: {.absolute top="22%" left="0%" .fragment .fade-in fragment-index="2"}
+![](Images/Intro/eyes.png){height="400" .circular-fade}
+:::
+
+::: {.absolute top="22%" left="17%" .fragment .fade-in fragment-index="2"}
+![](Images/Intro/Bats.png){height="400" .circular-fade}
+:::
+
+::: {.absolute top="22%" left="34%" .fragment .fade-in fragment-index="2" style="z-index: 9999;"}
+![](Images/Intro/james_webb.png){height="400" .circular-fade}
+:::
+
+::: {.absolute top="22%" left="51%" .fragment .fade-in fragment-index="2"}
+![](Images/Intro/IRM.png){height="400" .circular-fade}
+:::
+
+::: {.absolute top="59%" .fragment .fade-in fragment-index="3"} 
+Applyed to Earth Obsevation: 
+:::
+
+::: {.absolute top="65%" left="0%" .fragment .fade-in fragment-index="3"}
+![](Images/Intro/Sentinel2_1.png){height="400" .circular-fade}
+:::
+
+::: {.absolute top="65%" left="17%" .fragment .fade-in fragment-index="3"}
+![](Images/Intro/Airbornn.png){height="400" .circular-fade}
+:::
+
+::: {.absolute top="65%" left="34%" .fragment .fade-in fragment-index="3"}
+![](Images/Intro/Drone_MPB1.png){height="400" .circular-fade}
+:::
+
+::: {.absolute top="65%" left="51%" .fragment .fade-in fragment-index="3"}
+![](Images/Intro/Bede_ASD.png){height="400" .circular-fade}
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::: {.absolute top="45%" left="0%" .fragment .fade-in fragment-index="4"}
+![](Images/Intro/Sentinel2.png){height="400" .circular-fade}
+:::
+
+::: {.absolute top="45%" left="22%" .fragment .fade-in fragment-index="4"}
+![](Images/Intro/Drone_MPB.jpg){height="400" .circular-fade}
+:::
+
+::: {.absolute top="45%" left="44%" .fragment .fade-in fragment-index="4" style="z-index: 9999;"}
+![](Images/Intro/Quadrats.jpg){height="400" .circular-fade}
+:::
+
+::: {.absolute left="2%" top="77%" style="font-size: 40px;" .fragment .fade-in fragment-index="4"} 
+**Sentinel-2** 
+:::
+
+::: {.absolute left="24%" top="77%" style="font-size: 40px;" .fragment .fade-in fragment-index="4"} 
+**Drone**
+:::
+
+::: {.absolute left="46%" top="77%" style="font-size: 40px;" .fragment .fade-in fragment-index="4"} 
+***In situ*** 
+:::
+
+::: {.absolute left="4%" top="82%" style="font-size: 35px;" .fragment .fade-in fragment-index="4"}
+
+10–20 m resolution
+
+100 000 km²/image
+
+5-day revisit
+
+:::
+
+::: {.absolute left="26%" top="82%" style="font-size: 35px;" .fragment .fade-in fragment-index="4"}
+
+cm resolution
+
+Adapted to small-scale studies
+
+Flight planning flexibility
+:::
+
+::: {.absolute left="48%" top="82%" style="font-size: 35px;" .fragment .fade-in fragment-index="4"}
+
+Validation and calibration
+
+Ground truthing
+
+Fine-scale observations
+:::
+
+## Objectives of this work {data-background-image="Images/Intro/background_obj.png"}
+
+::: {.absolute top="6%"}
+*A multi-scale approach to monitor and understand intertidal vegetation*
+:::
+
+::: {.absolute top="25%" left="5%" style="font-size: 55px;" .fragment .fade-in fragment-index="1"}
+- Monitor and characterize intertidal vegetation across European coastlines  
+:::
+
+::: {.absolute top="40%" left="10%" style="font-size: 48px;" .fragment .fade-in fragment-index="2"}
+- Assess impacts of **natural pressures** (e.g. heatwaves)  
+- Assess impacts of **anthropogenic pressures** (e.g. aquaculture, dredging)  
+:::
+
+::: {.absolute top="60%" left="10%" style="font-size: 48px;" .fragment .fade-in fragment-index="3"}
+- Develop **remote sensing methodologies** across multiple spatial scales  
+- Validate remote sensing products with **in situ** observations  
+:::
+
+::: {.absolute top="80%" left="10%" style="font-size: 48px;" .fragment .fade-in fragment-index="4"}
+- Provide tools for **ecosystem monitoring** and **coastal management**  
+:::
+
 
 # Developing Advanced Methodologies for Intertidal Vegetation Monitoring {data-name="Challenges and Solutions"}
 

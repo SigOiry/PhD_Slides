@@ -153,12 +153,13 @@ body.hide-menubar .reveal.ready .menubar a {
 }
 .reveal .slide-number a, .menubar .slide-number a {
   padding: 0;
-  opacity: 0.33;
-  color: currentColor;
+  opacity: 1;
+  color: #0e4e39;  
 }
 .reveal .slide-number a:hover, .menubar .slide-number a:hover {
-  color: currentColor;
-  opacity: 0.75;
+  opacity: 1;
+  color: #0e4e39;          // ou "black", ou un vert foncé élégant
+  text-shadow: 1px 1px 3px white; // contour blanc discret pour contraster
 }
 
 .menubar .slide-number {
@@ -173,7 +174,7 @@ body.hide-menubar .reveal.ready .menubar a {
       -ms-flex-align: center;
           align-items: center;
   justify-items: center;
-  font-size: 0.75em;
+  font-size: 30px;
   height: 100%;
   right: 0;
   bottom: auto;
