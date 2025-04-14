@@ -13,6 +13,7 @@ format:
     backgroundTransition: fade
     controls: false
     slide-number: true
+    include-after-body: moving-text.js
     # includes:
     #   before_body: custom.js
     simplemenu:
@@ -22,7 +23,7 @@ format:
 revealjs-plugins:
   - simplemenu
 editor_options: 
-  chunk_output_type: inline
+  chunk_output_type: console
 ---
 
 ```{r library}
@@ -235,6 +236,17 @@ if (length(large_files) > 0) {
 
 ## Preface {data-state="hide-menubar"}
 
+::: {.notes}
+Between 2021 & 2024
+
+BiCOME: Developing tools for biodiversity monitoring
+
+REWRITE: Ongoing, Founded by Europe, Rewilding of intertidal areas accross Europe
+
+InvaSea: Ongoing, Mapping of Invasive macroalgae, focusing on *G. vermiculophylla*
+
+:::
+
 ::: {.fragment .fade-out fragment-index="2"}
 ::: {.absolute bottom="0%" left="0%"}
 ![](Images/Preface/Photo_Labo.jpg){height="1200"}
@@ -373,26 +385,24 @@ Project funded by:
 <!-- - It has been found by the french government blabla -->
 <!-- - It was closely related to a ESA founded project called BiCOME -->
 
-## Table of Contents {.toc-page data-state="hide-menubar"}
-<!-- <ul class="menu"></ul> -->
-- [Introduction](#introduction)
-- [Challenges and Solutions](#developing-advanced-methodologies-for-intertidal-vegetation-monitoring)
-- [Invasive Species](#case-study-1-facing-biological-invasions)
-- [Marine Heatwaves](#case-study-2-mapping-the-impact-of-heatwaves-on-intertidal-seagrasses)
-- [Discussion](#discussion-and-overview)
-
 # Introduction {data-stack-name="Introduction" background-image="Images/Intro/title_background.png"}
 - [Coastal Environments](#coastal-environments)
 - [Human Activities](#human-activities)
 - [Environmental Impacts](#environmental-impacts)
 - [Interidal Habitats](#intertidal-habitats)
 - [Remote Sensing](#remote-sensing) 
-- Objectives of this work
+- [Objectives of this work](#objectives-of-this-work)
 
 ## Coastal Environments
 
-::: {.absolute top="6%"}
+::: {.absolute top="6.5%"}
 *Areas where the land masses meet the seas*
+:::
+
+::: {.notes}
+1st: Map of Brittany, North West of France
+2nd: Map of Bourgneuf Bay, near Nantes
+
 :::
 
 ```{r map dens_pop}
@@ -575,8 +585,14 @@ ggsave("Images/Intro/dens_pop_map.png", dens_pop_map, height=1350*4, width = 950
 
 ## Human activities {data-transition="fade"}
 
-::: {.absolute top="6%"}
+::: {.absolute top="6.5%"}
 *Hotspots of Economic Growth*
+:::
+
+
+::: {.notes}
+
+These economic activities also come with environmental costs, impacting habitats, water quality, and marine life
 :::
 
 ::: {.absolute right="0%" top="0%" style="font-size: 30px; color: black; z-index: 9999;"}
@@ -795,7 +811,7 @@ Artificialization
 
 
 ## Environmental Impacts {data-transition="fade"}
-::: {.absolute top="6%"}
+::: {.absolute top="6.5%"}
 *The mark of human activity on nature*
 :::
 
@@ -855,8 +871,19 @@ Habitat destruction
 
 ## Intertidal habitats
 
-::: {.absolute top="6%"}
+::: {.absolute top="6.5%"}
 *Living on the edge of land and sea*
+:::
+
+::: {.notes}
+... and many more habitats like Coralline algal reefs or Cobble or gravel beaches
+
+Seagrass: Blue Carbon Habitat
+Hypocamp of the Gulf of Morbihan 
+Dugong of the Indo-Pacific
+Brent Goose of Noirmoutier
+
+Green and red algae, nutrient sequestration, but can be a threat for ecosystems
 :::
 
 ::: {.fragment .fade-out fragment-index="1"}
@@ -956,8 +983,7 @@ Hard-bottom substrats
 ![](Images/Intro/Figs_vegetations.png){height="1370"}
 :::
 
-::: {.absolute top="10%" right="0%" .fragment .fade-in fragment-index="3"}
-:::
+::: {.fragment .fade-out fragment-index="7"}
 
 ::: {.absolute top="5%" left="48%" .fragment .fade-in fragment-index="3"}
 ::: {.absolute top="-5%" right="10%" style="font-size: 30px; color: black;"}
@@ -1011,33 +1037,60 @@ Ecosystem Services
 ::: {.absolute left="2%" top="80%" .fragment .fade-in fragment-index="6"}
 - Nutrient Fixation
 :::
+:::
 
-## Remote Sensing
-::: {.absolute top="6%" .fragment .fade-out fragment-index="2"}
+::: {.absolute left="2%" top="15%" .fragment .fade-in fragment-index="7" style="font-size: 60px;"}
+~ $30 trillion per year 
+:::
+
+::: {.absolute left="2%" top="25%" .fragment .fade-in fragment-index="7" style="font-size: 50px;"}
+Protect these ecosystems:
+:::
+
+::: {.absolute left="5%" top="30%" .fragment .fade-in fragment-index="7" style="font-size: 50px;"}
+  - Habitat Directive (1992)
+  - Water framework Directive (2001)
+  - Marine Strategy Framework Directive (2008)
+  - Birds Directive (2009)
+  - Nature Restoration Law (2024)
+:::
+
+::: {.absolute right="0%" bottom="0%" .fragment .fade-in fragment-index="7" style="font-size: 30px;"}
+[Source: Koundouri et al., 2023](https://doi.org/10.3389/frevc.2023.1160118)
+:::
+
+::: {.absolute left="45%" top="10%" .fragment .fade-in fragment-index="7"}
+![](Images/Intro/MSFD-logo.jpg){height="500"}
+:::
+
+::: {.absolute left="70%" top="0%" .fragment .fade-in fragment-index="7"}
+![](Images/Intro/Natura2000.png){height="500"}
+:::
+
+::: {.absolute left="2%" bottom="20%" .fragment .fade-in fragment-index="7" style="font-size: 55px;"}
+Good knowledge and monitoring to inform policies
+:::
+
+::: {.absolute right="0%" bottom="5%" .fragment .fade-in fragment-index="7"}
+![](Images/Intro/NatureRestorationLax.png){height="500"}
+:::
+
+
+
+
+
+## Remote Sensing  {auto-animate=true transition="slide-in fade-out"}
+::: {.absolute top="6.5%" .fragment .fade-out fragment-index="2"}
 *A tool to map them all !*
 :::
 
 
-::: {.absolute top="-4%" right="-10%"}
-
-```{=html}
-<video class="fragment fade-out" data-fragment-index="1" autoplay muted loop playsinline height="1450">
-  <source src="Video/Intro/Oyster_reef_intertidal1.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-```
+::: {.absolute top="-4%" right="-10%" }
+<video src="Video/Intro/Oyster_reef_intertidal1.mp4" height="1450" autoplay loop muted playsinline></video>
 :::
 
-::: {.absolute top="-4%" right="-10%"}
-
-```{=html}
-<video class="fragment fade-in" data-fragment-index="1" autoplay muted loop playsinline height="1450">
-  <source src="Video/Intro/Drone_Flight.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-```
+::: {.absolute top="-4%" right="-10%" .fragment .fade-in fragment-index="1"}
+<video src="Video/Intro/Drone_Flight.mp4" height="1450" autoplay loop muted playsinline></video>
 :::
 
 ::: {.absolute .fragment .fade-out fragment-index="2" left="2%" top="15%" style="font-size: 50px;"}
@@ -1062,8 +1115,8 @@ Remote Sensing:
   - Simplifies the field work
 :::
 
-::: {.absolute top="6%" .fragment .fade-in fragment-index="2"} 
-*Remote Sensing platforms from the sky to the sea *
+::: {.absolute top="6.5%" .fragment .fade-in fragment-index="2"} 
+*From the sky to the sea *
 :::
 
 ::: {.absolute top="15%" .fragment .fade-in fragment-index="2"} 
@@ -1088,79 +1141,55 @@ The science of obtaining information about objects or areas from a distance
 :::
 
 ::: {.absolute top="59%" .fragment .fade-in fragment-index="3"} 
-Applyed to Earth Obsevation: 
+Applyed to Earth Observation: 
 :::
 
-::: {.absolute top="65%" left="0%" .fragment .fade-in fragment-index="3"}
+::: {.absolute top="65%" left="0%" .fragment .fade-in fragment-index="3" data-id="box1" }
 ![](Images/Intro/Sentinel2_1.png){height="400" .circular-fade}
 :::
 
-::: {.absolute top="65%" left="17%" .fragment .fade-in fragment-index="3"}
+::: {.absolute top="65%" left="17%" .fragment .fade-in fragment-index="3" data-id="box2" }
 ![](Images/Intro/Airbornn.png){height="400" .circular-fade}
 :::
 
-::: {.absolute top="65%" left="34%" .fragment .fade-in fragment-index="3"}
+::: {.absolute top="65%" left="34%" .fragment .fade-in fragment-index="3" data-id="box3" }
 ![](Images/Intro/Drone_MPB1.png){height="400" .circular-fade}
 :::
 
-::: {.absolute top="65%" left="51%" .fragment .fade-in fragment-index="3"}
+::: {.absolute top="65%" left="51%" .fragment .fade-in fragment-index="3" data-id="box4" }
 ![](Images/Intro/Bede_ASD.png){height="400" .circular-fade}
 :::
 
+## Remote Sensing  {auto-animate=true visibility="uncounted" transition="none"}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-::: {.absolute top="45%" left="0%" .fragment .fade-in fragment-index="4"}
-![](Images/Intro/Sentinel2.png){height="400" .circular-fade}
+::: {.fragment .fade-out fragment-index="2"}
+::: {.absolute top="6.5%"}
+*From the sky to the sea *
 :::
 
-::: {.absolute top="45%" left="22%" .fragment .fade-in fragment-index="4"}
-![](Images/Intro/Drone_MPB.jpg){height="400" .circular-fade}
+::: {.absolute top="20%" left="0%" data-id="box1" }
+![](Images/Intro/Sentinel2_1.png){height="550" .circular-fade}
 :::
 
-::: {.absolute top="45%" left="44%" .fragment .fade-in fragment-index="4" style="z-index: 9999;"}
-![](Images/Intro/Quadrats.jpg){height="400" .circular-fade}
+::: {.absolute top="20%" left="24%" data-id="box3" }
+![](Images/Intro/Drone_MPB1.png){height="550" .circular-fade}
 :::
 
-::: {.absolute left="2%" top="77%" style="font-size: 40px;" .fragment .fade-in fragment-index="4"} 
+
+
+::: {.absolute top="10%" right="-0%" .fragment .fade-in fragment-index="1"}
+![](Images/Intro/Satellite_resolution.png){height="1100"}
+:::
+
+::: {.absolute left="0%" top="65%" style="font-size: 40px;"} 
 **Sentinel-2** 
 :::
-
-::: {.absolute left="24%" top="77%" style="font-size: 40px;" .fragment .fade-in fragment-index="4"} 
+  
+::: {.absolute left="25%" top="65%" style="font-size: 40px;"} 
 **Drone**
 :::
-
-::: {.absolute left="46%" top="77%" style="font-size: 40px;" .fragment .fade-in fragment-index="4"} 
-***In situ*** 
-:::
-
-::: {.absolute left="4%" top="82%" style="font-size: 35px;" .fragment .fade-in fragment-index="4"}
+  
+::: {.absolute left="1%" top="70%" style="font-size: 35px;"}
 
 10–20 m resolution
 
@@ -1169,8 +1198,8 @@ Applyed to Earth Obsevation:
 5-day revisit
 
 :::
-
-::: {.absolute left="26%" top="82%" style="font-size: 35px;" .fragment .fade-in fragment-index="4"}
+  
+::: {.absolute left="26%" top="70%" style="font-size: 35px;"}
 
 cm resolution
 
@@ -1178,39 +1207,176 @@ Adapted to small-scale studies
 
 Flight planning flexibility
 :::
-
-::: {.absolute left="48%" top="82%" style="font-size: 35px;" .fragment .fade-in fragment-index="4"}
-
-Validation and calibration
-
-Ground truthing
-
-Fine-scale observations
 :::
+
+::: {.absolute top="6.5%" .fragment .fade-in-then-out fragment-index="2"}
+*Fieldwork remains essential to make sense of what satellites see*
+:::
+
+
+::: {.absolute top="-3.5%" right="-10%" .fragment .fade-in-then-out fragment-index="2"}
+
+<video src="Video/Intro/Fildwork_santander2.mp4" height="1450" autoplay loop muted playsinline></video>
+
+:::
+
+::: {.absolute top="15%" left="0%" .fragment .fade-in-then-out fragment-index="2"}
+::: {.absolute bottom="-5%" left="30%"}
+Radiometric calibration
+:::
+::: {.absolute top="-5%" right="10%" style="font-size: 25px;"}
+*Aven, France*
+:::
+
+
+
+![](Images/Intro/Bede_asd1.jpg){height="450" .circular-fade}
+:::
+
+::: {.absolute top="15%" left="40%" .fragment .fade-in-then-out fragment-index="2"}
+::: {.absolute bottom="-5%" left="25%"}
+Ground truthing
+:::
+::: {.absolute top="-5%" right="10%" style="font-size: 25px;"}
+*Noirmoutier, France*
+:::
+
+
+
+![](Images/Intro/Quadrats.jpg){height="450" .circular-fade}
+:::
+
+::: {.absolute top="60%" left="0%" .fragment .fade-in-then-out fragment-index="2"}
+::: {.absolute bottom="-5%" left="10%"}
+Features georeferencing
+:::
+
+::: {.absolute top="-5%" right="10%" style="font-size: 25px;"}
+*Tainaron, Greece*
+:::
+
+
+
+![](Images/Intro/Greece_RTK.jpg){height="450" .circular-fade}
+:::
+
+::: {.absolute top="60%" left="27%" .fragment .fade-in-then-out fragment-index="2"}
+::: {.absolute bottom="-5%" left="40%"}
+Sampling
+:::
+
+::: {.absolute top="-5%" right="10%" style="font-size: 25px;"}
+*Cadiz, Spain*
+:::
+
+
+![](Images/Intro/MPB_sampling.jpg){height="450" .circular-fade}
+:::
+
+::: {.absolute top="6.5%" .fragment .fade-in fragment-index="3"}
+*Monitoring coastal change from space*
+:::
+
+
+```{r animation paper per year}
+#| cache: true
+#| echo: false
+#| warning: false
+#| eval: false
+
+
+library(gganimate)
+library(tidyverse)
+library(Polychrome)  # if not installed
+
+my_colors <- createPalette(24, seedcolors = c("#CC6677", "#4477AA"),range = c(60, 120))
+
+df <- read.csv("Data/Intro/trend_paper_coastalRS.csv")%>%
+  rename(Count = `Document.Count`, Year = `Publication.Year`, Type = `Document.Type`) 
+
+year_breaks <- seq(1970, max(df$Year), by = 10)
+
+# Match color palette to document types
+type_levels <- unique(df$Type)
+n_types <- length(type_levels)
+type_colors <- setNames(my_colors[1:n_types], type_levels)
+
+p <- df %>% 
+  ggplot(aes(x = as.factor(Year), y = Count, fill = Type))+
+  geom_col()+
+  scale_fill_manual(values = type_colors) +
+  scale_x_discrete(breaks = as.character(year_breaks)) +
+  labs(x = "Year", y = "Number of Documents") +
+  theme_minimal(base_size = 40) +  # Base size for all text
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = c(0.2, 0.6)) +
+  transition_reveal(as.integer(Year))
+
+rendered <- animate(p, duration = 2, fps = 20, width = 1920, height = 1080, end_pause = 20, rewind = FALSE, renderer = gifski_renderer(loop = FALSE))
+
+anim_save("Images/Intro/document_trend.gif", animation = rendered)
+
+```
+
+::: {.absolute top="12%" .fragment .fade-in fragment-index="3"}
+Coastal Remote Sensing: A trendy topic !
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="3" top="18%"}
+
+![](Images/Intro/document_trend.gif){height="650"}
+:::
+
+::: {.absolute top="5%" left="50%" .fragment .fade-in fragment-index="4"}
+![](Images/Intro/Pereira2013.png){height="300"}
+:::
+
+::: {.absolute top="70%" .fragment .fade-in fragment-index="4"}
+ - Standardized measurements or indicators to monitor biodiversity
+:::
+
+::: {.absolute top="80%" .fragment .fade-in fragment-index="5" style="font-size: 60px;"}
+ - Adapted for remote sensing applications
+:::
+
+::: {.absolute top="28%" right="0%" .fragment .fade-in fragment-index="5"}
+![](Images/Intro/MullerKarger.png){width="1300"}
+:::
+
+::: {.absolute top="55%" right="8%" .fragment .fade-in fragment-index="5"}
+![](Images/Intro/muller_slide4.png){width="900"}
+:::
+
+
+
 
 ## Objectives of this work {data-background-image="Images/Intro/background_obj.png"}
 
-::: {.absolute top="6%"}
-*A multi-scale approach to monitor and understand intertidal vegetation*
+::: {style="text-align: center; position: absolute; left: 50%; top: 20%; width:2300px; transform: translate(-50%, -50%)"}
+[Show how remote sensing can effectively map intertidal habitats and assess environmental pressures]{style="font-size: 80px"}
 :::
 
-::: {.absolute top="25%" left="5%" style="font-size: 55px;" .fragment .fade-in fragment-index="1"}
-- Monitor and characterize intertidal vegetation across European coastlines  
+::: {.fragment .fade-in fragment-index="1" style="text-align: center; position: absolute; left: 50%; top: 40%; width:2300px; transform: translate(-50%, -50%)"}
+[Analyzing the potential of multispectral sensors to distinguish macrophytes in soft-bottom intertidal zones at low tide]{style="font-size: 60px"}
 :::
 
-::: {.absolute top="40%" left="10%" style="font-size: 48px;" .fragment .fade-in fragment-index="2"}
-- Assess impacts of **natural pressures** (e.g. heatwaves)  
-- Assess impacts of **anthropogenic pressures** (e.g. aquaculture, dredging)  
+::: {.fragment .fade-in fragment-index="2" style="text-align: center; position: absolute; left: 50%; top: 60%; width:2300px; transform: translate(-50%, -50%)"}
+[Building an algorithm that discriminates the most common taxonomic classes of vegetation found on soft bottom intertidal sediment]{style="font-size: 60px"}
 :::
 
-::: {.absolute top="60%" left="10%" style="font-size: 48px;" .fragment .fade-in fragment-index="3"}
-- Develop **remote sensing methodologies** across multiple spatial scales  
-- Validate remote sensing products with **in situ** observations  
+::: {.fragment .fade-in fragment-index="3" style="text-align: center; position: absolute; left: 50%; top: 80%; width:2300px; transform: translate(-50%, -50%)"}
+[Investigate the capacity of remote sensing to monitor intertidal vegetation under abiotic and biotic pressures]{style="font-size: 60px"}
 :::
 
-::: {.absolute top="80%" left="10%" style="font-size: 48px;" .fragment .fade-in fragment-index="4"}
-- Provide tools for **ecosystem monitoring** and **coastal management**  
-:::
+## Table of Contents {.toc-page data-state="hide-menubar"}
+<!-- <ul class="menu"></ul> -->
+- [Challenges and Solutions](#developing-advanced-methodologies-for-intertidal-vegetation-monitoring)
+    - From Hyperspectral to Multispectral Resolution
+    - Building of a Neural Network model for Intertidal Vegetation Mapping (DISCOV) 
+- [Invasive Species](#case-study-1-facing-biological-invasions)
+- [Marine Heatwaves](#case-study-2-mapping-the-impact-of-heatwaves-on-intertidal-seagrasses)
+- [Discussion](#discussion-and-overview)
 
 
 # Developing Advanced Methodologies for Intertidal Vegetation Monitoring {data-name="Challenges and Solutions"}
