@@ -385,6 +385,19 @@ Project funded by:
 <!-- - It has been found by the french government blabla -->
 <!-- - It was closely related to a ESA founded project called BiCOME -->
 
+
+## Table of Contents {.toc-page data-state="hide-menubar"}
+<!-- <ul class="menu"></ul> -->
+- [Introduction](#introduction)
+- [Challenges and Solutions](#developing-advanced-methodologies-for-intertidal-vegetation-monitoring)
+    - From Hyperspectral to Multispectral Resolution
+    - Building of a Neural Network model for Intertidal Vegetation Mapping (DISCOV) 
+- [Invasive Species](#case-study-1-facing-biological-invasions)
+- [Marine Heatwaves](#case-study-2-mapping-the-impact-of-heatwaves-on-intertidal-seagrasses)
+- [Discussion](#discussion-and-overview)
+
+
+
 # Introduction {data-stack-name="Introduction" background-image="Images/Intro/title_background.png"}
 - [Coastal Environments](#coastal-environments)
 - [Human Activities](#human-activities)
@@ -1369,20 +1382,375 @@ Coastal Remote Sensing: A trendy topic !
 [Investigate the capacity of remote sensing to monitor intertidal vegetation under abiotic and biotic pressures]{style="font-size: 60px"}
 :::
 
-## Table of Contents {.toc-page data-state="hide-menubar"}
-<!-- <ul class="menu"></ul> -->
-- [Challenges and Solutions](#developing-advanced-methodologies-for-intertidal-vegetation-monitoring)
-    - From Hyperspectral to Multispectral Resolution
-    - Building of a Neural Network model for Intertidal Vegetation Mapping (DISCOV) 
-- [Invasive Species](#case-study-1-facing-biological-invasions)
-- [Marine Heatwaves](#case-study-2-mapping-the-impact-of-heatwaves-on-intertidal-seagrasses)
-- [Discussion](#discussion-and-overview)
 
 
-# Developing Advanced Methodologies for Intertidal Vegetation Monitoring {data-name="Challenges and Solutions"}
+# Developing Advanced Methodologies for Intertidal Vegetation Monitoring {data-stack-name="Challenges and Solutions" background-image="Images/Part1/Background_First_slide.png" style="width: 1300px;"}
 
-- From Field Spectroscopy to Remote Sensors. Bede paper
-- Develpment of an algorithm to classify intertidal vegetation (DISCOV, open source, easy to update to different use cases)
+- From Field Spectroscopy to Remote Sensors
+- Develpment of Drone Classification Algorithm
+
+## Challenges to map intertidal vegetation
+
+::: {.absolute top="6.5%"}
+*Introduction to Spectroradiometry*
+:::
+
+```{r Fig STDvsRAW}
+#| cache: true
+#| echo: false
+#| eval: false
+#| warning: false
+
+library(tidyverse)
+library(gganimate)
+library(Utilities.Package)
+
+##### Zost 
+
+Zos <- read.table("Data/Part1/hyperspectral_zoster.txt", header=F)
+
+names(Zos) <- c("Wavelength", paste0("Zos_",2:ncol(Zos)-1))
+
+
+
+Zos <- Zos %>% 
+  pivot_longer(-Wavelength, names_to = "SpectraID", values_to = "Ref")
+
+id_ranking <- Zos %>%
+  dplyr::filter(Wavelength == 665) %>%
+  arrange(Ref) %>%
+  mutate(ID = row_number()) %>%
+  select(SpectraID, ID) 
+
+Zos <- Zos %>% 
+  left_join(id_ranking, by = "SpectraID") %>% 
+  group_by(SpectraID) %>% 
+  mutate(Ref_STD = (Ref-min(Ref))/(max(Ref)-min(Ref))) %>% 
+  pivot_longer(-c(Wavelength, ID ,SpectraID), names_to = "Metric", values_to = "values")%>%
+  ungroup() %>% 
+  mutate(Biomass = max(ID) - ID + 1) 
+
+plot_std <- Zos  %>% 
+  ggplot(aes(x = Wavelength, y = values, color = Biomass, group = ID)  ) +
+  geom_line()+
+  scale_color_viridis_c(
+    name = "Biomass",
+    option = "D",
+    breaks = c(min(Zos$Biomass), max(Zos$Biomass)),
+    labels = c("Low", "High")
+  )+
+  ylab("Standardised Reflectance")+
+  xlab("Wavelength")+
+  transition_states(Metric,
+                    transition_length = 2,
+                    state_length = 1,
+                    wrap = FALSE)+ 
+  view_follow()+
+  theme_Bede()+
+  theme(legend.position = c(0.2,0.7),
+        axis.title = element_text(face = "bold")
+        )
+
+rendered <- animate(plot_std, duration = 4, fps = 20, width = 8, height = 6, units = "in", res = 300, end_pause = 20, rewind = F, renderer = gifski_renderer(loop = F))
+
+anim_save("Images/Part1/Fig_STD.gif", animation = rendered)
+
+plot <- Zos  %>% 
+  dplyr::filter(Metric == "Ref") %>% 
+  ggplot() +
+  geom_line(aes(x = Wavelength, y = values, color = Biomass, group = ID)  )+
+  scale_color_viridis_c(
+    name = "Biomass",
+    option = "D",
+    breaks = c(min(Zos$Biomass), max(Zos$Biomass)),
+    labels = c("Low", "High")
+  )+
+  ylab("Refletance")+
+  xlab("Wavelength")+
+  theme_Bede()+
+  theme(legend.position = c(0.2,0.8),
+        axis.title = element_text(face = "bold")
+        )
+
+ggsave("Images/Part1/Fig_STD_static.png", plot,width = 8, height = 6, units = "in", dpi = 300)
+
+
+
+```
+
+
+```{r plots for spectral presentation}
+#| cache: true
+#| echo: false
+#| eval: false
+#| warning: false
+
+library(tidyverse)
+library(signal)
+library(Utilities.Package)
+library(gganimate)
+
+rhodo <- "Data/Part1/BELON_STD.csv" %>%
+    read.csv() %>% 
+    dplyr::filter(Letter == "C") %>% 
+    group_by(Wavelength) %>% 
+    reframe(Rhodophyceae = mean(mean_STD))
+
+
+# Apply Savitzky-Golay smoothing
+# Choose polynomial order and window size
+sgolay_order <- 2
+sgolay_window <- 11  # Must be odd and >= order + 2
+
+# Make sure window size is not larger than number of rows
+sgolay_window <- min(sgolay_window, nrow(rhodo))
+if (sgolay_window %% 2 == 0) sgolay_window <- sgolay_window - 1  # Ensure it's odd
+
+rhodo$Rhodophyceae <- sgolayfilt(rhodo$Rhodophyceae, p = sgolay_order, n = sgolay_window)
+rhodo$Rhodophyceae <- sgolayfilt(rhodo$Rhodophyceae, p = sgolay_order, n = sgolay_window)
+rhodo$Rhodophyceae <- sgolayfilt(rhodo$Rhodophyceae, p = sgolay_order, n = sgolay_window)
+rhodo$Rhodophyceae <- sgolayfilt(rhodo$Rhodophyceae, p = sgolay_order, n = sgolay_window)
+rhodo$Rhodophyceae <- sgolayfilt(rhodo$Rhodophyceae, p = sgolay_order, n = sgolay_window)
+
+
+ggplot(rhodo)+
+  geom_line(aes(x = Wavelength, y = Rhodophyceae))
+
+log_func <- function(x) {
+  0.7 + 0.3 * log(x / 400) / log(900 / 400)
+}
+
+speclib <- "Data/Part1/spec_lib.csv" %>% 
+    read.csv() %>% 
+    select(-c(X,OSM,Bare.Sediment,Xanthophyceae)) %>% 
+    left_join(rhodo, by = "Wavelength") %>%
+    pivot_longer(-Wavelength, names_to = "Class",values_to = "Ref")  %>% 
+    mutate(Class = case_when(Class == "Magnoliosida" ~ "Magnoliopsida",
+                             Class == "Ulvophyceae" ~ "Chlorophyceae",
+                             Class == "Rhodophyceae" ~ "Florideophyceae",
+                             TRUE ~ Class)) %>% 
+    group_by(Class) %>% 
+    reframe(Wavelength = Wavelength,
+            Ref = (Ref-min(Ref))/(max(Ref)-min(Ref))) %>% 
+  mutate(Ref = case_when(Class == "Chlorophyceae" ~ log_func(Wavelength)*Ref,
+                         T ~ Ref))
+    
+
+colscale <- c("Bacillariophyceae" = "#DAA520", 
+              "Chlorophyceae" = "#b3ff1a", 
+              "Magnoliopsida" = "#389318", 
+              "Phaeophyceae" = "#873e23", 
+              "Florideophyceae" = "#b3002d")
+
+
+
+#### default plot
+
+(init_plot <- speclib %>% 
+  # dplyr::filter(Class %in% c("Chlorophyceae", "Magnoliopsida")) %>% 
+  ggplot()+
+    # geom_line(data = fade_class, mapping = aes(x = Wavelength, y = Ref, group = Class1), color = "grey", alpha = 0.2, linewidth = 1.5)+
+    geom_line(aes(x = Wavelength, y = Ref, color = Class, group = Class), linewidth = 1.5)+
+
+    scale_color_manual(values=colscale)+
+    theme_Bede()+
+  ylab("Standardised Reflectance") +
+  xlab("Wavelength (nm)") +
+  theme(
+    legend.position = c(0.15, 0.8),
+    legend.text = element_text(size = 12),
+    axis.text.x = element_text(size = 12),
+    axis.text.y = element_text(size = 12)
+  )
+)
+
+ggsave("Images/Part1/Figure_Hyperspectral.png", init_plot, width = 8, height = 6)
+
+#### Zooming animation
+
+
+# Step 1: create a variable for the animation state (frame)
+# Let's assume `speclib` has a Wavelength range larger than 400-680
+n_frames <- 20
+
+# Séquence de zooms (xmax diminue vers 680)
+xmax_seq <- seq(from = max(speclib$Wavelength), to = 665, length.out = n_frames)
+xmin_seq <- seq(from = min(speclib$Wavelength), to = 450, length.out = n_frames)  # xmin reste constant
+
+# Générer les données avec les limites x intégrées
+animated_data <- lapply(1:n_frames, function(i) {
+  speclib %>%
+    mutate(frame = i,
+           x_min = xmin_seq[i],
+           x_max = xmax_seq[i])
+}) %>% bind_rows()
+
+p <- ggplot(animated_data) +
+  geom_line(aes(x = Wavelength, y = Ref, color = Class, group = Class), linewidth = 1.5) +
+  scale_color_manual(values = colscale) +
+  theme_Bede() +
+  ylab("Standardised Reflectance") +
+  xlab("Wavelength (nm)") +
+  theme(
+    legend.position = c(0.15, 0.8),
+    legend.text = element_text(size = 12),
+    axis.text.x = element_text(size = 12),
+    axis.text.y = element_text(size = 12)
+  ) +
+  transition_manual(frame, parameters = list(x_min = animated_data$x_min, x_max = animated_data$x_max)) +
+  coord_cartesian(xlim = c(400, 900))  # valeur initiale temporaire
+
+
+frames <- unique(animated_data$frame)
+
+
+list.files("Data/Part1/temp_frames/", full.names = T) %>% 
+  file.remove()
+
+# Create and save plots
+for (f in seq_len(n_frames)) {
+  x_max <- xmax_seq[f]
+  x_min <- xmin_seq[f]
+  df <- dplyr::filter(speclib, Wavelength >= x_min, Wavelength <= x_max)
+  
+  p <- ggplot(df) +
+    geom_line(aes(x = Wavelength, y = Ref, color = Class, group = Class), linewidth = 1.5) +
+    scale_color_manual(values = colscale) +
+    theme_Bede() +
+    ylab("Standardised Reflectance") +
+    xlab("Wavelength (nm)") +
+    coord_cartesian(xlim = c(x_min, x_max)) +
+    # ggtitle(paste("Zoom jusqu’à", round(x_max), "nm")) +
+    theme(
+      legend.position = c(0.15, 0.8),
+      legend.text = element_text(size = 12),
+      axis.text.x = element_text(size = 12),
+      axis.text.y = element_text(size = 12)
+    )
+  
+  ggsave(sprintf("Data/Part1/temp_frames/frame_%03d.png", f), p, width = 8, height = 6)
+}
+
+# Create animation from saved frames
+imgs <- list.files("Data/Part1/temp_frames", full.names = TRUE, pattern = "*.png")
+img_list <- magick::image_read(imgs)
+animation <- magick::image_animate(magick::image_join(img_list), fps = 100,  loop = 1, optimize = T)
+
+# Preview
+# print(animation)
+
+magick::image_write(animation, "Images/Part1/x_axis_zoom.gif", quality = 100)
+
+
+#### Faded and animate
+
+fade_class <- speclib %>% 
+  dplyr::filter(!Class %in% c("Chlorophyceae", "Magnoliopsida"),
+                Wavelength >= 450, 
+                Wavelength <= 665 ) %>% 
+  rename(Class1 = "Class")
+
+
+faded <- speclib %>% 
+  dplyr::filter(Class %in% c("Chlorophyceae", "Magnoliopsida"),
+                Wavelength >= 450, 
+                Wavelength <= 665) %>% 
+  ggplot()+
+    geom_line(data = fade_class, mapping = aes(x = Wavelength, y = Ref, group = Class1), color = "grey", alpha = 0.2, linewidth = 1.5)+
+    geom_line(aes(x = Wavelength, y = Ref, color = Class, group = 1L), linewidth = 1.5)+
+
+    scale_color_manual(values=colscale)+
+    theme_Bede()+
+    ylab("Standardised Reflectance")+
+    xlab("Wavelength (nm)")+
+    theme(legend.position = c(0.15, 0.8),
+          legend.text = element_text(size = 12),
+          axis.text.x = element_text(size = 12),
+          axis.text.y = element_text(size = 12))+
+    coord_cartesian(xlim = c(450, 665)) +
+    # ggtitle(paste("Zoom jusqu’à", round(x_max), "nm")) +
+    theme(
+      legend.position = c(0.15, 0.8),
+      legend.text = element_text(size = 12),
+      axis.text.x = element_text(size = 12),
+      axis.text.y = element_text(size = 12)
+    )+ 
+  transition_states(Class,
+                    transition_length = 2,
+                    state_length = 1)
+
+rendered <- animate(faded, duration = 2, fps = 20, width = 8, height = 6, units = "in", res = 300, end_pause = 1, rewind = F, renderer = gifski_renderer(loop = T))
+
+anim_save("Images/Part1/Figure_Hyperspectral_Faded.gif", animation = rendered)
+
+# ggsave("Images/Part1/Figure_Hyperspectral_Faded.png", faded, width = 8, height = 6)
+```
+
+::: {.fragment .fade-out fragment-index="3"}
+::: {.absolute bottom="0%" left="4%" .fragment .fade-in fragment-index="1"}
+![](Images/Part1/SPC_gradient.png){height="233"}
+:::
+:::
+
+::: {.absolute top="10%" right="0%" .fragment .fade-out fragment-index="1"}
+![](Images/Part1/FigLightPath.png){height="900"}
+:::
+
+::: {.absolute top="10%" right="0%" .fragment .fade-in-then-out fragment-index="1"}
+![](Images/Part1/FigLightPath2.png){height="900"}
+:::
+
+:::{.absolute bottom="5%" right="33%" .fragment .fade-in-then-out fragment-index="1"}
+
+$$R(\lambda) = \frac{L_{\text{up}}(\lambda)}{L_{\text{down}}(\lambda)}$$
+
+:::
+
+:::{.absolute bottom="2%" right="0%" .fragment .fade-in-then-out fragment-index="1"}
+- $\lambda$ is the Wavelenght
+- $L_{\text{up}}$ is the upwelling radiance
+- $L_{\text{down}}$ is the downwelling radiance
+:::
+
+::: {.absolute top="10%" left="0%" .fragment .fade-in-then-out fragment-index="1"}
+![](Images/Part1/Fig_STD_static.png){height="900"}
+:::
+
+::: {.absolute top="10%" left="0%" .fragment .fade-in-then-out fragment-index="2"}
+![](Images/Part1/Fig_STD.gif){height="900"}
+:::
+
+:::{.absolute top="30%" left="60%" .fragment .fade-in-then-out fragment-index="2"}
+
+$$R_i^*(\lambda) = \frac{R_i(\lambda) - \min(R_i)}{\max(R_i) - \min(R_i)}$$
+
+:::
+
+:::{.absolute top="55%" left="52%" .fragment .fade-in-then-out fragment-index="2"}
+- $R_i(\lambda)$ is the reflectance the the wavelength $\lambda$ of the spectrum $R_i$ 
+- $min(R_i)$ and $max(R_i)$ are the minimum and maxium reflectance of the spectrum $R_i$
+:::
+
+:::{.absolute top="80%" left="52%" .fragment .fade-in-then-out fragment-index="2"}
+- Each spectrum is between 0 and 1
+:::
+
+::: {.absolute top="10%" left="0%" .fragment .fade-in-then-out fragment-index="3"}
+![](Images/Part1/Figure_Hyperspectral.png){height="1000"}
+:::
+
+::: {.absolute top="10%" right="0%" .fragment .fade-in-then-out fragment-index="3"}
+![](Images/Part1/Figs_vegetations.png){height="1250"}
+:::
+
+::: {.absolute top="10%" left="0%" .fragment .fade-in-then-out fragment-index="4"}
+![](Images/Part1/x_axis_zoom.gif){height="1000"}
+:::
+
+::: {.absolute top="10%" left="0%" .fragment .fade-in fragment-index="5"}
+![](Images/Part1/Figure_Hyperspectral_Faded.gif){height="1000"}
+:::
+
 
 # Case Study 1 – Facing Biological Invasions {data-name="Invasive species"}
 

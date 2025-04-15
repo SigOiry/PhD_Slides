@@ -366,6 +366,21 @@
 <!-- - It has been found by the french government blabla -->
 <!-- - It was closely related to a ESA founded project called BiCOME -->
 </section>
+<section id="table-of-contents" class="slide level2 toc-page" data-state="hide-menubar">
+<h2>Table of Contents</h2>
+<!-- <ul class="menu"></ul> -->
+<ul>
+<li><a href="#/introduction">Introduction</a></li>
+<li><a href="#/developing-advanced-methodologies-for-intertidal-vegetation-monitoring">Challenges and Solutions</a>
+<ul>
+<li>From Hyperspectral to Multispectral Resolution</li>
+<li>Building of a Neural Network model for Intertidal Vegetation Mapping (DISCOV)</li>
+</ul></li>
+<li><a href="#/case-study-1-facing-biological-invasions">Invasive Species</a></li>
+<li><a href="#/case-study-2-mapping-the-impact-of-heatwaves-on-intertidal-seagrasses">Marine Heatwaves</a></li>
+<li><a href="#/discussion-and-overview">Discussion</a></li>
+</ul>
+</section>
 <section>
 <section id="introduction" class="title-slide slide level1 center" data-stack-name="Introduction" data-background-image="Images/Intro/title_background.png">
 <h1>Introduction</h1>
@@ -953,29 +968,74 @@
 <div class="fragment fade-in" data-fragment-index="3" style="text-align: center; position: absolute; left: 50%; top: 80%; width:2300px; transform: translate(-50%, -50%)">
 <p><span style="font-size: 60px">Investigate the capacity of remote sensing to monitor intertidal vegetation under abiotic and biotic pressures</span></p>
 </div>
-</section>
-<section id="table-of-contents" class="slide level2 toc-page" data-state="hide-menubar">
-<h2>Table of Contents</h2>
-<!-- <ul class="menu"></ul> -->
-<ul>
-<li><a href="#/developing-advanced-methodologies-for-intertidal-vegetation-monitoring">Challenges and Solutions</a>
-<ul>
-<li>From Hyperspectral to Multispectral Resolution</li>
-<li>Building of a Neural Network model for Intertidal Vegetation Mapping (DISCOV)</li>
-</ul></li>
-<li><a href="#/case-study-1-facing-biological-invasions">Invasive Species</a></li>
-<li><a href="#/case-study-2-mapping-the-impact-of-heatwaves-on-intertidal-seagrasses">Marine Heatwaves</a></li>
-<li><a href="#/discussion-and-overview">Discussion</a></li>
-</ul>
 </section></section>
-<section id="developing-advanced-methodologies-for-intertidal-vegetation-monitoring" class="title-slide slide level1 center" data-name="Challenges and Solutions">
+<section>
+<section id="developing-advanced-methodologies-for-intertidal-vegetation-monitoring" class="title-slide slide level1 center" data-stack-name="Challenges and Solutions" data-background-image="Images/Part1/Background_First_slide.png" style="width: 1300px;">
 <h1>Developing Advanced Methodologies for Intertidal Vegetation Monitoring</h1>
 <ul>
-<li>From Field Spectroscopy to Remote Sensors. Bede paper</li>
-<li>Develpment of an algorithm to classify intertidal vegetation (DISCOV, open source, easy to update to different use cases)</li>
+<li>From Field Spectroscopy to Remote Sensors</li>
+<li>Develpment of Drone Classification Algorithm</li>
 </ul>
 </section>
-
+<section id="challenges-to-map-intertidal-vegetation" class="slide level2">
+<h2>Challenges to map intertidal vegetation</h2>
+<div class="absolute" style="top: 6.5%; ">
+<p><em>Introduction to Spectroradiometry</em></p>
+</div>
+<div class="fragment fade-out" data-fragment-index="3">
+<div class="absolute fragment fade-in" data-fragment-index="1" style="left: 4%; bottom: 0%; ">
+<p><img data-src="Images/Part1/SPC_gradient.png" height="233"></p>
+</div>
+</div>
+<div class="absolute fragment fade-out" data-fragment-index="1" style="top: 10%; right: 0%; ">
+<p><img data-src="Images/Part1/FigLightPath.png" height="900"></p>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="1" style="top: 10%; right: 0%; ">
+<p><img data-src="Images/Part1/FigLightPath2.png" height="900"></p>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="1" style="bottom: 5%; right: 33%; ">
+<p><span class="math display">\[R(\lambda) = \frac{L_{\text{up}}(\lambda)}{L_{\text{down}}(\lambda)}\]</span></p>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="1" style="bottom: 2%; right: 0%; ">
+<ul>
+<li><span class="math inline">\(\lambda\)</span> is the Wavelenght</li>
+<li><span class="math inline">\(L_{\text{up}}\)</span> is the upwelling radiance</li>
+<li><span class="math inline">\(L_{\text{down}}\)</span> is the downwelling radiance</li>
+</ul>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="1" style="top: 10%; left: 0%; ">
+<p><img data-src="Images/Part1/Fig_STD_static.png" height="900"></p>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="2" style="top: 10%; left: 0%; ">
+<p><img data-src="Images/Part1/Fig_STD.gif" height="900"></p>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="2" style="top: 30%; left: 60%; ">
+<p><span class="math display">\[R_i^*(\lambda) = \frac{R_i(\lambda) - \min(R_i)}{\max(R_i) - \min(R_i)}\]</span></p>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="2" style="top: 55%; left: 52%; ">
+<ul>
+<li><span class="math inline">\(R_i(\lambda)\)</span> is the reflectance the the wavelength <span class="math inline">\(\lambda\)</span> of the spectrum <span class="math inline">\(R_i\)</span></li>
+<li><span class="math inline">\(min(R_i)\)</span> and <span class="math inline">\(max(R_i)\)</span> are the minimum and maxium reflectance of the spectrum <span class="math inline">\(R_i\)</span></li>
+</ul>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="2" style="top: 80%; left: 52%; ">
+<ul>
+<li>Each spectrum is between 0 and 1</li>
+</ul>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="3" style="top: 10%; left: 0%; ">
+<p><img data-src="Images/Part1/Figure_Hyperspectral.png" height="1000"></p>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="3" style="top: 10%; right: 0%; ">
+<p><img data-src="Images/Part1/Figs_vegetations.png" height="1250"></p>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="4" style="top: 10%; left: 0%; ">
+<p><img data-src="Images/Part1/x_axis_zoom.gif" height="1000"></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="5" style="top: 10%; left: 0%; ">
+<p><img data-src="Images/Part1/Figure_Hyperspectral_Faded.gif" height="1000"></p>
+</div>
+</section></section>
 <section id="case-study-1-facing-biological-invasions" class="title-slide slide level1 center" data-name="Invasive species">
 <h1>Case Study 1 – Facing Biological Invasions</h1>
 <ul>
