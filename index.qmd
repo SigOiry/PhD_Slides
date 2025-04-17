@@ -2292,6 +2292,11 @@ A lot of Narrow Spectral Bands
 
 ## Material & Methods
 
+::: {.fragment .fade-out fragment-index="1"}
+::: {.absolute top="6.5%"}
+*Building a Spectral library of intertidal vegetation*
+:::
+
 ```{r Map Spectral library}
 #| echo: false
 #| eval: false
@@ -2379,8 +2384,22 @@ ggsave(filename = "Images/Part1/map_sampling.svg",
 ![](Images/Part1/Map_Sampling.png){height="1400"}
 :::
 
+::: {.absolute top="8%" right="20%"}
+![](Images/Part1/SPECIESTABLE.png){height="1200"}
+:::
 
+::: {.absolute top="15%" left="0%"}
+![](Images/Part1/ASD1.png){height="435"}
+:::
 
+::: {.absolute top="15%" left="18.5%"}
+![](Images/Part1/ASD2.png){height="435"}
+:::
+
+::: {.absolute top="53%" left="0%"}
+![](Images/Part1/Figure1_Bede.jpg){height="578"}
+:::
+:::
 
 # Case Study 1 – Facing Biological Invasions {data-name="Invasive species"}
 
