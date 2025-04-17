@@ -2298,23 +2298,86 @@ A lot of Narrow Spectral Bands
 #| warning: false
 
 library(sf)
+library(tidyverse)
+library(Utilities.Package)
+
 
 land_mask <- read_sf("Data/Part1/Maks_land_SPain_Portugal_France.shp")
 
 Sampling_points <- tibble(
-  Country = c("France", "France","France","France", "France","France", "Portugal", "Portugal"),
-  Site = c("Mont Saint Michel Bay","Auray Estuary", "Morbihan Gulf","Traict of Merquel", "Bourgneuf Bay", "Marennes-Oléron Bay"),
-  x = c( -1.616884,-2.956158,  -2.811063, -2.464984, -2.108862, -1.147721),
-  y = c(48.661632,47.627424,47.580383, 47.418887,47.008546,45.926925)) %>% 
-  st_as_sf(coords = c("x", "y"), crs = 4326)
+  Country = c("France", "France","France","France", "France","France", "Portugal", "Portugal", "Spain", "Spain"),
+  Site = c("Mont Saint Michel Bay","Auray Estuary", "Morbihan Gulf","Traict of Merquel", "Bourgneuf Bay", "Marennes-Oléron Bay", "Aveiro Coastal Lagoon","Tagus Estuary", "Cadiz Bay", "Baiona Beach"),
+  x = c( -1.616884,-2.956158,  -2.811063, -2.464984, -2.108862, -1.147721, -8.693682, -9.059694, -6.223569, -5.773462),
+  y = c(48.661632,47.627424,47.580383, 47.418887,47.008546,45.926925,40.679758,38.756048,36.492337, 36.087565)) 
 
-plot(Sampling_points)
+# plot(Sampling_points)
+# 
+# ggplot()+
+#   geom_sf(data = land_mask)+
+#   geom_sf(data = Sampling_points)
 
-ggplot()+
-  geom_sf(data = land_mask)+
-  geom_sf(data = Sampling_points)
+my_sf_simple <- rmapshaper::ms_simplify(land_mask, keep = 0.05)  # Simplify to 5% of points
+
+
+bbox <- st_bbox(c(xmin = -15, xmax = 0, ymin = 35, ymax = 50), crs = st_crs(land_mask)) %>% 
+  st_as_sfc()
+
+# Crop using st_intersection
+land_mask <- st_intersection(land_mask, bbox)
+
+
+(
+Sampling_plot <-
+ggplot() +
+  geom_sf(data = my_sf_simple, linewidth = 0.05, alpha = 0.93, fill = "grey80") +
+      coord_sf(xlim=c(-15,0) ,
+                ylim=c(35,50),
+               expand = F ) +
+  ggforce::geom_mark_ellipse(data=Sampling_points,
+                 aes(x=x,
+                     y=y,
+                     label = Country,
+                     group = Site,
+                     description=Site),
+                     # x0 = -22),
+                 size=0.2,
+                 # position = "jitter",
+                 fill = "goldenrod",
+                 con.colour = "goldenrod4",
+                 show.legend=F,
+                 label.fontsize = 15,
+                 label.hjust = 0.5,
+                 con.size = 0.5,
+                 alpha=0.8,
+  expand = unit(2, "mm") ,
+  radius = unit(2, "mm") ,
+  label.fill = "grey90",
+  label.buffer = unit(5, "mm")) +
+    theme_void()+
+  # theme_Bede_Map()+
+  # labs(x="Longitude",
+       # y="Latitude")+
+  # geom_label(aes(x = 521000, y = 4507794, label = "C"), size = 20)+
+  # scale_x_continuous(breaks = seq(-8.70, -8.60, by = 0.10))+
+  theme(plot.margin = unit(c(0.1,0.1,0.1,0.1), "cm") ,
+        legend.position = "none",
+        axis.title = element_blank()
+        # axis.text.x = element_text(size = 20),
+        # axis.text.y = element_text(size = 20)
+        )
+)
+
+ggsave(filename = "Images/Part1/map_sampling.svg", 
+       plot = Sampling_plot, 
+       width = 7.03,
+       height = 10, 
+       units = "in")
 
 ```
+
+::: {.absolute bottom="-8%" right="-8%"}
+![](Images/Part1/Map_Sampling.png){height="1400"}
+:::
 
 
 
