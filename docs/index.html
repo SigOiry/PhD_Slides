@@ -973,8 +973,8 @@
 <section id="developing-advanced-methodologies-for-intertidal-vegetation-monitoring" class="title-slide slide level1 center" data-stack-name="Challenges and Solutions" data-background-image="Images/Part1/Background_First_slide.png" style="width: 1300px;">
 <h1>Developing Advanced Methodologies for Intertidal Vegetation Monitoring</h1>
 <ul>
-<li>From Field Spectroscopy to Remote Sensors</li>
-<li>Develpment of Drone Classification Algorithm</li>
+<li><a href="#/challenges-to-map-intertidal-vegetation">Challenges to map intertidal vegetation</a></li>
+<li><a href="#/material-methods">Material &amp; Methods</a></li>
 </ul>
 </section>
 <section id="challenges-to-map-intertidal-vegetation" class="slide level2">
@@ -1109,20 +1109,194 @@
 </section>
 <section id="material-methods" class="slide level2">
 <h2>Material &amp; Methods</h2>
+<div class="fragment fade-out" data-fragment-index="1">
 <div class="absolute" style="bottom: -8%; right: -8%; ">
-<p><img data-src="Images/Part1/Map_Sampling.png" height="1400"></p>
+<p><img data-src="Images/Part1/Map_Sampling2.png" height="1400"></p>
 </div>
-<div class="absolute" style="top: 8%; right: 20%; ">
-<p><img data-src="Images/Part1/SPECIESTABLE.png" height="1200"></p>
-</div>
-<div class="absolute" style="top: 15%; left: 0%; ">
+<div class="absolute" style="top: 15%; left: 40%; ">
 <p><img data-src="Images/Part1/ASD1.png" height="435"></p>
 </div>
-<div class="absolute" style="top: 15%; left: 18.5%; ">
+<div class="absolute" style="top: 15%; left: 58.5%; ">
 <p><img data-src="Images/Part1/ASD2.png" height="435"></p>
 </div>
-<div class="absolute" style="top: 53%; left: 0%; ">
+<div class="absolute" style="top: 50%; left: 40%; ">
 <p><img data-src="Images/Part1/Figure1_Bede.jpg" height="578"></p>
+</div>
+</div>
+<div class="fragment fade-out" data-fragment-index="2">
+<div class="absolute" style="top: 6.5%; ">
+<p><em>Building a Spectral library of intertidal vegetation</em></p>
+</div>
+<div class="absolute" style="top: 10%; left: 0%; ">
+<p><img data-src="Images/Part1/SPECIESTABLE.png" height="1100"></p>
+</div>
+<div class="absolute" style="width: 1200px; text-align: left;  font-size: 60px;left: 0%; bottom: 0%; ">
+<p>Total of 332 Spectra of 5 taxonomic classes</p>
+</div>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="1" style="font-size: 60px;top: 10%; left: 40%; ">
+<p>2 instruments</p>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="1" style="font-size: 40px;top: 15%; left: 40%; ">
+<ul>
+<li>GER 3700 and ASD Fieldspec handheld 2</li>
+</ul>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="1" style="font-size: 60px;top: 25%; left: 40%; ">
+<p>Calibration</p>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="1" style="font-size: 40px;top: 30%; left: 40%; ">
+<ul>
+<li>Optimisation of the integration time</li>
+<li>Dark noise calibration</li>
+<li>Measurement of Radiance with a 99% Spectralon white reference</li>
+</ul>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="1" style="font-size: 60px;top: 50%; left: 40%; ">
+<p>Sampling method</p>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="1" style="font-size: 40px;top: 55%; left: 40%; ">
+<ul>
+<li>Operator angled at 90° to the sun</li>
+<li>At least 10 replicate for each sample</li>
+<li>30 to 50cm from the ground</li>
+<li>Field of view of the instrument set to ~ 3.5°</li>
+</ul>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="1" style="font-size: 50px;top: 80%; left: 50%; ">
+<p><span class="math inline">\(R(\lambda)_{\rm sample} = \frac{1}{n}\sum_{i=1}^{n}R_i(\lambda), \quad\text{with }n \ge 10\)</span></p>
+</div>
+<div class="fragment fade-out" data-fragment-index="4">
+<div class="absolute fragment fade-in" data-fragment-index="2" style="top: 6.5%; ">
+<p><em>Spectral degradation</em></p>
+</div>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="2" style="top: 10%; left: 0%; ">
+<p><img data-src="Images/Part1/Figure_SRF_all_sensors.gif" height="800"></p>
+</div>
+<div class="fragment fade-out" data-fragment-index="4">
+<div class="absolute fragment fade-in" data-fragment-index="2" style="left: 0%; bottom: 2%; ">
+<p><img data-src="Images/Part1/ASD.png" height="100"></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="left: 18%; bottom: 0%; ">
+<p><img data-src="Images/Part1/PRISMA.png" height="150"></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="left: 36%; bottom: 0%; ">
+<p><img data-src="Images/Part1/Micasense.png" height="150"></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="bottom: 0%; right: 36%; ">
+<p><img data-src="Images/Part1/Sentinel-2_20m.png" height="150"></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="bottom: 0%; right: 18%; ">
+<p><img data-src="Images/Part1/pleiades.png" height="150"></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="bottom: 0%; right: 0%; ">
+<p><img data-src="Images/Part1/Sentinel-2.jpg" height="150"></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="left: 3%; bottom: 20%; ">
+<p><strong>ASD</strong></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="left: 18%; bottom: 20%; ">
+<p><strong>PRISMA</strong></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="left: 38%; bottom: 20%; ">
+<p><strong>Drone</strong></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="bottom: 20%; right: 38%; ">
+<p><strong>S2 - 20m</strong></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="bottom: 20%; right: 18%; ">
+<p><strong>Pléiades</strong></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="bottom: 20%; right: 1%; ">
+<p><strong>S2 - 10m</strong></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="left: 0%; bottom: 15%; ">
+<p>500 bands</p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="left: 17.5%; bottom: 15%; ">
+<p>50 Bands</p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="left: 37%; bottom: 15%; ">
+<p>10 Bands</p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="bottom: 15%; right: 38%; ">
+<p>8 Bands</p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="bottom: 15%; right: 18%; ">
+<p>4 Bands</p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="2" style="bottom: 15%; right: 1%; ">
+<p>4 Bands</p>
+</div>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="3" style="top: 10%; left: 0%; ">
+<p><img data-src="Images/Part1/Figure_SRF_all_sensors.gif" height="800"></p>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="3" style="top: 0%; right: 0%; ">
+<p><img data-src="Images/Part1/Figure_resampled_spectra.gif" height="1000"></p>
+</div>
+<div class="fragment fade-out" data-fragment-index="7">
+<div class="absolute fragment fade-in" data-fragment-index="4" style="top: 6.5%; ">
+<p><em>Spectral comparisons</em></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="4" style="text-align: left;  font-size: 60px;top: 15%; left: 0%; ">
+<p><strong>Compare the Spectra:</strong></p>
+<ul>
+<li>nMDS + ANOSIM for each spectral resolution</li>
+</ul>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="4" style="top: 5%; left: 60%; ">
+<p><img data-src="Images/Part1/nMDS_MM.png" height="400"></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="5" style="text-align: left;  font-size: 60px;top: 40%; left: 0%; ">
+<p><strong>Compare the Sensors:</strong></p>
+<ul>
+<li>Supervised Machine Learning Classifiers</li>
+</ul>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="5" style="text-align: left;  font-size: 60px;top: 55%; left: 5%; ">
+<ul>
+<li>Random Forest</li>
+<li>XGBoost</li>
+<li>SVM</li>
+<li>…</li>
+</ul>
+</div>
+<div class="absolute fragment fade-in-the-out" data-fragment-index="5" style="top: 35%; left: 60%; ">
+<p><img data-src="Images/Part1/tidymodels.png" height="400"></p>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="6" style="text-align: left;  font-size: 60px;top: 55%; left: 5%; ">
+<ul>
+<li>Random Forest</li>
+</ul>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="6" style="top: 35%; left: 60%; ">
+<p><img data-src="Images/Part1/random-forests.jpg" height="400"></p>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="6" style="text-align: left;  font-size: 60px;top: 70%; left: 5%; ">
+<p><strong>Spliting of the dataset:</strong></p>
+<ul>
+<li>75 % for training</li>
+<li>25 % for testing</li>
+</ul>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="6" style="text-align: left;  font-size: 60px;top: 70%; left: 35%; ">
+<p><strong>Tuning of hyperparameters:</strong></p>
+<ul>
+<li>Maximisation of the AUC-ROC</li>
+</ul>
+</div>
+<div class="absolute fragment fade-in-then-out" data-fragment-index="6" style="text-align: left;  font-size: 60px;top: 70%; left: 75%; ">
+<p><strong>Validation:</strong></p>
+<ul>
+<li>Accuracy metrics</li>
+<li>Variable Importance</li>
+</ul>
+</div>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="7" style="top: 6.5%; ">
+<p><em>Putting theory into practice</em></p>
 </div>
 </section></section>
 <section id="case-study-1-facing-biological-invasions" class="title-slide slide level1 center" data-name="Invasive species">
