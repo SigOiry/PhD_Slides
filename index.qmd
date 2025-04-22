@@ -3538,7 +3538,7 @@ ggsave(filename = "Images/Part1/nMDS_3sensors.svg",
 :::
 
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="2" top="5%" left="-5%"}
+::: {.absolute .fragment .fade-in-then-out fragment-index="2" top="10%" left="-5%"}
 
 ![](Images/Part1/Menu_library_Micasense.png){height="1100"}
 :::
@@ -3548,7 +3548,7 @@ ggsave(filename = "Images/Part1/nMDS_3sensors.svg",
 ![](Images/Part1/Figure_part1_Drone-01.png){height="1200"}
 :::
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="3" top="5%" left="-5%"}
+::: {.absolute .fragment .fade-in-then-out fragment-index="3" top="10%" left="-5%"}
 
 ![](Images/Part1/Menu_library_S2.png){height="1100"}
 :::
