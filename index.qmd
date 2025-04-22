@@ -2869,8 +2869,660 @@ ggsave(filename = "Images/Part1/map_Drone.svg",
 
 ```
 
+::: {.fragment .fade-out fragment-index="9" }
+::: {.absolute .fragment .fade-in fragment-index="7" bottom="-8%" right="-7.6%"}
+![](Images/Part1/Map_Drone-01.png){height="1400"}
+:::
+:::
 
 
+::: {.absolute .fragment .fade-in-then-out fragment-index="7" top="15%" left="5%"}
+::: {.absolute bottom="-5%" left="30%"}
+DJI Matrice 200
+:::
+
+![](Images/Part1/Matrice_Hermelle.jpg){height="450" .circular-fade}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="7" top="15%" left="40%"}
+::: {.absolute bottom="-5%" left="20%"}
+Micasense RedEdge-MX Dual
+:::
+
+![](Images/Part1/MicasenseCamera.jpg){height="450" .circular-fade}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="7" bottom="-2%" left="3%"}
+![](Images/Part1/micasense_bands.png){height="550"}
+:::
+
+
+```{r Table1 building}
+#| cache: false
+#| echo: false
+#| eval: false
+#| warning: false
+
+library(tidyverse)
+library(flextable)
+library(officer)
+
+# your data …
+df <- data.frame(
+  Country = c(rep("France",7), rep("Spain",2), rep("Portugal",4)),
+  Site    = c("Aven","Belon", rep("Gulf of Morbihan",3), rep("Bourgneuf Bay",2),
+              rep("Saja Estuary",2), rep("Aveiro Lagoon",4)),
+  Name    = c("Pont de Guilly","Notre-dame de Tremor","Arz Island","Duer","Duer",
+              "Barbâtre","L'Epine","Marisma de Cudon","Marisma de Cortiguera",
+              "Marinha Lanzarote","Mataducos","Gafanha","Gafanha"),
+  Altitude= c("120m","120m","12m","12m","120m","120m","120m","120m",
+              "120m","120m","120m","120m","12m"),
+  Utility = c("Training / Validation","Training / Validation","Training","Training",
+              "Validation","Validation","Validation","Training / Validation",
+              "Training / Validation","Validation","Validation","Validation","Training"),
+  Date    = c("11/04/2024","11/04/2024","29/09/2022","14/07/2022","14/07/2022",
+              "07/09/2021","08/07/2021","25/06/2024","25/06/2024","17/06/2022",
+              "16/06/2022","15/06/2022","15/06/2022"),
+  Project = c(rep("InvaSea",2), rep("BiCOME",5), rep("InvaSea",2), rep("BiCOME",4))
+)
+
+# define borders
+brdr_outer <- fp_border(color = "black", width = 1)
+brdr_inner <- fp_border(color = "gray80", width = 0.5)
+
+ft <- flextable(df) %>%
+  merge_v(j = c("Country","Site")) %>%
+  set_table_properties(layout = "fixed") %>%
+  width(j = "Country",  width = 1.2) %>%
+  width(j = "Site",     width = 1.6) %>%
+  width(j = "Name",     width = 2.4) %>%
+  width(j = "Altitude", width = 0.8) %>%
+  width(j = "Utility",  width = 1.4) %>%
+  width(j = "Date",     width = 1.2) %>%
+  width(j = "Project",  width = 1.2) %>%
+  theme_booktabs() %>%
+  border_outer(border = brdr_outer) %>%
+  border_inner_h(border = brdr_inner) %>%
+  border_inner_v(border = brdr_inner) %>%
+  # zebra striping: even rows get light gray
+  bg(i = seq(2, nrow(df), by = 2), bg = "#f7f7f7", part = "body") %>%
+  bg(j = 1:2, bg = "white", part = "body") %>%
+
+  fontsize(size = 10, part = "all") %>%
+  padding(padding = 5, part = "all") %>%
+  align(align = "center", part = "all") %>%
+  autofit()
+
+ft
+
+save_as_image(ft, "Images/Part1/table_flights.png", res = 400)
+
+```
+
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="8" top="10%" left="0%"}
+![](Images/Part1/table_flights.png){width="1950"}
+:::
+
+
+::: {.fragment .fade-out fragment-index="10"}
+::: {.absolute .fragment .fade-in fragment-index="9" top="10%" left="0%"}
+![](Images/Part1/table_flights2.png){width="1950"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="9" top="45%" left="3%"}
+![](Images/Part1/grid_high_low.png){width="650"}
+:::
+
+
+::: {.absolute .fragment .fade-in fragment-index="9" bottom="-8%" right="-7.6%"}
+![](Images/Part1/Map_Drone-02.png){height="1400"}
+:::
+
+::: {.absolute top="60%" left="35%" .fragment .fade-in fragment-index="9" style="font-size: 60px;"}
+Sentinel-2: 100 pixels/hectar
+
+Drone 120 m: ~1 500 000 pixels/hectar
+
+Drone 12 m: ~15 000 000 pixels/hectar
+:::
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="10" top="15%" left="0%"}
+::: {.absolute top="-7%" left="20%"}
+50% Spectralon
+:::
+
+![](Images/Part1/Spectralon_micasense.jpg){height="500" .circular-fade}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="10" bottom="0%" left="0%"}
+::: {.absolute top="-7%" left="5%"}
+Downwelling Light Sensor
+:::
+![](Images/Part1/DLS.jpg){height="500" .circular-fade}
+:::
+
+
+```{r Figure3 text opening}
+#| cache: true
+#| echo: false
+#| eval: false
+#| warning: false
+
+layout<-"Data/Part1/" %>%
+  list.files("V5.txt",full.names = T, recursive = T) %>%
+  read_delim(delim = "\t", escape_double = FALSE,
+    trim_ws = TRUE) %>%
+  dplyr::filter(Evaluate == T)
+
+
+layout$Text<- gsub("alaligne","\n", layout$Text)
+
+boxes<- layout %>% 
+  dplyr::filter(Type == "Box",
+                shape == "square")
+
+
+text<- layout %>% 
+  dplyr::filter(Type == "Box")
+
+diamonds<- layout %>% 
+  dplyr::filter(Type == "Box",
+                shape == "diamond")
+diff = 0.1
+for (i in 1:nrow(diamonds)) {
+  diam_a<-diamonds[i,]
+  
+df<-data.frame(  
+  x = c(diam_a$xmin - diff, diam_a$xmin + diff, diam_a$xmax + diff, diam_a$xmax - diff),
+  y = c(diam_a$ymin, diam_a$ymax, diam_a$ymax, diam_a$ymin),
+  Type = rep(diam_a$Type,4),
+  Text = rep(diam_a$Text,4),
+  Color = rep(diam_a$color,4),
+  Evaluate = rep(diam_a$Evaluate,4),
+  Resolution =  rep(diam_a$Resolution,4),
+  Evaluate_bigbox = rep(diam_a$Evaluate_bigbox,4),
+  alpha = rep(diam_a$alpha,4),
+  shape =  rep(diam_a$shape,4)
+)
+  if(i == 1){
+    diamond_list<-list(df)
+  }else{
+    diamond_list[[i]]<-df
+  }
+}
+
+
+
+Arrows<- layout %>% 
+  dplyr::filter(Type == "Arrow",
+                Evaluate == T)
+
+Group_box<-layout %>% 
+  dplyr::filter(Type == "Box",
+                Evaluate_bigbox == T) %>% 
+  group_by(Group) %>% 
+  dplyr::summarise(xmin = min(xmin)-0.1,
+                   xmax = max(xmax)+0.1,
+                   ymin = min(ymin)-0.1,
+                   ymax = max(ymax)+0.1,
+                   alpha = 0.1,
+                   color = color)
+
+resolution_box<-layout %>% 
+  dplyr::filter(Type == "Box",
+                Resolution != "NA") %>% 
+  group_by(Resolution) %>% 
+  dplyr::summarise(xmin = min(xmin)-0.1,
+                   xmax = max(xmax)+0.1,
+                   ymin = min(ymin)-0.1,
+                   ymax = max(ymax)+0.1,
+                   alpha = 0.1,
+                   color = color)
+
+legend = data.frame(color = unique(layout$color)) %>% 
+  dplyr::filter(!is.na(color)) %>% 
+  mutate(label = case_when(color == "#EA6155" ~ "Input Data",
+                           color == "#DC9614" ~ "Pre-processing",
+                           color == "#52A4DA" ~ "Model Building",
+                           color == "#79DA52" ~ "Validation",
+                           color == "#DA9652" ~ "Output Data",
+                           color == "darkcyan" ~ "Final Product",
+                           color == "#DA5273"  ~ "Prediction",
+                           TRUE ~ "NA")) %>% 
+  arrange
+
+segment<-layout %>% 
+  dplyr::filter(Type == "Segment")
+  
+
+```
+
+```{r Figure3 building}
+#| cache: true
+#| echo: false
+#| warning: false
+#| eval: false
+
+building <- F
+
+if(building == T){
+  
+text_size = 6 #### 6 to plot it fullscreen in R,  1.8 for exporting with ggsave
+line_size =1 ####arrow_size 0.3 to export  1 to for R plotting
+
+legend_size = 1 #### 0.3 to export, 1 for R ploting
+legend_text = 10 #### 4 to export, 10 for R ploting
+}else{
+  
+text_size = 1.85 #### 6 to plot it fullscreen in R,  1.8 for exporting with ggsave
+line_size =0.3 ####arrow_size 0.3 to export  1 to for R plotting
+
+legend_size = 0.3 #### 0.3 to export, 1 for R ploting
+legend_text = 5 #### 5 to export, 10 for R ploting
+  
+}
+
+
+a<-ggplot()+
+  
+  statebins:::geom_rrect(data = Group_box,
+            mapping = aes(xmin = xmin,
+                          xmax= xmax,
+                          ymin = ymin,
+                          ymax = ymax),
+            alpha = 0.05,
+            size = 0.2,
+            show.legend = F,
+            fill = Group_box$color,
+            color = "black")+
+  
+    statebins:::geom_rrect(data = resolution_box,
+            mapping = aes(xmin = xmin,
+                          xmax= xmax,
+                          ymin = ymin,
+                          ymax = ymax,
+                          alpha = rep(c("Input Data", "Pre-processing", "Model Building", "Prediction", "Validation", "Output Data", "Final Product"),2)),
+            fill = "NA",
+            linetype = 2,
+            size = 0.4,
+            color = "black")+
+  
+  scale_alpha_manual(name = "", 
+                     values = c(1,1,1,1,1,1,1),
+                     labels = c("Input Data", "Pre-Processing", "Model Building", "Prediction", "Validation", "Output Data", "Final Product"),
+                     guide = guide_legend(ncol = 1, override.aes = list(fill = c("#f94144", "#f3722c", "#f8961e", "#f9c74f", "#90be6d", "#43aa8b", "#577590"),
+                                                                        shape = c(22),
+                                                                        linetype = c(1),
+                                                                        alpha = c(0.5)
+                                                                        )
+                                          )
+                     )+
+  
+  statebins:::geom_rrect(data = boxes,
+            mapping = aes(xmin = xmin,
+                          xmax= xmax,
+                          ymin = ymin,
+                          ymax = ymax
+                          ),
+            size = 0.2,
+            alpha = as.numeric(boxes$alpha),
+            fill = boxes$color,
+            color = "black")
+  
+  for(i in 1:length(diamond_list)){
+    poly_i<-diamond_list[[i]]
+    a<-a+
+      geom_polygon(data = poly_i, 
+                   mapping = aes(x = x, 
+                                 y = y
+                                 ),
+                  size = 0.2,
+                   alpha = poly_i$alpha,
+                   fill = poly_i$Color,
+                   color = "black")
+    
+  }
+
+if(building == T){
+    a<-a+
+    geom_text(data = text,
+            mapping = aes(x = (xmax+xmin)/2, y = (ymax + ymin)/2, label = (ID)), size = text_size)
+  
+}else{
+    a<-a+
+    geom_text(data = text,
+            mapping = aes(x = (xmax+xmin)/2, y = (ymax + ymin)/2, label = (Text)), size = text_size)
+}
+
+
+  a<-a+
+    geom_segment(data = Arrows, aes( x = xmin, xend = xmax, y = ymin, yend = ymax),
+    size=line_size, linejoin = "mitre", lineend = "butt",
+    arrow = arrow(length = unit(1, "mm"), type= "closed")
+    )+
+    geom_segment(data = segment, aes( x = xmin, xend = xmax, y = ymin, yend = ymax),
+    size=line_size, linejoin = "mitre", lineend = "square"
+    )+
+  
+  geom_text(aes(x = -5.4, y = -2, label = "Flight height: 12 m \n Pixel size : 8 mm", angle = 90), size = text_size+1)+
+  
+  geom_text(aes(x = -5.4, y = -6.8, label = "Flight height: 120 m \n Pixel size : 80 mm", angle = 90), size = text_size+1)+
+  
+  geom_text(aes(x = 4, y = 1.75, label = "Pre Processing"), size = text_size)
+    
+  if(building == F){
+  a<- a+ theme_void()
+  }
+  
+  a<-a+
+  theme(legend.position = c(0.88,0.3),
+        legend.text = element_text(size = legend_text),
+        legend.key.size = unit(legend_size, 'cm')
+        )+
+  scale_x_continuous(breaks = scales::breaks_width(0.5))+
+  scale_y_continuous(breaks = scales::breaks_width(0.5))
+  
+if(building == T){
+a
+}else{
+  ggsave(filename = "Images/Part1/Figure3_workflow.svg", 
+       plot = a, 
+       width = 10,
+       height = 5.88, 
+       units = "in")
+}
+
+
+```
+
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="10" bottom="0%" right="0%"}
+
+![](Images/Part1/Figure3_workflow.png){width="1800"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="10" top="0%" left="50%"}
+
+![](Images/Part1/fastai.png){height="300"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="10" top="0%" right="20%"}
+
+![](Images/Part1/DISCOV_logoV2.png){height="300"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="11" bottom="0%" right="0%"}
+
+![](Images/Part1/Figure3_workflow2.png){width="1800"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="12" bottom="0%" right="0%"}
+
+![](Images/Part1/Figure3_workflow3.png){width="1800"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="13" bottom="0%" right="0%"}
+
+![](Images/Part1/Figure3_workflow4.png){width="1800"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="14" bottom="0%" right="0%"}
+
+![](Images/Part1/Figure3_workflow5.png){width="1800"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="15" bottom="0%" right="0%"}
+
+![](Images/Part1/Figure3_workflow6.png){width="1800"}
+:::
+
+## Results
+
+```{r MDSPlotsWithoutBSData}
+#| echo: false
+#| warning: false
+#| eval: false
+
+library(hsdar)
+library(vegan)
+
+Data_MDS_List<-list() 
+
+Data_hulls_List<-list() 
+
+Data_AnoSIM_list<-list()
+
+dataUntransformed <- read_rds("Data/Part1/dataUntransformed.rds")
+datatransformed_Wide <- read_rds("Data/Part1/datatransformed_Wide.rds")
+
+for (i in seq_along(datatransformed_Wide) ) {
+
+Meta<-datatransformed_Wide[[i]]%>% 
+  dplyr::filter(!Species_Group=="Bare Sediment") %>% 
+  dplyr::select(Species,Species_Group)
+
+Comm<-datatransformed_Wide[[i]]%>% 
+  dplyr::filter(!Species_Group=="Bare Sediment")%>% 
+  dplyr::select(-c(Substrate,Species_Group,Species) )  %>% 
+  as.matrix() 
+
+set.seed(4321)
+
+speclib_data <- speclib(spectra=Comm, wavelength=as.numeric(colnames(Comm) ) ) 
+
+set.seed(2345)
+
+SAM <- sam_distance(speclib_data) 
+
+ANOSIM<-anosim(SAM, grouping = Meta$Species_Group,permutations = 999)
+
+Anosim_df<-data.frame(R=ANOSIM$statistic,
+                      p=ANOSIM$signif) %>% 
+  dplyr::mutate(Data=paste0(names(dataUntransformed)[[i]]) )
+
+Data_AnoSIM_list[[i]]<-Anosim_df
+
+mds_sam <- MASS::isoMDS(SAM,maxit = 50,trace=FALSE) 
+
+MDS_sam <- mds_sam$points %>% 
+    as_tibble()  %>% 
+    dplyr::rename(x=V1,y=V2)  %>% 
+    bind_cols(Meta)  %>% 
+    dplyr::mutate(Stress=mds_sam$stress/100,
+                  Data=paste0(names(dataUntransformed) [[i]]) ) 
+  
+  Data_MDS_List[[i]]<-MDS_sam
+  
+  Magnoliopsida_hull <- MDS_sam[MDS_sam$Species_Group == "Magnoliosida",
+                               ][chull(MDS_sam[MDS_sam$Species_Group =="Magnoliosida",
+                                               c("x", "y") ]) , ]
+  
+  
+  Ulvophyceae_hull <- MDS_sam[MDS_sam$Species_Group == "Ulvophyceae",
+                         ][chull(MDS_sam[MDS_sam$Species_Group =="Ulvophyceae",
+                                         c("x","y") ]) , ]
+  
+  Phaeophyceae_hull <- MDS_sam[MDS_sam$Species_Group == "Phaeophyceae",
+                               ][chull(MDS_sam[MDS_sam$Species_Group == "Phaeophyceae",
+                                               c("x","y") ]) , ]
+ 
+  Xanthophyceae_hull <- MDS_sam[MDS_sam$Species_Group == "Xanthophyceae",
+                                 ][chull(MDS_sam[MDS_sam$Species_Group == "Xanthophyceae",
+                                                 c("x","y") ]) , ]
+   
+  Bacillariophyceae_hull <- MDS_sam[MDS_sam$Species_Group == "Bacillariophyceae",
+                                    ][chull(MDS_sam[MDS_sam$Species_Group =="Bacillariophyceae",
+                                                    c("x","y") ]) , ]
+  
+
+  hulls <- rbind(Magnoliopsida_hull,
+                 Ulvophyceae_hull,
+                 Phaeophyceae_hull,
+                 Xanthophyceae_hull,
+                 Bacillariophyceae_hull)  %>% 
+    dplyr::mutate(Data=paste0(names(dataUntransformed) [[i]]) ) 
+  
+    Data_hulls_List[[i]]<-hulls
+
+  
+  
+}
+  
+MDSData_1<-map_df(Data_MDS_List,bind_rows)  %>% 
+  dplyr::mutate(Data=as.factor(case_when(Data=="S2_10" ~ "Sentinel-2 10m",
+                                         TRUE ~ Data) ) ,
+                Data=fct_relevel(Data,"ASD",
+                                          "Drone",
+                                          "Sentinel-2 10m"))  
+
+X_correct<-MDSData_1 %>% 
+  group_by(Data) %>% 
+  dplyr::summarise(x=min(x) ) %>% 
+  left_join(MDSData_1) %>% 
+  dplyr::select(Data,Species_Group) %>% 
+  dplyr::filter(!Species_Group=="Phaeophyceae") %>% 
+  dplyr::ungroup()
+
+Y_correct<-MDSData_1 %>% 
+  group_by(Data) %>% 
+  dplyr::summarise(y=max(y) ) %>% 
+  left_join(MDSData_1) %>% 
+  dplyr::select(Data,Species_Group) %>% 
+  dplyr::filter(!Species_Group=="Ulvophyceae") %>% 
+  dplyr::ungroup()
+
+
+MDSData<-MDSData_1 %>% 
+  dplyr::mutate(x=case_when(Data%in%X_correct$Data~-x,
+                            TRUE~x) ,
+                y=case_when(Data%in%Y_correct$Data~-y,
+                            TRUE~y) ,
+                Species_Group=case_when(Species_Group=="Magnoliosida"~"Magnoliopsida",
+                                        TRUE~Species_Group),
+                Species_Group=factor(Species_Group,
+                                     levels=c(
+                                          "Bacillariophyceae",
+                                          "Magnoliopsida",
+                                          "Phaeophyceae",
+                                          "Ulvophyceae",
+                                          "Xanthophyceae") ) )
+
+hullsData<-map_df(Data_hulls_List,bind_rows) %>% 
+  dplyr::mutate(Data=as.factor(case_when(Data=="S2_10" ~ "Sentinel-2 10m",
+                                         # Data=="S2_1020" ~ "Sentinel-2 20m",
+                                         TRUE ~ Data) ) ,
+                Data=fct_relevel(Data,c("ASD",
+                                        "Drone",
+                                        "Sentinel-2 10m"))) %>% 
+  dplyr::mutate(x=case_when(Data%in%X_correct$Data~-x,
+                            TRUE~x) ,
+                y=case_when(Data%in%Y_correct$Data~-y,
+                            TRUE~y),
+                Species_Group=case_when(Species_Group=="Magnoliosida"~"Magnoliopsida",
+                                        TRUE~Species_Group),
+                Species_Group=factor(Species_Group,
+                                     levels=c(
+                                          "Bacillariophyceae",
+                                          "Magnoliopsida",
+                                          "Phaeophyceae",
+                                          "Ulvophyceae",
+                                          "Xanthophyceae")))
+
+AnoSimData<-map_df(Data_AnoSIM_list,bind_rows) %>% 
+  dplyr::mutate(Value=paste0("R= ",signif(R,3)," & p= ",signif(p,3) ),
+                Data=as.factor(case_when(Data=="S2_10"~"Sentinel-2 10m",
+                                         TRUE ~ Data) ) ,
+                Data=fct_relevel(Data,c("ASD",
+                                          "Drone",
+                                          "Sentinel-2 10m") ))
+
+
+Stress<-MDSData %>% 
+  group_by(Data)  %>% 
+  summarise(Stress=signif(mean(Stress) ,3) ) %>% 
+  full_join(AnoSimData,by="Data")
+
+Data.labs <-paste0(Stress$Data,"      Stress: ",Stress$Stress, ", \nANOSIM: ",Stress$Value) 
+
+names(Data.labs)  <-  c("ASD","Drone","Sentinel-2 10m") 
+```
+
+```{r MDSPlotsWithoutBS}
+#| echo: false
+#| warning: false
+#| eval: false
+
+MDSData <- MDSData %>% 
+  mutate(Species_Group = case_when(Species_Group == "Ulvophyceae" ~ "Chlorophyceae",
+                                   T ~ Species_Group))
+
+hullsData <- hullsData %>% 
+  mutate(Species_Group = case_when(Species_Group == "Ulvophyceae" ~ "Chlorophyceae",
+                                   T ~ Species_Group))
+
+colscal <- c("Bacillariophyceae"="#DAA520",
+             "Magnoliopsida"="#389318",
+             "Phaeophyceae"="#873e23", 
+             "Chlorophyceae"="#768807",
+             "Xanthophyceae"="#e0e809")
+
+
+a <- ggplot() +
+    geom_point(data=MDSData,aes(x=x,y=y,colour=Species_Group) ,alpha=0.9,size=0.5) +
+    geom_polygon(data=hullsData,aes(x=x,y=y,fill=Species_Group) ,alpha=0.2) +
+    theme_Bede() +
+    scale_colour_manual(name="Class",values = colscal) +
+    scale_fill_manual(name="Class",,values = colscal) +
+    labs(y="",
+       x="",
+       colour="Class",
+       fill="Class") +
+  facet_wrap(~Data,ncol = 2, 
+  labeller = labeller( Data = Data.labs) ,
+  scales = "free")  +
+    theme(axis.text.x=element_blank(),
+      axis.ticks.x=element_blank(),
+      axis.text.y=element_blank(),
+      axis.ticks.y=element_blank(),
+      plot.margin = unit(c(1.25,1.25,1.25,1.25), "cm"),
+      strip.text = element_text(size=14),
+      legend.title = element_text(size=14),
+      legend.text = element_text(size=14),
+      legend.direction = "vertical",
+      legend.position = "top",
+      legend.justification = "center")+
+  guides(fill=guide_legend(ncol=3),
+         colour=guide_legend(ncol=3))
+  
+
+ggsave(filename = "Images/Part1/nMDS_3sensors.svg", 
+       plot = a, 
+       width = 10,
+       height = 10, 
+       units = "in")
+
+
+```
+
+::: {.absolute .fragment .fade-out fragment-index="1" top="6.5%"}
+*Hyperspectral library*
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="1" top="6.5%"}
+*Hyperspectral library - nMDS*
+:::
+
+::: {.absolute .fragment .fade-out fragment-index="1" top="10%" left="-5%"}
+
+![](Images/Part1/Menu_library.png){height="1100"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="2" top="10%" left="-5%"}
+
+![](Images/Part1/Menu_library_ASD.png){height="1100"}
+:::
 
 
 # Case Study 1 – Facing Biological Invasions {data-name="Invasive species"}

@@ -151,7 +151,7 @@ background: radial-gradient(
   width: 100%;
   height: auto;
   display: block;
-  opacity: 0.2;  // adjust value from 0 (fully transparent) to 1 (fully opaque)
+  opacity: 0.2;   // adjust value from 0 (fully transparent) to 1 (fully opaque)
 }
 
 .watercolor-text {
@@ -179,11 +179,7 @@ background: radial-gradient(
   position: relative;
   overflow: hidden;
   display: inline-block;
-  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
   background-color: white;
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.9); /* ajoute une lumière blanche douce autour */
 }
-
-
 

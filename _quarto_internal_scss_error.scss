@@ -2610,14 +2610,10 @@ $presentation-author-block-padding-right: if(
   z-index: -1 !important; // makes sure it is places behind the logo
 }
 
-
-
 .reveal .slide-number {
-  font-size: 40px;         // plus grand
-  font-weight: bold;       // plus visible
-  color: #0e4e39;          // ou "black", ou un vert foncé élégant
-  text-shadow: 1px 1px 3px white; /
+  color: $link-color;
 }
+
 
 .sectionhead {
   font-size: 1em;
@@ -2721,7 +2717,7 @@ background: radial-gradient(
   width: 100%;
   height: auto;
   display: block;
-  opacity: 0.2;  // adjust value from 0 (fully transparent) to 1 (fully opaque)
+  opacity: 0.2;   adjust value from 0 (fully transparent) to 1 (fully opaque)
 }
 
 .watercolor-text {
@@ -2749,14 +2745,9 @@ background: radial-gradient(
   position: relative;
   overflow: hidden;
   display: inline-block;
-  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
   background-color: white;
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.9); /* ajoute une lumière blanche douce autour */
 }
-
-
-
 
 
 
