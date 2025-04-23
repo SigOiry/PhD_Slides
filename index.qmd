@@ -2281,13 +2281,13 @@ A lot of Narrow Spectral Bands
 :::
 :::
 
-:::{.absolute top="20%" left="55%" .fragment .fade-in fragment-index="11" style="width: 1200px; text-align: left;  font-size: 80px;"}
-- Is is possible to descriminate **green macrophytes** using remote sensing techniques ? 
+:::{.absolute bottom="15%" left="55%" .fragment .fade-in fragment-index="11" style="width: 1200px; text-align: left;  font-size: 80px;"}
+- Is is possible to discriminate **green macrophytes** using remote sensing techniques ? 
 
 :::
 
-:::{.absolute bottom="15%" left="55%" .fragment .fade-in fragment-index="11" style="width: 1200px; text-align: left;  font-size: 80px;"}
-- What is the impact of the **spectral resolution** on the descrimination accuraty ?
+:::{.absolute top="20%" left="55%" .fragment .fade-in fragment-index="11" style="width: 1200px; text-align: left;  font-size: 80px;"}
+- What is the impact of the **spectral resolution** on the discrimination accuracy ?
 :::
 
 ## Material & Methods
@@ -3518,9 +3518,19 @@ ggsave(filename = "Images/Part1/nMDS_3sensors.svg",
 *Hyperspectral library*
 :::
 
+::: {.fragment .fade-out fragment-index="4"}
 ::: {.absolute .fragment .fade-in fragment-index="1" top="6.5%"}
 *Hyperspectral library - nMDS*
 :::
+:::
+
+::: {.fragment .fade-out fragment-index="7"}
+::: {.absolute .fragment .fade-in fragment-index="4" top="6.5%"}
+*Hyperspectral library - Random Forest Classifier*
+:::
+:::
+
+
 
 ::: {.absolute .fragment .fade-out fragment-index="1" top="10%" left="-5%"}
 
@@ -3556,6 +3566,671 @@ ggsave(filename = "Images/Part1/nMDS_3sensors.svg",
 ::: {.absolute .fragment .fade-in-then-out fragment-index="3" top="5%" right="-5%"}
 
 ![](Images/Part1/Figure_part1_S2-01.png){height="1200"}
+:::
+
+
+```{r Conf_Mat}
+#| error: false
+#| warning: false
+#| echo: false
+#| eval: false
+
+library(tidyverse)
+
+Final_Conf<-read_csv("Data/Part1/RandomForestConf.csv")%>% 
+  dplyr::rename(Truth=col,Prediction=row)%>% 
+  dplyr::group_by(Prediction,Truth,Model,Data) %>% 
+  dplyr::summarise(value=sum(value) ) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::mutate(correct=case_when(Truth==Prediction~1,
+                                  !Truth==Prediction~0,
+                                  TRUE~9999,
+                                  ) ) %>% 
+  group_by(Truth,Model,Data) %>% 
+  summarise(True_Acc=signif((value*correct)/sum(value),2),
+            value=value,
+            correct=correct,
+            Prediction=Prediction) %>% 
+  dplyr::ungroup() %>% 
+  group_by(Prediction,Model,Data) %>% 
+  summarise(Pred_Acc=signif((value*correct)/sum(value),2),
+
+            value=value,
+            correct=correct,
+            True_Acc=True_Acc,
+            Truth=Truth)
+
+
+Total<-read_csv("Data/Part1/RandomForestConf.csv") %>% 
+  dplyr::filter(Data=="ASD") %>% 
+  group_by(col) %>% 
+  dplyr::summarise(tot=sum(value))
+
+Conf_Df_Plot<-Final_Conf %>% 
+  dplyr::full_join(Total,by=c("Truth"="col") ) %>% 
+  dplyr::mutate(Prop=if_else((value/tot)>1,1,value/tot),
+                Data=as.factor(Data) ,
+                Prediction=as.factor(case_when(
+                              Prediction=="Bacillariophyceae"~"Bac",
+                              Prediction=="Bare Sediment"~"Bar",
+                              Prediction=="Magnoliosida"~"Mag",
+                              Prediction=="Phaephyceae"~"Pha",
+                              Prediction=="Ulvophyceae"~"Ulv",
+                              Prediction=="Xanthophyceae"~"Xan") ) ,
+                Truth=as.factor(case_when(
+                              Truth=="Bacillariophyceae"~"Bac",
+                              Truth=="Bare Sediment"~"Bar",
+                              Truth=="Magnoliosida"~"Mag",
+                              Truth=="Phaephyceae"~"Pha",
+                              Truth=="Ulvophyceae"~"Ulv",
+                              Truth=="Xanthophyceae"~"Xan") )) %>% 
+  ungroup()%>% 
+  dplyr::mutate(Data=forcats::fct_relevel(Data,
+                                          c("ASD",
+                                            "PRISMA",
+                                            "Drone",
+                                            "Sentinel-2 20m",
+                                            "Pleiades",
+                                            "Sentinel-2 10m") ),
+                Prediction=forcats::fct_relevel(Prediction,rev) )%>% 
+ dplyr::filter(Prop>0)
+
+```
+
+```{r Conf_Mat_Plot}
+#| error: false
+#| warning: false
+#| echo: false
+#| eval: false
+library(Utilities.Package)
+
+cropped_df <- Conf_Df_Plot %>% 
+  dplyr::filter(Data %in% c("ASD"
+                            ,"Drone"
+                            , "Sentinel-2 10m"
+                            )
+                )
+
+for(i in 1:length(unique(cropped_df$Data))){
+  
+  print(unique(cropped_df$Data)[i])
+plot_i <- cropped_df %>% 
+  dplyr::filter(Data == unique(cropped_df$Data)[i]) %>% 
+    ggplot()+
+      geom_tile(aes(x=Truth,y=Prediction,alpha=Prop,fill=Prop,group=Model) )+
+      geom_label(data=function(x) dplyr::filter(x, True_Acc>0),
+                 aes(x=Truth,y=7.25,label=True_Acc,fill=True_Acc),
+                 size=2.5)+
+      geom_label(data=function(x) dplyr::filter(x, Pred_Acc>0),
+                 aes(x=7.25,y=Prediction,label=Pred_Acc,fill=Pred_Acc),
+                 size=2.5)+
+      facet_wrap(~Data,ncol = 2,scales="free")+
+      theme_Bede()+
+      scale_fill_Bede("Climate",
+                      name="Proportion of\nTotal Samples",
+                      # breaks=c(0.0001,0.25,0.5,0.75,1),
+                      limits=c(0.5,1.001),
+                      oob      =  scales::squish,          # anything <0.5 → 0.5; >1 → 1
+                      discrete=F,
+                      alpha=0.9,)+
+      scale_alpha_continuous(range = c(0.25, 1) )+
+      scale_x_discrete(expand=expansion(mult=c(0.2,0.4) )) +
+      scale_y_discrete(expand=expansion(mult=c(0.3,0.55) )) +
+      guides(alpha = "none")+
+        theme(plot.margin = unit(c(1.25,1.25,1.25,1.25), "cm"),
+                          strip.text = element_text(size=14),
+                          legend.title = element_text(size=12),
+                          legend.text = element_text(size=14))
+                  
+  ggsave(paste0("Images/Part1/conf_mat_", unique(cropped_df$Data)[i],".png"),plot_i, units="in",width=8, height=5, dpi=300)
+
+}
+  
+  
+
+
+ggsave("Images/Part1/conf_mat_ASD.png", units="in",width=8, height=5, dpi=300)
+
+
+```
+
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="4" top="10%" left="-5%"}
+
+![](Images/Part1/Menu_library_ASD.png){height="1100"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="4" top="10%" left="6%"}
+
+![](Images/Part1/conf_mat_ASD.png){height="1100"}
+:::
+
+::: {.absolute top="40%" right="0%" .fragment .fade-in-then-out fragment-index="4" style="font-size: 60px;"}
+- Global accuracy: 0.95
+- Cohen's kappa: 0.93
+- Sensitivity: 0.93
+- Specificity: 0.98
+:::
+
+
+
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="5" top="10%" left="-5%"}
+
+![](Images/Part1/Menu_library_Micasense.png){height="1100"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="5" top="10%" left="6%"}
+
+![](Images/Part1/conf_mat_Drone.png){height="1100"}
+:::
+
+::: {.absolute top="40%" right="0%" .fragment .fade-in-then-out fragment-index="5" style="font-size: 60px;"}
+- Global accuracy: 0.94
+- Cohen's kappa: 0.93
+- Sensitivity: 0.94
+- Specificity: 0.98
+:::
+
+
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="6" top="10%" left="-5%"}
+
+![](Images/Part1/Menu_library_S2.png){height="1100"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="6" top="10%" left="6%"}
+
+![](Images/Part1/conf_mat_Sentinel-2 10m.png){height="1100"}
+:::
+
+::: {.absolute top="40%" right="0%" .fragment .fade-in-then-out fragment-index="6" style="font-size: 60px;"}
+- Global accuracy: 0.83
+- Cohen's kappa: 0.79
+- Sensitivity: 0.84
+- Specificity: 0.96
+:::
+
+
+::: {.fragment .fade-out fragment-index="17"}
+::: {.absolute .fragment .fade-in fragment-index="7" top="6.5%"}
+*Drone imagery - Example of classification*
+:::
+
+
+::: {.absolute .fragment .fade-in fragment-index="7" bottom="-8%" right="-7.6%"}
+![](Images/Part1/Map_Drone_gaf-01.png){height="1400"}
+:::
+:::
+
+
+```{r Figure 4 Gaf Low}
+#| echo: false
+#| warning: false
+#| eval: false
+
+library(tidyverse)
+library(terra)
+library(sf)
+
+Gafanha_low_ortho <- rast("Data/Part1/Gafanha_low_multi_resampled_colored.tif")
+
+zoom_extent<-"Data/Part1/zoom_extent_map_Gafanha_comparison.shp" %>% 
+  read_sf()
+
+
+######### RGB #########
+
+ names(Gafanha_low_ortho)<-c("B1", "B3", "B5","alpha")
+
+ values(Gafanha_low_ortho)[values(Gafanha_low_ortho$alpha) == 0] = NA
+  
+ Gafanha_low_ortho_zoomed<-Gafanha_low_ortho %>% 
+   crop(zoom_extent)
+ 
+ # RGB(Gafanha_low_ortho_zoomed) <- 1:3
+ 
+ map_extent_full<- st_as_sf(as.polygons(ext(Gafanha_low_ortho)))
+ sf::st_crs(map_extent_full)<-st_crs(Gafanha_low_ortho)
+ 
+
+  map_extent_zommed<- st_as_sf(as.polygons(ext(Gafanha_low_ortho_zoomed)))
+ sf::st_crs(map_extent_zommed)<-st_crs(Gafanha_low_ortho_zoomed)
+ 
+ 
+ rgb_Gafanha_low_zoomed<-ggplot()+
+   tidyterra::geom_spatraster_rgb(data = Gafanha_low_ortho_zoomed, 
+                                  r = 3,
+                                  g = 2,
+                                  b = 1)+
+   theme_Bede_Map()+
+   geom_sf(data = zoom_extent, fill = "transparent", colour = "red2",linetype = "dashed", linewidth = 1.5)+
+   # coord_sf(crs = 4326)+
+     theme_void()
+
+
+
+ scale_labels<-data.frame(x = c(-8.74368, -8.743565,-8.74342),
+                          y = c(rep(40.59792,3)),
+                          text = c("0","10","20 m"))
+ 
+ 
+ target_shp <- read_sf("Data/Part1/model_px_8m.shp")
+ 
+ for (i in 1:nrow(target_shp)) {
+   
+   shp <- target_shp[i,]
+   
+   img_i <- Gafanha_low_ortho[[1:3]] %>% 
+     crop(shp, mask = T)
+   
+   RGB(img_i) <- 1:3
+   
+   plot(img_i)
+   
+   writeRaster(img_i,paste0("Images/Part1/RGB_sample_", shp$Target,"8m.png"), overwrite = T)
+ }
+ 
+ 
+ 
+rgb_Gafanha_low<- ggplot()+
+  # scale_fill_manual("", 
+  #                   labels = c("Intertidal area", "Land area", "water"),
+  #                   values = c("#7DC27D", "#CFCFCF","#42c9bc"))+
+  # geom_sf(data = background_GafHigh,
+  #         fill = "white",
+  #         show.legend = F,
+  #         linewidth=0.05,
+  #         alpha=0.4,
+  #         colour="white")+
+  # geom_sf(data = background_GafHigh,
+  #         mapping = aes(fill = Type),
+  #         show.legend = F, 
+  #         linewidth=0.05,
+  #         alpha=0.4,
+  #         colour="grey30")+
+   tidyterra::geom_spatraster_rgb(data = Gafanha_low_ortho,
+         r = 1,
+         g = 2,
+         b = 3,
+         maxcell = 4010533
+         # maxcell = 10000
+
+         )+
+    ggspatial::annotation_scale(location = "tl",
+                                text_cex=2)+
+      # annotation_custom(ggplotGrob(p1),
+      #                   xmin = -8.7430,
+      #                   xmax = -8.742702,
+      #                   ymin = 40.5970515, 
+      #                   ymax = 40.5974) +
+   theme_Bede_Map()+
+   # geom_sf(data = zoom_extent, 
+   #         fill = "transparent",
+   #         colour = "red2",
+   #         linetype = "dashed", 
+   #         linewidth = 1.5)+
+   # coord_sf(crs = 4326)+
+  # annotation_custom(ggplotGrob(rgb_Gafanha_low_zoomed),
+  #                   xmin = -8.7430,
+  #                   xmax=-8.7427,
+  #                   ymin = 40.5977) +
+  # geom_path(aes(x,y,group=grp),
+  #           data = data.frame(x = c(-8.7432439,-8.743,-8.7432439,-8.743),
+  #                             y=c(40.5976275,40.5979,40.5975373,40.59771),
+  #                             grp=c(1,1,2,2)),
+  #           linetype = "dashed", linewidth = 1.5, color = "red2")+
+  theme(axis.title = element_blank(),
+        axis.text.y = element_text(size = 20),
+        axis.text.x = element_text(size = 20, angle = 20, hjust = 1))+
+    scale_x_continuous(limits = c(-8.7437, -8.74295), breaks = -8.7432)+
+    scale_y_continuous(limits = c(40.59715, 40.5979), breaks = 40.5975)
+ 
+# rgb_Gafanha_low
+ 
+ 
+  
+  
+
+ggsave("Images/Part1/Map_Pred/Gaf_Low_RGB.png",rgb_Gafanha_low , width = 900*4, height = 863*4, units = "px")
+
+####### Zoomed map ########
+
+
+Gafanha_low_pred_zoomed<-"Data/Part1/AveiroLowPrediction_nnNewStanRawMetrics_Preds_NoXantho_7.tif" %>% 
+  rast()
+names(Gafanha_low_pred_zoomed)<-"layer"
+
+Gafanha_low_pred_zoomed<-Gafanha_low_pred_zoomed %>% 
+  crop(zoom_extent)
+Gafanha_low_pred_zoomed<-as.factor(Gafanha_low_pred_zoomed)
+
+Gafanha_low_pred_map_zoomed<-ggplot()+
+  tidyterra::geom_spatraster(data = Gafanha_low_pred_zoomed, mapping = aes(fill = layer))+
+  geom_sf(data = zoom_extent, fill = "transparent", colour = "black",linetype = "dashed", linewidth = 1.5)+
+  # coord_sf(crs = 4326)+
+  scale_fill_manual(values=c("#A3A3A3", "#b3ff1a","#70543e", "#DAA520", "#389318","#5C2E1A","#b3002d", NA, "#42c9bc"), na.value = NA)+
+  theme_void()+
+  # coord_equal()+
+  theme(axis.text.x = element_blank(),
+      axis.text.y = element_blank(),
+      axis.title = element_blank())+
+  theme(legend.position = "none")
+ # Gafanha_low_pred_map_zoomed
+
+####  Overall map
+Gafanha_low_pred<-"Data/Part1/AveiroLowPrediction_nnNewStanRawMetrics_Preds_NoXantho_7.tif" %>% 
+  rast()
+names(Gafanha_low_pred)<-"layer"
+
+
+values(Gafanha_low_pred)[values(Gafanha_low_pred) == 0] = NA
+
+Gafanha_low_pred<-Gafanha_low_pred %>% 
+  as.factor()
+
+
+ 
+ target_shp <- read_sf("Data/Part1/model_px_8m.shp")
+ 
+ for (i in 1:nrow(target_shp)) {
+   
+   shp <- target_shp[i,]
+   
+   img_i <- Gafanha_low_pred %>% 
+     crop(shp, mask = T)
+   
+   
+   plot_i <-
+  ggplot()+
+  # scale_fill_manual("", 
+  #                   labels = c("Intertidal area", "Land area", "water"),
+  #                   values = c("white", "white","white"))+
+  # geom_sf(data = background_GafHigh,
+  #         mapping = aes(fill = Type),
+  #         show.legend = F, 
+  #         linewidth=0.05,
+  #         alpha=0.4,
+  #         colour="grey30")+
+  # geom_sf(data = background_GafHigh,
+  #         fill = "white",
+  #         show.legend = F, 
+  #         linewidth=0.05,
+  #         alpha=1,
+  #         colour="white")+
+   ggnewscale::new_scale("fill")+
+    tidyterra::geom_spatraster(data = img_i, 
+                               mapping = aes(fill = layer),
+                               maxcell = 500832*8,
+                               show.legend = F)+
+  # geom_sf(data = zoom_extent, 
+  #         fill = "transparent", 
+  #         colour = "black",
+  #         linetype = "dashed", 
+  #         linewidth = 1.5)+
+  # # coord_sf(crs = 4326)+
+  # annotation_custom(ggplotGrob(Gafanha_low_pred_map_zoomed), 
+  #                   xmin = -8.7430,
+  #                   xmax=-8.7427, 
+  #                   ymin = 40.5977) +
+  # geom_path(aes(x,y,group=grp),
+  #           data = data.frame(x = c(-8.7432439,-8.743,-8.7432439,-8.743),
+  #                             y=c(40.5976275,40.5979,40.5975373,40.59771),
+  #                             grp=c(1,1,2,2)),
+            # linetype = "dashed", linewidth = 1.5)+
+  scale_fill_manual(breaks = c(1,2,5,6,7,8,10),
+                    values=c("#A3A3A3", "#b3ff1a", "#DAA520", "#389318","#5C2E1A","#b3002d", "#42c9bc",NA,NA,NA,NA),
+                    na.value = NA,
+                    name = "",
+                    labels = c("Sediment",
+                               "Chlorophyceae",
+                               "Bacillariophyceae",
+                               "Magnoliopsida",
+                               "Phaeophyceae",
+                               "Rhodophyceae",
+                               "Water"))+
+  theme_void()+
+     coord_sf(expand = F)
+   
+   
+   
+   ggsave(paste0("Images/Part1/Pred_sample_", shp$Target,"_8m.png"), plot_i, height = 10, width = 10)
+ }
+
+
+####### Pred ######
+
+
+
+Gafanha_low_pred_map <-
+  ggplot()+
+  # scale_fill_manual("", 
+  #                   labels = c("Intertidal area", "Land area", "water"),
+  #                   values = c("white", "white","white"))+
+  # geom_sf(data = background_GafHigh,
+  #         mapping = aes(fill = Type),
+  #         show.legend = F, 
+  #         linewidth=0.05,
+  #         alpha=0.4,
+  #         colour="grey30")+
+  # geom_sf(data = background_GafHigh,
+  #         fill = "white",
+  #         show.legend = F, 
+  #         linewidth=0.05,
+  #         alpha=1,
+  #         colour="white")+
+   ggnewscale::new_scale("fill")+
+    tidyterra::geom_spatraster(data = Gafanha_low_pred, 
+                               mapping = aes(fill = layer),
+                               maxcell = 500832*8)+
+  # geom_sf(data = zoom_extent, 
+  #         fill = "transparent", 
+  #         colour = "black",
+  #         linetype = "dashed", 
+  #         linewidth = 1.5)+
+  # # coord_sf(crs = 4326)+
+  # annotation_custom(ggplotGrob(Gafanha_low_pred_map_zoomed), 
+  #                   xmin = -8.7430,
+  #                   xmax=-8.7427, 
+  #                   ymin = 40.5977) +
+  # geom_path(aes(x,y,group=grp),
+  #           data = data.frame(x = c(-8.7432439,-8.743,-8.7432439,-8.743),
+  #                             y=c(40.5976275,40.5979,40.5975373,40.59771),
+  #                             grp=c(1,1,2,2)),
+            # linetype = "dashed", linewidth = 1.5)+
+  scale_fill_manual(breaks = c(1,2,5,6,7,8,10),
+                    values=c("#A3A3A3", "#b3ff1a", "#DAA520", "#389318","#5C2E1A","#b3002d", "#42c9bc",NA,NA,NA,NA),
+                    na.value = NA,
+                    name = "",
+                    labels = c("Sediment",
+                               "Chlorophyceae",
+                               "Bacillariophyceae",
+                               "Magnoliopsida",
+                               "Phaeophyceae",
+                               "Florideophyceae",
+                               "Water"))+
+  theme_Bede_Map()+
+  # coord_equal()+
+   theme(axis.text.x = element_text(size = 20, angle = 20,hjust = 1),
+         # axis.text.y = element_text(size = 20),
+         axis.text.y = element_blank(),
+         axis.title = element_blank(),
+         legend.background = element_blank(),
+         legend.position = c(0.4,0.3),
+         legend.text = element_text(size = 20),
+         legend.key.size = unit(1,"cm"))+
+    scale_x_continuous(limits = c(-8.7437, -8.74295), breaks = -8.7432)+
+    scale_y_continuous(limits = c(40.59715, 40.5979), breaks = 40.5975)
+
+
+ggsave("Images/Part1/Map_Pred/Gaf_Low_Pred.png",Gafanha_low_pred_map , width = 771*4, height = 863*4, units = "px")
+
+################# PLOT AND SAVING ###########
+
+plot_Gaf_Low<-rgb_Gafanha_low+
+  Gafanha_low_pred_map
+ 
+ggsave("Figures/High_res/Maps Pred/FigX-Gaf_Low_Pred.png",plot_Gaf_Low , width = 1920*4, height = 1009*4, units = "px")
+
+
+
+
+
+# 2. Convert its centroid to an sf POINT
+r_centroid <- st_as_sf(as.points(ext(Gafanha_low_pred), crs = crs(Gafanha_low_pred))) %>% 
+              st_centroid()
+
+# 3. Pick a UTM zone based on that longitude
+lonlat <- st_coordinates(r_centroid)
+utm_zone <- floor((lonlat[1] + 180) / 6) + 1
+utm_crs  <- paste0("+proj=utm +zone=", utm_zone,
+                   ifelse(lonlat[2] >= 0, " +north", " +south"),
+                   " +datum=WGS84 +units=m +no_defs")
+
+# 4. Reproject the centroid into metres
+pt_utm <- st_transform(r_centroid, crs = utm_crs)
+
+# 5. Build a 10 m × 10 m square around it by buffering 5 m with square caps
+square_utm <- st_buffer(pt_utm,
+                        dist = 4,                # half side‐length
+                        endCapStyle = "SQUARE",  
+                        joinStyle   = "MITRE")
+
+# (Optionally) 6. Transform the square back to lon/lat (EPSG:4326)
+square_wgs84 <- st_transform(square_utm, crs = 4326)
+
+write_sf(square_wgs84, "Data/Part1/model_px_8m.shp")
+
+```
+::: {.fragment .fade-out fragment-index="13"}
+::: {.absolute .fragment .fade-in fragment-index="7" top="14%" left="-5%"}
+
+![](Images/Part1/Map_Pred/Gaf_Low_RGB.png){height="1100"}
+:::
+:::
+
+::: {.blackarrow .absolute top="68%" left="28%" .fragment .fade-in-then-out fragment-index="8" style="border: 4px solid;" height="0px" width="500px"}
+:::
+
+::: {.blackarrow .absolute top="61%" left="21%" .fragment .fade-in-then-out fragment-index="9" style="border: 4px solid;" height="0px" width="670px"}
+:::
+
+::: {.blackarrow .absolute top="30%" left="22%" .fragment .fade-in-then-out fragment-index="10" style="border: 4px solid;" height="0px" width="650px"}
+:::
+
+::: {.blackarrow .absolute top="35%" left="28%" .fragment .fade-in-then-out fragment-index="11" style="border: 4px solid;" height="0px" width="500px"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="8" top="27%" left="50%"}
+:::{.absolute bottom="-7%" left="18%" style="font-size: 60px;"}
+Chlorophyceae
+:::
+
+![](Images/Part1/RGB_sample_Green8m.png){height="600"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="9" top="27%" left="50%"}
+:::{.absolute bottom="-7%" left="13%" style="font-size: 60px;"}
+Bacillariophyceae
+:::
+
+![](Images/Part1/RGB_sample_MPB8m.png){height="600"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="27%" left="50%"}
+:::{.absolute bottom="-7%" left="16%" style="font-size: 60px;"}
+Magnoliopsida
+:::
+
+![](Images/Part1/RGB_sample_Seagrass8m.png){height="600"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="11" top="27%" left="50%"}
+:::{.absolute bottom="-7%" left="13%" style="font-size: 60px;"}
+Florideophyceae
+:::
+
+![](Images/Part1/RGB_sample_red8m.png){height="600"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="12" top="14%" left="37%"}
+
+![](Images/Part1/Map_Pred/Gaf_Low_Pred.png){height="1100"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="13" top="20%" left="0%"}
+:::{.absolute bottom="-7%" left="22%" style="font-size: 60px;"}
+Chlorophyceae
+:::
+
+![](Images/Part1/RGB_sample_Green8m.png){height="800"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="13" top="20%" left="33%"}
+::: {.absolute top="0%" right="-40%"}
+![](Images/Part1/Map_Pred/legend.png){height="400"}
+:::
+
+![](Images/Part1/Pred_sample_Green_8m.png){height="800"}
+:::
+
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="14" top="20%" left="0%"}
+:::{.absolute bottom="-7%" left="22%" style="font-size: 60px;"}
+Bacillariophyceae
+:::
+
+![](Images/Part1/RGB_sample_MPB8m.png){height="800"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="14" top="20%" left="33%"}
+::: {.absolute top="0%" right="-40%"}
+![](Images/Part1/Map_Pred/legend.png){height="400"}
+:::
+
+![](Images/Part1/Pred_sample_MPB_8m.png){height="800"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="15" top="20%" left="0%"}
+:::{.absolute bottom="-7%" left="22%" style="font-size: 60px;"}
+Magnoliopsida
+:::
+
+![](Images/Part1/RGB_sample_seagrass8m.png){height="800"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="15" top="20%" left="33%"}
+::: {.absolute top="0%" right="-40%"}
+![](Images/Part1/Map_Pred/legend.png){height="400"}
+:::
+
+![](Images/Part1/Pred_sample_seagrass_8m.png){height="800"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="16" top="20%" left="0%"}
+:::{.absolute bottom="-7%" left="22%" style="font-size: 60px;"}
+Florideophyceae
+:::
+
+![](Images/Part1/RGB_sample_red8m.png){height="800"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="16" top="20%" left="33%"}
+::: {.absolute top="0%" right="-40%"}
+![](Images/Part1/Map_Pred/legend.png){height="400"}
+:::
+
+![](Images/Part1/Pred_sample_red_8m.png){height="800"}
+:::
+
+
+::: {.absolute .fragment .fade-in fragment-index="17" top="6.5%"}
+*Drone imagery - Validation*
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="17" bottom="0%" left="10%"}
+
+![](Images/Part1/ConfusionMatrixGlobal.png){height="1200"}
 :::
 
 
