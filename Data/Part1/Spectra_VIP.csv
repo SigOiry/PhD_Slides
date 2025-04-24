@@ -1,0 +1,91 @@
+"","Class","Wavelength","STD"
+"1","Bare Sediment",444,0
+"2","Bare Sediment",475,0.109324086104553
+"3","Bare Sediment",531,0.37325886458545
+"4","Bare Sediment",560,0.453114886736447
+"5","Bare Sediment",650,0.532189646743443
+"6","Bare Sediment",668,0.427987938593931
+"7","Bare Sediment",705,0.74031866631296
+"8","Bare Sediment",717,0.773027167393886
+"9","Bare Sediment",740,0.834626668567117
+"10","Bare Sediment",842,1
+"11","D - Chloropyceae",444,0
+"12","D - Chloropyceae",475,0.0257177204619166
+"13","D - Chloropyceae",531,0.36028787412052
+"14","D - Chloropyceae",560,0.442577269260647
+"15","D - Chloropyceae",650,0.224777611458985
+"16","D - Chloropyceae",668,0.118048187861635
+"17","D - Chloropyceae",705,0.684574840377357
+"18","D - Chloropyceae",717,0.837531719330815
+"19","D - Chloropyceae",740,0.934397446229855
+"20","D - Chloropyceae",842,1
+"21","Bare Sediment",444,0
+"22","Bare Sediment",475,0.0696463189869422
+"23","Bare Sediment",531,0.305033929829719
+"24","Bare Sediment",560,0.356092004546378
+"25","Bare Sediment",650,0.339461326978038
+"26","Bare Sediment",668,0.245539065041049
+"27","Bare Sediment",705,0.592284725457698
+"28","Bare Sediment",717,0.658237985676059
+"29","Bare Sediment",740,0.749140319547245
+"30","Bare Sediment",842,1
+"31","E - Microphytobenthos",444,0
+"32","E - Microphytobenthos",475,0.0427424066108715
+"33","E - Microphytobenthos",531,0.232930094162034
+"34","E - Microphytobenthos",560,0.369769724669677
+"35","E - Microphytobenthos",650,0.375270311104811
+"36","E - Microphytobenthos",668,0.151485533840042
+"37","E - Microphytobenthos",705,0.764189064154727
+"38","E - Microphytobenthos",717,0.863907943126722
+"39","E - Microphytobenthos",740,0.954096157955407
+"40","E - Microphytobenthos",842,1
+"41","A - Magnoliopsida",444,0
+"42","A - Magnoliopsida",475,0.0224655318719431
+"43","A - Magnoliopsida",531,0.169846727512899
+"44","A - Magnoliopsida",560,0.221276514163791
+"45","A - Magnoliopsida",650,0.182191906548332
+"46","A - Magnoliopsida",668,0.0991958306660697
+"47","A - Magnoliopsida",705,0.510373529218283
+"48","A - Magnoliopsida",717,0.67752364888382
+"49","A - Magnoliopsida",740,0.830326302124278
+"50","A - Magnoliopsida",842,1
+"51","B - Pheophyceae",444,0
+"52","B - Pheophyceae",475,0.00333547609311714
+"53","B - Pheophyceae",531,0.045710513232827
+"54","B - Pheophyceae",560,0.0713560105179726
+"55","B - Pheophyceae",650,0.179508193462749
+"56","B - Pheophyceae",668,0.119464168211944
+"57","B - Pheophyceae",705,0.475322597217317
+"58","B - Pheophyceae",717,0.613073906410218
+"59","B - Pheophyceae",740,0.781515343328231
+"60","B - Pheophyceae",842,1
+"61","C - Rhodophyceae",444,0
+"62","C - Rhodophyceae",475,0.0207039085634631
+"63","C - Rhodophyceae",531,0.134173978268494
+"64","C - Rhodophyceae",560,0.153859464239023
+"65","C - Rhodophyceae",650,0.213999685686093
+"66","C - Rhodophyceae",668,0.104804691763613
+"67","C - Rhodophyceae",705,0.554657203661426
+"68","C - Rhodophyceae",717,0.741129203631069
+"69","C - Rhodophyceae",740,0.877001121690209
+"70","C - Rhodophyceae",842,1
+"71","Sun Glint",444,0
+"72","Sun Glint",475,0.164648880215488
+"73","Sun Glint",531,0.506971789224794
+"74","Sun Glint",560,0.583919614990276
+"75","Sun Glint",650,0.635974669961842
+"76","Sun Glint",668,0.408925541581853
+"77","Sun Glint",705,0.889279884495488
+"78","Sun Glint",717,0.891166349236529
+"79","Sun Glint",740,1
+"80","Sun Glint",842,0.981092613369295
+"81","Water",444,0
+"82","Water",475,0.0961178172670147
+"83","Water",531,0.404088907689124
+"84","Water",560,0.455810044238388
+"85","Water",650,0.470071792882076
+"86","Water",668,0.346954108458709
+"87","Water",705,0.72611265145984
+"88","Water",717,0.754714710740365
+"89","Water",740,0.802408867353998
+"90","Water",842,1

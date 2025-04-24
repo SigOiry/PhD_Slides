@@ -1388,6 +1388,7 @@ Coastal Remote Sensing: A trendy topic !
 
 - [Challenges to map intertidal vegetation](#challenges-to-map-intertidal-vegetation)
 - [Material & Methods](#material-methods)
+- [Results](#results)
 
 ## Challenges to map intertidal vegetation
 
@@ -1477,7 +1478,6 @@ ggsave("Images/Part1/Fig_STD_static.png", plot,width = 8, height = 6, units = "i
 
 
 ```
-
 
 ```{r plots for spectral presentation}
 #| cache: true
@@ -2671,7 +2671,15 @@ DataCombo$Data <- factor(DataCombo$Data, levels = c(
   
 )) 
 
-plot_SRF_sp <- ggplot(DataCombo,aes(x=Wavelength,
+### Just chloro and Magno
+colscale <- c("Magnoliopsida" = "#598f35", "Ulvophyceae" = "#c4fb58")
+
+plot_SRF_sp <- DataCombo %>% 
+  as_tibble() %>% 
+  dplyr::filter(
+    Species_Group %in% c("Magnoliopsida","Ulvophyceae","Phaeophyceae","Bacillariophyceae"),
+                Data == "Drone") %>%
+  ggplot(aes(x=Wavelength,
                   y=Mean_Reflec) ) +
   geom_ribbon(aes(ymin=lwr_Reflec,
                   ymax=upr_Reflec,
@@ -2686,6 +2694,8 @@ plot_SRF_sp <- ggplot(DataCombo,aes(x=Wavelength,
   ) +
   scale_x_continuous(limits =c(400,900) )+
   facet_wrap(~Data,ncol=2, scales = "free_x") +
+  # scale_fill_manual(name="Class",values = colscale, labels = c("Magnoliopsida","Chlorophyceae")) +
+  # scale_colour_manual(name="Class",values = colscale, labels = c("Magnoliopsida","Chlorophyceae")) +
   scale_fill_Bede(name="Class","Macro5_Pub") +
   scale_colour_Bede(name="Class","Macro5_Pub") +
   theme_Bede()+
@@ -2710,7 +2720,7 @@ rendered <- animate(plot_SRF_sp, duration = 10, fps = 20, width = 8, height = 6,
 anim_save("Images/Part1/Figure_resampled_spectra.gif", animation = rendered)
 
 
-  ggsave(filename = "Images/Part1/Figure_spectra3.pdf", 
+  ggsave(filename = "Images/Part1/Figure_spectra3_green.pdf", 
        plot = plot_SRF_sp, 
        width = 10,
        height = 10, 
@@ -4224,7 +4234,7 @@ Florideophyceae
 :::
 
 
-::: {.absolute .fragment .fade-in fragment-index="17" top="6.5%"}
+::: {.absolute .fragment .fade-in-then-out fragment-index="17" top="6.5%"}
 *Drone imagery - Validation*
 :::
 
@@ -4232,6 +4242,249 @@ Florideophyceae
 
 ![](Images/Part1/ConfusionMatrixGlobal.png){height="1200"}
 :::
+
+```{r VIP}
+#| cache: false
+#| echo: false
+#| warning: false
+#| eval: false
+
+library(tidyverse)
+library(Utilities.Package)
+log_func <- function(x) {
+  0.9 + 0.1 * log(x / 400) / log(900 / 400)
+}
+exp_func <- function(x) {
+  1 - exp(-0.01735 * (x - 444))
+}
+
+DataCombo <- read.csv("Data/Part1/DataCombo.csv")%>% 
+  dplyr::filter(Data %in% c("ASD","Drone","Sentinel-2 10m")) 
+
+DataCombo$Data <- factor(DataCombo$Data, levels = c(
+  "ASD","Drone","Sentinel-2 10m"
+  # "PRISMA",
+  
+  # # "Sentinel-2 20m",
+  # # "Pleiades",
+  
+)) 
+
+
+SP1<-read.csv("Data/Part1/Spectra_VIP.csv") %>%
+  dplyr::select(-X) %>%
+  mutate(type = "Min/Max Standardised Spectra") %>%
+  dplyr::filter(Class != "Bare Sediment",
+                Class != "Sun Glint",
+                Class != "Water",
+                Class != "Xanthophyceae",
+                Class != "A - MagnoliopsidaL") %>%
+  as_tibble()%>%
+  rename(value = "STD") %>% 
+  dplyr::filter(Class == "C - Rhodophyceae") %>% 
+  dplyr::select(Species_Group = "Class", Mean_Reflec = "value", Wavelength) %>% 
+  mutate(Mean_Reflec = case_when(Wavelength %in% c(531,560,650) ~ Mean_Reflec *0.15,
+                                 Wavelength %in% c(668) ~ Mean_Reflec *0.1,
+                                 T ~ Mean_Reflec))
+### Just chloro and Magno
+
+plot_SRF_sp <- DataCombo %>% 
+  as_tibble() %>% 
+  dplyr::filter(
+    Species_Group %in% c("Magnoliopsida","Ulvophyceae","Phaeophyceae","Bacillariophyceae"),
+                Data == "Drone",
+                Rep == "Rep_1") %>% 
+  dplyr::select(Wavelength,Species_Group,Mean_Reflec)  %>% 
+  bind_rows(SP1) %>% 
+  mutate(Species_Group = case_when(Species_Group == "C - Rhodophyceae" ~ "Florideophyceae",
+                                   Species_Group == "Ulvophyceae" ~ "Chlorophyceae",
+                                   T ~ Species_Group))
+
+# ################# SPECTRA ########### 
+# 
+# colscale <- c("Magnoliopsida" = "#598f35", "Ulvophyceae" = "#c4fb58")
+
+(SP_plot<-plot_SRF_sp %>%
+  # dplyr::filter(Class %in% c("D - Chloropyceae", "A - Magnoliopsida")) %>%
+  ggplot(aes( x = Wavelength, y = Mean_Reflec, color = Species_Group))+
+  geom_line(linewidth = 2)+
+  # facet_wrap(~ type, scale = "free",ncol =1) +
+  scale_color_manual(values=c( "#DAA520", "#b3ff1a", "#b3002d","#389318", "#873e23"))+
+  ylab("Reflectance")+
+  xlab("Wavelength (nm)")+
+  theme_Bede()+
+  theme(axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20),
+        axis.title.x = element_text(size = 25),
+        axis.title.y = element_text(size = 25),
+        strip.text = element_text(size=25),
+        legend.position = c(0.2, 0.7),
+        plot.background = element_rect(fill = rgb(1,1,1, alpha=0), colour = NA),
+        legend.title=element_blank(),
+        legend.text = element_text(size = 20),
+        legend.key.size = unit(1.5, "cm"),
+        legend.text.align = 0,
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(color="black"))
+)
+############## VIP ##############
+
+VIP<-"Data/Part1/NN_VIP_byClass_NoXanth.csv" %>%
+  read.csv() %>% 
+  mutate(Magnoliopsida = (Magnoliosida + Low_SPC)/2) %>% 
+  dplyr::select(-c(Magnoliosida ,Low_SPC))
+
+VIP1<-VIP %>%
+  dplyr::select(-c(Water,
+                   SunGlint,
+                   Deep_Sediment,
+                   Bare_Sediment)) %>%
+  # dplyr::filter(!str_detect(X,"NDVI")) %>% 
+  mutate(isSTD = case_when(str_detect(X,"Stan") ~ "Standardised", 
+                         TRUE ~ "RAW")) %>%
+  pivot_longer(-c(X,isSTD), names_to = "Class",values_to = "value") %>% 
+  dplyr::filter(X != "NDVI",
+                X != "NDVI_Stan") %>% 
+  group_by(Class) %>%
+  mutate(STD = (value-min(value))/(max(value)-min(value))) %>% 
+  ungroup() %>% 
+  mutate(Class = case_when(Class == "Magnoliosida" ~ "Magnoliopsida",
+                           Class == "Low_SPC" ~ "Magnoliopsida",
+                           Class == "Clorophyta" ~ "Chlorophyceae",
+                           Class == "Rhodphyta" ~ "Rhodophyceae",
+                           Class == "MPB" ~ "Bacillariophyceae",
+                           Class == "Phaeophyta" ~ "Phaeophyceae",
+                           TRUE ~ Class),
+         Variable = str_replace_all(str_replace_all(str_replace_all(X,"Reflectance",""),"Stan",""),"_","")) %>% 
+  dplyr::filter(Class != "Total") 
+
+VIP_summarised<-VIP1 %>% 
+  group_by(Variable, Class) %>% 
+  dplyr::summarise(sumVIP = sum(STD)) %>% 
+  ungroup() %>% 
+  group_by(Class) %>% 
+  mutate(STD = (sumVIP-min(sumVIP))/(max(sumVIP)-min(sumVIP)))
+
+(VIP_subPLOT<-VIP_summarised %>% 
+  dplyr::filter(Class %in% c("Magnoliopsida", "Chlorophyceae")) %>% 
+  ggplot(aes(x = Variable, y = STD, fill = Class)) +
+  geom_col(color = "black",position =  "dodge", show.legend = F) +
+  coord_polar()+
+  scale_y_continuous(limits = c(0,1), breaks = c(0.25,0.5,0.75,1))+
+  facet_wrap(~Class)+
+  scale_fill_manual("Class", labels = c("Chlorophyceae", "Magnoliopsida"),
+                    values = c("#b3ff1a", "#389318"))+
+  theme_Bede()+
+  theme(panel.grid.major.y = element_line(linetype = "dotted",color = c("grey9","grey9","grey9","grey9",NA)))+
+  ylab("Importance")+
+  theme(legend.position="top",
+        strip.text = element_text(size = 20),
+        axis.text.y = element_blank(),
+        axis.text.x = element_text(size = 15),
+        axis.ticks.y =element_blank(),
+        axis.title.x =element_blank(),
+        axis.title.y =element_text(size = 20),
+        legend.key.size = unit(1, 'cm'),
+        legend.title = element_text(size=20),
+        legend.text = element_text(size=20))+
+  guides(fill = guide_legend(nrow = 1))
+)
+
+ggsave("Images/Part1/Fig_VIP.png", VIP_subPLOT, width = 10, height = 5, units = "in", dpi = 300)
+
+ggsave("Images/Part1/Fig_VIP_Spectra.png", SP_plot, width =10, height = 10, units = "in", dpi = 300)
+
+```
+
+::: {.absolute .fragment .fade-in fragment-index="18" top="6.5%"}
+*Drone imagery - Variable importance*
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="18" top="20%" left="00%"}
+![](Images/Part1/Fig_VIP.png){height="800"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="18" top="20%" right="0%"}
+![](Images/Part1/Fig_VIP_Spectra.png){height="900"}
+:::
+
+## Discussion
+
+::: {.absolute top="6.5%"}
+*Pigment Composition, Spectral Signature and Variable Importance*
+:::
+
+
+::: {.absolute .fragment .fade-out fragment-index="2" top="10%" left="0%"}
+![](Images/Part1/Figure13.png){height="500"}
+:::
+
+::: {.absolute .fragment .fade-out fragment-index="2" bottom="0%" left="5%" }
+![](Images/Part1/Figure_Hyperspectral_Faded.gif){height="630"}
+:::
+
+:::{.absolute top="5%" left="50%" style="font-size: 60px;"}
+Challenge to map green macrophytes
+:::
+
+:::{.absolute top="10%" left="55%" style="font-size: 60px;"}
+- Similar pigment composition
+- Spectral resolution
+- Oftenly co-occur in intertidal areas
+:::
+
+:::{.absolute top="35%" left="50%" .fragment .fade-in fragment-index="1" style="font-size: 60px;"}
+- Difference in carotenoid to chlorophyll-a ratios ([Repolho et al., 2017](http://doi.org/10.1038/srep41443))
+:::
+
+:::{.absolute top="50%" left="50%" .fragment .fade-in fragment-index="2" style="font-size: 60px;"}
+- ~530 nm & ~650 nm are important wavelength
+:::
+
+:::{.absolute top="62%" left="50%" .fragment .fade-in fragment-index="3" style="font-size: 60px;"}
+- Ultra high spatial resolution (from 80 to 8mm per pixel)
+:::
+
+:::{.absolute top="74%" left="50%" .fragment .fade-in fragment-index="4" style="font-size: 60px;"}
+- More then 1 000 000 training pixels. Over 11 sites of 3 country
+:::
+
+:::{.absolute top="10%" left="5%" .fragment .fade-in fragment-index="4" style="font-size: 60px;"}
+Drone: 0,26 ha ~ 2.5 millions pixels
+
+S2: 25 000 hectares ~ 2.5x Paris
+:::
+
+
+:::{.absolute top="86%" left="50%" .fragment .fade-in fragment-index="4" style="font-size: 60px;"}
+- Diverse training dataset
+:::
+
+::: {.absolute  .fragment .fade-in-then-out fragment-index="2" top="7%" left="3%" }
+![](Images/Part1/conf_mat_Sentinel-2 10m.png){height="650"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="2" bottom="-5%" left="10%" }
+![](Images/Part1/Map_Pred/Fig_VIP_magn.png){height="630"}
+:::
+
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="3" bottom="-5%" left="10%" }
+
+![](Images/Part1/Green_bourgneuf.jpg){height="1200"}
+:::
+
+
+::: {.absolute .fragment .fade-in fragment-index="4" top="20%" left="-30%" }
+
+![](Images/Part1/Gafanha_Low.png){style="transform: rotate(45deg); height="2000"}
+:::
+
+:::{.absolute .fragment .fade-in-then-out fragment-index="3" bottom="0%" left="11%" style="font-size: 40px; color: white;"}
+*Bourgneuf Bay, July 2024*
+:::
+
 
 
 # Case Study 1 – Facing Biological Invasions {data-name="Invasive species"}
