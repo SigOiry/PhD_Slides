@@ -4416,49 +4416,49 @@ ggsave("Images/Part1/Fig_VIP_Spectra.png", SP_plot, width =10, height = 10, unit
 :::
 
 
-::: {.absolute .fragment .fade-out fragment-index="2" top="10%" left="0%"}
-![](Images/Part1/Figure13.png){height="500"}
+<!-- ::: {.absolute .fragment .fade-out fragment-index="2" top="10%" left="0%"} -->
+<!-- ![](Images/Part1/Figure13.png){height="500"} -->
+<!-- ::: -->
+
+::: {.absolute .fragment .fade-out fragment-index="2" top="10%" left="0%" }
+![](Images/Part1/Figure_Hyperspectral_Faded.gif){height="800"}
 :::
 
-::: {.absolute .fragment .fade-out fragment-index="2" bottom="0%" left="5%" }
-![](Images/Part1/Figure_Hyperspectral_Faded.gif){height="630"}
+:::{.absolute top="0%" left="50%" style="font-size: 60px;"}
+**Similar pigment composition,...**
+
+-  ... but difference in carotenoid to chlorophyll-a ratios ([Repolho et al., 2017](http://doi.org/10.1038/srep41443))
 :::
 
-:::{.absolute top="5%" left="50%" style="font-size: 60px;"}
-Challenge to map green macrophytes
+
+:::{.absolute top="25%" left="50%" .fragment .fade-in fragment-index="2" style="font-size: 60px;"}
+**Distinction between green macrophyte possible, ...**
+
+- ... but ~530 nm & ~650 nm are important wavelength
+
 :::
 
-:::{.absolute top="10%" left="55%" style="font-size: 60px;"}
-- Similar pigment composition
-- Spectral resolution
-- Oftenly co-occur in intertidal areas
-:::
 
-:::{.absolute top="35%" left="50%" .fragment .fade-in fragment-index="1" style="font-size: 60px;"}
-- Difference in carotenoid to chlorophyll-a ratios ([Repolho et al., 2017](http://doi.org/10.1038/srep41443))
-:::
+:::{.absolute top="55%" left="50%" .fragment .fade-in-then-out fragment-index="3" style="font-size: 60px;"}
+**Green macrophytes often co-occurs in intertidal areas...**
 
-:::{.absolute top="50%" left="50%" .fragment .fade-in fragment-index="2" style="font-size: 60px;"}
-- ~530 nm & ~650 nm are important wavelength
-:::
-
-:::{.absolute top="62%" left="50%" .fragment .fade-in fragment-index="3" style="font-size: 60px;"}
 - Ultra high spatial resolution (from 80 to 8mm per pixel)
 :::
 
-:::{.absolute top="74%" left="50%" .fragment .fade-in fragment-index="4" style="font-size: 60px;"}
+:::{.absolute top="55%" left="50%" .fragment .fade-in fragment-index="4" style="font-size: 60px;"}
+**Green macrophytes often co-occurs in intertidal areas...**
+
+- Ultra high spatial resolution (from 80 to 8mm per pixel)
+- Easy Photo-interpretation of pixels
 - More then 1 000 000 training pixels. Over 11 sites of 3 country
+- Diverse training dataset
 :::
+
 
 :::{.absolute top="10%" left="5%" .fragment .fade-in fragment-index="4" style="font-size: 60px;"}
 Drone: 0,26 ha ~ 2.5 millions pixels
 
 S2: 25 000 hectares ~ 2.5x Paris
-:::
-
-
-:::{.absolute top="86%" left="50%" .fragment .fade-in fragment-index="4" style="font-size: 60px;"}
-- Diverse training dataset
 :::
 
 ::: {.absolute  .fragment .fade-in-then-out fragment-index="2" top="7%" left="3%" }
