@@ -4490,12 +4490,265 @@ S2: 25 000 hectares ~ 2.5x Paris
 
 # Case Study 1 – Facing Biological Invasions {data-stack-name="Invasive species"  background-image="Images/Part2/Background_Part2.png"}
 
-- Introduction of the problem (Gracilaria, aquaculture, why studying it ? )
+- [Ecological Context & Significance](#ecological-context-significance)
 - Mapping the algae, over space and time, with key factor influencing its distribution
 - Implication for Management
 
 
-## Coucou chouchouuuuuuuuuu
+## Ecological Context & Significance
+
+::: {.absolute .fragment .fade-out fragment-index="5" top="6.5%"}
+*History of the aquaculture of the oyster in Europe*
+:::
+
+```{r Oyster prod plot}
+#| echo: false
+#| warning: false
+#| eval: false
+
+
+library(gganimate)
+library(tidyverse)
+library(Utilities.Package)
+
+interpolate_column <- function(x, year) {
+  if (sum(!is.na(x)) >= 2) {
+    # Only interpolate if there are at least 2 points
+    approx(x = year[!is.na(x)], y = x[!is.na(x)], xout = year)$y
+  } else {
+    # If not enough data, return the original
+    x
+  }
+}
+
+
+df <- readxl::read_excel("Data/Part2/Prod_oyster.xlsx") %>%
+  mutate(across(-YEAR, ~ interpolate_column(.x, YEAR))) %>% 
+  pivot_longer(-YEAR, names_to = "Species", values_to = "Production") %>% 
+  mutate(Production = case_when(Production == -99 ~ NA,
+                                T ~ Production),
+         Species = case_when(Species == "angulata" ~ "C. angulata",
+                             Species == "Edulis" ~ "O. edulis",
+                             T ~ "C. gigas"),
+         years = YEAR)
+
+df %>%
+  ggplot(aes(x = YEAR, y = Production, color = Species)) +
+  geom_line(size = 1.2) + # thicker lines
+  scale_color_brewer(palette = "Set1") + # nice color palette
+  labs(
+    title = "Production over Years by Species",
+    x = "Year",
+    y = "Production (Tons)",
+    color = "Species"
+  ) +
+  theme_minimal(base_size = 14) + # clean theme with bigger base text
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    legend.position = "right",
+    legend.text = element_text(face = "italic") # italic legend text
+  )
+
+min_year <- min(df$YEAR, na.rm = TRUE)
+
+
+max_prod <- max(df$Production, na.rm = T)
+
+df2 <- df %>%
+  mutate(alongVar = if_else(Species == "C. gigas", YEAR, min_year))
+  # dplyr::filter(Species != "C. gigas")
+
+colscale <- c("C. gigas" = "#377eb8","O. edulis" = "#e41a1c","C. angulata" = "#4daf4a")
+
+p <- ggplot(df2, 
+            aes(x = YEAR, 
+                y = Production, 
+                color = Species, 
+                group = Species,
+                along = alongVar)) +
+  geom_line(size = 1.2) +
+  scale_color_manual(values = colscale) +
+  ylim(c(0,max_prod))+
+  xlim(c(1900,2010))+
+  labs(
+    title = "Production over Years by Species",
+    x = "Year",
+    y = "Production (Thousand Metric Tons)",
+    color = "Species"
+  ) +
+  theme_bw(base_size = 14) +
+  theme(
+    plot.title  = element_text(hjust = 0.5, face = "bold", size = 40),
+    legend.position = c(0.2,0.8),
+    legend.text = element_text(face = "italic", size = 30),
+    legend.title = element_text(size = 35),
+    legend.key.size = unit(1,"cm"),
+    axis.text.x = element_text(size = 30),
+    axis.text.y = element_text(size = 30),
+    axis.title.x = element_text(size = 35),
+    axis.title.y = element_text(size = 35),
+  ) +
+  transition_reveal(alongVar)
+
+# render it
+# animate(p, nframes = 50, fps = 50, width = 800, height = 600, loop = F)
+rendered <- animate(p,  nframes = 50, fps = 50, width = 1500, height = 1080, end_pause = 20, rewind = FALSE, renderer = gifski_renderer(loop = FALSE))
+
+anim_save("Images/Part2/Oyster_gigas.gif", animation = rendered)
+```
+
+
+::: {.absolute .fragment .fade-out fragment-index="1" top="15%" left="0%" }
+![](Images/Part2/Oyster_edulis.png){height="800"}
+:::
+
+::: {.absolute .fragment .fade-out fragment-index="2" top="15%" right="0%" }
+::: {.absolute bottom="-5%" right="10%"}
+*Flat Oyster*
+:::
+
+![](Images/Part2/flat_oyster.jpg){height="700"}
+:::
+
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="1" top="15%" left="0%" }
+![](Images/Part2/Oyster_edulis2.png){height="800"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="2" top="15%" left="0%" }
+![](Images/Part2/Oyster_angulata.gif){height="800"}
+:::
+
+::: {.fragment .fade-out fragment-index="4"}
+
+::: {.absolute .fragment .fade-in fragment-index="2" top="15%" right="0%" }
+::: {.absolute bottom="-5%" right="10%"}
+*Portuguese Oyster*
+:::
+
+![](Images/Part2/Portuguese_oyster.jpg){height="700"}
+:::
+:::
+
+::: {.fragment .fade-out fragment-index="6"}
+::: {.absolute .fragment .fade-in fragment-index="4" top="15%" right="0%" }
+::: {.absolute bottom="-5%" right="10%"}
+*Pacific Oyster*
+:::
+
+![](Images/Part2/gigas.jpg){height="700"}
+:::
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="3" top="15%" left="0%" }
+![](Images/Part2/Oyster_angulata2.png){height="800"}
+:::
+::: {.absolute .fragment .fade-in-then-out fragment-index="4" top="15%" left="0%" }
+![](Images/Part2/Oyster_gigas.gif){height="800"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="5" top="6.5%"}
+*A Hidden Passenger*
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="5" top="15%" left="0%" }
+- Originated from Japan
+- 10 000 T spat were imported between 1971 and 1973
+:::
+
+::: {.fragment .fade-out fragment-index="9"}
+::: {.absolute .fragment .fade-in fragment-index="6" top="15%" left="0%" }
+- Originated from Japan
+- Transport of fragment of *Gracilaria vermiculophylla*
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="7" top="30%" left="0%" }
+Resilient to:
+
+- Salinity changes
+- Dessication
+- Eutrophic conditions
+- Can attach to shells, rocks or colonize soft bottom areas
+:::
+
+
+
+::: {.absolute .fragment .fade-in fragment-index="7" top="38%" left="25%" style="font-size: 60px;"}
+**Well adapted to European estuaries**
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="6" top="15%" right="0%" }
+::: {.absolute bottom="-4%" right="10%"}
+*Gracilaria vermiculophylla*
+:::
+
+![](Images/Part2/Gracilaria-vermiculophylla_002.jpg){height="900"}
+:::
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="8" bottom="5%" left="15%"}
+The transport of acquaculture structures between cultivation sites favorised its **spread across Europe**
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="9" top="15%" left="0%" }
+:::{.absolute .fragment .fade-out fragment-index="10" top="-7%" left="0%" style="font-size: 30px;"}
+First observation in Europe in the Belon, Brittany, in 1996
+::: 
+:::{.absolute .fragment .fade-in fragment-index="10" top="-8%" left="10%"}
+Belon Estuary, France, 2024
+:::
+
+![](Images/Part2/Belon_042024.jpg){height="400" .circular-fade}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="15.5%" left="35%" }
+
+:::{.absolute top="-9%" left="10%" style="z-index: 99;"}
+Aveiro, Portugal, 2021
+:::
+
+![](Video/Part2/gracilaria_aveiro.MP4){height="410" .circular-fade}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="15%" left="65%" }
+:::{.absolute top="-8%" left="10%"}
+Etel, France, 2024
+:::
+![](Images/Part2/Etel_20240313.jpg){height="400" .circular-fade}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="47%" right="29%" }
+:::{.absolute bottom="-8%" right="10%"}
+Auray, France, 2024
+:::
+![](Images/Part2/Auray_20240407.jpg){height="400" .circular-fade}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="47%" right="0%" }
+:::{.absolute bottom="-8%" right="10%"}
+Scorff, France, 2024
+:::
+![](Images/Part2/Scorff_110424.jpg){height="400" .circular-fade}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="47%" right="58%" }
+:::{.absolute bottom="-8%" right="10%"}
+Saja estuary, Spain, 2024
+:::
+![](Images/Part2/Saja_2024.jpg){height="400" .circular-fade}
+:::
+
+
+::: {.absolute .fragment .fade-out fragment-index="5" bottom="0%" right="0%" }
+source: [Buestel et al., 2009](https://archimer.ifremer.fr/doc/00000/7396/6579.pdf)
+:::
+
+
+
+
+
+
+
 # Case Study 2 – Mapping the impact of Heatwaves on intertidal seagrasses {data-name="Marine Heatwaves"}
 
 - Introduction (Seagrasses quickly, heatwaves mainly)
