@@ -4707,7 +4707,14 @@ Belon Estuary, France, 2024
 Aveiro, Portugal, 2021
 :::
 
-![](Video/Part2/gracilaria_aveiro.MP4){height="410" .circular-fade}
+
+<video src="Video/Part2/gracilaria_aveiro.MP4" height="410" autoplay loop muted playsinline style=".circular-fade;"></video>
+
+:::
+
+::: {.absolute top="-3.5%" right="-10%" .fragment .fade-in-then-out fragment-index="2"}
+
+
 :::
 
 ::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="15%" left="65%" }
