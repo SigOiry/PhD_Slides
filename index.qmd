@@ -782,8 +782,10 @@ ggsave("Images/Intro/Map_BB_ouvrage.png", plot_ouvrage, width = 10, height=8.12,
 ![](Images/Intro/Dragage.png){height="500"}
 :::
 
-::: {.absolute top="15%" left="21%" .fragment .fade-in fragment-index="3"}
-![](Video/Intro/Oyster_farm.mp4){height="525"}
+::: {.absolute top="15.8%" left="21%" .fragment .fade-in fragment-index="3"}
+
+<video src="Video/Intro/Oyster_farm.mp4" height="525" autoplay loop muted playsinline></video>
+
 :::
 
 ::: {.absolute top="55%" left="21%" .fragment .fade-in fragment-index="4"}
@@ -844,8 +846,9 @@ Artificialization
 ![](Images/Intro/Erosion.png){height="500"}
 :::
 
-::: {.absolute top="15%" left="21%"}
-![](Video/Intro/Oyster_reef2.mp4){height="525"}
+::: {.absolute top="15.8%" left="21%"}
+<video src="Video/Intro/Oyster_reef2.mp4" height="525" autoplay loop muted playsinline></video>
+
 :::
 
 ::: {.absolute top="55%" left="21%"}
@@ -961,7 +964,8 @@ Soft-bottom substrats
 ::: {.absolute bottom="-2%" right="7%" style="font-size: 30px;"}
 *Guadalquivir River, Spain*
 :::
-![](Video/Intro/soft_bottom.mp4){height="650"}
+<video src="Video/Intro/soft_bottom.mp4" height="650" autoplay loop muted playsinline></video>
+
 
 ::: {.absolute left="60%" top="110%" .fragment .fade-in-then-out fragment-index="2"}
 - A - Magnoliopsida
@@ -989,7 +993,8 @@ Hard-bottom substrats
 ::: {.absolute bottom="-2%" right="7%" .fragment .fade-out fragment-index="2" style="font-size: 30px;"}
 *Vigo, Spain*
 :::
-![](Video/Intro/site_2_vigo_1bis.mp4){height="650"}
+<video src="Video/Intro/site_2_vigo_1bis.mp4" height="650" autoplay loop muted playsinline></video>
+
 :::
 
 ::: {.absolute top="0%" right="10%" .fragment .fade-in-then-out fragment-index="2"}
@@ -1027,8 +1032,7 @@ Hard-bottom substrats
 ::: {.absolute bottom="-3%" right="8%" style="font-size: 30px; color: black;"}
 *Saja estuary, Spain*
 :::
-
-![](Video/Intro/Santander_green_and_red_algae.mp4){height="730"}
+<video src="Video/Intro/Santander_green_and_red_algae.mp4" height="730" autoplay loop muted playsinline></video>
 :::
 
 ::: {.absolute left="1%" top="60%" .fragment .fade-in fragment-index="3" style="font-size: 60px;"}
@@ -4490,7 +4494,8 @@ S2: 25 000 hectares ~ 2.5x Paris
 
 - [Ecological Context & Significance](#ecological-context-significance)
 - [Objectives](#objectives-of-the-work)
-- [Material & Methods](#material-and-methods)
+- [Material & Methods](#material_part2)
+- [Results](#results_part2)
 - Mapping the algae, over space and time, with key factor influencing its distribution
 - Implication for Management
 
@@ -4843,7 +4848,7 @@ Use **DISCOV** to map *G. vermiculophylla* and link its spatial distribution to 
 :::
 
 
-## Material and Methods
+## Material & Methods {#material_part2}
 
 
 ::: {.fragment .fade-out fragment-index="2" }
@@ -4888,15 +4893,540 @@ Photo interpretation of images to retrieve the Cover of algae
 ![](Images/Part2/Map_Gracilaria_Drone.png){height="1400"}
 :::
 
-::: {.absolute top="6.5%" .fragment .fade-in fragment-index="2"}
+::: {.absolute top="6.5%" .fragment .fade-in fragment-index="3"}
 *Drone Flights*
+:::
+
+::: {.absolute top="6.5%" .fragment .fade-in-then-out fragment-index="2"}
+*Hyperspectral measurments*
+:::
+
+::: {.absolute top="15%" .fragment .fade-in-then-out fragment-index="2" style="font-size: 60px;"}
+Same methodology as the spectral library
+:::
+
+::: {.absolute top="32%" left="10%" .fragment .fade-in-then-out fragment-index="2" style="font-size: 60px;"}
+Second derivative:
+:::
+
+:::{.absolute top="40%" left="20%" .fragment .fade-in-then-out fragment-index="2" style="font-size: 50px;"}
+$$
+f''(\lambda_i) \approx \frac{f(\lambda_{i+1}) - 2f(\lambda_i) + f(\lambda_{i-1})}{(\Delta \lambda)^2}
+$$ 
+:::
+
+
+::: {.absolute top="60%" left="10.5%" .fragment .fade-in-then-out fragment-index="3"}
+DJI Matrice 300
+:::
+
+::: {.absolute top="10%" left="45%" .fragment .fade-in fragment-index="3" style="font-size: 50px;"}
+4 Drone flight over *G. vermiculophylla*
+:::
+
+
+:::{.fragment .fade-out fragment-index="8"}
+::: {.absolute top="15%" left="2%" .fragment .fade-in-then-out fragment-index="3"}
+
+
+![](Images/Part2/Drone_lIDAR.png){height="600" .circular-fade}
+
+
+:::
+
+::: {.fragment .fade-out fragment-index="6"}
+::: {.absolute top="60%" left="7%" .fragment .fade-in fragment-index="4"}
+Micasense RedEdge-MX Dual
+:::
+
+::: {.absolute top="15%" left="2%" .fragment .fade-in fragment-index="4"}
+![](Images/Part2/Drone_micasense2.png){height="600" .circular-fade}
+:::
+:::
+
+::: {.absolute top="60%" left="11%" .fragment .fade-in fragment-index="6"}
+DJI Zenmuse L1
+:::
+
+::: {.absolute bottom="10%" left="50%" .fragment .fade-in-then-out fragment-index="4"}
+![](Images/Part2/micasense.png){height="400" }
+:::
+
+::: {.absolute top="15%" left="2%" .fragment .fade-in fragment-index="6"}
+![](Images/Part2/Drone_lIDAR2.png){height="600" .circular-fade}
 :::
 
 
 
+::: {.absolute top="20%" left="45%" .fragment .fade-in fragment-index="4" style="font-size: 50px;"}
+**2 Instruments: **
+
+::: {.fragment .semi-fade-out fragment-index="6"}
+- Multispectral camera
+:::
+:::
+
+::: {.absolute top="33%" left="45%" .fragment .fade-in fragment-index="6" style="font-size: 50px;"}
+- LiDAR
+:::
+
+::: {.absolute top="40%" left="40%" .fragment .fade-in-then-out fragment-index="4" style="font-size: 50px;"}
+10 Spectral bands between 444 and 840 nm
+:::
+
+::: {.absolute top="70%" left="5%" .fragment .fade-in-then-out fragment-index="6" style="font-size: 50px;"}
+- NIR LiDAR
+- 240 000 points/s
+- ~ 3cm accuracy
+- High resolution RGB camera
+:::
+
+::: {.absolute top="70%" left="5%" .fragment .fade-in-then-out fragment-index="5" style="font-size: 50px;"}
+![](Images/Part2/DISCOV_logoV2.png){height="500"}
+
+:::
+
+::: {.absolute top="40%" left="35%" .fragment .fade-in-then-out fragment-index="5" width="1000px" style="font-size: 50px;"}
+[ShinyValidate](https://oirysimon.shinyapps.io/shiny_validate/)
 
 
 
+[*Presence and absence of red macroalgae for each drone flight*]{style="font-size: 30px;"}
+```{r Validation Table}
+#| echo: false
+#| cache: true
+#| error: false
+#| message: false
+#| warning: false
+
+
+library(tidyverse)
+library(flextable)
+library(sf)
+library(officer)
+
+
+
+df_flx_valid <- "Data/Part2/shp_all_validation.shp" %>%
+  # "Data/Shiny_Validation/shp_all_validation.shp" %>%
+  read_sf() %>% 
+  mutate(user = sapply(strsplit(user_date, "_"), function(x) x[1]),
+         site = sapply(strsplit(snapshot, "_"), function(x) x[1]),
+         site = case_when(site == "Aven" ~ "Aven Estuary",
+                          site == "Belon" ~ "Belon Estuary",
+                          site == "SajaNorth" ~ "Marisma de Cudón",
+                          site == "SajaSouth" ~ "Marisma de Cortiguera"),
+         PresenceAbs = case_when(Vegetation == "Red algae" ~ "Present",
+                                 T ~ "Absent")) %>% 
+  rename(Site = "site") 
+
+total <- df_flx_valid %>% 
+  group_by(PresenceAbs) %>% 
+  reframe(n = n()) %>% 
+  pivot_wider(names_from = PresenceAbs, values_from = n) %>% 
+  mutate(Site = "Total")
+
+table_data <- df_flx_valid %>% 
+  group_by(Site, PresenceAbs) %>% 
+  reframe(n = n()) %>% 
+  pivot_wider(names_from = "PresenceAbs", values_from = "n") %>% 
+  rbind(total) %>% 
+  rowwise() %>% 
+  mutate(Total = sum(c(Absent, Present)))
+
+# Get the number of rows for the table data
+n_rows <- nrow(table_data)
+
+# Create the flextable with a horizontal line
+table_data %>%
+  mutate(
+    Country = case_when(
+      Site %in% c("Marisma de Cortiguera", "Marisma de Cudón") ~ "Spain",
+      Site == "Total"                                   ~ " ",
+      TRUE                                              ~ "France"
+    )
+  ) %>%
+  select(Country, everything()) %>%
+  flextable() %>%
+  align(align = "center", part = "all") %>%
+  fontsize(size = 30, part = "all") %>%
+  padding(padding = 6, part = "all") %>%
+  set_table_properties(layout = "autofit", width = 1) %>%
+  hline(
+    i = nrow(table_data) - 1,
+    border = fp_border(color = "black", width = 1),
+    part = "body"
+  )
+```
+
+:::
+
+::: {.absolute bottom="0%" left="40%" .fragment .fade-in-then-out fragment-index="6"}
+
+
+![](Images/Part2/LIDAR.png){height="700"}
+:::
+
+::: {.absolute bottom="0%" left="40%" .fragment .fade-in fragment-index="7"}
+![](Images/Part2/DSM_DTM.png){height="400"}
+:::
+
+::: {.absolute top="40%" left="40%" .fragment .fade-in fragment-index="7" style="font-size: 50px;"}
+Digital Surface Model: 
+
+- Map of the Slope of the Mudflat
+:::
+:::
+
+
+::: {.absolute top="25%" left="0%" .fragment .fade-in fragment-index="8" style="font-size: 60px;"}
+**G**eneralized **L**inear **M**ixed **M**odel 
+:::
+
+::: {.absolute top="40%" left="10%" .fragment .fade-in fragment-index="8" style="font-size: 49px;"}
+
+$$
+\begin{align*}
+\mathrm{Cover}_{ij} &\sim \mathrm{Beta}\bigl(\mu_{ij}\,\phi,\,(1-\mu_{ij})\,\phi\bigr),\\[1em]
+\mu_{ij}           &= \mathrm{logit}(\eta_{ij}),               \\[1em]
+\eta_{ij}          &=
+  \underbrace{\alpha_j}_{\substack{\text{intercept for}\\\text{site }j}}
+  + \underbrace{\beta_1\,\mathrm{Bathymetry}_{ij}}_{\text{effect of elevation}}
+  + \underbrace{\beta_2\,\mathrm{Slope}_{ij}}_{\text{effect of slope}}.
+\end{align*}
+$$
+:::
+
+## Results {#results_part2}
+
+```{r map plotting}
+#| echo: false
+#| warning: false
+#| eval: false
+
+library(tidyverse)
+library(sf)
+library(terra)
+library(tidyterra)
+
+img_list <- list.files("Data/Part2/RemonterLeTemps", pattern = ".tif", full.names = T, include.dirs = F) %>% 
+  as_tibble() %>% 
+  rename(path ="value") %>% 
+  dplyr::filter(!str_detect(path, "RAW")) %>% 
+  mutate(filename = gsub(".*/","",path),
+         source = case_when(str_detect(filename, "IGNF") ~ "IGN",
+                          T ~ "Other"),
+         year = as.integer(case_when(source == "IGN" ~ substr(filename,15,18),
+                          T ~ substr(filename,1,4))))
+
+mask <- "Data/Part2/RemonterLeTemps/shp/mask/IntertidalMask_Belon_RemonterLeTemps.shp" %>% 
+  read_sf()
+
+Pres_algae <- "Data/Part2/RemonterLeTemps/shp/shape_red_algae/Presence_Absence_RedAlgae_Date.shp" %>% read_sf()
+
+
+
+Text_position <- data.frame(x = rep(ext(mask)[1]+0.9*(ext(mask)[2]-ext(mask)[1]),nrow(img_list)),
+                            y = rep(ext(mask)[3]+0.9*(ext(mask)[4]-ext(mask)[3]),nrow(img_list)),
+                            year = img_list$year)
+
+for(i in 1:nrow(img_list)){
+  
+
+  img <- rast(img_list$path[i]) %>% 
+    project(crs(mask)) %>% 
+    crop(mask, mask = T)
+  
+  date_i <- Text_position[i,]
+  # shp_i <- Pres_algae %>% 
+  #   dplyr::filter(date == img_list$year[i])
+  # 
+  # if(img_list$year[i] == 2024){
+  #   shp_i <- shp_i %>% 
+  #     st_buffer(dist = 0.3) %>% 
+  #     st_union()
+  # }
+  # 
+  
+Plot <-  
+  if(nlyr(img) != 1){
+    RGB(img)<-1:3
+    
+    ggplot()+
+      geom_spatraster_rgb(data = img)
+  }else{
+    names(img) = "layer"
+    ggplot()+
+      geom_spatraster(img, mapping = aes(fill = layer), show.legend = F)+
+      scale_fill_gradient(low = "black", high = "white", limits = c(0,240),na.value = NA, name = "Greyscale")
+  }
+
+a <- Plot +
+    geom_text(data = date_i, aes(x = x, y = y, label = year),
+              size = 7)+
+  # geom_sf(data = shp_i, fill = NA, color = "darkred")+ 
+   coord_sf(xlim = c(ext(mask)[1],ext(mask)[2]),
+            ylim = c(ext(mask)[3],ext(mask)[4]),
+            expand = F)+
+    # geom_text(data = date_i, aes(x = x, y = y, label = year),
+    #           size = 10)+
+    theme_Bede()+
+    # scale_x_continuous(breaks = seq(-8.75, -8.6, by = 0.1))+
+    theme(
+      axis.text.x = element_blank(),
+      axis.text.y = element_blank(),
+      axis.ticks.x = element_blank(),
+      axis.ticks.y = element_blank(),
+      axis.title.x = element_blank(),
+      axis.title.y = element_blank(),
+      strip.clip = "inherit",
+      panel.spacing = unit(0,"pt"), 
+      plot.margin = unit(c(0, 0, 0, 0), "lines"))+
+    if(img_list$year[i] == 2024){
+    ggspatial::annotation_scale(location = "bl",
+                                pad_y = unit(0.3, "cm"),
+                                text_cex=1)
+    }
+  
+  
+a 
+  
+# ggsave(paste0("Images/Part2/subplot_remoterletemps/",img_list$year[i],".tif"),a, width = 10, height = 4.52, dpi = 400)
+
+
+assign(paste0("plot_",as.character(img_list$year[i])),a)
+  
+}
+
+
+# plot_all <- (plot_1952 + plot_1958)/
+# (plot_1976 + plot_1978)/
+# (plot_1982 + plot_1992)/
+# (plot_1997 + plot_2012)/
+# (plot_2019 + plot_2024)
+
+plot_all <- (plot_1952 + plot_1958 + plot_1976)/
+(plot_1978 + plot_1982 + plot_1992)/
+(plot_1997 + plot_2012 + plot_2024)
+
+
+ggsave("Images/Part2/Historical_maps.png",plot_all, width = 10, height = 4.52, dpi = 200)
+# ggsave("Paper/Figures/Low_res/Historical_maps.png",plot_all, width = 10, height = 4.52, dpi = 200)
+
+```
+
+```{r map plotting GIF}
+#| echo: false
+#| warning: false
+#| eval: false
+
+library(tidyverse)
+library(sf)
+library(terra)
+library(tidyterra)
+
+img_list <- list.files("Data/Part2/RemonterLeTemps", pattern = ".tif", full.names = T, include.dirs = F) %>% 
+  as_tibble() %>% 
+  rename(path ="value") %>% 
+  dplyr::filter(!str_detect(path, "RAW")) %>% 
+  mutate(filename = gsub(".*/","",path),
+         source = case_when(str_detect(filename, "IGNF") ~ "IGN",
+                          T ~ "Other"),
+         year = as.integer(case_when(source == "IGN" ~ substr(filename,15,18),
+                          T ~ substr(filename,1,4))))
+
+mask <- "Data/Part2/RemonterLeTemps/shp/mask/IntertidalMask_Belon_RemonterLeTemps.shp" %>% 
+  read_sf()
+
+Pres_algae <- "Data/Part2/RemonterLeTemps/shp/shape_red_algae/Presence_Absence_RedAlgae_Date.shp" %>% read_sf()
+
+
+
+Text_position <- data.frame(x = rep(ext(mask)[1]+0.9*(ext(mask)[2]-ext(mask)[1]),nrow(img_list)),
+                            y = rep(ext(mask)[3]+0.9*(ext(mask)[4]-ext(mask)[3]),nrow(img_list)),
+                            year = img_list$year)
+
+for(i in 1:nrow(img_list)){
+  
+
+  img <- rast(img_list$path[i]) %>% 
+    project(crs(mask)) %>% 
+    crop(mask, mask = T)
+  
+  shp <- Pres_algae %>% 
+    dplyr::filter(date == img_list$year[i])
+  
+  date_i <- Text_position[i,]
+  # shp_i <- Pres_algae %>% 
+  #   dplyr::filter(date == img_list$year[i])
+  # 
+  # if(img_list$year[i] == 2024){
+  #   shp_i <- shp_i %>% 
+  #     st_buffer(dist = 0.3) %>% 
+  #     st_union()
+  # }
+  # 
+  
+Plot <-  
+  if(nlyr(img) != 1){
+    RGB(img)<-1:3
+    
+    ggplot()+
+      geom_spatraster_rgb(data = img)
+  }else{
+    names(img) = "layer"
+    ggplot()+
+      geom_spatraster(img, mapping = aes(fill = layer), show.legend = F)+
+      scale_fill_gradient(low = "black", high = "white", limits = c(0,240),na.value = NA, name = "Greyscale")
+  }
+
+a <- Plot +
+    geom_text(data = date_i, aes(x = x, y = y, label = year),
+              size = 7)
+  
+  if (nrow(shp)>0) {
+  a <- a + geom_sf(data = shp, fill = "darkred", alpha = 0.3)
+  }
+
+a <- a+
+  # geom_sf(data = shp_i, fill = NA, color = "darkred")+ 
+   coord_sf(xlim = c(ext(mask)[1],ext(mask)[2]),
+            ylim = c(ext(mask)[3],ext(mask)[4]),
+            expand = F)+
+    # geom_text(data = date_i, aes(x = x, y = y, label = year),
+    #           size = 10)+
+    theme_Bede()+
+    # scale_x_continuous(breaks = seq(-8.75, -8.6, by = 0.1))+
+    theme(
+      axis.text.x = element_text(size = 13),
+      axis.text.y = element_text(size = 13),
+      axis.ticks.x = element_blank(),
+      axis.ticks.y = element_blank(),
+      axis.title.x = element_blank(),
+      axis.title.y = element_blank(),
+      strip.clip = "inherit",
+      panel.spacing = unit(0,"pt"), 
+      plot.margin = unit(c(0, 0, 0, 0), "lines"))+
+    ggspatial::annotation_scale(location = "bl",
+                                pad_y = unit(0.3, "cm"),
+                                text_cex=1)
+  
+  
+a 
+  
+ggsave(paste0("Images/Part2/subplot_remoterletemps/",img_list$year[i],".tif"),a, width = 10, height = 4.52, dpi = 400)
+
+
+# assign(paste0("plot_",as.character(img_list$year[i])),a)
+  
+}
+
+
+# plot_all <- (plot_1952 + plot_1958)/
+# (plot_1976 + plot_1978)/
+# (plot_1982 + plot_1992)/
+# (plot_1997 + plot_2012)/
+# (plot_2019 + plot_2024)
+
+# plot_all <- (plot_1952 + plot_1958 + plot_1976)/
+# (plot_1978 + plot_1982 + plot_1992)/
+# (plot_1997 + plot_2012 + plot_2024)
+
+
+# ggsave("Paper/Figures/High_res/Historical_maps.png",plot_all, width = 10, height = 4.52, dpi = 400)
+# ggsave("Paper/Figures/Low_res/Historical_maps.png",plot_all, width = 10, height = 4.52, dpi = 200)
+
+```
+
+```{r area_each_year}
+#| echo: false
+#| warning: false
+#| eval: false
+
+library(tidyverse)
+library(sf)
+library(Utilities.Package)
+
+mask <- "Data/Part2/RemonterLeTemps/shp/mask/IntertidalMask_Belon_RemonterLeTemps.shp" %>% 
+  read_sf() %>%
+  mutate(area = st_area(.)) %>% 
+  pull(as.numeric(area)[1])
+
+Pres_algae <- "Data/Part2/RemonterLeTemps/shp/shape_red_algae/Presence_Absence_RedAlgae_Date.shp" %>% 
+  read_sf() %>% 
+  mutate(area = st_area(.)) %>% 
+  group_by(date) %>% 
+  reframe(area = sum (area)) %>% 
+  mutate(prop = as.numeric((area/mask)*100)) %>% 
+  dplyr::select(-area)
+
+df <- data.frame(date = c(1952,1958),
+           prop = c(0,0)) %>% 
+  bind_rows(Pres_algae) %>% 
+    mutate(prop = case_when(date == 2012 ~ 41.3,
+                            date == 2024 ~ 41.8,
+                            T ~ prop)) %>% 
+    dplyr::filter(date != 2019)
+
+for (i in unique(df$date)) {
+  
+ plot <- (df %>% 
+     dplyr::filter(date <= i) %>%
+   ggplot(aes(x = date, y = prop))+
+     # geom_bar(stat = "identity",size = 10 )+
+     geom_point(size = 4)+
+     xlab("Year")+
+     ylab(expression(bold(paste("Cover of ", bolditalic("Gracilaria"), " (%)"))))+
+     
+     geom_line(alpha = 0.4, linetype = "dashed")+
+     geom_vline(xintercept = 1971, linetype = "dashed", color = "darkred", linewidth=1)+
+     geom_vline(xintercept = 1994, linetype = "dashed", color = "goldenrod", linewidth=1)+
+    xlim(c(1951,2024))+
+    ylim(c(0,43))+
+
+       geom_rug(sides = "b") +  # Add ticks at the bottom for each x-value
+     geom_text(
+       x = 1970, 
+       y = 30, 
+       label = expression(paste("First introduction of ", italic("Crassostrea gigas"))), 
+       angle = 90
+     )+
+     geom_text(
+       x = 1972, 
+       y = 30, 
+       label = expression(paste("in South Brittany")), 
+       angle = 90
+     )+
+     geom_text(
+       x = 1993, 
+       y = 31, 
+       label = expression(paste("First record of ", italic("Gracilaria vermiculophylla"))), 
+       angle = 90
+     )+
+     geom_text(
+       x = 1995, 
+       y = 32, 
+       label = expression(paste("in the Belon Estuary")), 
+       angle = 90
+     )+
+     theme_Bede()+
+     theme(axis.text.x = element_text(size = 15),
+           axis.text.y = element_text(size = 15),
+           axis.title.x = element_text(size = 20),
+           axis.title.y = element_text(size = 20), 
+           plot.background = element_rect(fill = "white", color = NA))
+  )
+
+  ggsave(paste0("Images/Part2/plot_cover_year/Cover_Gracillaria_vs_Time_",i,".png"), plot, width = 10, height = 4, dpi = 200)
+
+  
+}
+
+
+ggsave("Images/Part2/Cover_Gracillaria_vs_Time.png", plot, width = 10, height = 4, dpi = 200)
+# ggsave("Paper/Figures/Low_res/Cover_Gracillaria_vs_Time.png", plot, width = 10, height = 6, dpi = 200)
+
+```
 
 
 # Case Study 2 – Mapping the impact of Heatwaves on intertidal seagrasses {data-name="Marine Heatwaves"}
