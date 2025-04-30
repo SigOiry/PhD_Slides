@@ -5285,7 +5285,7 @@ a <- Plot +
               size = 7)
   
   if (nrow(shp)>0) {
-  a <- a + geom_sf(data = shp, fill = "darkred", alpha = 0.3)
+  # a <- a + geom_sf(data = shp, fill = "darkred", alpha = 0.3)
   }
 
 a <- a+
@@ -5387,46 +5387,259 @@ for (i in unique(df$date)) {
        geom_rug(sides = "b") +  # Add ticks at the bottom for each x-value
      geom_text(
        x = 1970, 
-       y = 30, 
-       label = expression(paste("First introduction of ", italic("Crassostrea gigas"))), 
+       y = 25, 
+       label = expression(paste("First introduction of ", italic("C. gigas"))), 
        angle = 90
      )+
      geom_text(
        x = 1972, 
-       y = 30, 
+       y = 25, 
        label = expression(paste("in South Brittany")), 
        angle = 90
      )+
      geom_text(
        x = 1993, 
-       y = 31, 
-       label = expression(paste("First record of ", italic("Gracilaria vermiculophylla"))), 
+       y = 21, 
+       label = expression(paste("First record of ", italic("G. vermiculophylla"))), 
        angle = 90
      )+
      geom_text(
        x = 1995, 
-       y = 32, 
+       y = 22, 
        label = expression(paste("in the Belon Estuary")), 
        angle = 90
      )+
      theme_Bede()+
-     theme(axis.text.x = element_text(size = 15),
-           axis.text.y = element_text(size = 15),
-           axis.title.x = element_text(size = 20),
-           axis.title.y = element_text(size = 20), 
+     theme(axis.text.x = element_text(size = 10),
+           axis.text.y = element_text(size = 10),
+           axis.title.x = element_text(size = 15),
+           axis.title.y = element_text(size = 15), 
            plot.background = element_rect(fill = "white", color = NA))
   )
 
-  ggsave(paste0("Images/Part2/plot_cover_year/Cover_Gracillaria_vs_Time_",i,".png"), plot, width = 10, height = 4, dpi = 200)
+  ggsave(paste0("Images/Part2/plot_cover_year/Cover_Gracillaria_vs_Time_",i,".png"), plot, width = 10, height = 3.61, dpi = 200)
 
   
 }
 
 
-ggsave("Images/Part2/Cover_Gracillaria_vs_Time.png", plot, width = 10, height = 4, dpi = 200)
+# ggsave("Images/Part2/Cover_Gracillaria_vs_Time.png", plot, width = 10, height = 4, dpi = 200)
 # ggsave("Paper/Figures/Low_res/Cover_Gracillaria_vs_Time.png", plot, width = 10, height = 6, dpi = 200)
 
 ```
+::: {.absolute top="6.5%" .fragment .fade-out fragment-index="1"}
+*Spectral signature of G. vermiculophylla*
+:::
+
+::: {.absolute top="15%" left="10%" .fragment .fade-out fragment-index="1"}
+![](Images/Part2/plot_spectral_signature.png){width="2000"}
+:::
+
+::: {.absolute .fragment .fade-out fragment-index="1" bottom="0%" left="20%"}
+Average of ~ 100 spectra
+:::
+
+::: {.fragment .fade-out fragment-index="8"}
+::: {.absolute top="6.5%" .fragment .fade-in fragment-index="1"}
+*Historical records in the Belon estuary*
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="1" bottom="-8%" right="-7.6%"}
+![](Images/Part2/Map_Belon.png){height="1400"}
+:::
+:::
+
+::: {.absolute top="15%" left="0%" .fragment .fade-in-then-out fragment-index="1"}
+![](Images/Part2/Historical_maps.png){width="2000"}
+:::
+
+::: {.absolute top="10%" left="10%" .fragment .fade-in-then-out fragment-index="2"}
+![](Images/Part2/subplot_remoterletemps/1958.png){height="650"}
+:::
+
+::: {.absolute bottom="-5%" left="10%" .fragment .fade-in-then-out fragment-index="2"}
+![](Images/Part2/plot_cover_year/Cover_Gracillaria_vs_Time_1958.png){height="530"}
+:::
+
+::: {.absolute top="10%" left="10%" .fragment .fade-in-then-out fragment-index="3"}
+![](Images/Part2/subplot_remoterletemps/1976.png){height="650"}
+:::
+
+::: {.absolute bottom="-5%" left="10%" .fragment .fade-in-then-out fragment-index="3"}
+![](Images/Part2/plot_cover_year/Cover_Gracillaria_vs_Time_1976.png){height="530"}
+:::
+
+::: {.absolute top="10%" left="10%" .fragment .fade-in-then-out fragment-index="4"}
+![](Images/Part2/subplot_remoterletemps/1982.png){height="650"}
+:::
+
+::: {.absolute bottom="-5%" left="10%" .fragment .fade-in-then-out fragment-index="4"}
+![](Images/Part2/plot_cover_year/Cover_Gracillaria_vs_Time_1982.png){height="530"}
+:::
+
+::: {.absolute top="10%" left="10%" .fragment .fade-in-then-out fragment-index="5"}
+![](Images/Part2/subplot_remoterletemps/1992.png){height="650"}
+:::
+
+::: {.absolute bottom="-5%" left="10%" .fragment .fade-in-then-out fragment-index="5"}
+![](Images/Part2/plot_cover_year/Cover_Gracillaria_vs_Time_1992.png){height="530"}
+:::
+
+::: {.absolute top="10%" left="10%" .fragment .fade-in-then-out fragment-index="6"}
+![](Images/Part2/subplot_remoterletemps/2012.png){height="650"}
+:::
+
+::: {.absolute bottom="-5%" left="10%" .fragment .fade-in-then-out fragment-index="6"}
+![](Images/Part2/plot_cover_year/Cover_Gracillaria_vs_Time_2012.png){height="530"}
+:::
+
+::: {.absolute top="10%" left="10%" .fragment .fade-in-then-out fragment-index="7"}
+![](Images/Part2/subplot_remoterletemps/2024.png){height="650"}
+:::
+
+::: {.absolute bottom="-5%" left="10%" .fragment .fade-in-then-out fragment-index="7"}
+![](Images/Part2/plot_cover_year/Cover_Gracillaria_vs_Time_2024.png){height="530"}
+:::
+
+::: {.absolute top="6.5%" .fragment .fade-in fragment-index="8"}
+*Drone flights*
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="8" bottom="-8%" right="-7.6%"}
+![](Images/Part2/Map_Saja.png){height="1400"}
+:::
+
+
+```{r DISCOV Saja Map}
+#| echo: false
+#| warning: false
+#| eval: false
+
+library(terra)
+library(tidyverse)
+library(Utilities.Package)
+library(sf)
+
+msk <- "Data/shp/mask/SajaSouth_32630.shp" %>% 
+  read_sf()
+
+DISCOV_rast <- rast("Data/DISCOV/Saja_South_25062024_DISCOV_InvaSea_26112024_pred.tif") %>% 
+  project(crs(msk), method = "near") %>% 
+  crop(msk, mask = T)
+
+values(DISCOV_rast)[values(DISCOV_rast) == 0] = NA
+names(DISCOV_rast) <- "layer"
+DISCOV_rast<-DISCOV_rast %>% 
+  as.factor()
+
+DISCOV_Saja <- ggplot()+
+    tidyterra::geom_spatraster(data = DISCOV_rast, 
+                               mapping = aes(fill = layer),
+                               maxcell = 500832*8)+
+  scale_fill_manual(breaks = c(1,2,3,4,5,6,8),
+                    values=c("#DAA520","#b3ff1a","#389318","#873e23","#b3002d","#a2a3a2","#42c9bc",NA,NA),
+                    na.value = NA,
+                    name = "DISCOV v2",
+                    labels = c("Bacillariophyceae",
+                               "Chlorophyceae",
+                               "Magnoliopsida",
+                               "Phaeophyceae",
+                               "Florideophyceae",
+                               "Sediment",
+                               "Water"))+
+  geom_text(aes(x =  ext(DISCOV_rast)[1]+0.04*(ext(DISCOV_rast)[2]-ext(DISCOV_rast)[1]),
+                y =  ext(DISCOV_rast)[4]-0.08*(ext(DISCOV_rast)[4]-ext(DISCOV_rast)[3]),
+                label = "A"),
+                size = 10)+
+  coord_sf(expand = F,
+           xlim = ext(msk)[1:2],
+           ylim = ext(msk)[3:4])+
+  theme_Bede_Map()+
+  # coord_equal()+
+   theme(
+     # axis.text.x = element_text(size = 10, angle = -20, color = NA,hjust = 0),
+         axis.text.y = element_text(size = 15),
+         axis.text.x = element_text(size = 15),
+         # axis.ticks.x = element_blank(),
+         axis.title = element_blank(),
+         plot.background = element_rect(fill = "white", color = NA),
+         legend.background = element_blank(),
+         legend.position = c(0.98,0.98),
+         legend.text = element_text(size = 15),
+         legend.key.size = unit(1,"cm"))
+
+ggsave("Paper/Figures/High_res/Prediction_Map/Saja_DISCOV.png",DISCOV_Saja,width = 10, height = 9, dpi = 400)
+```
+
+```{r RGB Saja}
+#| echo: false
+#| warning: false
+#| eval: false
+
+library(sf)
+library(terra)
+library(tidyverse)
+library(Utilities.Package)
+
+msk <- "Data/Part2/SajaSouth_32630.shp" %>% 
+  read_sf()
+
+Saja_RGB <- "Data/Part2/Saja/SajaSouth_RGB_LIDAR2.tif" %>% 
+  rast() %>% 
+  crop(msk, mask = T)
+
+# values(Belon_RGB[[1]])[values(Belon_RGB[[1]]) == 0] = NA
+
+# RGB(Belon_RGB) <- 1:3
+
+
+lim_x<- c(as.numeric(ext(Saja_RGB)[1:2]))
+lim_y<- c(as.numeric(ext(Saja_RGB)[3:4]))
+
+NAflag(Saja_RGB) <- 0
+
+RGB_Saja<- ggplot()+
+   tidyterra::geom_spatraster_rgb(data = Saja_RGB,
+         r = 1,
+         g = 2,
+         b = 3,
+         maxcell = 4010533,
+         max_col_value = 255
+         )+
+  geom_text(aes(x =  ext(Saja_RGB)[1]+0.04*(ext(Saja_RGB)[2]-ext(Saja_RGB)[1]),
+                y =  ext(Saja_RGB)[4]-0.08*(ext(Saja_RGB)[4]-ext(Saja_RGB)[3]),
+                label = "B"),
+                size = 10)+
+    ggspatial::annotation_scale(location = "br",
+                                pad_y = unit(0.5, "cm"),
+                                text_cex=2)+
+   theme_Bede_Map()+
+  coord_sf(expand = F,
+           xlim = ext(msk)[1:2],
+           ylim = ext(msk)[3:4])+
+  # coord_equal()+
+   theme(
+     # axis.text.x = element_text(size = 10, angle = -20, color = NA,hjust = 0),
+         axis.text.y = element_text(size = 15),
+         axis.text.x = element_text(size = 15),
+         # axis.ticks.x = element_blank(),
+         axis.title = element_blank(),
+         plot.background = element_rect(fill = "white", color = NA),
+         legend.background = element_blank(),
+         legend.position = c(0.98,0.98),
+         legend.text = element_text(size = 15),
+         legend.key.size = unit(1,"cm"))
+
+ 
+ ggsave("Images/Part2/Saja_RGB.png",RGB_Saja,width = 10, height = 9, dpi = 400)
+  
+
+```
+
+::: {.absolute .fragment .fade-in fragment-index="8" top="10%" left="0%"}
+![](Images/Part2/Saja_RGB.png){width="1500"}
+:::
+
 
 
 # Case Study 2 – Mapping the impact of Heatwaves on intertidal seagrasses {data-name="Marine Heatwaves"}
