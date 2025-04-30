@@ -13,6 +13,7 @@ format:
     backgroundTransition: fade
     controls-tutorial: true
     controls: true
+    controls-layout: bottom-right
     slide-number: true
     include-after-body: moving-text.js
     # includes:
@@ -4497,8 +4498,7 @@ S2: 25 000 hectares ~ 2.5x Paris
 - [Objectives](#objectives-of-the-work)
 - [Material & Methods](#material_part2)
 - [Results](#results_part2)
-- Mapping the algae, over space and time, with key factor influencing its distribution
-- Implication for Management
+- [Discussion](#discussion_part2)
 
 
 ## Ecological Context & Significance
@@ -5502,12 +5502,15 @@ Average of ~ 100 spectra
 ![](Images/Part2/plot_cover_year/Cover_Gracillaria_vs_Time_2024.png){height="530"}
 :::
 
+::: {.fragment .fade-out fragment-index="16"}
+
 ::: {.absolute top="6.5%" .fragment .fade-in fragment-index="8"}
 *Drone flights*
 :::
 
 ::: {.absolute .fragment .fade-in fragment-index="8" bottom="-8%" right="-7.6%"}
 ![](Images/Part2/Map_Saja.png){height="1400"}
+:::
 :::
 
 
@@ -5521,6 +5524,8 @@ library(tidyverse)
 library(Utilities.Package)
 library(sf)
 
+
+
 msk <- "Data/Part2/SajaSouth_32630.shp" %>% 
   read_sf()
 
@@ -5532,10 +5537,86 @@ img_filtered<-focal(DISCOV_rast, w=7, fun="modal",na.rm=TRUE)
 
 writeRaster(img_filtered, "Data/Part2/Saja/Saja_South_25062024_DISCOV_InvaSea_26112024_pred_7.tif", overwrite = T)
 
-values(DISCOV_rast)[values(DISCOV_rast) == 0] = NA
-names(DISCOV_rast) <- "layer"
-DISCOV_rast<-DISCOV_rast %>% 
+values(img_filtered)[values(img_filtered) == 0] = NA
+names(img_filtered) <- "layer"
+img_filtered<-img_filtered %>% 
   as.factor()
+
+
+
+target_shp <- read_sf("Data/Part2/model_px_8m_saja.shp")
+ 
+ for (i in 1:nrow(target_shp)) {
+   
+   shp <- target_shp[i,]
+   
+   img_i <- img_filtered %>% 
+     crop(shp, mask = T)
+   
+   
+   plot_i <-
+  ggplot()+
+  # scale_fill_manual("", 
+  #                   labels = c("Intertidal area", "Land area", "water"),
+  #                   values = c("white", "white","white"))+
+  # geom_sf(data = background_GafHigh,
+  #         mapping = aes(fill = Type),
+  #         show.legend = F, 
+  #         linewidth=0.05,
+  #         alpha=0.4,
+  #         colour="grey30")+
+  # geom_sf(data = background_GafHigh,
+  #         fill = "white",
+  #         show.legend = F, 
+  #         linewidth=0.05,
+  #         alpha=1,
+  #         colour="white")+
+   ggnewscale::new_scale("fill")+
+    tidyterra::geom_spatraster(data = img_i, 
+                               mapping = aes(fill = layer),
+                               maxcell = 500832*8,
+                               show.legend = F)+
+  # geom_sf(data = zoom_extent, 
+  #         fill = "transparent", 
+  #         colour = "black",
+  #         linetype = "dashed", 
+  #         linewidth = 1.5)+
+  # # coord_sf(crs = 4326)+
+  # annotation_custom(ggplotGrob(Gafanha_low_pred_map_zoomed), 
+  #                   xmin = -8.7430,
+  #                   xmax=-8.7427, 
+  #                   ymin = 40.5977) +
+  # geom_path(aes(x,y,group=grp),
+  #           data = data.frame(x = c(-8.7432439,-8.743,-8.7432439,-8.743),
+  #                             y=c(40.5976275,40.5979,40.5975373,40.59771),
+  #                             grp=c(1,1,2,2)),
+            # linetype = "dashed", linewidth = 1.5)+
+  scale_fill_manual(breaks = c(1,2,3,4,5,6,7,8),
+                    values=c("#DAA520", "#b3ff1a", "#389318","#5C2E1A","#b3002d","#A3A3A3","white", "#42c9bc"),
+                    na.value = NA,
+                    name = "",
+                    labels = c("Bacillariophyceae",
+                               "Chlorophyceae",
+                               "Magnoliopsida",
+                               "Phaeophyceae",
+                               "Rhodophyceae",
+                               "Sediment",
+                               "Sunglint",
+                               "Water"))+
+  theme_void()+
+     coord_sf(expand = F)
+   
+   
+   
+   ggsave(paste0("Images/Part2/Pred_sample_Saja_", shp$Target,"_8m.png"), plot_i, height = 10, width = 10)
+ }
+
+
+
+
+
+
+
 
 DISCOV_Saja <- ggplot()+
     tidyterra::geom_spatraster(data = DISCOV_rast, 
@@ -5601,7 +5682,28 @@ Saja_RGB <- "Data/Part2/Saja/SajaSouth_RGB_LIDAR2.tif" %>%
 lim_x<- c(as.numeric(ext(Saja_RGB)[1:2]))
 lim_y<- c(as.numeric(ext(Saja_RGB)[3:4]))
 
-NAflag(Saja_RGB) <- 0
+# NAflag(Saja_RGB) <- 0
+
+
+
+target_shp <- read_sf("Data/Part2/model_px_8m_Saja.shp")
+ 
+ for (i in 1:nrow(target_shp)) {
+   
+   shp <- target_shp[i,]
+   
+   img_i <- Saja_RGB[[1:3]] %>% 
+     crop(shp, mask = T)
+   
+   RGB(img_i) <- 1:3
+   
+   plot(img_i)
+   
+   writeRaster(img_i,paste0("Images/Part2/RGB_sample_Saja_", shp$Target,"_8m.png"), overwrite = T)
+ }
+
+
+
 
 RGB_Saja<- ggplot()+
    tidyterra::geom_spatraster_rgb(data = Saja_RGB,
@@ -5641,15 +5743,605 @@ RGB_Saja<- ggplot()+
 
 ```
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="8" top="10%" left="0%"}
+::: {.fragment .fade-out fragment-index="12"}
+::: {.absolute .fragment .fade-in fragment-index="8" top="10%" left="0%"}
 ![](Images/Part2/Saja_RGB.png){width="1500"}
 :::
+:::
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="9" top="10%" left="0%"}
+::: {.redbox .absolute .fragment .fade-in-then-out fragment-index="9" top="61%" left="26%" width= "30px" height="30px"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="9" top="5%" left="60%"}
+:::{.absolute bottom="-7%" left="10%" style="font-size: 60px;"}
+Chlorophyceae
+:::
+
+![](Images/Part2/RGB_sample_Saja_Green_8m.png){width="500"}
+:::
+
+::: {.redbox .absolute .fragment .fade-in-then-out fragment-index="10" top="38%" left="26%" width= "30px" height="30px"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="5%" left="60%"}
+:::{.absolute bottom="-7%" left="5%" style="font-size: 60px;"}
+Florideophyceae
+:::
+
+![](Images/Part2/RGB_sample_Saja_Red_8m.png){width="500"}
+:::
+
+::: {.redbox .absolute .fragment .fade-in-then-out fragment-index="11" top="75.5%" left="50%" width= "30px" height="30px"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="11" top="5%" left="60%"}
+:::{.absolute bottom="-7%" left="15%" style="font-size: 60px;"}
+Saltmarshes
+:::
+
+![](Images/Part2/RGB_sample_Saja_saltmarsh_8m.png){width="500"}
+:::
+
+::: {.fragment .fade-out fragment-index="16"}
+::: {.absolute .fragment .fade-in fragment-index="12" top="10%" left="0%"}
+:::{.absolute top="-3%" right="6%" style="font-size: 60px;"}
+Presence/Absence of Red Algae: 91.1%
+:::
+
 ![](Images/Part2/Saja_DISCOV.png){width="1500"}
+:::
+:::
+
+::: {.blackbox .absolute .fragment .fade-in-then-out fragment-index="13" top="61%" left="26%" width= "30px" height="30px"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="13" top="5%" left="60%"}
+:::{.absolute bottom="-7%" left="10%" style="font-size: 60px;"}
+Chlorophyceae
+:::
+
+![](Images/Part2/RGB_sample_Saja_Green_8m.png){width="500"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="13" top="55%" left="60%"}
+![](Images/Part2/Pred_sample_Saja_Green_8m.png){width="500"}
 :::
 
 
+
+::: {.whitebox .absolute .fragment .fade-in-then-out fragment-index="14" top="38%" left="26%" width= "30px" height="30px"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="14" top="5%" left="60%"}
+:::{.absolute bottom="-7%" left="5%" style="font-size: 60px;"}
+Florideophyceae
+:::
+
+![](Images/Part2/RGB_sample_Saja_Red_8m.png){width="500"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="14" top="55%" left="60%"}
+![](Images/Part2/Pred_sample_Saja_Red_8m.png){width="500"}
+:::
+
+
+::: {.blackbox .absolute .fragment .fade-in-then-out fragment-index="15" top="75.5%" left="50%" width= "30px" height="30px"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="15" top="5%" left="60%"}
+:::{.absolute bottom="-7%" left="15%" style="font-size: 60px;"}
+Saltmarshes
+:::
+
+![](Images/Part2/RGB_sample_Saja_saltmarsh_8m.png){width="500"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="15" top="55%" left="60%"}
+![](Images/Part2/Pred_sample_Saja_saltmarsh_8m.png){width="500"}
+:::
+
+::: {.fragment .fade-out fragment-index="18"}
+::: {.absolute .fragment .fade-in fragment-index="16" bottom="-8%" right="-7.6%"}
+![](Images/Part2/Map_Belon.png){height="1400"}
+:::
+
+::: {.absolute top="6.5%" .fragment .fade-in fragment-index="16"}
+*Topography of the mudflat*
+:::
+
+:::
+
+
+
+```{r DISCOV Belon Map}
+#| echo: false
+#| warning: false
+#| eval: false
+
+library(terra)
+library(tidyverse)
+library(Utilities.Package)
+library(sf)
+
+msk <- "Data/Part2/Belon/Belon_32630.shp" %>% 
+  read_sf()
+
+DISCOV_rast <- rast("Data/Part2/Belon/Belon_1104_MS_DISCOV_InvaSea_26112024_pred.tif") %>% 
+  project(crs(msk), method = "near") %>% 
+  crop(msk, mask = T) %>% 
+  focal(w=7, fun="modal",na.rm=TRUE)
+
+writeRaster(DISCOV_rast, "Data/Part2/Belon/Belon_1104_MS_DISCOV_InvaSea_26112024_pred_7.tif")
+
+values(DISCOV_rast)[values(DISCOV_rast) == 0] = NA
+names(DISCOV_rast) <- "layer"
+DISCOV_rast<-DISCOV_rast %>% 
+  as.factor()
+
+DISCOV_Belon <- ggplot()+
+    tidyterra::geom_spatraster(data = DISCOV_rast, 
+                               mapping = aes(fill = layer),
+                               maxcell = 500832*8)+
+  scale_fill_manual(breaks = c(1,2,3,4,5,6,8),
+                    values=c("#DAA520","#b3ff1a","#389318","#873e23","#b3002d","#a2a3a2","#42c9bc",NA,NA),
+                    na.value = NA,
+                    name = "Classes",
+                    labels = c("Bacillariophyceae",
+                               "Chlorophyceae",
+                               "Magnoliopsida",
+                               "Phaeophyceae",
+                               "Florideophyceae",
+                               "Sediment",
+                               "Water"))+
+  # geom_text(aes(x =  ext(DISCOV_rast)[1]+0.04*(ext(DISCOV_rast)[2]-ext(DISCOV_rast)[1]),
+  #               y =  ext(DISCOV_rast)[4]-0.08*(ext(DISCOV_rast)[4]-ext(DISCOV_rast)[3]),
+  #               label = "A"),
+  #               size = 10)+
+  coord_sf(expand = F,
+           xlim = c(450180.4, 451247.2+18),
+           ylim = c(5296561, 5297042))+
+  theme_Bede_Map()+
+  # coord_equal()+
+   theme(
+     # axis.text.x = element_text(size = 10, angle = -20, color = NA,hjust = 0),
+         axis.text.y = element_text(size = 10, vjust=-8, hjust=0.5, angle = 90),
+         axis.text.x = element_text(size = 10, vjust=8, hjust=0.5),
+         axis.ticks.x = element_blank(),
+         axis.ticks.y = element_blank(),
+         axis.title = element_blank(),
+         plot.background = element_rect(fill = "white", color = NA),
+         panel.background = element_blank(),  # No panel background
+         legend.background = element_blank(),
+         legend.position = c(0.98, 0.98),
+         legend.text = element_text(size = 10),
+         legend.key.size = unit(0.5, "cm"),
+         plot.margin = margin(0, 0, -10, -10))
+
+ggsave("Images/Part2/Belon_DISCOV.png",DISCOV_Belon,width = 10, height = 4.44, dpi = 400)
+
+DISCOV_Belon <- ggplot()+
+    tidyterra::geom_spatraster(data = DISCOV_rast, 
+                               mapping = aes(fill = layer),
+                               maxcell = 500832*8,
+                               show.legend = F)+
+  scale_fill_manual(breaks = c(1,2,3,4,5,6,8),
+                    values=c("#DAA520","#b3ff1a","#389318","#873e23","#b3002d","#a2a3a2","#42c9bc",NA,NA),
+                    na.value = NA,
+                    name = "Classes",
+                    labels = c("Bacillariophyceae",
+                               "Chlorophyceae",
+                               "Magnoliopsida",
+                               "Phaeophyceae",
+                               "Florideophyceae",
+                               "Sediment",
+                               "Water"))+
+  # geom_text(aes(x =  ext(DISCOV_rast)[1]+0.04*(ext(DISCOV_rast)[2]-ext(DISCOV_rast)[1]),
+  #               y =  ext(DISCOV_rast)[4]-0.08*(ext(DISCOV_rast)[4]-ext(DISCOV_rast)[3]),
+  #               label = "A"),
+  #               size = 10)+
+  coord_sf(expand = F,
+           xlim = c(450180.4, 451247.2+18),
+           ylim = c(5296561, 5297042))+
+  theme_Bede_Map()+
+  # coord_equal()+
+   theme(
+     # axis.text.x = element_text(size = 10, angle = -20, color = NA,hjust = 0),
+         axis.text.y = element_text(size = 10, vjust=-8, hjust=0.5, angle = 90),
+         axis.text.x = element_text(size = 10, vjust=8, hjust=0.5),
+         axis.ticks.x = element_blank(),
+         axis.ticks.y = element_blank(),
+         axis.title = element_blank(),
+         plot.background = element_rect(fill = "white", color = NA),
+         panel.background = element_blank(),  # No panel background
+         legend.background = element_blank(),
+         legend.position = c(0.98, 0.98),
+         legend.text = element_text(size = 10),
+         legend.key.size = unit(0.5, "cm"),
+         plot.margin = margin(0, 0, -10, -10))+
+  theme_void()
+
+ggsave("Images/Part2/Belon_DISCOV_void.png",DISCOV_Belon,width = 10, height = 4.44, dpi = 400)
+```
+
+```{r RGB Belon}
+#| cache: false
+#| echo: false
+#| warning: false
+#| eval: false
+
+library(sf)
+library(terra)
+library(tidyverse)
+library(Utilities.Package)
+
+msk <- "Data/Part2/Belon/Belon_32630.shp" %>% 
+  read_sf()
+
+Belon_RGB <- "Data/Part2/Belon/Belon_RGB_MULTI.tif" %>% 
+  rast() %>% 
+  crop(msk, mask = T)
+
+# values(Belon_RGB[[1]])[values(Belon_RGB[[1]]) == 0] = NA
+
+# RGB(Belon_RGB) <- 1:3
+
+
+lim_x<- c(as.numeric(ext(Belon_RGB)[1:2]))
+lim_y<- c(as.numeric(ext(Belon_RGB)[3:4]))
+
+
+ RGB_Belon<- ggplot()+
+   tidyterra::geom_spatraster_rgb(data = Belon_RGB,
+         r = 1,
+         g = 2,
+         b = 3,
+         maxcell = 4010533
+         )+
+  # geom_text(aes(x =  ext(Belon_RGB)[1]+0.04*(ext(Belon_RGB)[2]-ext(Belon_RGB)[1]),
+  #               y =  ext(Belon_RGB)[4]-0.08*(ext(Belon_RGB)[4]-ext(Belon_RGB)[3]),
+  #               label = "B"),
+  #               size = 10)+
+    ggspatial::annotation_scale(location = "br",
+                                pad_y = unit(0.7, "cm"),
+                                text_cex=2)+
+   theme_Bede_Map()+
+  coord_sf(expand = F,
+           xlim = c(450180.4, 451247.2+18),
+           ylim = c(5296561, 5297042))+
+  # coord_equal()+
+   theme(axis.text.y = element_text(size = 10, vjust=-8, hjust=0.5, angle = 90),
+         axis.text.x = element_text(size = 10, vjust=8, hjust=0.5),
+         axis.ticks.x = element_blank(),
+         axis.ticks.y = element_blank(),
+         plot.background = element_rect(fill = "white", color = NA), 
+         axis.title = element_blank(),
+         panel.background = element_blank(),  # No panel background
+         legend.background = element_blank(),
+         legend.position = c(0.98, 0.98),
+         legend.text = element_text(size = 10),
+         legend.key.size = unit(0.5, "cm"),
+         plot.margin = margin(0, 0, -10, -10))
+
+ 
+ ggsave("Images/Part2/Belon_RGB.png",RGB_Belon,width = 10, height = 4.44, dpi = 400)
+  
+
+```
+
+```{r LiDAR DEM}
+#| cache: false
+#| echo: false
+#| warning: false
+#| eval: false
+
+
+library(terra)
+library(tidyverse)
+library(Utilities.Package)
+library(scico)
+
+
+
+msk <- "Data/Part2/Belon/Belon_DEM_32630.shp" %>% 
+  read_sf()
+
+DEM_rast <- rast("Data/Part2/Belon/Belon_DEM_LiDAR.tif") %>% 
+  crop(msk, mask = T) %>% 
+  terra::resample(Belon_RGB, method = "near")
+
+p999 <- quantile(DEM_rast %>% as.data.frame() %>%  pull(Belon_DEM_LiDAR), probs = 0.999)
+
+values(DEM_rast)[values(DEM_rast) > p999] = NA
+values(DEM_rast)[values(DEM_rast) < 0] = NA
+
+lim_x<- c(as.numeric(ext(Belon_RGB)[1:2]))
+lim_y<- c(as.numeric(ext(Belon_RGB)[3:4]))
+
+
+bathy_Belon <- ggplot()+
+   # tidyterra::geom_spatraster_rgb(data = Belon_RGB,
+   #       r = 1,
+   #       g = 2,
+   #       b = 3,
+   #       maxcell = 1000,
+   #       alpha = 0
+   #       )+
+    tidyterra::geom_spatraster(data = DEM_rast, 
+                               mapping = aes(fill = Belon_DEM_LiDAR ),
+                               maxcell = 500832)+
+  scale_fill_scico(palette = "batlow", 
+                   na.value = NA,
+                   name = "Elevation",
+                   breaks = c(0,1.5,3),
+                   limits = c(0,3),
+                   labels = c("0 m","1.5 m", "3 m")) +
+  # geom_text(aes(x =  ext(Belon_RGB)[1]+0.04*(ext(Belon_RGB)[2]-ext(Belon_RGB)[1]),
+  #               y =  ext(Belon_RGB)[4]-0.08*(ext(Belon_RGB)[4]-ext(Belon_RGB)[3]),
+  #               label = "C"),
+  #               size = 10)+
+  theme_Bede_Map()+
+  coord_sf(expand = F,
+           xlim = c(450180.4, 451247.2+18),
+           ylim = c(5296561, 5297042))+
+  # coord_equal()+
+   theme(axis.text.y = element_text(size = 10, vjust=-8, hjust=0.5, angle = 90),
+         axis.text.x = element_text(size = 10, vjust=8, hjust=0.5),
+         axis.ticks.x = element_blank(),
+         axis.ticks.y = element_blank(),
+         plot.background = element_rect(fill = "white", color = NA), 
+         axis.title = element_blank(),
+         panel.background = element_blank(),  # No panel background
+         legend.background = element_blank(),
+         legend.position = c(0.98, 0.98),
+         legend.text = element_text(size = 10),
+         legend.key.size = unit(0.5, "cm"),
+         plot.margin = margin(0, 0, -10, -10))
+
+ ggsave("Images/Part2/Belon_Bathy.png",bathy_Belon,width = 10, height = 4.44, dpi = 400)
+ 
+ bathy_Belon <- ggplot()+
+   # tidyterra::geom_spatraster_rgb(data = Belon_RGB,
+   #       r = 1,
+   #       g = 2,
+   #       b = 3,
+   #       maxcell = 1000,
+   #       alpha = 0
+   #       )+
+    tidyterra::geom_spatraster(data = DEM_rast, 
+                               mapping = aes(fill = Belon_DEM_LiDAR ),
+                               maxcell = 500832,
+                               show.legend = F)+
+  scale_fill_scico(palette = "batlow", 
+                   na.value = NA,
+                   name = "Elevation",
+                   breaks = c(0,1.5,3),
+                   limits = c(0,3),
+                   labels = c("0 m","1.5 m", "3 m")) +
+  # geom_text(aes(x =  ext(Belon_RGB)[1]+0.04*(ext(Belon_RGB)[2]-ext(Belon_RGB)[1]),
+  #               y =  ext(Belon_RGB)[4]-0.08*(ext(Belon_RGB)[4]-ext(Belon_RGB)[3]),
+  #               label = "C"),
+  #               size = 10)+
+  theme_Bede_Map()+
+  coord_sf(expand = F,
+           xlim = c(450180.4, 451247.2+18),
+           ylim = c(5296561, 5297042))+
+  # coord_equal()+
+   theme(axis.text.y = element_text(size = 10, vjust=-8, hjust=0.5, angle = 90),
+         axis.text.x = element_text(size = 10, vjust=8, hjust=0.5),
+         axis.ticks.x = element_blank(),
+         axis.ticks.y = element_blank(),
+         plot.background = element_rect(fill = "white", color = NA), 
+         axis.title = element_blank(),
+         panel.background = element_blank(),  # No panel background
+         legend.background = element_blank(),
+         legend.position = c(0.98, 0.98),
+         legend.text = element_text(size = 10),
+         legend.key.size = unit(0.5, "cm"),
+         plot.margin = margin(0, 0, -10, -10))+
+   theme_void()
+
+ ggsave("Images/Part2/Belon_Bathy_void.png",bathy_Belon,width = 10, height = 4.44, dpi = 400)
+ 
+ 
+ # nrow(DEM_rast %>%  as.data.frame() %>% dplyr::filter(!is.na(Belon_DEM_LiDAR)))
+
+```
+
+```{r map angle}
+#| cache: false
+#| echo: false
+#| warning: false
+#| eval: false
+
+msk <- "Data/Part2/Belon/Belon_DEM_32630.shp" %>% 
+  read_sf()
+
+Belon_RGB <- "Data/Part2/Belon/Belon_RGB_MULTI.tif" %>% 
+  rast() %>% 
+  crop(msk, mask = T)
+
+DEM_rast <- rast("Data/Part2/Belon/Belon_DEM_LiDAR.tif") %>% 
+  crop(msk, mask = T)
+
+Angle_df<-read_csv("Data/Part2/FullDF_10timesResample_DEMSlope_PredPercent.csv") %>% 
+  dplyr::filter(Site  == "Belon")
+
+angle_rast <- Angle_df %>% 
+  dplyr::select(x,y,Slope_Cat) %>% 
+  mutate(Slope_Cat = case_when(Slope_Cat == "Slope" ~ 1,
+                               Slope_Cat == "Flat" ~ 2,
+                               Slope_Cat == "Vertical" ~ 3)) %>% 
+  terra::rast(type="xyz", crs="EPSG:32630") %>% 
+  crop(msk, mask = T) %>%
+  as.factor()
+  
+
+angle_plot <- ggplot()+
+  #   tidyterra::geom_spatraster(data = DEM_rast, 
+  #                              mapping = aes(fill = Belon_DEM_LiDAR ),
+  #                              maxcell = 100,
+  #                              alpha=0, 
+  #                              show.legend = F)+
+  # scico::scale_fill_scico(palette = "batlow", na.value = NA,
+  #                  name = "Bathymetry",
+  #                  breaks = c(0,1.5,3),
+  #                  limits = c(0,3),
+  #                  labels = c("0 m","1.5 m", "3 m"))+
+  # ggnewscale::new_scale_fill()+
+  # geom_tile(Angle_df, mapping = aes(x = x, y = y, fill = Slope_Cat)) +
+  tidyterra::geom_spatraster(data = angle_rast, 
+                               mapping = aes(fill = Slope_Cat  ),
+                               maxcell = 1310*581,
+                               # alpha=0, 
+                               show.legend = T)+
+  scale_fill_manual(breaks = c(2,1,3),
+                    values=c("#8E7CC3", "#76A5AF", "#93C47D"),
+                    na.value = NA,
+                    name = "Slope",
+                    labels = c("Flat",
+                               "Angled",
+                               "Steep"))+
+  # geom_sf(data = msk, fill = "white", color = "white",show.legend = F)+
+  # geom_text(aes(x =  ext(Belon_RGB)[1]+0.04*(ext(Belon_RGB)[2]-ext(Belon_RGB)[1]),
+  #               y =  ext(Belon_RGB)[4]-0.08*(ext(Belon_RGB)[4]-ext(Belon_RGB)[3]),
+  #               label = "D"),
+                # size = 10)+
+  theme_Bede_Map()+
+  coord_sf(expand = F,
+           xlim = c(450180.4, 451247.2+18),
+           ylim = c(5296561, 5297042))+
+  # coord_equal()+
+   theme(axis.text.y = element_text(size = 10, vjust=-8, hjust=0.5, angle = 90),
+         axis.text.x = element_text(size = 10, vjust=8, hjust=0.5),
+         axis.ticks.x = element_blank(),
+         axis.ticks.y = element_blank(),
+         plot.background = element_rect(fill = "white", color = NA), 
+         axis.title = element_blank(),
+         panel.background = element_blank(),  # No panel background
+         legend.background = element_blank(),
+         legend.position = c(0.98, 0.98),
+         legend.text = element_text(size = 10),
+         legend.key.size = unit(0.5, "cm"),
+         plot.margin = margin(0, 0, -10, -10))
+ 
+ggsave("Images/Part2/Belon_angle.png",angle_plot,width = 10, height = 4.44, dpi = 400)
+
+angle_plot <- ggplot()+
+  #   tidyterra::geom_spatraster(data = DEM_rast, 
+  #                              mapping = aes(fill = Belon_DEM_LiDAR ),
+  #                              maxcell = 100,
+  #                              alpha=0, 
+  #                              show.legend = F)+
+  # scico::scale_fill_scico(palette = "batlow", na.value = NA,
+  #                  name = "Bathymetry",
+  #                  breaks = c(0,1.5,3),
+  #                  limits = c(0,3),
+  #                  labels = c("0 m","1.5 m", "3 m"))+
+  # ggnewscale::new_scale_fill()+
+  # geom_tile(Angle_df, mapping = aes(x = x, y = y, fill = Slope_Cat)) +
+  tidyterra::geom_spatraster(data = angle_rast, 
+                               mapping = aes(fill = Slope_Cat  ),
+                               maxcell = 1310*581,
+                               # alpha=0, 
+                               show.legend = F)+
+  scale_fill_manual(breaks = c(2,1,3),
+                    values=c("#8E7CC3", "#76A5AF", "#93C47D"),
+                    na.value = NA,
+                    name = "Slope",
+                    labels = c("Flat",
+                               "Angled",
+                               "Steep"))+
+  # geom_sf(data = msk, fill = "white", color = "white",show.legend = F)+
+  # geom_text(aes(x =  ext(Belon_RGB)[1]+0.04*(ext(Belon_RGB)[2]-ext(Belon_RGB)[1]),
+  #               y =  ext(Belon_RGB)[4]-0.08*(ext(Belon_RGB)[4]-ext(Belon_RGB)[3]),
+  #               label = "D"),
+  #               size = 10)+
+  theme_Bede_Map()+
+  coord_sf(expand = F,
+           xlim = c(450180.4, 451247.2+18),
+           ylim = c(5296561, 5297042))+
+  # coord_equal()+
+   theme(axis.text.y = element_text(size = 10, vjust=-8, hjust=0.5, angle = 90),
+         axis.text.x = element_text(size = 10, vjust=8, hjust=0.5),
+         axis.ticks.x = element_blank(),
+         axis.ticks.y = element_blank(),
+         plot.background = element_rect(fill = "white", color = NA), 
+         axis.title = element_blank(),
+         panel.background = element_blank(),  # No panel background
+         legend.background = element_blank(),
+         legend.position = c(0.98, 0.98),
+         legend.text = element_text(size = 10),
+         legend.key.size = unit(0.5, "cm"),
+         plot.margin = margin(0, 0, -10, -10))+
+  theme_void()
+ 
+ggsave("Images/Part2/Belon_angle_void.png",angle_plot,width = 10, height = 4.44, dpi = 400)
+```
+
+::: {.fragment .fade-out fragment-index="18"}
+::: {.absolute .fragment .fade-in fragment-index="16" top="10%" left="0%"}
+::: {.absolute top="10%" right="-17%"}
+*RGB Composition*
+:::
+
+![](Images/Part2/Belon_RGB.png){height="600"}
+:::
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="16" bottom="-5%" right="20%"}
+::: {.absolute bottom="15%" left="-30%"}
+*DEM Color Composition*
+:::
+
+![](Images/Part2/Belon_Bathy.png){height="600"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="17" bottom="-5%" right="20%"}
+::: {.absolute bottom="15%" left="-30%"}
+*Slope Categorized*
+:::
+
+![](Images/Part2/Belon_angle.png){height="600"}
+:::
+
+::: {.absolute top="6.5%" .fragment .fade-in fragment-index="18"}
+*Elevation vs Presence of Algae*
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="18" top="7%" left="-8%"}
+![](Images/Part2/Belon_Bathy_slope_pred.gif){height="400"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="19" top="7%" left="-8%"}
+![](Images/Part2/Belon_Bathy_slope_pred-Faded.png){height="400"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="20" top="7%" left="-8%"}
+![](Images/Part2/Belon_Bathy_slope_pred.png){height="400"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="18" bottom="15%" right="-5%"}
+![](Images/Part2/GAM_slope_cover.png){height="900"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="19" bottom="15%" right="-5%"}
+![](Images/Part2/GAM_slope_cover_faded.png){height="900"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="19" top="50%" left="0%"}
+- Higher Cover on the Upper Intertidal
+:::
+
+
+::: {.absolute .fragment .fade-in fragment-index="20" bottom="15%" right="-5%"}
+![](Images/Part2/GAM_slope_cover.png){height="900"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="20" top="60%" left="0%"}
+- The steeper the lower the cover
+:::
+
+## Discussion {#discussion_part2}
 # Case Study 2 – Mapping the impact of Heatwaves on intertidal seagrasses {data-name="Marine Heatwaves"}
 
 - Introduction (Seagrasses quickly, heatwaves mainly)
