@@ -11,7 +11,8 @@ format:
     auto-animate: true
     auto-play-media: true
     backgroundTransition: fade
-    controls: false
+    controls-tutorial: true
+    controls: true
     slide-number: true
     include-after-body: moving-text.js
     # includes:
@@ -5520,12 +5521,16 @@ library(tidyverse)
 library(Utilities.Package)
 library(sf)
 
-msk <- "Data/shp/mask/SajaSouth_32630.shp" %>% 
+msk <- "Data/Part2/SajaSouth_32630.shp" %>% 
   read_sf()
 
-DISCOV_rast <- rast("Data/DISCOV/Saja_South_25062024_DISCOV_InvaSea_26112024_pred.tif") %>% 
+DISCOV_rast <- rast("Data/Part2/Saja/Saja_South_25062024_DISCOV_InvaSea_26112024_pred.tif") %>% 
   project(crs(msk), method = "near") %>% 
   crop(msk, mask = T)
+
+img_filtered<-focal(DISCOV_rast, w=7, fun="modal",na.rm=TRUE)
+
+writeRaster(img_filtered, "Data/Part2/Saja/Saja_South_25062024_DISCOV_InvaSea_26112024_pred_7.tif", overwrite = T)
 
 values(DISCOV_rast)[values(DISCOV_rast) == 0] = NA
 names(DISCOV_rast) <- "layer"
@@ -5539,7 +5544,7 @@ DISCOV_Saja <- ggplot()+
   scale_fill_manual(breaks = c(1,2,3,4,5,6,8),
                     values=c("#DAA520","#b3ff1a","#389318","#873e23","#b3002d","#a2a3a2","#42c9bc",NA,NA),
                     na.value = NA,
-                    name = "DISCOV v2",
+                    name = "DISCOV",
                     labels = c("Bacillariophyceae",
                                "Chlorophyceae",
                                "Magnoliopsida",
@@ -5547,10 +5552,10 @@ DISCOV_Saja <- ggplot()+
                                "Florideophyceae",
                                "Sediment",
                                "Water"))+
-  geom_text(aes(x =  ext(DISCOV_rast)[1]+0.04*(ext(DISCOV_rast)[2]-ext(DISCOV_rast)[1]),
-                y =  ext(DISCOV_rast)[4]-0.08*(ext(DISCOV_rast)[4]-ext(DISCOV_rast)[3]),
-                label = "A"),
-                size = 10)+
+  # geom_text(aes(x =  ext(DISCOV_rast)[1]+0.04*(ext(DISCOV_rast)[2]-ext(DISCOV_rast)[1]),
+  #               y =  ext(DISCOV_rast)[4]-0.08*(ext(DISCOV_rast)[4]-ext(DISCOV_rast)[3]),
+  #               label = "A"),
+  #               size = 10)+
   coord_sf(expand = F,
            xlim = ext(msk)[1:2],
            ylim = ext(msk)[3:4])+
@@ -5568,7 +5573,7 @@ DISCOV_Saja <- ggplot()+
          legend.text = element_text(size = 15),
          legend.key.size = unit(1,"cm"))
 
-ggsave("Paper/Figures/High_res/Prediction_Map/Saja_DISCOV.png",DISCOV_Saja,width = 10, height = 9, dpi = 400)
+ggsave("Images/Part2/Saja_DISCOV.png",DISCOV_Saja,width = 10, height = 9, dpi = 400)
 ```
 
 ```{r RGB Saja}
@@ -5636,10 +5641,13 @@ RGB_Saja<- ggplot()+
 
 ```
 
-::: {.absolute .fragment .fade-in fragment-index="8" top="10%" left="0%"}
+::: {.absolute .fragment .fade-in-then-out fragment-index="8" top="10%" left="0%"}
 ![](Images/Part2/Saja_RGB.png){width="1500"}
 :::
 
+::: {.absolute .fragment .fade-in-then-out fragment-index="9" top="10%" left="0%"}
+![](Images/Part2/Saja_DISCOV.png){width="1500"}
+:::
 
 
 # Case Study 2 – Mapping the impact of Heatwaves on intertidal seagrasses {data-name="Marine Heatwaves"}
