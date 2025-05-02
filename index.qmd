@@ -1196,7 +1196,7 @@ Applyed to Earth Observation:
 
 
 
-::: {.absolute top="10%" right="-0%" .fragment .fade-in fragment-index="1"}
+::: {.absolute top="10%" right="-0%"}
 ![](Images/Intro/Satellite_resolution.png){height="1100"}
 :::
 
@@ -5616,10 +5616,10 @@ target_shp <- read_sf("Data/Part2/model_px_8m_saja.shp")
 
 
 
-
+names(img_filtered) <- "layer"
 
 DISCOV_Saja <- ggplot()+
-    tidyterra::geom_spatraster(data = DISCOV_rast, 
+    tidyterra::geom_spatraster(data = img_filtered, 
                                mapping = aes(fill = layer),
                                maxcell = 500832*8)+
   scale_fill_manual(breaks = c(1,2,3,4,5,6,8),
@@ -5655,6 +5655,46 @@ DISCOV_Saja <- ggplot()+
          legend.key.size = unit(1,"cm"))
 
 ggsave("Images/Part2/Saja_DISCOV.png",DISCOV_Saja,width = 10, height = 9, dpi = 400)
+
+
+DISCOV_Saja_void <- ggplot()+
+    tidyterra::geom_spatraster(data = img_filtered, 
+                               mapping = aes(fill = layer),
+                               maxcell = 500832*8)+
+  scale_fill_manual(breaks = c(1,2,3,4,5,6,8),
+                    values=c("#DAA520","#b3ff1a","#389318","#873e23","#b3002d","#a2a3a2","#42c9bc",NA,NA),
+                    na.value = NA,
+                    name = "DISCOV",
+                    labels = c("Bacillariophyceae",
+                               "Chlorophyceae",
+                               "Magnoliopsida",
+                               "Phaeophyceae",
+                               "Florideophyceae",
+                               "Sediment",
+                               "Water"))+
+  # geom_text(aes(x =  ext(DISCOV_rast)[1]+0.04*(ext(DISCOV_rast)[2]-ext(DISCOV_rast)[1]),
+  #               y =  ext(DISCOV_rast)[4]-0.08*(ext(DISCOV_rast)[4]-ext(DISCOV_rast)[3]),
+  #               label = "A"),
+  #               size = 10)+
+  coord_sf(expand = F,
+           xlim = ext(msk)[1:2],
+           ylim = ext(msk)[3:4])+
+  theme_Bede_Map()+
+  # coord_equal()+
+   theme(
+     # axis.text.x = element_text(size = 10, angle = -20, color = NA,hjust = 0),
+         axis.text.y = element_text(size = 15),
+         axis.text.x = element_text(size = 15),
+         # axis.ticks.x = element_blank(),
+         axis.title = element_blank(),
+         plot.background = element_rect(fill = "white", color = NA),
+         legend.background = element_blank(),
+         legend.position = c(0.98,0.98),
+         legend.text = element_text(size = 15),
+         legend.key.size = unit(1,"cm"))+
+  theme_void()
+
+ggsave("Images/Part2/Saja_DISCOV_void.png",DISCOV_Saja_void,width = 10, height = 9, dpi = 400)
 ```
 
 ```{r RGB Saja}
@@ -6342,6 +6382,749 @@ ggsave("Images/Part2/Belon_angle_void.png",angle_plot,width = 10, height = 4.44,
 :::
 
 ## Discussion {#discussion_part2}
+
+
+:::{.absolute .fragment .fade-out fragment-index="1" top="15%" left="45%" style="font-size: 50px;"}
+**First map of the spatial distribution of *G. vermiculophylla*:**
+
+-  It can create large monospecific meadows...
+-  ... or be mixed with others intertidal vegetations
+:::
+
+:::{ .fragment .fade-out fragment-index="4"}
+:::{.absolute .fragment .fade-in fragment-index="1" top="15%" left="45%" style="font-size: 50px;"}
+**First map of the spatial distribution of *G. vermiculophylla***
+:::
+
+:::{.absolute .fragment .fade-in fragment-index="2" top="25%" left="45%" style="font-size: 50px;"}
+**It has a unique composition of phycobilin pigments**
+:::
+
+::: {.absolute top="6.5%"}
+*Drone mapping G. vermiculophylla with machine learning*
+:::
+
+:::
+
+::: {.absolute .fragment .fade-out fragment-index="1" top="15%" left="5%"}
+![](Images/Part2/Saja_Belon_DISCOV_void.png){height="500"}
+:::
+
+::: {.absolute .fragment .fade-out fragment-index="1" bottom="0%" left="5%"}
+
+:::{.absolute bottom="-5%" left="1%" style="color: black;"}
+Saja estuary, Spain
+:::
+![](Images/Part2/Saja_2024.jpg){height="500"}
+:::
+
+::: {.absolute .fragment .fade-out fragment-index="1" bottom="0%" right="5%"}
+
+:::{.absolute bottom="-5%" left="1%" style="color: black;"}
+Belon estuary, France
+:::
+
+![](Images/Part2/Belon_042024.jpg){height="500"}
+:::
+
+::: {.fragment .fade-out fragment-index="1" style="position: absolute; top: 77%; left: 49.2%; transform: translate(-50%, -50%);"}
+![](Images/Part2/DISCOV_logoV2.png){height="400"}
+:::
+
+:::{.absolute .fragment .fade-in-then-out fragment-index="1" top="25%" left="45%" style="font-size: 50px;"}
+**It has a unique composition of phycobilin pigments, resulting in:**
+
+- A unique spectral signature for the class
+- Identification at the Class level by DISCOV.
+- A potential need for hyperspectral resolution to increase taxonomic resolution.
+
+:::
+
+
+```{r Resolution Red Algae}
+#| cache: false
+#| echo: false
+#| warning: false
+#| eval: false
+
+library(gganimate)
+library(tidyverse)
+
+rhodo <- "Data/Part1/BELON_STD.csv" %>%
+    read.csv() %>% 
+    dplyr::filter(Letter == "C") %>% 
+    group_by(Wavelength) %>% 
+    reframe(Rhodophyceae = mean(mean_STD))
+
+
+# Apply Savitzky-Golay smoothing
+# Choose polynomial order and window size
+sgolay_order <- 2
+sgolay_window <- 11  # Must be odd and >= order + 2
+
+# Make sure window size is not larger than number of rows
+sgolay_window <- min(sgolay_window, nrow(rhodo))
+if (sgolay_window %% 2 == 0) sgolay_window <- sgolay_window - 1  # Ensure it's odd
+
+rhodo$Rhodophyceae <- sgolayfilt(rhodo$Rhodophyceae, p = sgolay_order, n = sgolay_window)
+rhodo$Rhodophyceae <- sgolayfilt(rhodo$Rhodophyceae, p = sgolay_order, n = sgolay_window)
+rhodo$Rhodophyceae <- sgolayfilt(rhodo$Rhodophyceae, p = sgolay_order, n = sgolay_window)
+rhodo$Rhodophyceae <- sgolayfilt(rhodo$Rhodophyceae, p = sgolay_order, n = sgolay_window)
+rhodo$Rhodophyceae <- sgolayfilt(rhodo$Rhodophyceae, p = sgolay_order, n = sgolay_window)
+
+
+ggplot(rhodo)+
+  geom_line(aes(x = Wavelength, y = Rhodophyceae))
+
+log_func <- function(x) {
+  0.7 + 0.3 * log(x / 400) / log(900 / 400)
+}
+
+speclib <- "Data/Part1/spec_lib.csv" %>% 
+    read.csv() %>% 
+    select(-c(X,OSM,Bare.Sediment,Xanthophyceae)) %>% 
+    left_join(rhodo, by = "Wavelength") %>%
+    pivot_longer(-Wavelength, names_to = "Class",values_to = "Ref")  %>% 
+    mutate(Class = case_when(Class == "Magnoliosida" ~ "C - Magnoliopsida",
+                             Class == "Ulvophyceae" ~ "B - Chlorophyceae",
+                             Class == "Rhodophyceae" ~ "E - Florideophyceae",
+                             Class == "Bacillariophyceae" ~ "D - Bacillariophyceae",
+                             Class == "Phaeophyceae" ~ "A - Phaeophyceae",
+                             TRUE ~ Class)) %>% 
+    group_by(Class) %>% 
+    reframe(Wavelength = Wavelength,
+            Ref = (Ref-min(Ref))/(max(Ref)-min(Ref))) %>% 
+  mutate(Ref = case_when(Class == "B - Chlorophyceae" ~ log_func(Wavelength)*Ref,
+                         T ~ Ref))
+    
+speclib$Class <- factor(speclib$Class, levels = c(
+  "A - Phaeophyceae",
+  "B - Chlorophyceae",
+  "C - Magnoliopsida",
+  "D - Bacillariophyceae",
+  "E - Florideophyceae"
+))
+
+colscale <- c("D - Bacillariophyceae" = "#DAA520", 
+              "B - Chlorophyceae" = "#b3ff1a", 
+              "C - Magnoliopsida" = "#389318", 
+              "A - Phaeophyceae" = "#873e23", 
+              "E - Florideophyceae" = "#b3002d")
+
+
+
+#### default plot
+
+(init_plot <- speclib %>% 
+  # dplyr::filter(Class %in% c("Chlorophyceae", "Magnoliopsida")) %>% 
+  ggplot()+
+    # geom_line(data = fade_class, mapping = aes(x = Wavelength, y = Ref, group = Class1), color = "grey", alpha = 0.2, linewidth = 1.5)+
+    geom_line(aes(x = Wavelength, y = Ref, color = Class, group = Class), linewidth = 1.5)+
+
+    scale_color_manual(values=colscale)+
+    theme_Bede()+
+  ylab("Standardised Reflectance") +
+  xlab("Wavelength (nm)")  +
+    xlim(c(400,900))+
+  theme(
+    legend.position = c(0.15, 0.8),
+    legend.text = element_text(size = 12),
+    legend.text.align = 0,
+    axis.text.x = element_text(size = 12),
+    axis.text.y = element_text(size = 12)
+  )
+)
+
+
+####### Drone 
+RSF_Drone <-read_csv("Data/Part2/band_function_Drone.csv") %>% 
+  as_tibble() %>% 
+  pivot_longer(-Wavelength, names_to = "Bands", values_to = "SRF") %>% 
+  mutate(SRF = as.numeric(SRF))
+
+Drone_Band_Max <- RSF_Drone %>% 
+  group_by(Bands) %>% 
+  dplyr::filter(SRF == max(SRF)) %>% 
+  slice(1)
+
+for (i in unique(RSF_Drone$Bands)) {
+  
+  band_i <- RSF_Drone %>% 
+    dplyr::filter(Bands == i) %>% 
+    dplyr::select(-Bands)
+  
+  Joined_lib_SRF <- speclib %>% 
+    left_join(band_i, by = "Wavelength")
+  
+  Ref_Drone_band_i <- Joined_lib_SRF %>% 
+    group_by(Class) %>% 
+    reframe(Ref = weighted.mean(Ref,SRF)) %>% 
+    mutate(Wavelength = Drone_Band_Max %>% dplyr::filter(Bands == i) %>% pull(Wavelength))
+  
+  if(i == "Coastal blue"){
+    Ref_Drone = Ref_Drone_band_i
+  }else{
+    Ref_Drone = rbind(Ref_Drone,Ref_Drone_band_i)
+  }
+}
+
+Ref_Drone <- Ref_Drone %>% 
+  dplyr::filter(Wavelength > 400, 
+                Wavelength < 900) %>% 
+  group_by(Class) %>% 
+  mutate(Ref = (Ref-min(Ref))/(max(Ref)-min(Ref)),
+         Sensor = "Drone")
+
+
+
+(init_plot_Drone <- Ref_Drone %>% 
+  # dplyr::filter(Class %in% c("Chlorophyceae", "Magnoliopsida")) %>% 
+  ggplot()+
+    # geom_line(data = fade_class, mapping = aes(x = Wavelength, y = Ref, group = Class1), color = "grey", alpha = 0.2, linewidth = 1.5)+
+    geom_line(aes(x = Wavelength, y = Ref, color = Class, group = Class), linewidth = 1.5)+
+
+    scale_color_manual(values=colscale)+
+    theme_Bede()+
+  ylab("Standardised Reflectance") +
+  xlab("Wavelength (nm)") +
+    xlim(c(400,900))+
+  theme(
+    legend.position = c(0.15, 0.8),
+    legend.text = element_text(size = 12),
+    legend.text.align = 0,
+    axis.text.x = element_text(size = 12),
+    axis.text.y = element_text(size = 12)
+  )
+)
+
+
+##### ALL
+
+speclib_Resampled <-  speclib %>% 
+  mutate(Sensor = "ASD") %>% 
+  rbind(Ref_Drone)
+  # mutate(y = case_when(Sensor == "ASD" ~ 0,
+  #                      Sensor == "Prisma" ~ 0.05,
+  #                      Sensor == "Sentinel-2" ~ 0.1,
+  #                      Sensor == "Pleiades" ~ 0.15))
+
+
+unique(speclib_Resampled$Sensor)
+
+speclib_Resampled$Sensor <- factor(speclib_Resampled$Sensor, levels = c(
+  "ASD",
+  "Drone"
+))
+
+
+Plot_animated_resampled <- speclib_Resampled %>% 
+  mutate(Sensor_fading = Sensor) %>% 
+  dplyr::filter(Class == "E - Florideophyceae") %>% 
+  ggplot(aes(x = Wavelength, y = Ref, color = Sensor, group = Class)) +
+
+    # Smooth transitioning spectra
+    geom_line(
+      linewidth = 1.5
+    ) +
+
+    # Text that only fades in/out
+    geom_text(
+      aes(x = 800, y = 0.05, label = Sensor, group = Sensor_fading),
+      size = 10,
+      inherit.aes = FALSE
+    ) +
+
+    # Small ticks at each Wavelength (bottom side only)
+    geom_rug(
+      aes(x = Wavelength, group = Class,color = Sensor,),
+      sides = "b",           # bottom only
+      # color = "red",
+      length = unit(6, "pt"),
+      linewidth = 1 # short tick
+    ) +
+
+    # Color scale and labels
+    scale_color_manual(values = c("ASD" = "red", "Drone" = "goldenrod"),
+                       name = "Sensor: ") +
+    ylab("Standardised Reflectance") +
+    xlab("Wavelength (nm)") +
+    xlim(c(400, 900)) +
+
+    # Animate sensor changes globally
+    transition_states(Sensor,
+                      transition_length = 5,
+                      state_length = 30) +
+    ease_aes("sine-in-out") +
+
+    # Theme and styling
+    theme_Bede() +
+    theme(
+      legend.position = c(0.15, 0.8),
+      legend.text = element_text(size = 15),
+      legend.title = element_text(size = 17),
+      legend.key.size = unit(1,"cm"),
+      legend.text.align = 0,
+      axis.text.x = element_text(size = 15),
+      axis.text.y = element_text(size = 15),
+      axis.title.x = element_text(size = 17),
+      axis.title.y = element_text(size = 17)
+    )
+
+rendered <- animate(Plot_animated_resampled, duration = 5, fps = 20, width = 9, height = 10, units = "in", res = 300, end_pause = 1, rewind = F, renderer = gifski_renderer(loop = T))
+
+anim_save("Images/Part2/Figure_SRF_RED.gif", animation = rendered)
+
+```
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="1" top="15%" left="0%"}
+![](Images/Part2/Figure_SRF_RED.gif){height="1000"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="1" bottom="0%" left="40%"}
+
+:::{.absolute bottom="-5%" left="1%" style="color: black;"}
+*G. gracilis*
+:::
+
+![](Images/Part2/gracilis.png){.circular-fade height="400"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="1" bottom="0%" left="60%"}
+
+:::{.absolute bottom="-5%" left="1%" style="color: black;"}
+*G. vermiculophylla*
+:::
+
+![](Images/Part2/vermiculo.png){.circular-fade height="400"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="1" bottom="0%" left="80%"}
+
+:::{.absolute bottom="-5%" left="1%" style="color: black;"}
+*C. crispus*
+:::
+
+![](Images/Part2/chondrus.png){.circular-fade height="400"}
+:::
+
+
+
+:::{.absolute .fragment .fade-in-then-out fragment-index="2" top="35%" left="45%" style="font-size: 50px;"}
+**Distribution linked with the topography**
+
+- Inhabit the upper intertidal
+- Resistant to dessication, light and salinity variations
+:::
+
+:::{.absolute .fragment .fade-in-then-out fragment-index="3" top="35%" left="45%" style="font-size: 50px;"}
+**Distribution linked with the topography**
+
+- Inhabit the upper intertidal
+- Resistant to dessication, light and salinity variations
+- Inhabit flat areas...
+- ...experiencing lower current velocity during tidal exchanges
+:::
+
+::: {.fragment .fade-out fragment-index="4"}
+::: {.absolute .fragment .fade-in fragment-index="2" top="15%" left="-5%"}
+![](Images/Part2/Belon_Bathy_slope_pred.gif){height="600"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="2" bottom="0%" left="10%"}
+![](Images/Part2/Drone_lIDAR2.png){.circular-fade height="450"}
+:::
+:::
+
+::: {.absolute top="6.5%" .fragment .fade-in fragment-index="4"}
+*Invasion phases*
+:::
+
+```{r area_each_year_disc}
+#| echo: false
+#| warning: false
+#| eval: false
+
+library(tidyverse)
+library(sf)
+library(Utilities.Package)
+
+mask <- "Data/Part2/RemonterLeTemps/shp/mask/IntertidalMask_Belon_RemonterLeTemps.shp" %>% 
+  read_sf() %>%
+  mutate(area = st_area(.)) %>% 
+  pull(as.numeric(area)[1])
+
+Pres_algae <- "Data/Part2/RemonterLeTemps/shp/shape_red_algae/Presence_Absence_RedAlgae_Date.shp" %>% 
+  read_sf() %>% 
+  mutate(area = st_area(.)) %>% 
+  group_by(date) %>% 
+  reframe(area = sum (area)) %>% 
+  mutate(prop = as.numeric((area/mask)*100)) %>% 
+  dplyr::select(-area)
+
+df <- data.frame(date = c(1952,1958),
+           prop = c(0,0)) %>% 
+  bind_rows(Pres_algae) %>% 
+    mutate(prop = case_when(date == 2012 ~ 41.3,
+                            date == 2024 ~ 41.8,
+                            T ~ prop)) %>% 
+    dplyr::filter(date != 2019)
+
+# --- parameters ------------------------------------------------------------
+k      <- 10    # steepness of the curve
+t_mid  <- 0.4   # time of maximum growth rate (inflection point)
+n_pts  <- 200   # resolution (number of points)
+
+# --- generate the idealised invasion trajectory ----------------------------
+curve_df <- tibble(
+  t  = seq(0, 1, length.out = n_pts),                      # relative time (t0 -> tx)
+  pc = 41.8 / (1 + exp(-k * (t - t_mid)))                  # percent cover
+) %>% 
+  mutate(t = v <- seq(from = 1971, to = 2024, length.out = 200))
+
+
+(plot <- df %>% 
+     # dplyr::filter(date <= i) %>%
+   ggplot(aes(x = date, y = prop))+     
+    geom_line(data = curve_df, aes(x = t, y = pc),size = 1.2, colour = "orange", alpha = 0.5) +
+
+     # geom_bar(stat = "identity",size = 10 )+
+     geom_point(size = 4)+
+     xlab("Year")+
+     ylab(expression(bold(paste("Cover of ", bolditalic("Gracilaria"), " (%)"))))+
+     
+     geom_line(alpha = 0.4, linetype = "dashed")+
+     geom_vline(xintercept = 1971, linetype = "dashed", color = "darkred", linewidth=1)+
+     geom_vline(xintercept = 1994, linetype = "dashed", color = "goldenrod", linewidth=1)+
+    xlim(c(1951,2024))+
+    ylim(c(0,43))+
+
+       geom_rug(sides = "b") +  # Add ticks at the bottom for each x-value
+     geom_text(
+       x = 1970, 
+       y = 25, 
+       label = expression(paste("First introduction of ", italic("C. gigas"))), 
+       angle = 90
+     )+
+     geom_text(
+       x = 1972, 
+       y = 25, 
+       label = expression(paste("in South Brittany")), 
+       angle = 90
+     )+
+     geom_text(
+       x = 1993, 
+       y = 21, 
+       label = expression(paste("First record of ", italic("G. vermiculophylla"))), 
+       angle = 90
+     )+
+     geom_text(
+       x = 1995, 
+       y = 22, 
+       label = expression(paste("in the Belon Estuary")), 
+       angle = 90
+     )+
+     theme_Bede()+
+     theme(axis.text.x = element_text(size = 15),
+           axis.text.y = element_text(size = 15),
+           axis.title.x = element_text(size = 20),
+           axis.title.y = element_text(size = 20), 
+           plot.background = element_rect(fill = "white", color = NA))
+  )
+
+  ggsave(paste0("Images/Part2/Cover_Gracillaria_vs_Time_disc1.png"), plot, width = 10, height = 10, dpi = 200)
+  
+(plot2 <- df %>% 
+     # dplyr::filter(date <= i) %>%
+   ggplot(aes(x = date, y = prop))+
+        geom_line(data = curve_df, aes(x = t, y = pc),size = 1.2, colour = "orange", alpha = 0.5) +
+
+     # geom_bar(stat = "identity",size = 10 )+
+     geom_point(size = 4)+
+     geom_vline(xintercept = 1980, linetype = "twodash", colour = "darkgreen") +
+    geom_text(x = 1974, y = 40,  label = "Lag Phase", colour = "darkgreen",hjust = 0.5, vjust = 0.5, size = 10) +
+     xlab("Year")+
+     ylab(expression(bold(paste("Cover of ", bolditalic("Gracilaria"), " (%)"))))+
+     
+     geom_line(alpha = 0.4, linetype = "dashed")+
+    xlim(c(1970,2024))+
+    ylim(c(0,43))+
+
+      geom_rug(sides = "b") +  # Add ticks at the bottom for each x-value
+     theme_Bede()+
+     theme(axis.text.x = element_text(size = 15),
+           axis.text.y = element_text(size = 15),
+           axis.title.x = element_text(size = 20),
+           axis.title.y = element_text(size = 20), 
+           plot.background = element_rect(fill = "white", color = NA))
+  )
+
+  ggsave(paste0("Images/Part2/Cover_Gracillaria_vs_Time_disc2.png"), plot2, width = 10, height = 10, dpi = 200)
+  
+(plot3 <- df %>% 
+     # dplyr::filter(date <= i) %>%
+   ggplot(aes(x = date, y = prop))+
+      geom_line(data = curve_df, aes(x = t, y = pc),size = 1.2, colour = "orange", alpha = 0.5) +
+
+     # geom_bar(stat = "identity",size = 10 )+
+     geom_point(size = 4)+
+     geom_vline(xintercept = 1980, linetype = "twodash", colour = "darkgreen") +
+    geom_text(x = 1974, y = 40,  label = "Lag Phase", colour = "darkgreen",hjust = 0.5, vjust = 0.5, size = 10) +
+  geom_vline(xintercept = 2010, linetype = "twodash", colour = "darkorange") +
+  geom_text(x = 1995, y = 40,  label = "Expansion Phase", colour = "darkorange",hjust = 0.5, vjust = 0.5, size = 10) +
+     xlab("Year")+
+     ylab(expression(bold(paste("Cover of ", bolditalic("Gracilaria"), " (%)"))))+
+     
+     geom_line(alpha = 0.4, linetype = "dashed")+
+    xlim(c(1970,2024))+
+    ylim(c(0,43))+
+
+      geom_rug(sides = "b") +  # Add ticks at the bottom for each x-value
+     theme_Bede()+
+     theme(axis.text.x = element_text(size = 15),
+           axis.text.y = element_text(size = 15),
+           axis.title.x = element_text(size = 20),
+           axis.title.y = element_text(size = 20), 
+           plot.background = element_rect(fill = "white", color = NA))
+  )
+
+  ggsave(paste0("Images/Part2/Cover_Gracillaria_vs_Time_disc3.png"), plot3, width = 10, height = 10, dpi = 200)
+  
+(plot4 <- df %>% 
+     # dplyr::filter(date <= i) %>%
+   ggplot(aes(x = date, y = prop))+
+      geom_line(data = curve_df, aes(x = t, y = pc),size = 1.2, colour = "orange", alpha = 0.5) +
+
+     # geom_bar(stat = "identity",size = 10 )+
+     geom_point(size = 4)+
+     geom_vline(xintercept = 1980, linetype = "twodash", colour = "darkgreen") +
+    geom_text(x = 1974, y = 40,  label = "Lag Phase", colour = "darkgreen",hjust = 0.5, vjust = 0.5, size = 10) +
+  geom_vline(xintercept = 2010, linetype = "twodash", colour = "darkorange") +
+  geom_text(x = 1995, y = 40,  label = "Expansion Phase", colour = "darkorange",hjust = 0.5, vjust = 0.5, size = 10) +
+  geom_text(x = 2017, y = 40,  label = "Saturation", colour = "darkred",hjust = 0.5, vjust = 0.5, size = 10) +
+     xlab("Year")+
+     ylab(expression(bold(paste("Cover of ", bolditalic("Gracilaria"), " (%)"))))+
+     
+     geom_line(alpha = 0.4, linetype = "dashed")+
+    xlim(c(1970,2024))+
+    ylim(c(0,43))+
+
+      geom_rug(sides = "b") +  # Add ticks at the bottom for each x-value
+     theme_Bede()+
+     theme(axis.text.x = element_text(size = 15),
+           axis.text.y = element_text(size = 15),
+           axis.title.x = element_text(size = 20),
+           axis.title.y = element_text(size = 20), 
+           plot.background = element_rect(fill = "white", color = NA))
+  )
+
+  ggsave(paste0("Images/Part2/Cover_Gracillaria_vs_Time_disc4.png"), plot4, width = 10, height = 10, dpi = 200)
+
+  
+
+  
+
+
+
+# ggsave("Images/Part2/Cover_Gracillaria_vs_Time.png", plot, width = 10, height = 4, dpi = 200)
+# ggsave("Paper/Figures/Low_res/Cover_Gracillaria_vs_Time.png", plot, width = 10, height = 6, dpi = 200)
+
+```
+
+```{r invasion phases}
+#| cache: false
+#| echo: false
+#| warning: false
+#| eval: false
+
+
+# tidyverse includes ggplot2, dplyr, tibble, etc.
+library(tidyverse)
+
+# --- parameters ------------------------------------------------------------
+k      <- 10    # steepness of the curve
+t_mid  <- 0.5   # time of maximum growth rate (inflection point)
+n_pts  <- 200   # resolution (number of points)
+
+# --- generate the idealised invasion trajectory ----------------------------
+curve_df <- tibble(
+  t  = seq(0, 1, length.out = n_pts),                      # relative time (t0 -> tx)
+  pc = 40 / (1 + exp(-k * (t - t_mid)))                  # percent cover
+)
+
+# --- plot ------------------------------------------------------------------
+(plot <- ggplot(curve_df, aes(t, pc)) +
+  geom_line(size = 1.2, colour = "orange") +
+  geom_vline(xintercept = c(0, 1), linetype = "dashed", colour = "darkorange") +
+  annotate("text", x = 0, y = 40,  label = "Introduction", angle = 90,hjust = 0, vjust = 0, parse = TRUE, size = 10) +
+  annotate("text", x = 1, y = 65, label = "Established", angle = 90, hjust = 1, vjust = 1, parse = TRUE, size = 10) +
+  scale_x_continuous(
+    breaks = c(0, 1),
+    labels = c(expression(T[0]), expression(T[x]))
+  ) +
+  labs(
+    x = "Time",
+    y = "Percent of maximum extent (%)",
+  ) +
+     theme_Bede()+
+     theme(axis.text.x = element_text(size = 15),
+           axis.text.y = element_text(size = 15),
+           axis.title.x = element_text(size = 20),
+           axis.title.y = element_text(size = 20), 
+           plot.background = element_rect(fill = "white", color = NA))
+)
+  ggsave(paste0("Images/Part2/Idealised_phases.png"), plot, width = 10, height = 10, dpi = 200)
+  
+  # --- plot ------------------------------------------------------------------
+(plot2 <- ggplot(curve_df, aes(t, pc)) +
+  geom_line(size = 1.2, colour = "orange") +
+  geom_vline(xintercept = c(0, 1), linetype = "dashed", colour = "darkorange") +
+  geom_vline(xintercept = 0.25, linetype = "twodash", colour = "darkgreen") +
+  geom_text(x = 0.125, y = 90,  label = "Lag Phase", colour = "darkgreen",hjust = 0.5, vjust = 0.5, size = 10) +
+
+  annotate("text", x = 0, y = 40,  label = "Introduction", angle = 90,hjust = 0, vjust = 0, parse = TRUE, size = 10) +
+  annotate("text", x = 1, y = 65, label = "Established", angle = 90, hjust = 1, vjust = 1, parse = TRUE, size = 10) +
+  scale_x_continuous(
+    breaks = c(0, 1),
+    labels = c(expression(T[0]), expression(T[x]))
+  ) +
+  labs(
+    x = "Time",
+    y = "Percent of maximum extent (%)",
+  ) +
+     theme_Bede()+
+     theme(axis.text.x = element_text(size = 15),
+           axis.text.y = element_text(size = 15),
+           axis.title.x = element_text(size = 20),
+           axis.title.y = element_text(size = 20), 
+           plot.background = element_rect(fill = "white", color = NA))
+)
+  ggsave(paste0("Images/Part2/Idealised_phases2.png"), plot2, width = 10, height = 10, dpi = 200)
+  
+    # --- plot ------------------------------------------------------------------
+(plot3 <- ggplot(curve_df, aes(t, pc)) +
+  geom_line(size = 1.2, colour = "orange") +
+  geom_vline(xintercept = c(0, 1), linetype = "dashed", colour = "darkorange") +
+  geom_vline(xintercept = 0.25, linetype = "twodash", colour = "darkgreen") +
+  geom_text(x = 0.125, y = 90,  label = "Lag Phase", colour = "darkgreen",hjust = 0.5, vjust = 0.5, size = 10) +
+  geom_vline(xintercept = 0.75, linetype = "twodash", colour = "darkorange") +
+  geom_text(x = 0.5, y = 90,  label = "Expansion Phase", colour = "darkorange",hjust = 0.5, vjust = 0.5, size = 10) +
+
+  annotate("text", x = 0, y = 40,  label = "Introduction", angle = 90,hjust = 0, vjust = 0, parse = TRUE, size = 10) +
+  annotate("text", x = 1, y = 65, label = "Established", angle = 90, hjust = 1, vjust = 1, parse = TRUE, size = 10) +
+  scale_x_continuous(
+    breaks = c(0, 1),
+    labels = c(expression(T[0]), expression(T[x]))
+  ) +
+  labs(
+    x = "Time",
+    y = "Percent of maximum extent (%)",
+  ) +
+     theme_Bede()+
+     theme(axis.text.x = element_text(size = 15),
+           axis.text.y = element_text(size = 15),
+           axis.title.x = element_text(size = 20),
+           axis.title.y = element_text(size = 20), 
+           plot.background = element_rect(fill = "white", color = NA))
+)
+  ggsave(paste0("Images/Part2/Idealised_phases3.png"), plot3, width = 10, height = 10, dpi = 200)
+  
+(plot4 <- ggplot(curve_df, aes(t, pc)) +
+  geom_line(size = 1.2, colour = "orange") +
+  geom_vline(xintercept = c(0, 1), linetype = "dashed", colour = "darkorange") +
+  geom_vline(xintercept = 0.25, linetype = "twodash", colour = "darkgreen") +
+  geom_text(x = 0.125, y = 90,  label = "Lag Phase", colour = "darkgreen",hjust = 0.5, vjust = 0.5, size = 10) +
+  geom_vline(xintercept = 0.75, linetype = "twodash", colour = "darkorange") +
+  geom_text(x = 0.5, y = 90,  label = "Expansion Phase", colour = "darkorange",hjust = 0.5, vjust = 0.5, size = 10) +
+  geom_text(x = 0.75+0.125, y = 90,  label = "Saturation", colour = "darkred",hjust = 0.5, vjust = 0.5, size = 10) +
+
+  annotate("text", x = 0, y = 40,  label = "Introduction", angle = 90,hjust = 0, vjust = 0, parse = TRUE, size = 10) +
+  annotate("text", x = 1, y = 65, label = "Established", angle = 90, hjust = 1, vjust = 1, parse = TRUE, size = 10) +
+  scale_x_continuous(
+    breaks = c(0, 1),
+    labels = c(expression(T[0]), expression(T[x]))
+  ) +
+  labs(
+    x = "Time",
+    y = "Percent of maximum extent (%)",
+  ) +
+     theme_Bede()+
+     theme(axis.text.x = element_text(size = 15),
+           axis.text.y = element_text(size = 15),
+           axis.title.x = element_text(size = 20),
+           axis.title.y = element_text(size = 20), 
+           plot.background = element_rect(fill = "white", color = NA))
+)
+  ggsave(paste0("Images/Part2/Idealised_phases4.png"), plot4, width = 10, height = 10, dpi = 200)
+```
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="4" top="15%" left="0%"}
+![](Images/Part2/Cover_Gracillaria_vs_Time_disc.png){width="1200"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="5" top="15%" left="0%"}
+![](Images/Part2/Cover_Gracillaria_vs_Time_disc1.png){width="1200"}
+:::
+
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="6" top="15%" left="0%"}
+![](Images/Part2/Cover_Gracillaria_vs_Time_disc2.png){width="1200"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="7" top="15%" left="0%"}
+![](Images/Part2/Cover_Gracillaria_vs_Time_disc3.png){width="1200"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="8" top="15%" left="0%"}
+![](Images/Part2/Cover_Gracillaria_vs_Time_disc4.png){width="1200"}
+:::
+
+::: {.fragment .fade-out fragment-index="9"}
+::: {.absolute  top="20%" left="50%" .fragment .fade-in fragment-index="6"}
+**Lag Phase**
+
+- Very low abundance
+- Need for genetic or mutualistic adjustment
+- Eradication is feasible and cfheapest
+:::
+
+::: {.absolute top="45%" left="50%" .fragment .fade-in fragment-index="7"}
+**Expansion Phase**
+
+- Near‑exponential increase in cover 
+- Control effort and cost rise sharply
+- Priority shifts to containment and protection of high‑value sites
+:::
+
+::: {.absolute top="70%" left="50%" .fragment .fade-in fragment-index="8"}
+**Saturation Phase**
+
+- Percent cover plateaus, growth limited by space/resources
+- Ecosystem impacts stabilise but persist
+- Focus turns to long‑term suppression, impact mitigation, and restoration rather than eradication
+:::
+:::
+
+::: {.absolute top="10%" left="30%" .fragment .fade-in fragment-index="5" style="font-size: 30px;"}
+Sources: [Morris et al. (2013)](https://doi.org/10.1016/j.jaridenv.2013.03.013), [Harvey & Mazzotti (2014)](https://edis.ifas.ufl.edu/publication/UW392), [Ahmed et al. (2022)](https://doi.org/10.1007/s10530-022-02755-0), [Kelly et al. (2021)](https://doi.org/10.1002/ece3.7352)
+:::
+
+
+::: {.absolute top="25%" left="55%" .fragment .fade-in-then-out fragment-index="9"}
+**Short Lag phase**
+
+- Large number of fragments/individuals has been introduced repeatedly in the environment
+- *G. vermiculophylla* is well adapted to European estuaries and already suited to local climate
+- Ignored by local species, no gazering
+:::
+
+::: {.absolute top="65%" left="55%" .fragment .fade-in-then-out fragment-index="9"}
+**Remote Sensing can monitor early stages of the invasion...**
+
+- making it a powerfull tool for early decision making
+- Facilitates timely interventions 
+:::
+
+
 # Case Study 2 – Mapping the impact of Heatwaves on intertidal seagrasses {data-name="Marine Heatwaves"}
 
 - Introduction (Seagrasses quickly, heatwaves mainly)
