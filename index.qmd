@@ -7104,7 +7104,7 @@ curve_df <- tibble(
 :::
 :::
 
-::: {.absolute top="10%" left="30%" .fragment .fade-in fragment-index="5" style="font-size: 30px;"}
+::: {.absolute bottom="0%" right="0%" .fragment .fade-in fragment-index="5" style="font-size: 30px;"}
 Sources: [Morris et al. (2013)](https://doi.org/10.1016/j.jaridenv.2013.03.013), [Harvey & Mazzotti (2014)](https://edis.ifas.ufl.edu/publication/UW392), [Ahmed et al. (2022)](https://doi.org/10.1007/s10530-022-02755-0), [Kelly et al. (2021)](https://doi.org/10.1002/ece3.7352)
 :::
 
@@ -7125,14 +7125,200 @@ Sources: [Morris et al. (2013)](https://doi.org/10.1016/j.jaridenv.2013.03.013),
 :::
 
 
-# Case Study 2 – Mapping the impact of Heatwaves on intertidal seagrasses {data-name="Marine Heatwaves"}
+# Case Study 2 – Mapping the impact of Heatwaves on intertidal seagrasses {data-stack-name="Marine Heatwaves" background-image="Images/Part3/Background_Part3.png"}
 
-- Introduction (Seagrasses quickly, heatwaves mainly)
+- [Introduction](#intro-part3)
 - Experiment
 - Satellite observation
 - Ecological consequences
 
-# Discussion and Overview {data-name="Discussion"}
+## Introduction {#intro-part3}
+
+
+::: {.fragment .fade-out fragment-index="4"}
+::: {.absolute top="6.5%"}
+*Browning of seagrasses across Europe*
+:::
+
+::: {.absolute top="10%" left="-30%" }
+![](Images/Part1/Gafanha_Low.png){style="transform: rotate(45deg); height="2000"}
+:::
+
+::: {.fragment .fade-out fragment-index=2}
+::: {.absolute top="5%" left="40%"}
+
+:::{.absolute top="-7%" right="5%"}
+*Aveiro Lagoon, Portugal, June 2022*
+:::
+
+![](Images/Part3/White_seagrass-Gafanha.png){height="500"}
+:::
+:::
+
+::: {.absolute .fragment .fade-in bottom="0%" left="45%" fragment-index="1"}
+![](Images/Part3/Darkseagrass_quiberon.jpg){height="600"}
+:::
+
+
+
+::: {.absolute .fragment .fade-in bottom="0%" left="60%" fragment-index="1"}
+![](Images/Part3/Green_seagrass_Quiberon.jpg){height="600"}
+:::
+
+:::{.absolute .fragment .fade-in fragment-index="1" bottom="5%" right="2%"}
+*Quiberon, France, September 2021*
+:::
+
+::: {.absolute .fragment .fade-in top="53%" right="8%" fragment-index="1"}
+![](Images/Part3/Logo_Biolittoral.png){height="80"}
+:::
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="2" top="0%" left="50%"}
+
+![](Images/Part3/plot_temp.png){height="650"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="3" top="0%" left="50%"}
+
+![](Images/Part3/plot_temp2.png){height="650"}
+:::
+
+
+::: {.fragment .fade-out fragment-index="10"}
+
+::: {.absolute .fragment .fade-in fragment-index="4" top="6.5%"}
+*What's in the litterature ?*
+:::
+
+
+::: {.absolute .fragment .fade-in top="15%" left="0%" fragment-index="4"}
+![](Images/Part3/Paper_intro1.png){height="200"}
+:::
+
+::: {.absolute .fragment .fade-in top="35%" left="0%" fragment-index="4"}
+![](Images/Part3/Paper_intro2.png){height="200"}
+:::
+
+::: {.absolute .fragment .fade-in top="55%" left="0%" fragment-index="4"}
+![](Images/Part3/Paper_intro31.png){height="200"}
+:::
+
+::: {.absolute .fragment .fade-in top="75%" left="0%" fragment-index="4"}
+![](Images/Part3/Paper_intro4.png){height="200"}
+:::
+
+
+::: {.absolute .fragment .fade-in fragment-index="4" top="10%" left="30%" style="font-size: 50px;"}
+On subtidal *Zostera marina* and *Cymodosea nodosa*: 
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="5" width="1200" top="15%" left="35%" style="font-size: 50px;"}
+- Highly vulnerable to elevated sea temperatures in winter and spring, leading to early flowering, high mortality, and reduced biomass.
+
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="6" width="1200" top="15%" left="35%" style="font-size: 50px;"}
+- Highly vulnerable to elevated sea temperatures in winter and spring, leading to early flowering, high mortality, and reduced biomass.
+- Photosynthetic activity rises during HWs but diminishes during recovery, impairing performance and reducing leaf biomass.
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="7" width="1200" top="15%" left="35%" style="font-size: 50px;"}
+- Highly vulnerable to elevated sea temperatures in winter and spring, leading to early flowering, high mortality, and reduced biomass.
+- Photosynthetic activity rises during HWs but diminishes during recovery, impairing performance and reducing leaf biomass.
+- Responses vary greatly between species...
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="8" width="1200" top="15%" left="35%" style="font-size: 50px;"}
+- Highly vulnerable to elevated sea temperatures in winter and spring, leading to early flowering, high mortality, and reduced biomass.
+- Photosynthetic activity rises during HWs but diminishes during recovery, impairing performance and reducing leaf biomass.
+- Responses vary greatly between species...
+- ...and within a single species across latitudes.
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="9" bottom="25%" left="30%" style="font-size: 75px;"}
+What about *Zostera noltei* ?  
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="9" bottom="15%" left="30%" style="font-size: 75px;"}
+Impact on the reflectance ? 
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="9" bottom="5%" left="30%" style="font-size: 75px;"}
+Impact of Extreme Atmospheric temperature ? 
+:::
+
+:::
+
+::: {.fragment .fade-out fragment-index="16"}
+
+::: {.absolute .fragment .fade-in fragment-index="10" top="6.5%"}
+*Extreme Temperature Events = Heatwaves*
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="10" top="10%" left="10%"}
+![](Images/Part3/Paper_intro5.png){height="300"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="10" top="10%" right="0%"}
+![](Images/Part3/Paper_intro6.png){height="300"}
+:::
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="11" top="36%" left="5%" style="font-size: 50px; text-align: center;"}
+Defined as periods of three or more consecutive days where the daily maximum temperature (Tmax) exceeds the calendar-day 90th percentile based on at least 30 years
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="12" top="36%" left="5%" style="font-size: 50px; text-align: center;"}
+Defined as periods of three or more consecutive days where the daily maximum temperature (Tmax) exceeds the calendar-day 90th percentile based on at [least 30 years]{style="color: red;"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="13" top="36%" left="5%" style="font-size: 50px; text-align: center;"}
+Defined as periods of three or more consecutive days where the daily maximum temperature (Tmax) exceeds the [calendar-day 90th percentile]{style="color: red;"} based on at least 30 years
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="14" top="36%" left="5%" style="font-size: 50px; text-align: center;"}
+Defined as periods of three or more consecutive days where the [daily maximum temperature (Tmax)]{style="color: red;"} exceeds the calendar-day 90th percentile based on at least 30 years
+:::
+
+::: {.fragment .fade-out fragment-index="16"}
+::: {.absolute .fragment .fade-in fragment-index="15" top="36%" left="5%" style="font-size: 50px; text-align: center;"}
+Defined as periods of [three or more consecutive days]{style="color: red;"} where the daily maximum temperature (Tmax) exceeds the calendar-day 90th percentile based on at least 30 years
+:::
+:::
+
+::: {.absolute .fragment .fade-in-then-out bottom="0%" left="5%" fragment-index="12"}
+![](Images/Part3/plot_temp_timeserie.png){height="600"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out bottom="0%" left="5%" fragment-index="13"}
+![](Images/Part3/plot_temp_mean.png){height="600"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out bottom="0%" left="5%" fragment-index="14"}
+![](Images/Part3/plot_Tmax.png){height="600"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out bottom="0%" left="5%" fragment-index="15"}
+![](Images/Part3/plot_Tmax_flame.png){height="600"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="16" top="6.5%"}
+*Hypothesis & Objectives*
+:::
+
+
+::: {.absolute top="15%" .fragment .fade-in fragment-index="16" style="font-size: 75px;"}
+Heatwaves alter the spectral reflectance of *Zostera noltei* seagrass. This change can be detected using remote sensing technique. 
+:::
+
+::: {.absolute .incremental .fragment .fade-in fragment-index="16" top="33%" style="font-size: 75px;"}
+- Evaluate the direct impact of heatwave-induced **thermal stress** on the reflectance of *Zostera noltei* through **controlled experiments**.
+- Develop a **spectral indice** for detecting stress-induced changes in seagrass coloration. 
+- To apply findings from experimental reflectance changes to **satellite-based** remote sensing, assessing the spatial extent and temporal dynamics of an heatwave event that occurs in September 2021, in Quiberon, on seagrass meadows.
+:::
+
+# General conclusions and future perspectives {data-name="Discussion"}
 
 - Duality Drone and Satellite (Strength, weaknesses, complementary of methods)
 - Remote sensing for coastal ecosystem Management

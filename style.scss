@@ -199,3 +199,16 @@ background: radial-gradient(
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.9); /* ajoute une lumière blanche douce autour */
 }
 
+/* Normal slide background (light) */
+:root {
+  --r-link-color:      $Simon-font;   // pick any colour you like
+  --r-link-hover-color:$Simon-font;   // on hover / active
+}
+
+/* If you ever switch to a dark theme or use
+   <section data-background="black"> slides, set this too: */
+:root {
+  --r-link-color-dark:      $Simon-font;
+  --r-link-hover-color-dark: $Simon-font;
+}
+
