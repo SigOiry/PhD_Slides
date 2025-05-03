@@ -7128,6 +7128,7 @@ Sources: [Morris et al. (2013)](https://doi.org/10.1016/j.jaridenv.2013.03.013),
 # Case Study 2 – Mapping the impact of Heatwaves on intertidal seagrasses {data-stack-name="Marine Heatwaves" background-image="Images/Part3/Background_Part3.png"}
 
 - [Introduction](#intro-part3)
+- [Material & Methods](#material_part3)
 - Experiment
 - Satellite observation
 - Ecological consequences
@@ -7318,6 +7319,407 @@ Heatwaves alter the spectral reflectance of *Zostera noltei* seagrass. This chan
 - To apply findings from experimental reflectance changes to **satellite-based** remote sensing, assessing the spatial extent and temporal dynamics of an heatwave event that occurs in September 2021, in Quiberon, on seagrass meadows.
 :::
 
+## Material & Methods {#material_part3}
+
+::: {.absolute .fragment .fade-out fragment-index="7" top="6.5%"}
+*Experiment in the Lab*
+:::
+
+::: {.fragment .fade-out fragment-index="5"}
+::: {.absolute  top="16%" left="0%" style="font-size: 40px;"}
+*Intertidal chambers from ElectricBlue*
+:::
+:::
+
+::: {.absolute .fragment .fade-out fragment-index="1" top="20%" left="0%"}
+![](Images/Part3/Intertidal_Chambers.png){height="700"}
+:::
+
+::: {.absolute .fragment .fade-out fragment-index="1" top="20%" right="0%"}
+![](Images/Part3/Benthic_chamber1.jpg){height="850"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="1" top="20%" left="0%"}
+![](Images/Part3/Intertidal_Chambers2.png){height="700"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="1" top="40%" left="60%" style="font-size: 80px; color: rgba(54, 128, 74,1);"}
+Experiment Tank
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="1" top="50%" left="60%" style="font-size: 80px; color: rgba(125, 52, 64,1);"}
+Storage Tank
+:::
+
+::: {.fragment .fade-out fragment-index="5"}
+
+  <div class="absolute fragment fade-in" data-fragment-index="2" style="top: 20%; left: 0%; ">
+  <video id="droneVideo" muted autoplay height="700">
+    <source src="Video/Part3/Benthic_Chamber.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  </div>
+
+:::
+
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="2" top="30%" left="55%" style="font-size: 60px;"}
+- Air Temperature : from 18 to 60°C
+- Water Temperature : from 8°C to 55°C
+- Programmable tides
+- Programmable lights
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="3" top="10%" left="55%"}
+![](Images/Part3/ASD_Intertidal_Chambers.jpg){height="1000"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="3" top="30%" left="75%" style="font-size: 60px;"}
+Measure variation of seagrass leaves reflectance over time. 
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="3" top="10%" left="75%"}
+![](Images/Part3/ASD.png){height="150"}
+:::
+
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="4" top="15%" left="55%"}
+![](Images/Part3/Micasense_Intertidal_Chambers2.jpg){height="1000"}
+:::
+
+::: {.fragment .fade-out fragment-index="7"}
+::: {.absolute top="16%" left="0%" .fragment .fade-in fragment-index="5" style="font-size: 40px;"}
+*Seagrasses inside of a chamber*
+:::
+::: {.absolute top="20%" left="0%" .fragment .fade-in fragment-index="5"}
+<video src="Video/Part3/Seagrass_inside_chambers2.mp4" height="700" autoplay loop muted playsinline></video>
+:::
+:::
+
+ <div class="absolute fragment fade-in-then-out" data-fragment-index="5" style="top: 5%; left: 55%; ">
+ <video id="SamplingBox" muted autoplay height="1300">
+   <source src="Video/Part3/Sampling_Box.mp4" type="video/mp4">
+   Your browser does not support the video tag.
+ </video>
+ </div>
+ 
+::: {.rotate-img2 .fragment .fade-in-then-out fragment-index="6" .absolute top="30%" left="50%"}
+![](Images/Part3/Arrow_right_short.png){width="250"}
+:::
+
+::: {.rotate-img1 .fragment .fade-in-then-out fragment-index="6" .absolute top="56%" left="50%"}
+![](Images/Part3/Arrow_right_short.png){width="250"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="6" .absolute top="11%" right="0%"}
+![](Images/Part3/Control_Profile.png){width="1000"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="6" top="80%" left="0%" style="font-size: 60px;"}
+Hyperspectral measurment every minute in each tank
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="6" top="5%" left="75%" style="font-size: 60px;"}
+Control
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="6" top="50%" left="75%" style="font-size: 60px;"}
+Treatment
+:::
+
+
+::: {.fragment .fade-in-then-out fragment-index="6" .absolute bottom="11%" right="0%"}
+![](Images/Part3/Test_Profile.png){width="1000" id="profile-image"}
+:::
+
+
+
+::: {.fragment .fade-in-then-out fragment-index="7" .absolute top="10%" left="0%"}
+![](Images/Part3/plot_Temp_Quiberon1.png){width="1400"}
+:::
+
+::: {.fragment .fade-out fragment-index="11"}
+
+::: {.absolute top="6.5%" left="0%" .fragment .fade-in fragment-index="7" style="font-size: 40px;"}
+*Satellite Mapping of the impact of Heatwaves on seagrasses*
+:::
+
+::: {.fragment .fade-in fragment-index="7" style="text-align: center; position: absolute; left: 80%; top: 20%; width: 800px; transform: translate(-50%, -50%)"}
+Atmospheric heatwave between the 4th of September 2021 and the 7th of September 2021 in Quiberon
+:::
+
+```{r leaflet maps Quiberon}
+#| echo: false
+#| eval: false
+#| warning: false
+#| fig-width: 10
+#| fig-height: 10
+
+library(htmlwidgets)
+library(leaflet)
+library(tidyverse)
+
+Projects<-data.frame(
+  Name=c("Plouharnel"),
+  Lat = c(47.585714),
+   Long = c(-3.121394)) %>% 
+  sf::st_as_sf(coords=c("Long","Lat") )  %>% 
+  sf::st_set_crs("EPSG:4326")  
+
+# custom_icon <- makeIcon(
+#   iconUrl = "Images/drone_icon.png",
+#   iconWidth = 40, # Adjust the width to fit your needs
+#   iconHeight = 40 # Adjust the height to fit your needs
+# )
+
+m <- leaflet() %>% setView(lng =-3.121394, lat = 47.585714, zoom = 13) %>% 
+  addTiles() %>% 
+  addProviderTiles(provider = providers$Esri.WorldImagery) %>% 
+  leaflet::addMarkers(data = Projects) %>% 
+  addLabelOnlyMarkers(data = Projects,
+    label = ~Name
+  )
+
+m <- htmlwidgets::onRender(
+  m,
+  '
+  function(el, x) {
+    var map = this;
+
+    function toggleLabels() {
+      var zoomLevel = map.getZoom();
+      map.eachLayer(function(layer) {
+        if (layer.getElement && layer.getTooltip && layer.getTooltip()) {
+          var labelElement = layer.getTooltip().getElement();
+          if (zoomLevel < 10) {
+            labelElement.style.display = "none";
+          } else {
+            labelElement.style.display = "block";
+          }
+        }
+      });
+    }
+
+    // Initially toggle labels based on the starting zoom level
+    toggleLabels();
+
+    // Toggle labels on zoom end
+    map.on("zoomend", function() {
+      toggleLabels();
+    });
+  }
+  '
+)
+
+saveWidget(m, "maps/map_Quiberon_presentation.html", selfcontained = TRUE)
+
+# Print the map
+```
+
+::: {.absolute .fragment .fade-in fragment-index="7" left="0%" top="45%"}
+```{=html}
+<iframe width="1400" height="800" src="maps/map_Quiberon_presentation.html" title="Webpage example"></iframe>
+```
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="8" .absolute top="10%" left="0%"}
+![](Images/Part3/plot_Temp_Quiberon2.png){width="1400"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="9" .absolute top="10%" left="0%"}
+![](Images/Part3/plot_Temp_Quiberon3.png){width="1400"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="10" .absolute top="10%" left="0%"}
+![](Images/Part3/plot_Temp_Quiberon4.png){width="1400"}
+:::
+
+::: {.fragment .fade-in fragment-index="8" .absolute top="35%" left="65%"}
+![](Images/Part3/Sentinel2.png){width="500"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="8" top="70%" left="60%" style="font-size: 50px;"}
+3 Sentinel-2 images, level L2A, Low Tide:
+
+- **Before**: 1st of September 2021
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="9" top="70%" left="60%" style="font-size: 50px;"}
+3 Sentinel-2 images, level L2A, Low Tide:
+
+- **Before**: 1st of September 2021
+
+- **During**: 6th of September 2021
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="10" top="70%" left="60%" style="font-size: 50px;"}
+3 Sentinel-2 images, level L2A, Low Tide:
+
+- **Before**: 1st of September 2021
+
+- **During**: 6th of September 2021
+
+- **After**: 8th of October 2021
+:::
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::: {.absolute .fragment .fade-in fragment-index="11" top="10%" left="0%" style="text-align: right; font-size: 70px;"}
+- Litto3D product
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="11" top="20%" left="0%" style="text-align: right; font-size: 60px;"}
+detailed 3D coastal and nearshore mapping
+:::
+
+::: {.fragment .fade-out fragment-index="14"}
+::: {.absolute .fragment .fade-in fragment-index="11" left="0%" top="30%"}
+```{r LeafletLitto3D}
+#| cache: false
+#| echo: false
+#| eval: true
+#| warning: false
+#| out-width: "1100px"
+#| out-height: "800px"
+
+library(tidyverse)
+library(leaflet)
+library(sf)
+library(leafem)
+library(leaflet.extras2)
+library(terra)
+
+Quiberon_Litto3D <- "Data/Part3/Litto_10m_merged_32630.tif" %>% 
+  rast() %>% 
+  project(crs("EPSG:4326"))
+
+pal2 <- colorNumeric("viridis", domain = values(Quiberon_Litto3D),na.color = "transparent")
+
+(plot <- leaflet() %>%   
+  # addTiles() %>% 
+  setView(lng =-3.121394, lat = 47.585714, zoom = 14) %>% 
+  addMapPane("right", zIndex = 0) %>%
+  addMapPane("left", zIndex = 0) %>%
+  # addProviderTiles(provider = providers$Esri.WorldImagery) %>% 
+    # addProviderTiles(providers$CartoDB, group="carto", layerId = "RGBid", options = pathOptions(pane = "left")) %>% 
+  # addProviderTiles(providers$CartoDB, group="carto", layerId = "DSMid", options = pathOptions(pane = "right")) %>% 
+  addProviderTiles(providers$Esri.WorldImagery,
+                     group = "Toner",
+                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100),
+                                 pathOptions(pane = "left")),
+                     layerId = "RGB"
+                     ) %>%
+  addProviderTiles(providers$OpenStreetMap,
+                     group = "Toner",
+                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100),
+                                 pathOptions(pane = "right")),
+                     layerId = "DSM_pred") %>%
+  addRasterImage(Quiberon_Litto3D,
+                       colors=pal2,
+                       # maxBytes = 200,
+                       options = pathOptions(pane = "right"),
+                       layerId = "DSM_pred") %>%
+  leaflet.extras2::addSidebyside(leftId = "RGB",
+                                  rightId = "DSM_pred")) %>%
+  addLegend(pal = pal2, values = values(Quiberon_Litto3D),
+    title = "Bathymetry (m)",
+    group = "DSM_pred")
+
+# htmlwidgets::saveWidget(plot, file="Slides/maps/map_Bathy_Quiberon.html", selfcontained = F)
+
+```
+:::
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="12" .absolute top="25%" right="-5%"}
+![](Images/Part3/plot_waterHeight.png){width="1300"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="13" .absolute top="25%" right="-5%"}
+![](Images/Part3/WaterHeightPlot.png){width="1300"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="14" left="0%" top="30%"}
+```{r LeafletEmersion}
+#| cache: false
+#| echo: false
+#| eval: true
+#| warning: false
+#| out-width: "1100px"
+#| out-height: "800px"
+
+library(tidyverse)
+library(leaflet)
+library(sf)
+library(leafem)
+library(leaflet.extras2)
+library(terra)
+
+stk <- "Data/Part3/Stack_all_variables.tif" %>% 
+  rast() %>% 
+  project(crs("EPSG:4326"))
+
+EmersionTime <- (stk$emersion_time/60)/4
+
+pal2 <- colorNumeric("magma", domain = c(10,16),na.color = "transparent")
+
+(plot <- leaflet() %>%   
+  # addTiles() %>% 
+  setView(lng =-3.121394, lat = 47.585714, zoom = 14) %>% 
+  addMapPane("right", zIndex = 0) %>%
+  addMapPane("left", zIndex = 0) %>%
+  # addProviderTiles(provider = providers$Esri.WorldImagery) %>% 
+    # addProviderTiles(providers$CartoDB, group="carto", layerId = "RGBid", options = pathOptions(pane = "left")) %>% 
+  # addProviderTiles(providers$CartoDB, group="carto", layerId = "DSMid", options = pathOptions(pane = "right")) %>% 
+  addProviderTiles(providers$Esri.WorldImagery,
+                     group = "Toner",
+                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100),
+                                 pathOptions(pane = "left")),
+                     layerId = "RGB"
+                     ) %>%
+  addProviderTiles(providers$OpenStreetMap,
+                     group = "Toner",
+                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100),
+                                 pathOptions(pane = "right")),
+                     layerId = "DSM_pred") %>%
+  addRasterImage(EmersionTime,
+                       colors=pal2,
+                       # maxBytes = 200,
+                       options = pathOptions(pane = "right"),
+                       layerId = "DSM_pred") %>%
+  leaflet.extras2::addSidebyside(leftId = "RGB",
+                                  rightId = "DSM_pred")) %>%
+  addLegend(pal = pal2, values = c(10,16),
+    title = "Emersion Time per Day (hours)",
+    group = "DSM_pred")
+
+# htmlwidgets::saveWidget(plot, file="Slides/maps/map_Bathy_Quiberon.html", selfcontained = F)
+
+```
+:::
+
+::: {.fragment .fade-in fragment-index="14" .absolute top="25%" right="-5%"}
+![](Images/Part3/Emersion_time.gif){width="1300"}
+:::
+
+
+
+ 
 # General conclusions and future perspectives {data-name="Discussion"}
 
 - Duality Drone and Satellite (Strength, weaknesses, complementary of methods)
