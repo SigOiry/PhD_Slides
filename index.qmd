@@ -1186,11 +1186,16 @@ Applyed to Earth Observation:
 *From the sky to the sea *
 :::
 
-::: {.absolute top="20%" left="0%" data-id="box1" }
+::: {.absolute left="2%" top="18%" style="font-size: 50px;"}
+
+*Resolution Trade-offs*
+:::
+
+::: {.absolute top="25%" left="0%" data-id="box1" }
 ![](Images/Intro/Sentinel2_1.png){height="550" .circular-fade}
 :::
 
-::: {.absolute top="20%" left="24%" data-id="box3" }
+::: {.absolute top="25%" left="24%" data-id="box3" }
 ![](Images/Intro/Drone_MPB1.png){height="550" .circular-fade}
 :::
 
@@ -1200,15 +1205,15 @@ Applyed to Earth Observation:
 ![](Images/Intro/Satellite_resolution.png){height="1100"}
 :::
 
-::: {.absolute left="0%" top="65%" style="font-size: 40px;"} 
+::: {.absolute left="0%" top="70 %" style="font-size: 40px;"} 
 **Sentinel-2** 
 :::
   
-::: {.absolute left="25%" top="65%" style="font-size: 40px;"} 
+::: {.absolute left="25%" top="70%" style="font-size: 40px;"} 
 **Drone**
 :::
   
-::: {.absolute left="1%" top="70%" style="font-size: 35px;"}
+::: {.absolute left="1%" top="75%" style="font-size: 35px;"}
 
 10–60 m spatial resolution
 
@@ -1218,7 +1223,7 @@ Applyed to Earth Observation:
 
 :::
   
-::: {.absolute left="26%" top="70%" style="font-size: 35px;"}
+::: {.absolute left="26%" top="75%" style="font-size: 35px;"}
 
 cm resolution
 
@@ -7129,7 +7134,7 @@ Sources: [Morris et al. (2013)](https://doi.org/10.1016/j.jaridenv.2013.03.013),
 
 - [Introduction](#intro-part3)
 - [Material & Methods](#material_part3)
-- Experiment
+- [Results](#results_part3)
 - Satellite observation
 - Ecological consequences
 
@@ -7452,6 +7457,7 @@ Atmospheric heatwave between the 4th of September 2021 and the 7th of September 
 #| echo: false
 #| eval: false
 #| warning: false
+#| cache: true
 #| fig-width: 10
 #| fig-height: 10
 
@@ -7590,7 +7596,7 @@ detailed 3D coastal and nearshore mapping
 ::: {.fragment .fade-out fragment-index="14"}
 ::: {.absolute .fragment .fade-in fragment-index="11" left="0%" top="30%"}
 ```{r LeafletLitto3D}
-#| cache: false
+#| cache: true
 #| echo: false
 #| eval: true
 #| warning: false
@@ -7656,7 +7662,7 @@ pal2 <- colorNumeric("viridis", domain = values(Quiberon_Litto3D),na.color = "tr
 
 ::: {.absolute .fragment .fade-in fragment-index="14" left="0%" top="30%"}
 ```{r LeafletEmersion}
-#| cache: false
+#| cache: true
 #| echo: false
 #| eval: true
 #| warning: false
@@ -7716,6 +7722,8 @@ pal2 <- colorNumeric("magma", domain = c(10,16),na.color = "transparent")
 ::: {.fragment .fade-in fragment-index="14" .absolute top="25%" right="-5%"}
 ![](Images/Part3/Emersion_time.gif){width="1300"}
 :::
+
+## Results {#results_part3} 
 
 
 
