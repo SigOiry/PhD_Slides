@@ -571,15 +571,15 @@ ggsave("Images/Intro/dens_pop_map.png", dens_pop_map, height=1350*4, width = 950
 :::
 
 ::: {.absolute left="0%" top="15%" .fragment .fade-in fragment-index="3" style="font-size: 50px;"}
--   French Coast are densly populated:
+-   French Coast are densely populated:
 :::
 
 ::: {.absolute .fragment .fade-in fragment-index="3" left="10%" top="21%" style="font-size: 40px;"}
--   4% of the french territory
+-   4% of the French territory
 :::
 
 ::: {.absolute .fragment .fade-in fragment-index="3" left="10%" top="27%" style="font-size: 40px;"}
--   10% of the french population
+-   10% of the French population
 :::
 
 ::: {.absolute left="0%" top="35%" .fragment .fade-in fragment-index="4" style="font-size: 50px;"}
@@ -905,6 +905,12 @@ Green and red algae, nutrient sequestration, but can be a threat for ecosystems
 :::
 
 ::: {.fragment .fade-out fragment-index="1"}
+
+::: {.absolute top="13%" left="0%"}
+Areas between high and low tide
+:::
+
+
 ::: {.absolute top="17%" left="0%"}
 ![](Images/Intro/saltmarsh.jpg){height="500"}
 :::
@@ -1205,7 +1211,7 @@ Applyed to Earth Observation:
 ![](Images/Intro/Satellite_resolution.png){height="1100"}
 :::
 
-::: {.absolute left="0%" top="70 %" style="font-size: 40px;"} 
+::: {.absolute left="0%" top="70%" style="font-size: 40px;"} 
 **Sentinel-2** 
 :::
   
@@ -4466,7 +4472,7 @@ ggsave("Images/Part1/Fig_VIP_Spectra.png", SP_plot, width =10, height = 10, unit
 
 
 :::{.absolute top="10%" left="5%" .fragment .fade-in fragment-index="4" style="font-size: 60px;"}
-Drone: 0,26 ha ~ 2.5 millions pixels
+Drone: 0.26 ha ~ 2.5 millions pixels
 
 S2: 25 000 hectares ~ 2.5x Paris
 :::
@@ -4881,12 +4887,12 @@ Maps and Aerial photographs archives
 :::
 
 ::: {.absolute top="60%" left="37%" style="font-size: 60px;"}
-- 8 images between 1952 and 2024
+- 8 images between 1952 and 2012
 - 1 Drone flight in 2024
 :::
 
-::: {.absolute bottom="5%" left="10%" .fragment .fade-in fragment-index="1" style="font-size: 60px;"}
-Photo interpretation of images to retrieve the Cover of algae
+::: {.absolute bottom="5%" left="0%" .fragment .fade-in fragment-index="1" style="font-size: 60px;"}
+Photo interpretation of images to retrieve the area covered by *G. vermiculophylla*
 :::
 
 ::: {.absolute bottom="-8%" right="-7.6%"}
@@ -4900,7 +4906,6 @@ Photo interpretation of images to retrieve the Cover of algae
 :::
 
 ::: {.absolute top="6.5%" .fragment .fade-in fragment-index="3"}
-*Drone Flights*
 :::
 
 ::: {.absolute top="6.5%" .fragment .fade-in-then-out fragment-index="2"}
@@ -6335,7 +6340,7 @@ ggsave("Images/Part2/Belon_angle_void.png",angle_plot,width = 10, height = 4.44,
 
 ::: {.absolute .fragment .fade-in-then-out fragment-index="16" bottom="-5%" right="20%"}
 ::: {.absolute bottom="15%" left="-30%"}
-*DEM Color Composition*
+*DSM Color Composition*
 :::
 
 ![](Images/Part2/Belon_Bathy.png){height="600"}
@@ -7089,7 +7094,7 @@ curve_df <- tibble(
 
 - Very low abundance
 - Need for genetic or mutualistic adjustment
-- Eradication is feasible and cfheapest
+- Eradication is feasible and cheapest
 :::
 
 ::: {.absolute top="45%" left="50%" .fragment .fade-in fragment-index="7"}
@@ -7103,7 +7108,7 @@ curve_df <- tibble(
 ::: {.absolute top="70%" left="50%" .fragment .fade-in fragment-index="8"}
 **Saturation Phase**
 
-- Percent cover plateaus, growth limited by space/resources
+- Percent cover reaches a plateau, growth limited by space/resources
 - Ecosystem impacts stabilise but persist
 - Focus turns to long‑term suppression, impact mitigation, and restoration rather than eradication
 :::
@@ -7119,13 +7124,13 @@ Sources: [Morris et al. (2013)](https://doi.org/10.1016/j.jaridenv.2013.03.013),
 
 - Large number of fragments/individuals has been introduced repeatedly in the environment
 - *G. vermiculophylla* is well adapted to European estuaries and already suited to local climate
-- Ignored by local species, no gazering
+- Ignored by local species, no grazing
 :::
 
 ::: {.absolute top="65%" left="55%" .fragment .fade-in-then-out fragment-index="9"}
 **Remote Sensing can monitor early stages of the invasion...**
 
-- making it a powerfull tool for early decision making
+- Making it a powerfull tool for early decision making
 - Facilitates timely interventions 
 :::
 
@@ -7216,7 +7221,7 @@ Sources: [Morris et al. (2013)](https://doi.org/10.1016/j.jaridenv.2013.03.013),
 
 
 ::: {.absolute .fragment .fade-in fragment-index="4" top="10%" left="30%" style="font-size: 50px;"}
-On subtidal *Zostera marina* and *Cymodosea nodosa*: 
+On subtidal *Zostera marina* and *Cymodocea nodosa*: 
 :::
 
 ::: {.absolute .fragment .fade-in-then-out fragment-index="5" width="1200" top="15%" left="35%" style="font-size: 50px;"}
@@ -7315,12 +7320,12 @@ Defined as periods of [three or more consecutive days]{style="color: red;"} wher
 
 
 ::: {.absolute top="15%" .fragment .fade-in fragment-index="16" style="font-size: 75px;"}
-Heatwaves alter the spectral reflectance of *Zostera noltei* seagrass. This change can be detected using remote sensing technique. 
+Heatwaves alter the spectral reflectance of *Zostera noltei* seagrass. This change can be detected using remote sensing. 
 :::
 
 ::: {.absolute .incremental .fragment .fade-in fragment-index="16" top="33%" style="font-size: 75px;"}
 - Evaluate the direct impact of heatwave-induced **thermal stress** on the reflectance of *Zostera noltei* through **controlled experiments**.
-- Develop a **spectral indice** for detecting stress-induced changes in seagrass coloration. 
+- Develop a **spectral index** for detecting stress-induced changes in seagrass coloration. 
 - To apply findings from experimental reflectance changes to **satellite-based** remote sensing, assessing the spatial extent and temporal dynamics of an heatwave event that occurs in September 2021, in Quiberon, on seagrass meadows.
 :::
 
@@ -7388,9 +7393,6 @@ Measure variation of seagrass leaves reflectance over time.
 :::
 
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="4" top="15%" left="55%"}
-![](Images/Part3/Micasense_Intertidal_Chambers2.jpg){height="1000"}
-:::
 
 ::: {.fragment .fade-out fragment-index="7"}
 ::: {.absolute top="16%" left="0%" .fragment .fade-in fragment-index="5" style="font-size: 40px;"}
@@ -7445,7 +7447,7 @@ Treatment
 
 ::: {.fragment .fade-out fragment-index="11"}
 
-::: {.absolute top="6.5%" left="0%" .fragment .fade-in fragment-index="7" style="font-size: 40px;"}
+::: {.absolute top="6.5%" left="0%" .fragment .fade-in fragment-index="7"}
 *Satellite Mapping of the impact of Heatwaves on seagrasses*
 :::
 
@@ -7584,7 +7586,7 @@ saveWidget(m, "maps/map_Quiberon_presentation.html", selfcontained = TRUE)
 
 
 
-
+::: {.fragment .fade-out fragment-index="15"}
 ::: {.absolute .fragment .fade-in fragment-index="11" top="10%" left="0%" style="text-align: right; font-size: 70px;"}
 - Litto3D product
 :::
@@ -7593,10 +7595,9 @@ saveWidget(m, "maps/map_Quiberon_presentation.html", selfcontained = TRUE)
 detailed 3D coastal and nearshore mapping
 :::
 
-::: {.fragment .fade-out fragment-index="14"}
+
 ::: {.absolute .fragment .fade-in fragment-index="11" left="0%" top="30%"}
 ```{r LeafletLitto3D}
-#| cache: true
 #| echo: false
 #| eval: true
 #| warning: false
@@ -7616,7 +7617,7 @@ Quiberon_Litto3D <- "Data/Part3/Litto_10m_merged_32630.tif" %>%
 
 pal2 <- colorNumeric("viridis", domain = values(Quiberon_Litto3D),na.color = "transparent")
 
-(plot <- leaflet() %>%   
+Plot_Bathy <- leaflet() %>%   
   # addTiles() %>% 
   setView(lng =-3.121394, lat = 47.585714, zoom = 14) %>% 
   addMapPane("right", zIndex = 0) %>%
@@ -7641,11 +7642,12 @@ pal2 <- colorNumeric("viridis", domain = values(Quiberon_Litto3D),na.color = "tr
                        options = pathOptions(pane = "right"),
                        layerId = "DSM_pred") %>%
   leaflet.extras2::addSidebyside(leftId = "RGB",
-                                  rightId = "DSM_pred")) %>%
+                                  rightId = "DSM_pred") %>%
   addLegend(pal = pal2, values = values(Quiberon_Litto3D),
     title = "Bathymetry (m)",
     group = "DSM_pred")
 
+Plot_Bathy
 # htmlwidgets::saveWidget(plot, file="Slides/maps/map_Bathy_Quiberon.html", selfcontained = F)
 
 ```
@@ -7660,9 +7662,8 @@ pal2 <- colorNumeric("viridis", domain = values(Quiberon_Litto3D),na.color = "tr
 ![](Images/Part3/WaterHeightPlot.png){width="1300"}
 :::
 
-::: {.absolute .fragment .fade-in fragment-index="14" left="0%" top="30%"}
+::: {.absolute .fragment .fade-in-then-out fragment-index="14" left="0%" top="30%"}
 ```{r LeafletEmersion}
-#| cache: true
 #| echo: false
 #| eval: true
 #| warning: false
@@ -7684,7 +7685,7 @@ EmersionTime <- (stk$emersion_time/60)/4
 
 pal2 <- colorNumeric("magma", domain = c(10,16),na.color = "transparent")
 
-(plot <- leaflet() %>%   
+Plot <- leaflet() %>%   
   # addTiles() %>% 
   setView(lng =-3.121394, lat = 47.585714, zoom = 14) %>% 
   addMapPane("right", zIndex = 0) %>%
@@ -7709,21 +7710,645 @@ pal2 <- colorNumeric("magma", domain = c(10,16),na.color = "transparent")
                        options = pathOptions(pane = "right"),
                        layerId = "DSM_pred") %>%
   leaflet.extras2::addSidebyside(leftId = "RGB",
-                                  rightId = "DSM_pred")) %>%
+                                  rightId = "DSM_pred") %>%
   addLegend(pal = pal2, values = c(10,16),
     title = "Emersion Time per Day (hours)",
     group = "DSM_pred")
+
+Plot
 
 # htmlwidgets::saveWidget(plot, file="Slides/maps/map_Bathy_Quiberon.html", selfcontained = F)
 
 ```
 :::
 
-::: {.fragment .fade-in fragment-index="14" .absolute top="25%" right="-5%"}
+::: {.fragment .fade-in-then-out fragment-index="14" .absolute top="25%" right="-5%"}
 ![](Images/Part3/Emersion_time.gif){width="1300"}
 :::
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::: {.absolute top="6.5%" left="0%" .fragment .fade-in fragment-index="15" style="font-size: 40px;"}
+*Both Experimental and Satellite Mapping*
+:::
+  
+::: {.absolute .fragment .fade-in-then-out fragment-index="15" top="15%" left="0%" style="text-align: right; font-size: 70px;"}
+- Well established radiometric Indices:
+:::
+
+:::{.absolute top="30%" left="10%" .fragment .fade-in-then-out fragment-index="15" style="font-size: 50px;"}
+$$
+f''(\lambda_i) \approx \frac{f(\lambda_{i+1}) - 2f(\lambda_i) + f(\lambda_{i-1})}{(\Delta \lambda)^2}
+$$ 
+:::
+  
+::: {.absolute .fragment .fade-in-then-out fragment-index="15" top="50%" left="10%" style="text-align: right; font-size: 50px;"}
+
+$$NDVI = \frac{R(NIR)-R(Red)}{R(NIR)+R(Red)}$$
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="15" top="70%" left="10%" style="text-align: right; font-size: 50px;"}
+
+$$GLI = \frac{[R(Green)-R(Red)]+[R(Green)-R(Blue)]}{(2 \times R(Green) )+ R(Red) + R(Blue) }$$
+:::
+  
+  
+::: {.absolute .fragment .fade-in fragment-index="16" top="15%" left="0%" style="text-align: right; font-size: 70px;"}
+- Introduction of the Seagrass Heat Shock Index (SHSI):
+:::
+  
+::: {.absolute .fragment .fade-in fragment-index="16" top="30%" left="0%" style="text-align: left; font-size: 50px;"}
+
+$$
+\text{SHSI} = I_{SHSI} - R(740)
+$$
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="16" top="50%" left="0%" style="text-align: left; font-size: 50px;"}
+  
+$$
+I_{SHSI} = R(560) + \tau    [R(842) - R(560)]
+$$
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="16" top="70%" left="0%" style="text-align: left; font-size: 50px;"}
+    
+$$
+\tau = \frac{740 - 560}{842 - 560}
+$$
+:::
+        
+        
+::: {.fragment .fade-in fragment-index="16" .absolute top="30%" right="0%"}
+![](Images/Part3/Plot_explain_SHSI.png){width="1450"}
+:::
+        
+        
+
 ## Results {#results_part3} 
+
+
+
+::: {.absolute .fragment .fade-out fragment-index="1" top="10%" left="0%" style="text-align: right; font-size: 70px;"}
+Spectral signatures:
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="1" top="10%" left="0%" style="text-align: right; font-size: 70px;"}
+SHSI design
+:::
+
+::: {.fragment .fade-out fragment-index="1" .absolute top="10%" left="0%"}
+![](Images/Part3/plot_Spectra_exp.png){width="2400"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="1" .absolute top="20%" left="0%"}
+![](Images/Part3/plot_Spectra_exp2.png){width="1200"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="1" .absolute top="10%" left="50%"}
+![](Images/Part3/Plot_explain_SHSI2.png){width="1200"}
+:::
+
+::: {.fragment .fade-out fragment-index="7"}
+::: {.absolute top="6.5%" left="0%"}
+*Heatwave experiment*
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="2" top="10%" left="0%" style="text-align: right; font-size: 70px;"}
+Spectral metrics:
+:::
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="2" .absolute top="0%" left="25%"}
+![](Images/Part3/merged_indices.png){width="1500"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="3" .absolute top="0%" left="25%"}
+![](Images/Part3/merged_indices1.png){width="1500"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="4" .absolute top="0%" left="25%"}
+![](Images/Part3/merged_indices2.png){width="1500"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="5" .absolute top="0%" left="25%"}
+![](Images/Part3/merged_indices3.png){width="1500"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="6" .absolute top="0%" left="25%"}
+![](Images/Part3/merged_indices4.png){width="1500"}
+:::
+
+::: {.fragment .fade-out fragment-index="7"}
+::: {.absolute .fragment .fade-in fragment-index="3" top="30%" left="0%" style="text-align: right; font-size: 50px;"}
+$R''_{665 \, \text{nm}}$ drops by 68 %
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="4" top="40%" left="0%" style="text-align: right; font-size: 50px;"}
+$NDVI$ drops by 31 %
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="5" top="50%" left="0%" style="text-align: right; font-size: 50px;"}
+$GLI$ drops by 54 %
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="6" top="70%" left="0%" style="text-align: right; font-size: 50px;"}
+$SHSI$ increases by 420 %
+:::
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="7" top="6.5%" left="0%"}
+*in situ Satellite Mapping*
+:::
+
+
+::: {.fragment .fade-in-then-out fragment-index="7" .absolute bottom="0%"}
+
+```{r LeafletMap_S2_QPs}
+#| echo: false
+#| eval: true
+#| warning: false
+#| out-width: "1100px"
+#| out-height: "1200px"
+
+library(tidyverse)
+library(leaflet)
+library(sf)
+library(leafem)
+library(leaflet.extras2)
+library(terra)
+
+img_during <- "Data/Part3/S2/Heatwaves_S2.tif" %>% 
+  raster::stack() %>% 
+  raster::projectRaster(crs = raster::crs("+init=EPSG:3857"))
+
+
+img_before <- "Data/Part3/S2/Heatwaves_S2_before.tif" %>% 
+  raster::stack() %>% 
+  raster::projectRaster(crs = raster::crs("+init=EPSG:3857"))
+
+img_after <- "Data/Part3/S2/Heatwaves_S2_after.tif" %>% 
+  raster::stack() %>% 
+  raster::projectRaster(crs = raster::crs("+init=EPSG:3857"))
+
+
+# NAflag(img) <- NA
+img_list <- list.files("Data/Biolittoral", recursive = T, full.names = T,pattern = ".jpg") %>% 
+  as_tibble() %>% 
+  rename(path = "value") %>% 
+  mutate(filenam = basename(path)) %>% 
+  mutate(path = gsub("Data","../Data",path))
+
+Unimpacted  <- sf::st_read("Data/Part3/S2/GCP_biolittoral.shp",quiet = T) %>% 
+  dplyr::filter(Trgt_ty =="Healthy_seagrass") %>% 
+  dplyr::select(-path) %>% 
+  left_join(img_list, by = "filenam")
+
+Impacted  <- sf::st_read("Data/Part3/S2/GCP_biolittoral.shp",quiet = T) %>% 
+  dplyr::filter(Trgt_ty !="Healthy_seagrass")%>% 
+  dplyr::select(-path) %>% 
+  left_join(img_list, by = "filenam")
+
+
+all_QPs <- sf::st_read("Data/Part3/S2/GCP_biolittoral.shp",quiet = T,)
+  
+  
+
+
+# points <- sf::st_transform(points, crs = 3857)
+
+plot_S2_1 <- leaflet() %>%   
+  # addTiles() %>% 
+  setView(lng =-3.121394, lat = 47.585714, zoom = 15)  %>% 
+  addMapPane("right", zIndex = 1) %>%
+  addMapPane("left", zIndex = 1) %>%
+  addProviderTiles(providers$Esri.WorldImagery,
+                     group = "Toner",
+                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100),
+                                 pathOptions(pane = "left")),
+                     layerId = "UnImpacted"
+                     ) %>%
+  addProviderTiles(providers$Esri.WorldImagery,
+                     group = "Toner",
+                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100),
+                                 pathOptions(pane = "right")),
+                     layerId = "Impacted") %>% # Add raste
+  addRasterRGB(img_during, r = 1, g = 2, b = 3, na.color = "transparent",
+                     options = c(pathOptions(pane = "right")),
+                     layerId = "During") %>% 
+  addRasterRGB(img_before, r = 1, g = 2, b = 3, na.color = "transparent",
+                     options = c(pathOptions(pane = "left")),
+                     layerId = "Before") %>% 
+  addRasterRGB(img_after, r = 1, g = 2, b = 3, na.color = "transparent",
+                     options = c(pathOptions(pane = "right")),
+                     layerId = "Impacted",
+                     group = "Image After") %>% 
+  addRasterRGB(img_after, r = 1, g = 2, b = 3, na.color = "transparent",
+                     options = c(pathOptions(pane = "left")),
+                     layerId = "UnImpacted",
+                     group = "Image After") %>% 
+  addCircleMarkers(
+    data        = Unimpacted,
+    radius      = 2,
+    color       = "lightgreen",
+    fillColor   = "lightgreen",
+    fillOpacity = 0.8,
+    group       = "Unimpacted Points",   # <--- group name
+    # options     = pathOptions(pane = "left"),
+    popup = ~paste0("<img src='",path, "' width='1000'/>"),
+    popupOptions = popupOptions(
+    maxWidth  = 600*5,    # Maximum width of the popup
+    minWidth  = 100*5,    # Minimum width of the popup
+    maxHeight = 600*5)
+  ) %>%
+  addCircleMarkers(
+    data        = Impacted,
+    radius      = 2,
+    color       = "goldenrod",
+    fillColor   = "goldenrod",
+    fillOpacity = 0.8,
+    group       = "Impacted Points",     # <--- group name
+    # options     = pathOptions(pane = "right"),
+    popup = ~paste0("<img src='",path, "' width='1000'/>"),
+    popupOptions = popupOptions(
+    maxWidth  = 600*5,    # Maximum width of the popup
+    minWidth  = 100*5,    # Minimum width of the popup
+    maxHeight = 600*5)
+  ) %>%
+  leaflet.extras2::addSidebyside(leftId = "UnImpacted",
+                                  rightId = "Impacted") %>% 
+    addLegend(
+    position = "bottomright",
+    colors   = c("lightgreen", "goldenrod"),
+    labels   = c("Unimpacted Points", "Impacted Points"),
+    title    = "Legend"
+  ) %>%
+  
+  # Add Layers Control to toggle point layers on/off
+  addLayersControl(
+    overlayGroups = c("Unimpacted Points", "Impacted Points", "Image After"),
+    options = layersControlOptions(collapsed = FALSE)
+  )%>%
+  
+  # Hide groups by default (turn them off at startup)
+  hideGroup("Unimpacted Points") %>%
+  hideGroup("Impacted Points") %>%
+  hideGroup("Image After")
+
+
+plot_S2_1
+
+# htmlwidgets::saveWidget(plot_S2, file="maps/map_Bathy_Quiberon.html", selfcontained = F)
+
+```
+:::
+
+
+
+::: {.fragment .fade-in-then-out fragment-index="7" .absolute top="10%" right="0%"}
+![](Images/Part3/plot_Temp_Quiberon3.png){width="1300"}
+:::
+
+::: {.fragment .fade-out fragment-index="12"}
+::: {.fragment .fade-in fragment-index="8" .absolute top="10%" right="0%"}
+![](Images/Part3/plot_Temp_Quiberon3_field.png){width="1300"}
+:::
+:::
+
+::: {.fragment .fade-out fragment-index="12"}
+::: {.fragment .fade-in fragment-index="8" .absolute bottom="0%"}
+
+```{r LeafletMap_S2_QPs2}
+#| echo: false
+#| eval: true
+#| warning: false
+#| out-width: "1100px"
+#| out-height: "1200px"
+
+library(tidyverse)
+library(leaflet)
+library(sf)
+library(leafem)
+library(leaflet.extras2)
+library(terra)
+
+img_during <- "Data/Part3/S2/Heatwaves_S2.tif" %>% 
+  raster::stack() %>% 
+  raster::projectRaster(crs = raster::crs("+init=EPSG:3857"))
+
+
+img_before <- "Data/Part3/S2/Heatwaves_S2_before.tif" %>% 
+  raster::stack() %>% 
+  raster::projectRaster(crs = raster::crs("+init=EPSG:3857"))
+
+img_after <- "Data/Part3/S2/Heatwaves_S2_after.tif" %>% 
+  raster::stack() %>% 
+  raster::projectRaster(crs = raster::crs("+init=EPSG:3857"))
+
+
+# NAflag(img) <- NA
+img_list <- list.files("Data/Biolittoral", recursive = T, full.names = T, pattern = ".jpg") %>% 
+  as_tibble() %>% 
+  rename(path = "value") %>% 
+  mutate(filenam = basename(path)) %>% 
+  mutate(path = gsub("Data","../Data",path))
+
+Unimpacted  <- sf::st_read("Data/Part3/S2/GCP_biolittoral.shp",quiet = T) %>% 
+  dplyr::filter(Trgt_ty =="Healthy_seagrass") %>% 
+  dplyr::select(-path) %>% 
+  left_join(img_list, by = "filenam")
+
+Impacted  <- sf::st_read("Data/Part3/S2/GCP_biolittoral.shp",quiet = T) %>% 
+  dplyr::filter(Trgt_ty !="Healthy_seagrass")%>% 
+  dplyr::select(-path) %>% 
+  left_join(img_list, by = "filenam")
+
+  
+  
+# points <- sf::st_transform(points, crs = 3857)
+
+plot_S2_2 <- leaflet() %>%   
+  # addTiles() %>% 
+  setView(lng =-3.121394, lat = 47.585714, zoom = 15)  %>% 
+  addMapPane("right", zIndex = 1) %>%
+  addMapPane("left", zIndex = 1) %>%
+  addProviderTiles(providers$Esri.WorldImagery,
+                     group = "Toner",
+                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100),
+                                 pathOptions(pane = "left")),
+                     layerId = "UnImpacted"
+                     ) %>%
+  addProviderTiles(providers$Esri.WorldImagery,
+                     group = "Toner",
+                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100),
+                                 pathOptions(pane = "right")),
+                     layerId = "Impacted") %>% # Add raste
+  addRasterRGB(img_during, r = 1, g = 2, b = 3, na.color = "transparent",
+                     options = c(pathOptions(pane = "right")),
+                     layerId = "During") %>% 
+  addRasterRGB(img_before, r = 1, g = 2, b = 3, na.color = "transparent",
+                     options = c(pathOptions(pane = "left")),
+                     layerId = "Before") %>% 
+  addRasterRGB(img_after, r = 1, g = 2, b = 3, na.color = "transparent",
+                     options = c(pathOptions(pane = "right")),
+                     layerId = "Impacted",
+                     group = "Image After") %>% 
+  addRasterRGB(img_after, r = 1, g = 2, b = 3, na.color = "transparent",
+                     options = c(pathOptions(pane = "left")),
+                     layerId = "UnImpacted",
+                     group = "Image After") %>% 
+  addCircleMarkers(
+    data        = Unimpacted,
+    radius      = 2,
+    color       = "lightgreen",
+    fillColor   = "lightgreen",
+    fillOpacity = 0.8,
+    group       = "Unimpacted Points",   # <--- group name
+    # options     = pathOptions(pane = "left"),
+    popup = ~paste0("<img src='",path, "' width='1000'/>"),
+    popupOptions = popupOptions(
+    maxWidth  = 600*5,    # Maximum width of the popup
+    minWidth  = 100*5,    # Minimum width of the popup
+    maxHeight = 600*5)
+  ) %>%
+  addCircleMarkers(
+    data        = Impacted,
+    radius      = 2,
+    color       = "goldenrod",
+    fillColor   = "goldenrod",
+    fillOpacity = 0.8,
+    group       = "Impacted Points",     # <--- group name
+    # options     = pathOptions(pane = "right"),
+    popup = ~paste0("<img src='",path, "' width='1000'/>"),
+    popupOptions = popupOptions(
+    maxWidth  = 600*5,    # Maximum width of the popup
+    minWidth  = 100*5,    # Minimum width of the popup
+    maxHeight = 600*5)
+  ) %>%
+  leaflet.extras2::addSidebyside(leftId = "UnImpacted",
+                                  rightId = "Impacted") %>% 
+    addLegend(
+    position = "bottomright",
+    colors   = c("lightgreen", "goldenrod"),
+    labels   = c("Unimpacted Points", "Impacted Points"),
+    title    = "Legend"
+  ) %>%
+  
+  # Add Layers Control to toggle point layers on/off
+  addLayersControl(
+    overlayGroups = c("Unimpacted Points", "Impacted Points", "Image After"),
+    options = layersControlOptions(collapsed = FALSE)
+  )%>%
+  
+  # Hide groups by default (turn them off at startup)
+  # hideGroup("Unimpacted Points") %>%
+  # hideGroup("Impacted Points") %>%
+  hideGroup("Image After")
+
+
+plot_S2_2
+
+# htmlwidgets::saveWidget(plot_S2, file="maps/map_HW_Quiberon.html", selfcontained = F)
+
+```
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="7" top="17%" left="0.5%" style="text-align: right; font-size: 50px;"}
+[Before]{style="color:white;"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="7" top="17%" left="39%" style="text-align: right; font-size: 50px;"}
+[During]{style="color:white;"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="10" .absolute top="40%" right="8%"}
+![](Images/Part3/Spectra_before.png){width="1000"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="11" .absolute top="40%" right="8%"}
+![](Images/Part3/Spectra_after.png){width="1000"}
+:::
+
+::: {.fragment .fade-in fragment-index="12" .absolute top="10%" right="0%"}
+![](Images/Part3/plot_Temp_Quiberon5.png){width="1300"}
+:::
+
+::: {.fragment .fade-in fragment-index="12" .absolute top="44%" right="-3%"}
+![](Images/Part3/SHSI_S2.png){width="1300"}
+:::
+:::
+
+
+
+
+
+
+::: {.fragment .fade-out fragment-index="13"}
+::: {.fragment .fade-in fragment-index="12" .absolute top="15%" left="0%" width="2300px" height="1100px"}
+
+```{r Maps_SHSI}
+#| cache: true
+#| echo: false
+#| eval: true
+#| warning: false
+#| out-width: "2300px"
+#| out-height: "1100px"
+
+library(tidyverse)
+library(leaflet)
+library(sf)
+library(leafem)
+library(leaflet.extras2)
+library(terra)
+library(scico)
+library(leafsync)
+
+
+Index_rast <- rast("Data/Part3/Before_During_After_indices_meadowCropped.tif")[[7:9]]
+
+names(Index_rast) <- c("SHSI_Before","SHSI_During","SHSI_After")
+
+
+Unimpacted  <- sf::st_read("Data/Part3/S2/GCP_biolittoral.shp",quiet = T) %>% 
+  dplyr::filter(Trgt_ty =="Healthy_seagrass")
+
+Impacted  <- sf::st_read("Data/Part3/S2/GCP_biolittoral.shp",quiet = T) %>% 
+  dplyr::filter(Trgt_ty !="Healthy_seagrass")
+
+  
+Before <- Index_rast$SHSI_Before/100
+values(Before)[values(Before) < -2] <- -2
+values(Before)[values(Before) > 2] <- 2
+
+During <- Index_rast$SHSI_During/100
+values(During)[values(During) < -2] <- -2
+values(During)[values(During) > 2] <- 2
+
+After <- Index_rast$SHSI_After/100
+values(After)[values(After) < -2] <- -2
+values(After)[values(After) > 2] <- 2
+
+
+img_during <- "Data/Part3/S2/Heatwaves_S2.tif" %>% 
+  raster::stack() %>% 
+  raster::projectRaster(crs = raster::crs("+init=EPSG:3857"))
+
+
+img_before <- "Data/Part3/S2/Heatwaves_S2_before.tif" %>% 
+  raster::stack() %>% 
+  raster::projectRaster(crs = raster::crs("+init=EPSG:3857"))
+
+img_after <- "Data/Part3/S2/Heatwaves_S2_after.tif" %>% 
+  raster::stack() %>% 
+  raster::projectRaster(crs = raster::crs("+init=EPSG:3857"))
+
+
+  
+# pal2 <- colorNumeric("batlow", domain = c(-2,2),na.color = "transparent")
+pal2 <- colorNumeric(scico(n = 256, palette = "batlow"), domain = c(-2, 2), na.color = "transparent")
+
+
+
+
+
+
+m1 <- leaflet(width = "100%", height = "600px") %>%   
+  # addTiles() %>% 
+  setView(lng =-3.121394, lat = 47.585714, zoom = 14) %>%
+  addProviderTiles(providers$Esri.WorldImagery,
+                     group = "Toner",
+                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100)))%>%
+  addRasterImage(Before,
+                   colors=pal2,
+                   layerId = "Before")
+
+m2 <- leaflet(width = "100%", height = "600px") %>%   
+  # addTiles() %>% 
+  setView(lng =-3.121394, lat = 47.585714, zoom = 14) %>%
+  addProviderTiles(providers$Esri.WorldImagery,
+                     group = "Toner",
+                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100)))%>%
+  addRasterImage(During,
+                   colors=pal2,
+                   layerId = "During")
+
+m3 <- leaflet(width = "100%", height = "600px") %>%   
+  # addTiles() %>% 
+  setView(lng =-3.121394, lat = 47.585714, zoom = 14) %>%
+  addProviderTiles(providers$Esri.WorldImagery,
+                     group = "Toner",
+                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100)))%>%
+  addRasterImage(After,
+                   colors=pal2,
+                   layerId = "After")
+m4 <- leaflet(width = "100%", height = "600px") %>%   
+  # addTiles() %>% 
+  setView(lng =-3.121394, lat = 47.585714, zoom = 14) %>%
+  addProviderTiles(providers$Esri.WorldImagery,
+                     group = "Toner",
+                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100)))%>% 
+  addRasterRGB(img_before, r = 1, g = 2, b = 3, na.color = "transparent",
+                     layerId = "Before")
+
+m5 <- leaflet(width = "100%", height = "600px") %>%   
+  # addTiles() %>% 
+  setView(lng =-3.121394, lat = 47.585714, zoom = 14) %>%
+  addProviderTiles(providers$Esri.WorldImagery,
+                     group = "Toner",
+                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100)))%>% 
+  addRasterRGB(img_during, r = 1, g = 2, b = 3, na.color = "transparent",
+                     layerId = "During")
+
+m6 <- leaflet(width = "100%", height = "600px") %>%   
+  # addTiles() %>% 
+  setView(lng =-3.121394, lat = 47.585714, zoom = 14) %>%
+  addProviderTiles(providers$Esri.WorldImagery,
+                     group = "Toner",
+                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100)))%>% 
+  addRasterRGB(img_after, r = 1, g = 2, b = 3, na.color = "transparent",
+                     layerId = "After")
+
+sync(m1, m2, m3, m4, m5, m6, sync = "all",ncol = 3, no.initial.sync = T)
+
+
+# htmlwidgets::saveWidget(plot, file="Slides/maps/map_Bathy_Quiberon.html", selfcontained = F)
+```
+
+:::
+
+::: {.fragment .fade-in fragment-index="12" .absolute top="35%" right="5%"}
+![](Images/Part3/Scale__SHSI.png){height="500"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="12" top="10%" left="0%" style="text-align: left; font-size: 50px;"}
+Before
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="12" top="10%" left="43%" style="text-align: center; font-size: 50px;"}
+During
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="12" top="10%" right="9%" style="text-align: right; font-size: 50px;"}
+After
+:::
+:::
+
+::: {.fragment .fade-in fragment-index="13" .absolute top="10%" left="0%"}
+![](Images/Part3/GAM_emersion.png){width="2400"}
+:::
 
 
 
