@@ -48,6 +48,17 @@ $font-size: 40px;
   color: $link-color;
 }
 
+section .scrollable {
+  height: 90vh;          /* any fixed or relative height is fine */
+  overflow-y: auto !important;
+  margin: 0;             /* remove reveal.js default padding */
+}
+
+/* Make the wrapper take the whole allotted area */
+.pdf-frame {
+  width: 100%;
+  height: 100%;
+}
 
 .sectionhead {
   font-size: 1em;

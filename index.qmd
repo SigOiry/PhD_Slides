@@ -1303,80 +1303,80 @@ Sampling
 ![](Images/Intro/MPB_sampling.jpg){height="450" .circular-fade}
 :::
 
-::: {.absolute top="6.5%" .fragment .fade-in fragment-index="3"}
-*Monitoring coastal change from space*
-:::
+<!-- ::: {.absolute top="6.5%" .fragment .fade-in fragment-index="3"} -->
+<!-- *Monitoring coastal change from space* -->
+<!-- ::: -->
 
 
-```{r animation paper per year}
-#| cache: true
-#| echo: false
-#| warning: false
-#| eval: false
+<!-- ```{r animation paper per year} -->
+<!-- #| cache: true -->
+<!-- #| echo: false -->
+<!-- #| warning: false -->
+<!-- #| eval: false -->
 
 
-library(gganimate)
-library(tidyverse)
-library(Polychrome)  # if not installed
+<!-- library(gganimate) -->
+<!-- library(tidyverse) -->
+<!-- library(Polychrome)  # if not installed -->
 
-my_colors <- createPalette(24, seedcolors = c("#CC6677", "#4477AA"),range = c(60, 120))
+<!-- my_colors <- createPalette(24, seedcolors = c("#CC6677", "#4477AA"),range = c(60, 120)) -->
 
-df <- read.csv("Data/Intro/trend_paper_coastalRS.csv")%>%
-  rename(Count = `Document.Count`, Year = `Publication.Year`, Type = `Document.Type`) 
+<!-- df <- read.csv("Data/Intro/trend_paper_coastalRS.csv")%>% -->
+<!--   rename(Count = `Document.Count`, Year = `Publication.Year`, Type = `Document.Type`)  -->
 
-year_breaks <- seq(1970, max(df$Year), by = 10)
+<!-- year_breaks <- seq(1970, max(df$Year), by = 10) -->
 
-# Match color palette to document types
-type_levels <- unique(df$Type)
-n_types <- length(type_levels)
-type_colors <- setNames(my_colors[1:n_types], type_levels)
+<!-- # Match color palette to document types -->
+<!-- type_levels <- unique(df$Type) -->
+<!-- n_types <- length(type_levels) -->
+<!-- type_colors <- setNames(my_colors[1:n_types], type_levels) -->
 
-p <- df %>% 
-  ggplot(aes(x = as.factor(Year), y = Count, fill = Type))+
-  geom_col()+
-  scale_fill_manual(values = type_colors) +
-  scale_x_discrete(breaks = as.character(year_breaks)) +
-  labs(x = "Year", y = "Number of Documents") +
-  theme_minimal(base_size = 40) +  # Base size for all text
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1),
-    legend.position = c(0.2, 0.6)) +
-  transition_reveal(as.integer(Year))
+<!-- p <- df %>%  -->
+<!--   ggplot(aes(x = as.factor(Year), y = Count, fill = Type))+ -->
+<!--   geom_col()+ -->
+<!--   scale_fill_manual(values = type_colors) + -->
+<!--   scale_x_discrete(breaks = as.character(year_breaks)) + -->
+<!--   labs(x = "Year", y = "Number of Documents") + -->
+<!--   theme_minimal(base_size = 40) +  # Base size for all text -->
+<!--   theme( -->
+<!--     axis.text.x = element_text(angle = 45, hjust = 1), -->
+<!--     legend.position = c(0.2, 0.6)) + -->
+<!--   transition_reveal(as.integer(Year)) -->
 
-rendered <- animate(p, duration = 2, fps = 20, width = 1920, height = 1080, end_pause = 20, rewind = FALSE, renderer = gifski_renderer(loop = FALSE))
+<!-- rendered <- animate(p, duration = 2, fps = 20, width = 1920, height = 1080, end_pause = 20, rewind = FALSE, renderer = gifski_renderer(loop = FALSE)) -->
 
-anim_save("Images/Intro/document_trend.gif", animation = rendered)
+<!-- anim_save("Images/Intro/document_trend.gif", animation = rendered) -->
 
-```
+<!-- ``` -->
 
-::: {.absolute top="12%" .fragment .fade-in fragment-index="3"}
-Coastal Remote Sensing: A trendy topic !
-:::
+<!-- ::: {.absolute top="12%" .fragment .fade-in fragment-index="3"} -->
+<!-- Coastal Remote Sensing: A trendy topic ! -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in fragment-index="3" top="18%"}
+<!-- ::: {.absolute .fragment .fade-in fragment-index="3" top="18%"} -->
 
-![](Images/Intro/document_trend.gif){height="650"}
-:::
+<!-- ![](Images/Intro/document_trend.gif){height="650"} -->
+<!-- ::: -->
 
-::: {.absolute top="5%" left="50%" .fragment .fade-in fragment-index="4"}
-![](Images/Intro/Pereira2013.png){height="300"}
-:::
+<!-- ::: {.absolute top="5%" left="50%" .fragment .fade-in fragment-index="4"} -->
+<!-- ![](Images/Intro/Pereira2013.png){height="300"} -->
+<!-- ::: -->
 
-::: {.absolute top="70%" .fragment .fade-in fragment-index="4"}
- - Standardized measurements or indicators to monitor biodiversity
-:::
+<!-- ::: {.absolute top="70%" .fragment .fade-in fragment-index="4"} -->
+<!--  - Standardized measurements or indicators to monitor biodiversity -->
+<!-- ::: -->
 
-::: {.absolute top="80%" .fragment .fade-in fragment-index="5" style="font-size: 60px;"}
- - Adapted for remote sensing applications
-:::
+<!-- ::: {.absolute top="80%" .fragment .fade-in fragment-index="5" style="font-size: 60px;"} -->
+<!--  - Adapted for remote sensing applications -->
+<!-- ::: -->
 
-::: {.absolute top="28%" right="0%" .fragment .fade-in fragment-index="5"}
-![](Images/Intro/MullerKarger.png){width="1300"}
-:::
+<!-- ::: {.absolute top="28%" right="0%" .fragment .fade-in fragment-index="5"} -->
+<!-- ![](Images/Intro/MullerKarger.png){width="1300"} -->
+<!-- ::: -->
 
-::: {.absolute top="55%" right="8%" .fragment .fade-in fragment-index="5"}
-![](Images/Intro/muller_slide4.png){width="900"}
-:::
+<!-- ::: {.absolute top="55%" right="8%" .fragment .fade-in fragment-index="5"} -->
+<!-- ![](Images/Intro/muller_slide4.png){width="900"} -->
+<!-- ::: -->
 
 
 
@@ -2285,13 +2285,13 @@ Hyperspectral Sensor
 A lot of Narrow Spectral Bands
 :::
 
-::: {.absolute top="15%" left="0%" .fragment .fade-in-then-out fragment-index="9"}
+::: {.absolute top="15%" left="0%" .fragment .fade-in fragment-index="9"}
 ![](Images/Part1/Figure_SRF_all.gif){height="1000"}
 :::
 
-::: {.absolute top="15%" left="0%" .fragment .fade-in fragment-index="10"}
-![](Images/Part1/Figure_SRF_all_zoomed.gif){height="1000"}
-:::
+<!-- ::: {.absolute top="15%" left="0%" .fragment .fade-in fragment-index="10"} -->
+<!-- ![](Images/Part1/Figure_SRF_all_zoomed.gif){height="1000"} -->
+<!-- ::: -->
 
 ::: {.fragment .fade-out fragment-index="11"}
 ::: {.absolute top="15%" right="0%" .fragment .fade-in fragment-index="9"}
@@ -2394,7 +2394,7 @@ ggsave(filename = "Images/Part1/map_sampling.svg",
 
 ```
 
-::: {.fragment .fade-out fragment-index="1"}
+::: {.fragment .fade-out fragment-index="2"}
 ::: {.absolute bottom="-8%" right="-8%"}
 ![](Images/Part1/Map_Sampling2.png){height="1400"}
 :::
@@ -2431,40 +2431,40 @@ Total of 332 Spectra of 5 taxonomic classes
 :::
 
 
-::: {.absolute top="10%" left="40%".fragment .fade-in-then-out fragment-index="1" style="font-size: 60px;"}
-2 instruments 
-:::
+<!-- ::: {.absolute top="10%" left="40%".fragment .fade-in-then-out fragment-index="1" style="font-size: 60px;"} -->
+<!-- 2 instruments  -->
+<!-- ::: -->
 
-::: {.absolute top="15%" left="40%".fragment .fade-in-then-out fragment-index="1" style="font-size: 40px;"}
-- GER 3700 and ASD Fieldspec handheld 2
-:::
+<!-- ::: {.absolute top="15%" left="40%".fragment .fade-in-then-out fragment-index="1" style="font-size: 40px;"} -->
+<!-- - GER 3700 and ASD Fieldspec handheld 2 -->
+<!-- ::: -->
 
-::: {.absolute top="25%" left="40%".fragment .fade-in-then-out fragment-index="1" style="font-size: 60px;"}
-Calibration
-:::
+<!-- ::: {.absolute top="25%" left="40%".fragment .fade-in-then-out fragment-index="1" style="font-size: 60px;"} -->
+<!-- Calibration -->
+<!-- ::: -->
 
-::: {.absolute top="30%" left="40%".fragment .fade-in-then-out fragment-index="1" style="font-size: 40px;"}
-- Optimisation of the integration time
-- Dark noise calibration
-- Measurement of Radiance with a 99% Spectralon white reference
-:::
+<!-- ::: {.absolute top="30%" left="40%".fragment .fade-in-then-out fragment-index="1" style="font-size: 40px;"} -->
+<!-- - Optimisation of the integration time -->
+<!-- - Dark noise calibration -->
+<!-- - Measurement of Radiance with a 99% Spectralon white reference -->
+<!-- ::: -->
 
-::: {.absolute top="50%" left="40%".fragment .fade-in-then-out fragment-index="1" style="font-size: 60px;"}
-Sampling method
-:::
+<!-- ::: {.absolute top="50%" left="40%".fragment .fade-in-then-out fragment-index="1" style="font-size: 60px;"} -->
+<!-- Sampling method -->
+<!-- ::: -->
 
-::: {.absolute top="55%" left="40%".fragment .fade-in-then-out fragment-index="1" style="font-size: 40px;"}
-- Operator angled at 90° to the sun
-- At least 10 replicate for each sample
-- 30 to 50cm from the ground
-- Field of view of the instrument set to ~ 3.5°
-:::
+<!-- ::: {.absolute top="55%" left="40%".fragment .fade-in-then-out fragment-index="1" style="font-size: 40px;"} -->
+<!-- - Operator angled at 90° to the sun -->
+<!-- - At least 10 replicate for each sample -->
+<!-- - 30 to 50cm from the ground -->
+<!-- - Field of view of the instrument set to ~ 3.5° -->
+<!-- ::: -->
 
-::: {.absolute top="80%" left="50%" .fragment .fade-in-then-out fragment-index="1" style="font-size: 50px;"}
+<!-- ::: {.absolute top="80%" left="50%" .fragment .fade-in-then-out fragment-index="1" style="font-size: 50px;"} -->
 
-$R(\lambda)_{\rm sample} = \frac{1}{n}\sum_{i=1}^{n}R_i(\lambda), \quad\text{with }n \ge 10$
+<!-- $R(\lambda)_{\rm sample} = \frac{1}{n}\sum_{i=1}^{n}R_i(\lambda), \quad\text{with }n \ge 10$ -->
 
-:::
+<!-- ::: -->
 
 
 ::: {.fragment .fade-out fragment-index="4"}
@@ -2644,7 +2644,7 @@ anim_save("Images/Part1/Figure_SRF_all_sensors.gif", animation = rendered_zoomed
 :::
 
 ::: {.absolute .fragment .fade-in fragment-index="2" bottom="15%" left="0%"}
-500 bands
+250 bands
 :::
 
 ::: {.absolute .fragment .fade-in fragment-index="2" bottom="15%" left="17.5%"}
@@ -2776,16 +2776,16 @@ anim_save("Images/Part1/Figure_resampled_spectra.gif", animation = rendered)
 - Supervised Machine Learning Classifiers
 :::
 
-:::{.absolute top="55%" left="5%" .fragment .fade-in-then-out fragment-index="5" style="text-align: left;  font-size: 60px;"}
-- Random Forest
-- XGBoost 
-- SVM
-- ...
-:::
+<!-- :::{.absolute top="55%" left="5%" .fragment .fade-in-then-out fragment-index="5" style="text-align: left;  font-size: 60px;"} -->
+<!-- - Random Forest -->
+<!-- - XGBoost  -->
+<!-- - SVM -->
+<!-- - ... -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in-the-out fragment-index="5" top="35%" left="60%"}
-![](Images/Part1/tidymodels.png){height="400"}
-:::
+<!-- ::: {.absolute .fragment .fade-in-the-out fragment-index="5" top="35%" left="60%"} -->
+<!-- ![](Images/Part1/tidymodels.png){height="400"} -->
+<!-- ::: -->
 
 :::{.absolute top="55%" left="5%" .fragment .fade-in fragment-index="6" style="text-align: left;  font-size: 60px;"}
 - Random Forest 
@@ -2796,24 +2796,19 @@ anim_save("Images/Part1/Figure_resampled_spectra.gif", animation = rendered)
 
 
 
-:::{.absolute top="70%" left="5%" .fragment .fade-in-then-out fragment-index="6" style="text-align: left;  font-size: 60px;"}
-**Spliting of the dataset:**
+:::{.absolute top="70%" left="15%" .fragment .fade-in-then-out fragment-index="6" style="text-align: left;  font-size: 60px;"}
+**Training of the model:**
 
-- 75 % for training
-- 25 % for testing
-:::
-
-:::{.absolute top="70%" left="35%" .fragment .fade-in-then-out fragment-index="6" style="text-align: left;  font-size: 60px;"}
-**Tuning of hyperparameters:**
-
+- 75 % of the dataset
 - Maximisation of the AUC-ROC
 :::
 
-:::{.absolute top="70%" left="75%" .fragment .fade-in-then-out fragment-index="6" style="text-align: left;  font-size: 60px;"}
-**Validation:**
 
+:::{.absolute top="70%" left="65%" .fragment .fade-in-then-out fragment-index="6" style="text-align: left;  font-size: 60px;"}
+**Validation of the model:**
+
+- 25 % of the dataset
 - Accuracy metrics
-- Variable Importance
 :::
 :::
 
@@ -3574,15 +3569,15 @@ ggsave(filename = "Images/Part1/nMDS_3sensors.svg",
 :::
 
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="2" top="10%" left="-5%"}
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="2" top="10%" left="-5%"} -->
 
-![](Images/Part1/Menu_library_Micasense.png){height="1100"}
-:::
+<!-- ![](Images/Part1/Menu_library_Micasense.png){height="1100"} -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="2" top="5%" right="-5%"}
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="2" top="5%" right="-5%"} -->
 
-![](Images/Part1/Figure_part1_Drone-01.png){height="1200"}
-:::
+<!-- ![](Images/Part1/Figure_part1_Drone-01.png){height="1200"} -->
+<!-- ::: -->
 
 ::: {.absolute .fragment .fade-in-then-out fragment-index="3" top="10%" left="-5%"}
 
@@ -3741,22 +3736,22 @@ ggsave("Images/Part1/conf_mat_ASD.png", units="in",width=8, height=5, dpi=300)
 
 
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="5" top="10%" left="-5%"}
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="5" top="10%" left="-5%"} -->
 
-![](Images/Part1/Menu_library_Micasense.png){height="1100"}
-:::
+<!-- ![](Images/Part1/Menu_library_Micasense.png){height="1100"} -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="5" top="10%" left="6%"}
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="5" top="10%" left="6%"} -->
 
-![](Images/Part1/conf_mat_Drone.png){height="1100"}
-:::
+<!-- ![](Images/Part1/conf_mat_Drone.png){height="1100"} -->
+<!-- ::: -->
 
-::: {.absolute top="40%" right="0%" .fragment .fade-in-then-out fragment-index="5" style="font-size: 60px;"}
-- Global accuracy: 0.94
-- Cohen's kappa: 0.93
-- Sensitivity: 0.94
-- Specificity: 0.98
-:::
+<!-- ::: {.absolute top="40%" right="0%" .fragment .fade-in-then-out fragment-index="5" style="font-size: 60px;"} -->
+<!-- - Global accuracy: 0.94 -->
+<!-- - Cohen's kappa: 0.93 -->
+<!-- - Sensitivity: 0.94 -->
+<!-- - Specificity: 0.98 -->
+<!-- ::: -->
 
 
 
@@ -3778,7 +3773,7 @@ ggsave("Images/Part1/conf_mat_ASD.png", units="in",width=8, height=5, dpi=300)
 :::
 
 
-::: {.fragment .fade-out fragment-index="17"}
+::: {.fragment .fade-out fragment-index="13"}
 ::: {.absolute .fragment .fade-in fragment-index="7" top="6.5%"}
 *Drone imagery - Example of classification*
 :::
@@ -4184,77 +4179,77 @@ Florideophyceae
 ![](Images/Part1/Map_Pred/Gaf_Low_Pred.png){height="1100"}
 :::
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="13" top="20%" left="0%"}
-:::{.absolute bottom="-7%" left="22%" style="font-size: 60px;"}
-Chlorophyceae
-:::
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="13" top="20%" left="0%"} -->
+<!-- :::{.absolute bottom="-7%" left="22%" style="font-size: 60px;"} -->
+<!-- Chlorophyceae -->
+<!-- ::: -->
 
-![](Images/Part1/RGB_sample_Green8m.png){height="800"}
-:::
+<!-- ![](Images/Part1/RGB_sample_Green8m.png){height="800"} -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="13" top="20%" left="33%"}
-::: {.absolute top="0%" right="-40%"}
-![](Images/Part1/Map_Pred/legend.png){height="400"}
-:::
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="13" top="20%" left="33%"} -->
+<!-- ::: {.absolute top="0%" right="-40%"} -->
+<!-- ![](Images/Part1/Map_Pred/legend.png){height="400"} -->
+<!-- ::: -->
 
-![](Images/Part1/Pred_sample_Green_8m.png){height="800"}
-:::
-
-
-::: {.absolute .fragment .fade-in-then-out fragment-index="14" top="20%" left="0%"}
-:::{.absolute bottom="-7%" left="22%" style="font-size: 60px;"}
-Bacillariophyceae
-:::
-
-![](Images/Part1/RGB_sample_MPB8m.png){height="800"}
-:::
-
-::: {.absolute .fragment .fade-in-then-out fragment-index="14" top="20%" left="33%"}
-::: {.absolute top="0%" right="-40%"}
-![](Images/Part1/Map_Pred/legend.png){height="400"}
-:::
-
-![](Images/Part1/Pred_sample_MPB_8m.png){height="800"}
-:::
-
-::: {.absolute .fragment .fade-in-then-out fragment-index="15" top="20%" left="0%"}
-:::{.absolute bottom="-7%" left="22%" style="font-size: 60px;"}
-Magnoliopsida
-:::
-
-![](Images/Part1/RGB_sample_seagrass8m.png){height="800"}
-:::
-
-::: {.absolute .fragment .fade-in-then-out fragment-index="15" top="20%" left="33%"}
-::: {.absolute top="0%" right="-40%"}
-![](Images/Part1/Map_Pred/legend.png){height="400"}
-:::
-
-![](Images/Part1/Pred_sample_seagrass_8m.png){height="800"}
-:::
-
-::: {.absolute .fragment .fade-in-then-out fragment-index="16" top="20%" left="0%"}
-:::{.absolute bottom="-7%" left="22%" style="font-size: 60px;"}
-Florideophyceae
-:::
-
-![](Images/Part1/RGB_sample_red8m.png){height="800"}
-:::
-
-::: {.absolute .fragment .fade-in-then-out fragment-index="16" top="20%" left="33%"}
-::: {.absolute top="0%" right="-40%"}
-![](Images/Part1/Map_Pred/legend.png){height="400"}
-:::
-
-![](Images/Part1/Pred_sample_red_8m.png){height="800"}
-:::
+<!-- ![](Images/Part1/Pred_sample_Green_8m.png){height="800"} -->
+<!-- ::: -->
 
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="17" top="6.5%"}
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="14" top="20%" left="0%"} -->
+<!-- :::{.absolute bottom="-7%" left="22%" style="font-size: 60px;"} -->
+<!-- Bacillariophyceae -->
+<!-- ::: -->
+
+<!-- ![](Images/Part1/RGB_sample_MPB8m.png){height="800"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="14" top="20%" left="33%"} -->
+<!-- ::: {.absolute top="0%" right="-40%"} -->
+<!-- ![](Images/Part1/Map_Pred/legend.png){height="400"} -->
+<!-- ::: -->
+
+<!-- ![](Images/Part1/Pred_sample_MPB_8m.png){height="800"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="15" top="20%" left="0%"} -->
+<!-- :::{.absolute bottom="-7%" left="22%" style="font-size: 60px;"} -->
+<!-- Magnoliopsida -->
+<!-- ::: -->
+
+<!-- ![](Images/Part1/RGB_sample_seagrass8m.png){height="800"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="15" top="20%" left="33%"} -->
+<!-- ::: {.absolute top="0%" right="-40%"} -->
+<!-- ![](Images/Part1/Map_Pred/legend.png){height="400"} -->
+<!-- ::: -->
+
+<!-- ![](Images/Part1/Pred_sample_seagrass_8m.png){height="800"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="16" top="20%" left="0%"} -->
+<!-- :::{.absolute bottom="-7%" left="22%" style="font-size: 60px;"} -->
+<!-- Florideophyceae -->
+<!-- ::: -->
+
+<!-- ![](Images/Part1/RGB_sample_red8m.png){height="800"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="16" top="20%" left="33%"} -->
+<!-- ::: {.absolute top="0%" right="-40%"} -->
+<!-- ![](Images/Part1/Map_Pred/legend.png){height="400"} -->
+<!-- ::: -->
+
+<!-- ![](Images/Part1/Pred_sample_red_8m.png){height="800"} -->
+<!-- ::: -->
+
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="13" top="6.5%"}
 *Drone imagery - Validation*
 :::
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="17" bottom="0%" left="10%"}
+::: {.absolute .fragment .fade-in-then-out fragment-index="13" bottom="0%" left="10%"}
 
 ![](Images/Part1/ConfusionMatrixGlobal.png){height="1200"}
 :::
@@ -4413,15 +4408,15 @@ ggsave("Images/Part1/Fig_VIP_Spectra.png", SP_plot, width =10, height = 10, unit
 
 ```
 
-::: {.absolute .fragment .fade-in fragment-index="18" top="6.5%"}
+::: {.absolute .fragment .fade-in fragment-index="14" top="6.5%"}
 *Drone imagery - Variable importance*
 :::
 
-::: {.absolute .fragment .fade-in fragment-index="18" top="20%" left="00%"}
+::: {.absolute .fragment .fade-in fragment-index="14" top="20%" left="00%"}
 ![](Images/Part1/Fig_VIP.png){height="800"}
 :::
 
-::: {.absolute .fragment .fade-in fragment-index="18" top="20%" right="0%"}
+::: {.absolute .fragment .fade-in fragment-index="14" top="20%" right="0%"}
 ![](Images/Part1/Fig_VIP_Spectra.png){height="900"}
 :::
 
@@ -4901,31 +4896,31 @@ Photo interpretation of images to retrieve the area covered by *G. vermiculophyl
 :::
 
 
-::: {.absolute bottom="-8%" .fragment .fade-in fragment-index="2" right="-7.6%"}
+::: {.absolute bottom="-8%" .fragment .fade-in fragment-index="3" right="-7.6%"}
 ![](Images/Part2/Map_Gracilaria_Drone.png){height="1400"}
 :::
 
+<!-- ::: {.absolute top="6.5%" .fragment .fade-in-then-out fragment-index="2"} -->
+<!-- *Hyperspectral measurments* -->
+<!-- ::: -->
+
+<!-- ::: {.absolute top="15%" .fragment .fade-in-then-out fragment-index="2" style="font-size: 60px;"} -->
+<!-- Same methodology as the spectral library -->
+<!-- ::: -->
+
+<!-- ::: {.absolute top="32%" left="10%" .fragment .fade-in-then-out fragment-index="2" style="font-size: 60px;"} -->
+<!-- Second derivative: -->
+<!-- ::: -->
+
+<!-- :::{.absolute top="40%" left="20%" .fragment .fade-in-then-out fragment-index="2" style="font-size: 50px;"} -->
+<!-- $$ -->
+<!-- f''(\lambda_i) \approx \frac{f(\lambda_{i+1}) - 2f(\lambda_i) + f(\lambda_{i-1})}{(\Delta \lambda)^2} -->
+<!-- $$  -->
+<!-- ::: -->
+
 ::: {.absolute top="6.5%" .fragment .fade-in fragment-index="3"}
+*Drone Mapping*
 :::
-
-::: {.absolute top="6.5%" .fragment .fade-in-then-out fragment-index="2"}
-*Hyperspectral measurments*
-:::
-
-::: {.absolute top="15%" .fragment .fade-in-then-out fragment-index="2" style="font-size: 60px;"}
-Same methodology as the spectral library
-:::
-
-::: {.absolute top="32%" left="10%" .fragment .fade-in-then-out fragment-index="2" style="font-size: 60px;"}
-Second derivative:
-:::
-
-:::{.absolute top="40%" left="20%" .fragment .fade-in-then-out fragment-index="2" style="font-size: 50px;"}
-$$
-f''(\lambda_i) \approx \frac{f(\lambda_{i+1}) - 2f(\lambda_i) + f(\lambda_{i-1})}{(\Delta \lambda)^2}
-$$ 
-:::
-
 
 ::: {.absolute top="60%" left="10.5%" .fragment .fade-in-then-out fragment-index="3"}
 DJI Matrice 300
@@ -4936,7 +4931,7 @@ DJI Matrice 300
 :::
 
 
-:::{.fragment .fade-out fragment-index="8"}
+::: {.fragment .fade-out fragment-index="8"}
 ::: {.absolute top="15%" left="2%" .fragment .fade-in-then-out fragment-index="3"}
 
 
@@ -4992,85 +4987,85 @@ DJI Zenmuse L1
 - High resolution RGB camera
 :::
 
-::: {.absolute top="70%" left="5%" .fragment .fade-in-then-out fragment-index="5" style="font-size: 50px;"}
+::: {.absolute top="70%" left="5%" .fragment .fade-in-then-out fragment-index="4" style="font-size: 50px;"}
 ![](Images/Part2/DISCOV_logoV2.png){height="500"}
 
 :::
 
-::: {.absolute top="40%" left="35%" .fragment .fade-in-then-out fragment-index="5" width="1000px" style="font-size: 50px;"}
-[ShinyValidate](https://oirysimon.shinyapps.io/shiny_validate/)
+<!-- ::: {.absolute top="40%" left="35%" .fragment .fade-in-then-out fragment-index="5" width="1000px" style="font-size: 50px;"} -->
+<!-- [ShinyValidate](https://oirysimon.shinyapps.io/shiny_validate/) -->
 
 
 
-[*Presence and absence of red macroalgae for each drone flight*]{style="font-size: 30px;"}
-```{r Validation Table}
-#| echo: false
-#| cache: true
-#| error: false
-#| message: false
-#| warning: false
+<!-- [*Presence and absence of red macroalgae for each drone flight*]{style="font-size: 30px;"} -->
+<!-- ```{r Validation Table} -->
+<!-- #| echo: false -->
+<!-- #| cache: true -->
+<!-- #| error: false -->
+<!-- #| message: false -->
+<!-- #| warning: false -->
 
 
-library(tidyverse)
-library(flextable)
-library(sf)
-library(officer)
+<!-- library(tidyverse) -->
+<!-- library(flextable) -->
+<!-- library(sf) -->
+<!-- library(officer) -->
 
 
 
-df_flx_valid <- "Data/Part2/shp_all_validation.shp" %>%
-  # "Data/Shiny_Validation/shp_all_validation.shp" %>%
-  read_sf() %>% 
-  mutate(user = sapply(strsplit(user_date, "_"), function(x) x[1]),
-         site = sapply(strsplit(snapshot, "_"), function(x) x[1]),
-         site = case_when(site == "Aven" ~ "Aven Estuary",
-                          site == "Belon" ~ "Belon Estuary",
-                          site == "SajaNorth" ~ "Marisma de Cudón",
-                          site == "SajaSouth" ~ "Marisma de Cortiguera"),
-         PresenceAbs = case_when(Vegetation == "Red algae" ~ "Present",
-                                 T ~ "Absent")) %>% 
-  rename(Site = "site") 
+<!-- df_flx_valid <- "Data/Part2/shp_all_validation.shp" %>% -->
+<!--   # "Data/Shiny_Validation/shp_all_validation.shp" %>% -->
+<!--   read_sf() %>%  -->
+<!--   mutate(user = sapply(strsplit(user_date, "_"), function(x) x[1]), -->
+<!--          site = sapply(strsplit(snapshot, "_"), function(x) x[1]), -->
+<!--          site = case_when(site == "Aven" ~ "Aven Estuary", -->
+<!--                           site == "Belon" ~ "Belon Estuary", -->
+<!--                           site == "SajaNorth" ~ "Marisma de Cudón", -->
+<!--                           site == "SajaSouth" ~ "Marisma de Cortiguera"), -->
+<!--          PresenceAbs = case_when(Vegetation == "Red algae" ~ "Present", -->
+<!--                                  T ~ "Absent")) %>%  -->
+<!--   rename(Site = "site")  -->
 
-total <- df_flx_valid %>% 
-  group_by(PresenceAbs) %>% 
-  reframe(n = n()) %>% 
-  pivot_wider(names_from = PresenceAbs, values_from = n) %>% 
-  mutate(Site = "Total")
+<!-- total <- df_flx_valid %>%  -->
+<!--   group_by(PresenceAbs) %>%  -->
+<!--   reframe(n = n()) %>%  -->
+<!--   pivot_wider(names_from = PresenceAbs, values_from = n) %>%  -->
+<!--   mutate(Site = "Total") -->
 
-table_data <- df_flx_valid %>% 
-  group_by(Site, PresenceAbs) %>% 
-  reframe(n = n()) %>% 
-  pivot_wider(names_from = "PresenceAbs", values_from = "n") %>% 
-  rbind(total) %>% 
-  rowwise() %>% 
-  mutate(Total = sum(c(Absent, Present)))
+<!-- table_data <- df_flx_valid %>%  -->
+<!--   group_by(Site, PresenceAbs) %>%  -->
+<!--   reframe(n = n()) %>%  -->
+<!--   pivot_wider(names_from = "PresenceAbs", values_from = "n") %>%  -->
+<!--   rbind(total) %>%  -->
+<!--   rowwise() %>%  -->
+<!--   mutate(Total = sum(c(Absent, Present))) -->
 
-# Get the number of rows for the table data
-n_rows <- nrow(table_data)
+<!-- # Get the number of rows for the table data -->
+<!-- n_rows <- nrow(table_data) -->
 
-# Create the flextable with a horizontal line
-table_data %>%
-  mutate(
-    Country = case_when(
-      Site %in% c("Marisma de Cortiguera", "Marisma de Cudón") ~ "Spain",
-      Site == "Total"                                   ~ " ",
-      TRUE                                              ~ "France"
-    )
-  ) %>%
-  select(Country, everything()) %>%
-  flextable() %>%
-  align(align = "center", part = "all") %>%
-  fontsize(size = 30, part = "all") %>%
-  padding(padding = 6, part = "all") %>%
-  set_table_properties(layout = "autofit", width = 1) %>%
-  hline(
-    i = nrow(table_data) - 1,
-    border = fp_border(color = "black", width = 1),
-    part = "body"
-  )
-```
+<!-- # Create the flextable with a horizontal line -->
+<!-- table_data %>% -->
+<!--   mutate( -->
+<!--     Country = case_when( -->
+<!--       Site %in% c("Marisma de Cortiguera", "Marisma de Cudón") ~ "Spain", -->
+<!--       Site == "Total"                                   ~ " ", -->
+<!--       TRUE                                              ~ "France" -->
+<!--     ) -->
+<!--   ) %>% -->
+<!--   select(Country, everything()) %>% -->
+<!--   flextable() %>% -->
+<!--   align(align = "center", part = "all") %>% -->
+<!--   fontsize(size = 30, part = "all") %>% -->
+<!--   padding(padding = 6, part = "all") %>% -->
+<!--   set_table_properties(layout = "autofit", width = 1) %>% -->
+<!--   hline( -->
+<!--     i = nrow(table_data) - 1, -->
+<!--     border = fp_border(color = "black", width = 1), -->
+<!--     part = "body" -->
+<!--   ) -->
+<!-- ``` -->
 
-:::
+<!-- ::: -->
 
 ::: {.absolute bottom="0%" left="40%" .fragment .fade-in-then-out fragment-index="6"}
 
@@ -5438,31 +5433,33 @@ for (i in unique(df$date)) {
 # ggsave("Paper/Figures/Low_res/Cover_Gracillaria_vs_Time.png", plot, width = 10, height = 6, dpi = 200)
 
 ```
-::: {.absolute top="6.5%" .fragment .fade-out fragment-index="1"}
-*Spectral signature of G. vermiculophylla*
-:::
 
-::: {.absolute top="15%" left="10%" .fragment .fade-out fragment-index="1"}
-![](Images/Part2/plot_spectral_signature.png){width="2000"}
-:::
+<!-- ::: {.absolute top="6.5%" .fragment .fade-out fragment-index="1"} -->
+<!-- *Spectral signature of G. vermiculophylla* -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-out fragment-index="1" bottom="0%" left="20%"}
-Average of ~ 100 spectra
-:::
+<!-- ::: {.absolute top="15%" left="10%" .fragment .fade-out fragment-index="1"} -->
+<!-- ![](Images/Part2/plot_spectral_signature.png){width="2000"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-out fragment-index="1" bottom="0%" left="20%"} -->
+<!-- Average of ~ 100 spectra -->
+<!-- ::: -->
 
 ::: {.fragment .fade-out fragment-index="8"}
-::: {.absolute top="6.5%" .fragment .fade-in fragment-index="1"}
+::: {.absolute top="6.5%"}
 *Historical records in the Belon estuary*
 :::
 
-::: {.absolute .fragment .fade-in fragment-index="1" bottom="-8%" right="-7.6%"}
+::: {.absolute bottom="-8%" right="-7.6%"}
 ![](Images/Part2/Map_Belon.png){height="1400"}
 :::
 :::
 
-::: {.absolute top="15%" left="0%" .fragment .fade-in-then-out fragment-index="1"}
+::: {.absolute .fragment .fade-out fragment-index="2" top="15%" left="0%"}
 ![](Images/Part2/Historical_maps.png){width="2000"}
 :::
+
 
 ::: {.absolute top="10%" left="10%" .fragment .fade-in-then-out fragment-index="2"}
 ![](Images/Part2/subplot_remoterletemps/1958.png){height="650"}
@@ -5842,58 +5839,58 @@ Presence/Absence of Red Algae: 91.1%
 :::
 :::
 
-::: {.blackbox .absolute .fragment .fade-in-then-out fragment-index="13" top="61%" left="26%" width= "30px" height="30px"}
-:::
+<!-- ::: {.blackbox .absolute .fragment .fade-in-then-out fragment-index="13" top="61%" left="26%" width= "30px" height="30px"} -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="13" top="5%" left="60%"}
-:::{.absolute bottom="-7%" left="10%" style="font-size: 60px;"}
-Chlorophyceae
-:::
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="13" top="5%" left="60%"} -->
+<!-- :::{.absolute bottom="-7%" left="10%" style="font-size: 60px;"} -->
+<!-- Chlorophyceae -->
+<!-- ::: -->
 
-![](Images/Part2/RGB_sample_Saja_Green_8m.png){width="500"}
-:::
+<!-- ![](Images/Part2/RGB_sample_Saja_Green_8m.png){width="500"} -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="13" top="55%" left="60%"}
-![](Images/Part2/Pred_sample_Saja_Green_8m.png){width="500"}
-:::
-
-
-
-::: {.whitebox .absolute .fragment .fade-in-then-out fragment-index="14" top="38%" left="26%" width= "30px" height="30px"}
-:::
-
-::: {.absolute .fragment .fade-in-then-out fragment-index="14" top="5%" left="60%"}
-:::{.absolute bottom="-7%" left="5%" style="font-size: 60px;"}
-Florideophyceae
-:::
-
-![](Images/Part2/RGB_sample_Saja_Red_8m.png){width="500"}
-:::
-
-::: {.absolute .fragment .fade-in-then-out fragment-index="14" top="55%" left="60%"}
-![](Images/Part2/Pred_sample_Saja_Red_8m.png){width="500"}
-:::
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="13" top="55%" left="60%"} -->
+<!-- ![](Images/Part2/Pred_sample_Saja_Green_8m.png){width="500"} -->
+<!-- ::: -->
 
 
-::: {.blackbox .absolute .fragment .fade-in-then-out fragment-index="15" top="75.5%" left="50%" width= "30px" height="30px"}
-:::
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="15" top="5%" left="60%"}
-:::{.absolute bottom="-7%" left="15%" style="font-size: 60px;"}
-Saltmarshes
-:::
+<!-- ::: {.whitebox .absolute .fragment .fade-in-then-out fragment-index="14" top="38%" left="26%" width= "30px" height="30px"} -->
+<!-- ::: -->
 
-![](Images/Part2/RGB_sample_Saja_saltmarsh_8m.png){width="500"}
-:::
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="14" top="5%" left="60%"} -->
+<!-- :::{.absolute bottom="-7%" left="5%" style="font-size: 60px;"} -->
+<!-- Florideophyceae -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="15" top="55%" left="60%"}
-![](Images/Part2/Pred_sample_Saja_saltmarsh_8m.png){width="500"}
-:::
+<!-- ![](Images/Part2/RGB_sample_Saja_Red_8m.png){width="500"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="14" top="55%" left="60%"} -->
+<!-- ![](Images/Part2/Pred_sample_Saja_Red_8m.png){width="500"} -->
+<!-- ::: -->
+
+
+<!-- ::: {.blackbox .absolute .fragment .fade-in-then-out fragment-index="15" top="75.5%" left="50%" width= "30px" height="30px"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="15" top="5%" left="60%"} -->
+<!-- :::{.absolute bottom="-7%" left="15%" style="font-size: 60px;"} -->
+<!-- Saltmarshes -->
+<!-- ::: -->
+
+<!-- ![](Images/Part2/RGB_sample_Saja_saltmarsh_8m.png){width="500"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="15" top="55%" left="60%"} -->
+<!-- ![](Images/Part2/Pred_sample_Saja_saltmarsh_8m.png){width="500"} -->
+<!-- ::: -->
 
 ::: {.fragment .fade-out fragment-index="18"}
-::: {.absolute .fragment .fade-in fragment-index="16" bottom="-8%" right="-7.6%"}
-![](Images/Part2/Map_Belon.png){height="1400"}
-:::
+<!-- ::: {.absolute .fragment .fade-in fragment-index="16" bottom="-8%" right="-7.6%"} -->
+<!-- ![](Images/Part2/Map_Belon.png){height="1400"} -->
+<!-- ::: -->
 
 ::: {.absolute top="6.5%" .fragment .fade-in fragment-index="16"}
 *Topography of the mudflat*
@@ -7140,8 +7137,7 @@ Sources: [Morris et al. (2013)](https://doi.org/10.1016/j.jaridenv.2013.03.013),
 - [Introduction](#intro-part3)
 - [Material & Methods](#material_part3)
 - [Results](#results_part3)
-- Satellite observation
-- Ecological consequences
+- [Discussion](#discussion_part3)
 
 ## Introduction {#intro-part3}
 
@@ -7599,7 +7595,7 @@ detailed 3D coastal and nearshore mapping
 ::: {.absolute .fragment .fade-in fragment-index="11" left="0%" top="30%"}
 ```{r LeafletLitto3D}
 #| echo: false
-#| eval: true
+#| eval: false
 #| warning: false
 #| out-width: "1100px"
 #| out-height: "800px"
@@ -7665,7 +7661,7 @@ Plot_Bathy
 ::: {.absolute .fragment .fade-in-then-out fragment-index="14" left="0%" top="30%"}
 ```{r LeafletEmersion}
 #| echo: false
-#| eval: true
+#| eval: false
 #| warning: false
 #| out-width: "1100px"
 #| out-height: "800px"
@@ -8351,10 +8347,567 @@ After
 :::
 
 
+## Discussion {#discussion_part3} 
 
- 
-# General conclusions and future perspectives {data-name="Discussion"}
+```{r Plot Spectra Stressed}
+#| cache: true
+#| echo: false
+#| eval: false
+#| warning: false
+
+library(MapRs)
+library(lubridate)
+library(patchwork)
+library(hsdar)
+library(gganimate)
+
+df_spectra_exp <- read.csv("Data/Part3/df_experiment.csv") %>% 
+  as_tibble() %>% 
+  dplyr::filter(Scenario == "Treatment",
+                Date != "07/17/2024") %>% 
+  mutate(groups = case_when(Date == "07/16/2024" ~ "Unimpacted",
+                            T ~ "Impacted")) %>% 
+  group_by(groups,Wavelength) %>% 
+  reframe(std_cor = mean(std_cor, na.rm = T))
+
+Color_spectra = c("Unimpacted" = "darkgreen","Impacted" = "#73523E")
+
+
+plot_Spectra_exp <- df_spectra_exp %>%
+  mutate(cols = groups,
+         groups = as_factor(groups)) %>% 
+  ggplot()+
+  geom_line(aes(x = Wavelength, y = std_cor, color = cols, group = 1L), linewidth = 1)+
+  scale_color_manual(values = Color_spectra,
+                        name = "Status",
+                        guide = guide_legend(override.aes = list(linewidth = 1))
+                     )  +
+  theme_Bede() + 
+  ylab("Standardized Reflectance")+
+  xlab("Wavelength (nm)")+
+    theme(
+      strip.text.x = element_text(size =17),
+      legend.title = element_text(size =17, hjust = 0.5),
+      legend.title.position = "top",
+      legend.text = element_text(size =13),
+
+      # legend.text = element_text(hjust = 0, size =13),
+      axis.text.x = element_text(size = 13),
+      axis.text.y = element_text(size = 13),
+      axis.title.x = element_text(size = 17),
+      axis.title.y = element_text(size = 17),
+      legend.position = "top",
+      legend.key.width = unit(1,"cm"),
+      legend.key.height = unit(5,"mm"),
+
+    plot.margin = margin(t = 5, r = 5, b = 5, l = 5), # Adjusts plot margins
+    legend.spacing.y = unit(0.1, "cm"),  # Reduces space between legend items vertically
+    legend.margin = margin(t = 0, b = -10) 
+    ) +
+
+    # Animate sensor changes globally
+    transition_states(cols)+
+    ease_aes("sine-in-out")
+
+rendered <- animate(plot_Spectra_exp, duration = 3, fps = 20, width = 10, height = 10, units = "in", res = 300, end_pause = 1, rewind = F, renderer = gifski_renderer(loop = T))
+
+
+anim_save("Images/Part3/Figure_Impacted_Seagrass.gif", animation = rendered)
+```
+
+::: {.absolute top="6.5%"}
+*Mapping Impacted meadows*
+:::
+
+::: {.absolute top="15%" left="50%" width="1200px"}
+**Seagrasses impacted by heatwave have a distinct spectral signature**
+
+::: {.fragment .fade-out fragment-index="2"}
+- Reflectance drops at 560 and 740nm
+:::
+:::
+
+::: {.fragment .fade-out fragment-index=2" .absolute top="10%" left="0%"}
+![](Images/Part3/Figure_Impacted_Seagrass.gif){width="1200"}
+:::
+
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="1" top="25%" left="55%" width="1O00px"}
+**Thermal stress = Oxydative stress**
+
+- Degradation of Chlorophyll-a
+- Shift in pigment ratios = Carotenoids becoming more prominent
+
+**Oxydative stress = Membrane damages**
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="2" top="25%" left="50%" width="1O00px"}
+**Possible to detect seagrass thermal stress using satellite remote sensing, using SHSI**
+
+::: {.fragment .fade-out fragment-index="3"}
+- Most Sensitive early-metric to flag damage over meadows 
+- Designed to be used by most space missions (Sentinel-2, Pléiades, Wordview-3, SkySat, GeoSat-2...)
+- but also by futur missions (Sentinel-2 Next Generation, LandSat Next)
+:::
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="2"}
+::: {.absolute top="10%" left="0%"}
+![](Images/Part3/WordView3.png){width="600"}
+:::
+
+::: {.absolute top="45%" left="0%"}
+![](Images/Part3/GEOSAT.png){width="600"}
+:::
+
+::: {.absolute top="27%" left="20%"}
+![](Images/Part3/L8.png){width="600"}
+:::
+
+::: {.absolute bottom="15%" left="25%"}
+![](Images/Part3/LS_Next.png){width="500"}
+:::
+
+::: {.absolute bottom="0%" left="50%"}
+![](Images/Part3/Pleiades.png){width="600"}
+:::
+
+::: {.absolute bottom="0%" right="0%"}
+![](Images/Part3/S2.png){width="600"}
+:::
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="3" top="40%" left="50%" width="1000px"}
+**Satellite mapping reveals tide-modulated, patchy impacts**
+
+::: {.fragment .fade-out fragment-index="4"}
+- Upper intertidal areas are more impacted  
+- 95% of darkened patches are above 3.9 m  
+- Darkening occurs in seagrasses exposed more than 13 h per day  
+:::
+:::
+
+
+```{r making DarkeningIndexMap}
+#| cache: false
+#| echo: false
+#| eval: false
+#| warning: false
+
+library(ggplot2)
+library(sf)
+library(cowplot)
+library(tidyterra)
+
+msk <- read_sf("Data/Part3/mask_study_quiberon_narrow.shp")
+
+RGB_comp <- "Data/Part3/after_RGB_comp.tif" %>% 
+  terra::rast() %>% 
+  terra::crop(msk)
+
+writeRaster(RGB_comp, "Data/Part3/after_RGB_comp_cropped.tif")
+# 
+# zoom2 <- "Data/shp/zoom_bathy_insert.shp" %>% 
+#   read_sf()
+
+# coltab_darkening <- c("darkseagrass" = c("#436EEE"))
+coltab_darkening <- c("darkseagrass" = c("#009ACD"))
+
+
+# 
+# segment_darkening= data.frame(x1 = c(490524, 490925),
+#                      x2 = c(490797,491540),
+#                      y1 = c(5269905,5269905),
+#                      y2 = c(5270467,5270448),
+#                      id = c(1,2))
+
+sf_darkseagrass <- read_sf("Data/Part3/darkening_patches_SDI.shp")
+
+main_plot_darkening <- ggplot() +
+  geom_spatraster_rgb(data = RGB_comp,interpolate = F,max_col_value = 220 ) +
+  geom_sf(data = sf_darkseagrass, aes(color = "darkseagrass", fill = "darkseagrass"), linewidth = 0.7) +
+  # geom_sf(data = bathy_line, color = "goldenrod2", linewidth = 0.7) +
+
+  # geom_sf(data = zoom2, color = "red", fill = NA,linewidth = 1, linetype = "dashed")+
+  # geom_segment(data = segment_bathy, aes(x = x1, xend = x2, y = y1, yend = y2, group = id), color = "red", linewidth = 0.8, linetype = "dashed")+
+  # geom_label(aes(x = 490200, y = 5271680, label = "B"), alpha = 0.5, size = 10)+
+
+  coord_sf(expand = FALSE,
+          label_axes = list(
+          bottom = "E", right = "N"
+           )) +
+  
+  scale_color_manual(values = coltab_darkening,
+                     label = "Dark Patches",
+                     name = NULL) +
+  scale_fill_manual(values = coltab_darkening,
+                     label = "Dark Patches",
+                     name = NULL) +
+  theme_Bede_Map() +
+  theme(
+    legend.position = c(0.95, 0.98),
+    legend.background = element_rect(fill = alpha("white", 0.5)),
+    plot.background = element_rect(fill = "white"),
+
+    # axis.text.y = element_text(vjust = 0.5,hjust = 0.5, angle = 90),
+    axis.text.y.right = element_text(vjust = 0.5,hjust = 0.5, angle = 90),
+    axis.title.y = element_blank(),
+    axis.title.x = element_blank()
+  )
+main_plot_darkening
+
+ggsave("Images/Part3/Map_darkening.png",main_plot_darkening, width = 5, height = 9, dpi = 400)
+
+```
+
+::: {.fragment .fade-in-then-out fragment-index="3" .absolute top="10%" left="5%"}
+![](Images/Part3/Map_darkening.png){height="1250"}
+:::
+
+
+
+```{r data opening HW}
+#| echo: false
+#| eval: false
+#| warning: false
+
+
+df <- list.files("Data/Part3/",pattern = "HOR_departement_56_*", full.names = TRUE) %>% 
+  map(read.delim,
+      sep = ";",
+      .progress = TRUE) %>%
+  list_rbind() %>% 
+  dplyr::select(NOM_USUEL, LAT,LON,,AAAAMMJJHH,`T`, TN, TX, T10, T20, T50,T100) %>% 
+  dplyr::filter(!is.na(`T`))
+```
+
+```{r first process HW}
+#| echo: false
+#| eval: false
+#| warning: false
+
+library(heatwaveR)
+
+df_date <- df  %>% 
+  mutate(date = as.POSIXct(strptime(AAAAMMJJHH, format = "%Y%m%d%H"))) %>% 
+  group_by(NOM_USUEL) %>% 
+  reframe(min_date = min(date,na.rm = T),
+          max_date = max(date,na.rm = T),
+          n = n())
+
+selected_site <- df_date %>% 
+  filter(n ==max(n)) %>% 
+  pull(NOM_USUEL)
+
+df_sub <- df %>% 
+  dplyr::filter(NOM_USUEL == "LORIENT-LANN BIHOUE",
+                !is.na(`T`)) %>% 
+  dplyr::select(NOM_USUEL, LAT,LON,,AAAAMMJJHH,`T`, TN, TX, T10, T20, T50,T100) %>% 
+  mutate(date = as.POSIXct(as.character(AAAAMMJJHH), format = "%Y%m%d%H",tz = "UTC"))
+
+
+ggplot(df_sub)+
+  # geom_hex(aes(x = date, y = `T`), bins = 10)+
+  geom_line(aes(x = date, y = `T`))+
+  ylab("Temperature (°C)")+
+  xlab("Date")+
+  theme_Bede()+
+  theme(axis.text.x = element_text(size = 15),
+        axis.text.y = element_text(size = 15),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20))
+
+df_heatwaveR <- df_sub %>% 
+  rename(t = date,
+         temp = `T`) %>% 
+  dplyr::select(t,temp) %>% 
+  mutate(t = as.Date(t)) %>% 
+  group_by(t) %>% 
+  reframe(temp = max(temp,na.rm = T)) %>% 
+  dplyr::filter(t > as.Date("1948-12-31"))
+
+  
+
+  clim <- ts2clm(df_heatwaveR, climatologyPeriod = c(min(df_heatwaveR$t), max(df_heatwaveR$t)))
+  
+  event <- detect_event(clim,categories = T,minDuration = 3)
+  
+  res <- detect_event(clim, minDuration = 3)
+  mhw <- res$clim
+  
+  mhw %>%
+    filter(t> as.Date("2022-01-01") ) %>%
+ggplot(aes(x = t, y = temp))+
+    geom_line() +
+  geom_flame(aes(y2 = thresh))
+```
+
+```{r frequency of heatwaves as define in Perkins and Alexander (2013)}
+#| echo: false
+#| eval: false
+#| warning: false
+
+
+library(tidyverse)
+library(heatwaveR)
+library(mgcv)
+library(Utilities.Package)
+
+freq_heatwave <- event %>% 
+  mutate(year = substr(as.character(date_start),1,4)) %>% 
+  group_by(year) %>% 
+  reframe(value = n()) %>% 
+  mutate(data = "Frequency")
+
+intensity_heatwave <- event %>% 
+  mutate(year = substr(as.character(date_start),1,4)) %>% 
+  group_by(year) %>% 
+  reframe(value = sum(intensity_cumulative)) %>% 
+  mutate(data = "Intensity") %>% 
+  mutate(value = sqrt(value*value))
+
+
+df_heatwaves <- rbind(freq_heatwave,intensity_heatwave) %>% 
+  pivot_wider(names_from = data, values_from = value)
+
+# coeff=30
+# ggplot(df_heatwaves, aes(x=as.numeric(year))) +
+#   geom_point( aes(y=Frequency), color = "blue") +
+#   geom_smooth( aes(y=Frequency), color = "blue",method = "gam")+
+#   geom_point( aes(y=Intensity / coeff), color = "red") +
+#   geom_smooth( aes(y=Intensity / coeff), color = "red",method = "gam")+
+#   scale_y_continuous(
+#     
+#     # Features of the first axis
+#     name = "Frequency",
+#     
+#     # Add a second axis and specify its features
+#     sec.axis = sec_axis(~.*coeff, name="Intensity")
+#   )+
+#   theme_Bede()
+
+
+df_freq_HW <- df_heatwaves %>% 
+  dplyr::select(-Intensity) %>% 
+  mutate(year = as.numeric(year))
+
+gam_freq_HW <- mgcv::gam(Frequency ~ s(year,
+                                       k=3), 
+                 # family = poisson(),
+                 data = df_freq_HW)
+
+Utilities.Package::Model_Check(gam_freq_HW)
+
+
+NewData_freq_HW<-expand_grid(year=unique(df_freq_HW$year))
+
+pred_freq_HW <- predict(gam_freq_HW, NewData_freq_HW, se.fit = T, type = "link")
+
+
+NewData_freq_HW <- NewData_freq_HW %>% 
+  mutate(fit = pred_freq_HW$fit,
+         se = pred_freq_HW$se.fit)
+
+(heatwaves_frequency <- ggplot(df_freq_HW, aes(x=year))+
+  geom_point(aes(y=Frequency), color = "darkred", alpha = 0.3)+
+    geom_line(data = NewData_freq_HW, aes(x = year, y = fit),color = "darkred")+
+    geom_ribbon(data = NewData_freq_HW, aes(x = year, y = fit, ymin = fit-se, ymax = fit+se),color = NA ,fill = "darkred",alpha = 0.2)+
+    ylab(expression("Frequency of atmospheric heatwaves (year"^"-1" * ")"))+
+    xlab(expression("Years"))+
+    scale_x_continuous(position = "top")+
+    theme_Bede()+
+    # scale_fill_manual(values = coltab)+
+    theme(
+      # strip.text.y= element_text(size =17),
+       strip.text.y= element_blank(),
+      # legend.title = element_text(size =17, hjust = 0.5),
+      legend.title = element_blank(),
+      legend.title.position = "top",
+      legend.text = element_text(size =13),
+
+      # legend.text = element_text(hjust = 0, size =13),
+      axis.text.x = element_text(size = 13),
+      axis.text.y = element_text(size = 13),
+      axis.title.x = element_text(size = 13),
+      axis.title.y = element_text(size = 13),
+      
+      legend.position = c(0.13, 0.92),
+      # legend.position = "top",
+      plot.background = element_rect(fill = "white", color =NA) ,
+      legend.key.width = unit(1,"cm"),
+      legend.key.height = unit(2,"mm")
+
+    # plot.margin = margin(t = 5, r = 5, b = 5, l = 5), # Adjusts plot margins
+    # legend.spacing.y = unit(0.1, "cm"),  # Reduces space between legend items vertically
+    # legend.margin = margin(t = 0, b = -10)  
+      # panel.border = element_blank(),
+    )
+)
+
+
+df_Int_HW <- df_heatwaves %>% 
+  dplyr::select(-Frequency) %>% 
+  mutate(year = as.numeric(year))
+
+gam_Int_HW <- mgcv::gam(Intensity ~ s(year,
+                                       k=3), 
+                 # family = poisson(),
+                 data = df_Int_HW)
+
+Utilities.Package::Model_Check(gam_Int_HW)
+
+
+NewData_Int_HW<-expand_grid(year=unique(df_Int_HW$year))
+
+pred_Int_HW <- predict(gam_Int_HW, NewData_Int_HW, se.fit = T, type = "link")
+
+
+NewData_Int_HW <- NewData_Int_HW %>% 
+  mutate(fit = pred_Int_HW$fit,
+         se = pred_Int_HW$se.fit)
+
+(heatwaves_Intensity <- ggplot(df_Int_HW, aes(x=year))+
+  geom_point(aes(y=Intensity), color = "darkred", alpha = 0.3)+
+    geom_line(data = NewData_Int_HW, aes(x = year, y = fit),color = "darkred")+
+    geom_ribbon(data = NewData_Int_HW, aes(x = year, y = fit, ymin = fit-se, ymax = fit+se),color = NA ,fill = "darkred",alpha = 0.2)+
+    ylab(expression("Cumulative intensity of atmospheric heatwaves (°C)"))+
+    xlab(expression("Years"))+
+    # scale_y_continuous(position = "right")+
+    # scale_x_continuous(position = "top")+
+
+    theme_Bede()+
+    # scale_fill_manual(values = coltab)+
+    theme(
+      # strip.text.y= element_text(size =17),
+       strip.text.y= element_blank(),
+      # legend.title = element_text(size =17, hjust = 0.5),
+      legend.title = element_blank(),
+      legend.title.position = "top",
+      legend.text = element_text(size =13),
+
+      # legend.text = element_text(hjust = 0, size =13),
+      axis.text.x = element_text(size = 13),
+      axis.text.y = element_text(size = 13),
+      axis.title.x = element_text(size = 13),
+      axis.title.y = element_text(size = 13),
+      
+      legend.position = c(0.13, 0.92),
+      # legend.position = "top",
+      plot.background = element_rect(fill = "white", color =NA) ,
+      legend.key.width = unit(1,"cm"),
+      legend.key.height = unit(2,"mm")
+
+    # plot.margin = margin(t = 5, r = 5, b = 5, l = 5), # Adjusts plot margins
+    # legend.spacing.y = unit(0.1, "cm"),  # Reduces space between legend items vertically
+    # legend.margin = margin(t = 0, b = -10)  
+      # panel.border = element_blank(),
+    )
+)
+
+
+plot <- heatwaves_frequency / heatwaves_Intensity
+
+ggsave("Images/Part3/HW_Freq_Inten.png", plot, height = 10, width = 9.57, dpi = 300)
+```
+
+
+::: {.fragment .fade-in fragment-index="4" .absolute top="10%" left="0%"}
+![](Images/Part3/HW_Freq_Inten.png){height="1200"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="4" top="50%" left="50%" width="1O00px"}
+**Rapid global escalation of HW frequency, intensity and duration**
+
+- How does increasing heatwave pressure affect recovery capacity of Z. noltei?
+- Can seagrasses maintain resilience under more frequent aerial exposure?
+- Are upper-intertidal meadows approaching a tipping point?
+
+:::
+
+
+# General conclusions and future perspectives {data-stack-name="Discussion" background-image="Images/Part4/Background_Part4.png"}
 
 - Duality Drone and Satellite (Strength, weaknesses, complementary of methods)
 - Remote sensing for coastal ecosystem Management
 - Future direction (RS for aquaculture, penology, restoration...)
+
+
+## From case studies → A vision for resilient European coasts {auto-animate="true"}
+
+<span style="font-size:130%; font-weight:bold;">Multi‑scale remote sensing now gives us the <em>where, when &amp; why</em> of intertidal change — fast enough for real‑time management.</span>
+
+::: {.incremental .absolute top="30%"}
+- **RS proved accurate & scalable** across Europe
+- **ML tools stay open & evolving** (DISCOV)
+- **Bridges field ↔ drone ↔ satellite gaps**
+:::
+
+::: {.absolute top="30%" right="0%"}
+![](Images/Part4/Gafanha.png){.circular-fade height="430"}
+:::
+
+::: {.absolute top="30%" left="50%"}
+![](Images/Part4/ASD1.png){.circular-fade height="430"}
+:::
+
+::: {.absolute bottom="0%" right="0%" data-id="Map_europe"}
+![](Images/Part4/Map_europe.png){.circular-fade height="450"}
+:::
+
+::: {.absolute bottom="0%" left="50%"}
+![](Images/Part4/S2_HW.png){.circular-fade height="430"}
+:::
+
+## Outcomes of this PhD {auto-animate="true"}
+
+<span style="font-size:120%; font-weight:bold;">From algorithm accuracy to Europe‑wide impact</span>
+
+::: {.fragment .fade-out fragment-index=1 .absolute top="15%"}
+- **97 % taxonomic accuracy** with DISCOV
+:::
+
+::: {.fragment .fade-out fragment-index=3}
+::: {.fragment .fade-in fragment-index=1 .absolute top="15%"}
+- **97 % taxonomic accuracy** with DISCOV and ICE CREAMS
+- **Europe‑wide seagrass trends** 2017 – 2024
+:::
+:::
+
+::: {.fragment .fade-in fragment-index=3 .absolute top="15%"}
+- **97 % taxonomic accuracy** with DISCOV and ICE CREAMS
+- **Europe‑wide seagrass trends** 2017 – 2024
+- **Open‑source assets** (code & data) accelerating adoption
+:::
+
+::: {.absolute .fragment .fade-out fragment-index=1 data-id="Map_europe" bottom="-8%" right="-7.6%"}
+![](Images/Part1/Map_Drone-01.png){height="1400"}
+:::
+
+::: {.absolute .fragment .fade-out fragment-index=1  bottom="-40%" left="0%"}
+![](Images/Part4/Gafanha_Low.png){height="1400"}
+:::
+
+::: {.absolute .fragment .fade-out fragment-index=1  bottom="-40%" left="30%"}
+![](Images/Part4/Gaf_Low_Pred.png){height="1400"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index=1 bottom="0%" right="0%"}
+![](Images/Part4/WorkflowBede.jpg){height="1200"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index=2 bottom="0%" right="0%"}
+![](Images/Part4/TrendsBede.jpg){height="1200"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index=2 bottom="0%" left="0%"}
+![](Images/Part4/PhenologyBede.jpg){height="900"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index=3 bottom="0%" right="0%"}
+![](Images/Part4/DISCOV2.png){height="1200"}
+:::
+
+::: {.absolute .fragment .fade-in fragment-index=3 bottom="-2%" left="0%"}
+![](Images/Part4/ICECREAMS.png){height="900"}
+:::
+
