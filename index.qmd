@@ -6391,7 +6391,7 @@ ggsave("Images/Part2/Belon_angle_void.png",angle_plot,width = 10, height = 4.44,
 ## Discussion {#discussion_part2}
 
 
-:::{.absolute .fragment .fade-out fragment-index="1" top="15%" left="45%" style="font-size: 50px;"}
+:::{.absolute .fragment .fade-out fragment-index="2" top="15%" left="45%" style="font-size: 50px;"}
 **First map of the spatial distribution of *G. vermiculophylla*:**
 
 -  It can create large monospecific meadows...
@@ -6399,13 +6399,13 @@ ggsave("Images/Part2/Belon_angle_void.png",angle_plot,width = 10, height = 4.44,
 :::
 
 :::{ .fragment .fade-out fragment-index="4"}
-:::{.absolute .fragment .fade-in fragment-index="1" top="15%" left="45%" style="font-size: 50px;"}
+:::{.absolute .fragment .fade-in fragment-index="2" top="15%" left="45%" style="font-size: 50px;"}
 **First map of the spatial distribution of *G. vermiculophylla***
 :::
 
-:::{.absolute .fragment .fade-in fragment-index="2" top="25%" left="45%" style="font-size: 50px;"}
-**It has a unique composition of phycobilin pigments**
-:::
+<!-- :::{.absolute .fragment .fade-in fragment-index="2" top="25%" left="45%" style="font-size: 50px;"} -->
+<!-- **It has a unique composition of phycobilin pigments** -->
+<!-- ::: -->
 
 ::: {.absolute top="6.5%"}
 *Drone mapping G. vermiculophylla with machine learning*
@@ -6413,11 +6413,11 @@ ggsave("Images/Part2/Belon_angle_void.png",angle_plot,width = 10, height = 4.44,
 
 :::
 
-::: {.absolute .fragment .fade-out fragment-index="1" top="15%" left="5%"}
+::: {.absolute .fragment .fade-out fragment-index="2" top="15%" left="5%"}
 ![](Images/Part2/Saja_Belon_DISCOV_void.png){height="500"}
 :::
 
-::: {.absolute .fragment .fade-out fragment-index="1" bottom="0%" left="5%"}
+::: {.absolute .fragment .fade-out fragment-index="2" bottom="0%" left="5%"}
 
 :::{.absolute bottom="-5%" left="1%" style="color: black;"}
 Saja estuary, Spain
@@ -6425,7 +6425,7 @@ Saja estuary, Spain
 ![](Images/Part2/Saja_2024.jpg){height="500"}
 :::
 
-::: {.absolute .fragment .fade-out fragment-index="1" bottom="0%" right="5%"}
+::: {.absolute .fragment .fade-out fragment-index="2" bottom="0%" right="5%"}
 
 :::{.absolute bottom="-5%" left="1%" style="color: black;"}
 Belon estuary, France
@@ -6434,18 +6434,18 @@ Belon estuary, France
 ![](Images/Part2/Belon_042024.jpg){height="500"}
 :::
 
-::: {.fragment .fade-out fragment-index="1" style="position: absolute; top: 77%; left: 49.2%; transform: translate(-50%, -50%);"}
+::: {.fragment .fade-out fragment-index="2" style="position: absolute; top: 77%; left: 49.2%; transform: translate(-50%, -50%);"}
 ![](Images/Part2/DISCOV_logoV2.png){height="400"}
 :::
 
-:::{.absolute .fragment .fade-in-then-out fragment-index="1" top="25%" left="45%" style="font-size: 50px;"}
-**It has a unique composition of phycobilin pigments, resulting in:**
+<!-- :::{.absolute .fragment .fade-in-then-out fragment-index="1" top="25%" left="45%" style="font-size: 50px;"} -->
+<!-- **It has a unique composition of phycobilin pigments, resulting in:** -->
 
-- A unique spectral signature for the class
-- Identification at the Class level by DISCOV.
-- A potential need for hyperspectral resolution to increase taxonomic resolution.
+<!-- - A unique spectral signature for the class -->
+<!-- - Identification at the Class level by DISCOV. -->
+<!-- - A potential need for hyperspectral resolution to increase taxonomic resolution. -->
 
-:::
+<!-- ::: -->
 
 
 ```{r Resolution Red Algae}
@@ -6683,36 +6683,36 @@ anim_save("Images/Part2/Figure_SRF_RED.gif", animation = rendered)
 
 ```
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="1" top="15%" left="0%"}
-![](Images/Part2/Figure_SRF_RED.gif){height="1000"}
-:::
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="1" top="15%" left="0%"} -->
+<!-- ![](Images/Part2/Figure_SRF_RED.gif){height="1000"} -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="1" bottom="0%" left="40%"}
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="1" bottom="0%" left="40%"} -->
 
-:::{.absolute bottom="-5%" left="1%" style="color: black;"}
-*G. gracilis*
-:::
+<!-- :::{.absolute bottom="-5%" left="1%" style="color: black;"} -->
+<!-- *G. gracilis* -->
+<!-- ::: -->
 
-![](Images/Part2/gracilis.png){.circular-fade height="400"}
-:::
+<!-- ![](Images/Part2/gracilis.png){.circular-fade height="400"} -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="1" bottom="0%" left="60%"}
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="1" bottom="0%" left="60%"} -->
 
-:::{.absolute bottom="-5%" left="1%" style="color: black;"}
-*G. vermiculophylla*
-:::
+<!-- :::{.absolute bottom="-5%" left="1%" style="color: black;"} -->
+<!-- *G. vermiculophylla* -->
+<!-- ::: -->
 
-![](Images/Part2/vermiculo.png){.circular-fade height="400"}
-:::
+<!-- ![](Images/Part2/vermiculo.png){.circular-fade height="400"} -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="1" bottom="0%" left="80%"}
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="1" bottom="0%" left="80%"} -->
 
-:::{.absolute bottom="-5%" left="1%" style="color: black;"}
-*C. crispus*
-:::
+<!-- :::{.absolute bottom="-5%" left="1%" style="color: black;"} -->
+<!-- *C. crispus* -->
+<!-- ::: -->
 
-![](Images/Part2/chondrus.png){.circular-fade height="400"}
-:::
+<!-- ![](Images/Part2/chondrus.png){.circular-fade height="400"} -->
+<!-- ::: -->
 
 
 
@@ -6788,12 +6788,16 @@ curve_df <- tibble(
 ) %>% 
   mutate(t = v <- seq(from = 1971, to = 2024, length.out = 200))
 
+df_line <- data.frame(
+  x=c(1952,1971),
+  y=c(0,0.752)
+)
 
 (plot <- df %>% 
      # dplyr::filter(date <= i) %>%
    ggplot(aes(x = date, y = prop))+     
     geom_line(data = curve_df, aes(x = t, y = pc),size = 1.2, colour = "orange", alpha = 0.5) +
-
+    geom_line(data = df_line, aes(x = x, y = y),size = 1.2, colour = "orange", alpha = 0.5) +
      # geom_bar(stat = "identity",size = 10 )+
      geom_point(size = 4)+
      xlab("Year")+
@@ -8827,87 +8831,340 @@ ggsave("Images/Part3/HW_Freq_Inten.png", plot, height = 10, width = 9.57, dpi = 
 
 # General conclusions and future perspectives {data-stack-name="Discussion" background-image="Images/Part4/Background_Part4.png"}
 
-- Duality Drone and Satellite (Strength, weaknesses, complementary of methods)
-- Remote sensing for coastal ecosystem Management
-- Future direction (RS for aquaculture, penology, restoration...)
+- [Macrophyte Discrimination](#macrophyte_descrimination)
+- [Drone Technologies in Coastal Monitoring](#drone_tech)
+- [Drone and Satellite Interactions](#drone_sat)
+- [Assessing Coastal Ecosystem Threats via RS](#ecosystem_threats)
+- [Future Perspectives: Seagrass Restoration](#restoration)
+- [Overall Conclusion](#conclusion)
 
 
-## From case studies → A vision for resilient European coasts {auto-animate="true"}
+## Macrophyte Discrimination: Successes & Challenges {#macrophyte_descrimination auto-animate="true"}
 
-<span style="font-size:130%; font-weight:bold;">Multi‑scale remote sensing now gives us the <em>where, when &amp; why</em> of intertidal change — fast enough for real‑time management.</span>
-
-::: {.incremental .absolute top="30%"}
-- **RS proved accurate & scalable** across Europe
-- **ML tools stay open & evolving** (DISCOV)
-- **Bridges field ↔ drone ↔ satellite gaps**
+::: {.fragment .absolute width="1300" .fade-up fragment-index="1" data-id="success-mechanism"}
+**Key Success:** Multispectral RS + ML effectively differentiate intertidal vegetation, even with similar pigments (e.g., seagrass vs. green macroalgae).
+:::
+::: {.fragment .absolute top="15%" width="1300" .fade-up fragment-index="1" data-id="success-mechanism" style="margin-top: 2em;"}
+**Core Mechanism:** Relies on detecting subtle spectral variations (pigment proportions & concentrations).
 :::
 
-::: {.absolute top="30%" right="0%"}
-![](Images/Part4/Gafanha.png){.circular-fade height="430"}
+
+::: {.fragment .absolute top="30%" width="1300" .fade-up fragment-index="2" style="margin-top: 2em;"}
+**DISCOV Algorithm – A Key Output:**
+
+- Dynamic, adaptable, and open-source (GitHub).
+- **Challenge:** Initial underperformance with Rhodophyta due to limited training data.
+- **Solution:** Expanded training dataset significantly improved model accuracy & robustness.
 :::
 
-::: {.absolute top="30%" left="50%"}
-![](Images/Part4/ASD1.png){.circular-fade height="430"}
+::: {.absolute .fragment .fade-in-then-out fragment-index="1" bottom="0%" right="0%"}
+![](Images/Part1/Figure_Hyperspectral_Faded.gif){width="1200"}
 :::
 
-::: {.absolute bottom="0%" right="0%" data-id="Map_europe"}
-![](Images/Part4/Map_europe.png){.circular-fade height="450"}
-:::
-
-::: {.absolute bottom="0%" left="50%"}
-![](Images/Part4/S2_HW.png){.circular-fade height="430"}
-:::
-
-## Outcomes of this PhD {auto-animate="true"}
-
-<span style="font-size:120%; font-weight:bold;">From algorithm accuracy to Europe‑wide impact</span>
-
-::: {.fragment .fade-out fragment-index=1 .absolute top="15%"}
-- **97 % taxonomic accuracy** with DISCOV
-:::
-
-::: {.fragment .fade-out fragment-index=3}
-::: {.fragment .fade-in fragment-index=1 .absolute top="15%"}
-- **97 % taxonomic accuracy** with DISCOV and ICE CREAMS
-- **Europe‑wide seagrass trends** 2017 – 2024
-:::
-:::
-
-::: {.fragment .fade-in fragment-index=3 .absolute top="15%"}
-- **97 % taxonomic accuracy** with DISCOV and ICE CREAMS
-- **Europe‑wide seagrass trends** 2017 – 2024
-- **Open‑source assets** (code & data) accelerating adoption
-:::
-
-::: {.absolute .fragment .fade-out fragment-index=1 data-id="Map_europe" bottom="-8%" right="-7.6%"}
-![](Images/Part1/Map_Drone-01.png){height="1400"}
-:::
-
-::: {.absolute .fragment .fade-out fragment-index=1  bottom="-40%" left="0%"}
-![](Images/Part4/Gafanha_Low.png){height="1400"}
-:::
-
-::: {.absolute .fragment .fade-out fragment-index=1  bottom="-40%" left="30%"}
-![](Images/Part4/Gaf_Low_Pred.png){height="1400"}
-:::
-
-::: {.absolute .fragment .fade-in-then-out fragment-index=1 bottom="0%" right="0%"}
-![](Images/Part4/WorkflowBede.jpg){height="1200"}
-:::
-
-::: {.absolute .fragment .fade-in-then-out fragment-index=2 bottom="0%" right="0%"}
-![](Images/Part4/TrendsBede.jpg){height="1200"}
-:::
-
-::: {.absolute .fragment .fade-in-then-out fragment-index=2 bottom="0%" left="0%"}
-![](Images/Part4/PhenologyBede.jpg){height="900"}
-:::
-
-::: {.absolute .fragment .fade-in fragment-index=3 bottom="0%" right="0%"}
+::: {.absolute .fragment .fade-in-then-out fragment-index="2" bottom="0%" right="0%"}
 ![](Images/Part4/DISCOV2.png){height="1200"}
 :::
 
-::: {.absolute .fragment .fade-in fragment-index=3 bottom="-2%" left="0%"}
-![](Images/Part4/ICECREAMS.png){height="900"}
+::: {.fragment .absolute top="65%" .fade-up fragment-index="3" style="margin-top: 1em;"}
+**Ongoing Challenge:** Natural variability in pigment content (phenology, stress, intraspecies variation).
 :::
+
+::: {.fragment .absolute top="75%" .fade-up fragment-index="4" style="margin-top: 1em;"}
+**Future Direction:** Continue expanding the training dataset (broader geographic/temporal range) to enhance algorithm generalizability.
+:::
+
+---
+
+## Drone Technologies in Coastal Monitoring {#drone_tech auto-animate="true"}
+
+::: {.absolute top="-4%" right="-10%" style="z-index: -99;"}
+<video src="Video/Intro/Drone_Flight.mp4" height="1450" autoplay loop muted playsinline></video>
+:::
+
+**Significance of UAVs (Drones):**
+
+::: {.incremental}
+- Provide **very high-resolution** spatial data.
+- Offer **flexible and on-demand** deployment.
+- Crucial for capturing **fine-scale habitat heterogeneity** and rapid environmental changes.
+:::
+
+::: {.fragment .absolute top="30%" .fade-in-then-out style="margin-top: 2em;"}
+**Applications Demonstrated in Associated Research:**
+
+**Aquaculture Monitoring:**
+Estimating *Kappaphycus alvarezii* biomass & carrageenan (Nurdin et al., 2023).
+
+![](Images/Part4/Kappa_mapping-Long.png){height="700"}
+
+:::
+
+::: {.fragment .absolute top="30%" .fade-in-then-out style="margin-top: 2em;"}
+**Applications Demonstrated in Associated Research:**
+
+**Oyster Farm Assessment:**
+Mapping intertidal oyster farm structures, mesh bag sizes, & table heights (A. Román et al., 2023).
+
+![](Images/Part4/oyster_mapping.jpg){height="700"}
+:::
+
+
+
+---
+
+## Drone and Satellite Interactions: A Powerful Synergy {#drone_sat auto-animate="true"}
+
+::: {.absolute top="-4%" right="-10%" .fragment .fade-out fragment-index="1" style="z-index: -99;"}
+<video src="Video/Intro/Drone_Flight.mp4" height="1450" autoplay loop muted playsinline></video>
+:::
+
+::: {.absolute .fragment .fade-out fragment-index="1" bottom="0%" left="0%"}
+![](Images/Part4/Sentinel2.jpg){width="1200"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="1" .absolute bottom="0%" right="10%"}
+![](Images/Part4/WorkflowBede.jpg){width="900"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="2" .absolute bottom="-5%" right="0%"}
+![](Images/Part4/PhenologyBede.jpg){height="800"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="3" .absolute bottom="-5%" right="10%"}
+![](Images/Part4/TrendsBede.png){height="800"}
+:::
+
+
+**Complementary Strengths:**
+
+- **UAVs:** Unmatched spatial resolution, ground-truth validation, training data generation.
+- **Satellites:** Broad spatial coverage, consistent temporal monitoring for large-scale trends.
+
+::: {.fragment .fade-up fragment-index="1" style="margin-top: 1em;"}
+**Example: The ICE CREAMS Model (Davies et al., 2024a,b):**
+
+  - **Methodology:** DISCOV (drone-derived) classifications used to train and validate ICE CREAMS (Sentinel-2 satellite) model.
+  
+  - **Achievements:**
+      - Mapped intertidal seagrass across diverse European sites.
+      - Revealed latitudinal gradients in seagrass phenology.
+      - Tracked inter-annual trends in seagrass extent.
+      
+:::
+
+::: {.fragment .absolute bottom="10%" .fade-up fragment-index="4" style="margin-top: 1em;"}
+**Key Benefit:** This synergistic approach balances local accuracy with regional/global scalability, optimizing monitoring efforts.
+:::
+
+---
+
+## Assessing Coastal Ecosystem Threats via RS {#ecosystem_threats auto-animate="true"}
+
+**RS for Comprehensive Threat Monitoring:**
+Addresses impacts of climate change (heatwaves), eutrophication, invasive species, and habitat fragmentation.
+
+::: {.absolute top="25%" style="font-size: 0.9em;"}
+**Key Tools & Techniques Used/Discussed:**
+
+- **Multispectral/Hyperspectral Imaging:** Assessing vegetation health, species composition, stress indicators.
+    - *Chapter 4:* Mapping invasive *Gracilaria vermiculophylla*.
+    - *Chapter 5:* Quantifying heatwave impacts on seagrass using the Seagrass Heat Shock Index (SHSI).
+    
+- **LiDAR:** Precise topographic data (elevation, slope) influencing species distribution.
+- **Vegetation Indices (NDVI, SHSI):** Early detection of ecosystem degradation.
+- **Machine Learning:** Advanced detection, classification, and predictive modeling.
+
+:::
+
+::: {.fragment .fade-out fragment-index="1"}
+::: {.absolute top="20%"  right="5%"}
+![](Images/Part4/Gaf_Low_Pred.png){height="700"}
+:::
+
+::: {.absolute bottom="0%"  right="0%" }
+![](Images/Part4/Belon_Bathy_slope_pred.gif){height="600"}
+:::
+
+::: {.absolute bottom="0%"  left="0%"}
+![](Images/Part4/SHSI_S2_map.png){height="500"}
+:::
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="1" top="20%"  right="0%"}
+![](Images/Part4/Dapsiwrm.jpg){height="600"}
+:::
+
+::: {.fragment fragment-index="1" .absolute top="70%" .fade-up}
+**Broader Application:** RS data can be integrated into risk assessment frameworks (e.g., DAPSI(W)R(M)).
+:::
+
+::: {.fragment fragment-index="1" .absolute top="80%" .fade-up}
+**Outcome:** Provides a holistic understanding of coastal ecosystem dynamics, crucial for informed management and conservation.
+:::
+
+---
+
+## Future Perspectives: Seagrass Restoration {#restoration auto-animate="true"}
+
+**Critical Context:** Widespread global decline of seagrass meadows due to anthropogenic pressures necessitates urgent and effective restoration efforts.
+
+::: {.fragment .fade-up}
+**Restoration Challenges:** Success is variable (e.g., Arcachon Bay - Laurent, 2024; initial survival, then significant mortality).
+:::
+
+::: {.fragment .absolute top="30%" .incremental .fade-up}
+**How Remote Sensing Can Revolutionize Restoration:**
+
+
+  - **Site Selection:** Mapping habitat suitability (water quality, depth, substrate) & assessing pressures to identify optimal locations.
+  - **Monitoring Success:** Tracking changes in coverage, density, and health of restored meadows.
+  - **Adaptive Management:** Providing data to refine techniques & improve long-term outcomes.
+
+:::
+
+::: {.fragment width="1100px" .absolute top="60%" .fade-up}
+**DISCOV Model's Role in Seagrass Restoration:**
+
+- **Precise Classification:** Aids in selecting sites with minimal competition.
+- **Fine-Scale Monitoring:** Detailed assessment of restored patches.
+:::
+
+::: {.fragment width="1200px" .absolute  left="52%" top="60%" .fade-up}
+**Upcoming Application: EU Project REBORN (Interreg Program):**
+
+DISCOV and ICE CREAMS will be applied to:
+
+  - Track seagrass distribution across North-West Europe.
+  - Identify at-risk areas and prioritize restoration interventions.
+  - Support transboundary data sharing and collaborative management.
+  
+:::
+
+---
+
+
+## Overall Conclusion {#conclusion background-color="#005A9C" color="white"}
+
+::: {.incremental}
+- This PhD advanced **multi-scale RS techniques** for characterizing intertidal vegetation.
+- Developed **novel tools (DISCOV, SHSI)** and provided key insights for:
+    - Monitoring ecosystem health and biodiversity.
+    - Understanding and quantifying threats (invasive species, heatwaves).
+    - Guiding targeted conservation and restoration strategies.
+- The **integration of drone and satellite data, powered by machine learning,** offers robust solutions for managing complex and dynamic coastal ecosystems.
+
+:::
+
+---
+
+# Acknowledgements {background-color="#F0F0F0"}
+
+- Supervisors
+- Jury Members
+- Colleagues
+- Funding Institutions
+
+---
+
+# Questions? {background-color="#4A708B" color="white"}
+
+Thank you for your attention.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ## From case studies → A vision for resilient European coasts {auto-animate="true"} -->
+
+<!-- <span style="font-size:130%; font-weight:bold;">Multi‑scale remote sensing now gives us the <em>where, when &amp; why</em> of intertidal change — fast enough for real‑time management.</span> -->
+
+<!-- ::: {.incremental .absolute top="30%"} -->
+<!-- - **RS proved accurate & scalable** across Europe -->
+<!-- - **ML tools stay open & evolving** (DISCOV) -->
+<!-- - **Bridges field ↔ drone ↔ satellite gaps** -->
+<!-- ::: -->
+
+<!-- ::: {.absolute top="30%" right="0%"} -->
+<!-- ![](Images/Part4/Gafanha.png){.circular-fade height="430"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute top="30%" left="50%"} -->
+<!-- ![](Images/Part4/ASD1.png){.circular-fade height="430"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute bottom="0%" right="0%" data-id="Map_europe"} -->
+<!-- ![](Images/Part4/Map_europe.png){.circular-fade height="450"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute bottom="0%" left="50%"} -->
+<!-- ![](Images/Part4/S2_HW.png){.circular-fade height="430"} -->
+<!-- ::: -->
+
+<!-- ## Outcomes of this PhD {auto-animate="true"} -->
+
+<!-- <span style="font-size:120%; font-weight:bold;">From algorithm accuracy to Europe‑wide impact</span> -->
+
+<!-- ::: {.fragment .fade-out fragment-index=1 .absolute top="15%"} -->
+<!-- - **97 % taxonomic accuracy** with DISCOV -->
+<!-- ::: -->
+
+<!-- ::: {.fragment .fade-out fragment-index=3} -->
+<!-- ::: {.fragment .fade-in fragment-index=1 .absolute top="15%"} -->
+<!-- - **97 % taxonomic accuracy** with DISCOV and ICE CREAMS -->
+<!-- - **Europe‑wide seagrass trends** 2017 – 2024 -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ::: {.fragment .fade-in fragment-index=3 .absolute top="15%"} -->
+<!-- - **97 % taxonomic accuracy** with DISCOV and ICE CREAMS -->
+<!-- - **Europe‑wide seagrass trends** 2017 – 2024 -->
+<!-- - **Open‑source assets** (code & data) accelerating adoption -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-out fragment-index=1 data-id="Map_europe" bottom="-8%" right="-7.6%"} -->
+<!-- ![](Images/Part1/Map_Drone-01.png){height="1400"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-out fragment-index=1  bottom="-40%" left="0%"} -->
+<!-- ![](Images/Part4/Gafanha_Low.png){height="1400"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-out fragment-index=1  bottom="-40%" left="30%"} -->
+<!-- ![](Images/Part4/Gaf_Low_Pred.png){height="1400"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index=1 bottom="0%" right="0%"} -->
+<!-- ![](Images/Part4/WorkflowBede.jpg){height="1200"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index=2 bottom="0%" right="0%"} -->
+<!-- ![](Images/Part4/TrendsBede.jpg){height="1200"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index=2 bottom="0%" left="0%"} -->
+<!-- ![](Images/Part4/PhenologyBede.jpg){height="900"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in fragment-index=3 bottom="0%" right="0%"} -->
+<!-- ![](Images/Part4/DISCOV2.png){height="1200"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in fragment-index=3 bottom="-2%" left="0%"} -->
+<!-- ![](Images/Part4/ICECREAMS.png){height="900"} -->
+<!-- ::: -->
 

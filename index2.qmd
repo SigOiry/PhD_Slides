@@ -1,0 +1,261 @@
+---
+format:
+  revealjs:
+    transition: slide
+    theme:
+      - default
+      - style.scss
+    footer: ""
+    width: 2400
+    height: 1350
+    auto-animate: true
+    auto-play-media: true
+    backgroundTransition: fade
+    controls-tutorial: true
+    controls: true
+    controls-layout: bottom-right
+    slide-number: true
+    include-after-body: moving-text.js
+    # includes:
+    #   before_body: custom.js
+    simplemenu:
+        barhtml:
+            header: "<div class='menubar'></a><ul class='menu'></ul><div class='slide-number'></div><div>"
+        scale: 0.8
+revealjs-plugins:
+  - simplemenu
+editor_options: 
+  chunk_output_type: console
+---
+
+## Macrophyte Discrimination: Successes & Challenges {auto-animate="true"}
+
+::: {.fragment .absolute width="1300" .fade-up fragment-index="1" data-id="success-mechanism"}
+**Key Success:** Multispectral RS + ML effectively differentiate intertidal vegetation, even with similar pigments (e.g., seagrass vs. green macroalgae).
+:::
+::: {.fragment .absolute top="15%" width="1300" .fade-up fragment-index="1" data-id="success-mechanism" style="margin-top: 2em;"}
+**Core Mechanism:** Relies on detecting subtle spectral variations (pigment proportions & concentrations).
+:::
+
+
+::: {.fragment .absolute top="30%" width="1300" .fade-up fragment-index="2" style="margin-top: 2em;"}
+**DISCOV Algorithm – A Key Output:**
+
+- Dynamic, adaptable, and open-source (GitHub).
+- **Challenge:** Initial underperformance with Rhodophyta due to limited training data.
+- **Solution:** Expanded training dataset significantly improved model accuracy & robustness.
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="1" bottom="0%" right="0%"}
+![](Images/Part1/Figure_Hyperspectral_Faded.gif){width="1200"}
+:::
+
+::: {.absolute .fragment .fade-in-then-out fragment-index="2" bottom="0%" right="0%"}
+![](Images/Part4/DISCOV2.png){height="1200"}
+:::
+
+::: {.fragment .absolute top="65%" .fade-up fragment-index="3" style="margin-top: 1em;"}
+**Ongoing Challenge:** Natural variability in pigment content (phenology, stress, intraspecies variation).
+:::
+
+::: {.fragment .absolute top="75%" .fade-up fragment-index="4" style="margin-top: 1em;"}
+**Future Direction:** Continue expanding the training dataset (broader geographic/temporal range) to enhance algorithm generalizability.
+:::
+
+---
+
+## Drone Technologies in Coastal Monitoring {auto-animate="true"}
+
+::: {.absolute top="-4%" right="-10%" style="z-index: -99;"}
+<video src="Video/Intro/Drone_Flight.mp4" height="1450" autoplay loop muted playsinline></video>
+:::
+
+**Significance of UAVs (Drones):**
+
+::: {.incremental}
+- Provide **very high-resolution** spatial data.
+- Offer **flexible and on-demand** deployment.
+- Crucial for capturing **fine-scale habitat heterogeneity** and rapid environmental changes.
+:::
+
+::: {.fragment .absolute top="30%" .fade-in-then-out style="margin-top: 2em;"}
+**Applications Demonstrated in Associated Research:**
+
+**Aquaculture Monitoring:**
+Estimating *Kappaphycus alvarezii* biomass & carrageenan (Nurdin et al., 2023).
+
+![](Images/Part4/Kappa_mapping-Long.png){height="700"}
+
+:::
+
+::: {.fragment .absolute top="30%" .fade-in-then-out style="margin-top: 2em;"}
+**Applications Demonstrated in Associated Research:**
+
+**Oyster Farm Assessment:**
+Mapping intertidal oyster farm structures, mesh bag sizes, & table heights (A. Román et al., 2023).
+
+![](Images/Part4/oyster_mapping.jpg){height="700"}
+:::
+
+
+
+---
+
+## Drone and Satellite Interactions: A Powerful Synergy {auto-animate="true"}
+
+::: {.absolute top="-4%" right="-10%" .fragment .fade-out fragment-index="1" style="z-index: -99;"}
+<video src="Video/Intro/Drone_Flight.mp4" height="1450" autoplay loop muted playsinline></video>
+:::
+
+::: {.absolute .fragment .fade-out fragment-index="1" bottom="0%" left="0%"}
+![](Images/Part4/Sentinel2.jpg){width="1200"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="1" .absolute bottom="0%" right="10%"}
+![](Images/Part4/WorkflowBede.jpg){width="900"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="2" .absolute bottom="-5%" right="0%"}
+![](Images/Part4/PhenologyBede.jpg){height="800"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="3" .absolute bottom="-5%" right="10%"}
+![](Images/Part4/TrendsBede.png){height="800"}
+:::
+
+
+**Complementary Strengths:**
+
+- **UAVs:** Unmatched spatial resolution, ground-truth validation, training data generation.
+- **Satellites:** Broad spatial coverage, consistent temporal monitoring for large-scale trends.
+
+::: {.fragment .fade-up fragment-index="1" style="margin-top: 1em;"}
+**Example: The ICE CREAMS Model (Davies et al., 2024a,b):**
+
+  - **Methodology:** DISCOV (drone-derived) classifications used to train and validate ICE CREAMS (Sentinel-2 satellite) model.
+  
+  - **Achievements:**
+      - Mapped intertidal seagrass across diverse European sites.
+      - Revealed latitudinal gradients in seagrass phenology.
+      - Tracked inter-annual trends in seagrass extent.
+      
+:::
+
+::: {.fragment .absolute bottom="10%" .fade-up fragment-index="4" style="margin-top: 1em;"}
+**Key Benefit:** This synergistic approach balances local accuracy with regional/global scalability, optimizing monitoring efforts.
+:::
+
+---
+
+## Assessing Coastal Ecosystem Threats via RS {auto-animate="true"}
+
+**RS for Comprehensive Threat Monitoring:**
+Addresses impacts of climate change (heatwaves), eutrophication, invasive species, and habitat fragmentation.
+
+::: {.absolute top="25%" style="font-size: 0.9em;"}
+**Key Tools & Techniques Used/Discussed:**
+
+- **Multispectral/Hyperspectral Imaging:** Assessing vegetation health, species composition, stress indicators.
+    - *Chapter 4:* Mapping invasive *Gracilaria vermiculophylla*.
+    - *Chapter 5:* Quantifying heatwave impacts on seagrass using the Seagrass Heat Shock Index (SHSI).
+    
+- **LiDAR:** Precise topographic data (elevation, slope) influencing species distribution.
+- **Vegetation Indices (NDVI, SHSI):** Early detection of ecosystem degradation.
+- **Machine Learning:** Advanced detection, classification, and predictive modeling.
+
+:::
+
+::: {.fragment .fade-out fragment-index="1"}
+::: {.absolute top="20%"  right="5%"}
+![](Images/Part4/Gaf_Low_Pred.png){height="700"}
+:::
+
+::: {.absolute bottom="0%"  right="0%" }
+![](Images/Part4/Belon_Bathy_slope_pred.gif){height="600"}
+:::
+
+::: {.absolute bottom="0%"  left="0%"}
+![](Images/Part4/SHSI_S2_map.png){height="500"}
+:::
+:::
+
+::: {.absolute .fragment .fade-in fragment-index="1" top="20%"  right="0%"}
+![](Images/Part4/Dapsiwrm.jpg){height="600"}
+:::
+
+::: {.fragment fragment-index="1" .absolute top="70%" .fade-up}
+**Broader Application:** RS data can be integrated into risk assessment frameworks (e.g., DAPSI(W)R(M)).
+:::
+
+::: {.fragment fragment-index="1" .absolute top="80%" .fade-up}
+**Outcome:** Provides a holistic understanding of coastal ecosystem dynamics, crucial for informed management and conservation.
+:::
+
+---
+
+## Future Perspectives: Seagrass Restoration {auto-animate="true"}
+
+**Critical Context:** Widespread global decline of seagrass meadows due to anthropogenic pressures necessitates urgent and effective restoration efforts.
+
+::: {.fragment .fade-up}
+**Restoration Challenges:** Success is variable (e.g., Arcachon Bay - Laurent, 2024; initial survival, then significant mortality).
+:::
+
+::: {.fragment .absolute top="30%" .incremental .fade-up}
+**How Remote Sensing Can Revolutionize Restoration:**
+
+
+  - **Site Selection:** Mapping habitat suitability (water quality, depth, substrate) & assessing pressures to identify optimal locations.
+  - **Monitoring Success:** Tracking changes in coverage, density, and health of restored meadows.
+  - **Adaptive Management:** Providing data to refine techniques & improve long-term outcomes.
+
+:::
+
+::: {.fragment width="1100px" .absolute top="60%" .fade-up}
+**DISCOV Model's Role in Seagrass Restoration:**
+
+- **Precise Classification:** Aids in selecting sites with minimal competition.
+- **Fine-Scale Monitoring:** Detailed assessment of restored patches.
+:::
+
+::: {.fragment width="1200px" .absolute  left="52%" top="60%" .fade-up}
+**Upcoming Application: EU Project REBORN (Interreg Program):**
+
+DISCOV and ICE CREAMS will be applied to:
+
+  - Track seagrass distribution across North-West Europe.
+  - Identify at-risk areas and prioritize restoration interventions.
+  - Support transboundary data sharing and collaborative management.
+  
+:::
+
+---
+
+
+## Overall Conclusion {background-color="#005A9C" color="white"}
+
+::: {.incremental}
+- This PhD advanced **multi-scale RS techniques** for characterizing intertidal vegetation.
+- Developed **novel tools (DISCOV, SHSI)** and provided key insights for:
+    - Monitoring ecosystem health and biodiversity.
+    - Understanding and quantifying threats (invasive species, heatwaves).
+    - Guiding targeted conservation and restoration strategies.
+- The **integration of drone and satellite data, powered by machine learning,** offers robust solutions for managing complex and dynamic coastal ecosystems.
+
+:::
+
+---
+
+## Acknowledgements {background-color="#F0F0F0"}
+
+- Supervisors
+- Jury Members
+- Colleagues
+- Funding Institutions
+- Family and Friends
+
+---
+
+## Questions? {background-color="#4A708B" color="white"}
+
+Thank you for your attention.
