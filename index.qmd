@@ -95,7 +95,7 @@ if (length(large_files) > 0) {
 :::
 
 ::: {.gradient_box style="text-align: center; position: absolute; left: 50%; top: 37%; width: 1800px; transform: translate(-50%, -50%)"}
-[Characterization of Intertidal Vegetation on European Coasts Using MultiScale Remote Sensing in Response to Natural and Anthropogenic Pressures]{style="color: black; font-size: 60px; line-height: 1em; margin: 0px; text-align: justify-all;"}
+[Characterisation of Intertidal Vegetation on European Coasts Using MultiScale Remote Sensing in Response to Natural and Anthropogenic Pressures]{style="color: black; font-size: 60px; line-height: 1em; margin: 0px; text-align: justify-all;"}
 :::
 
 <!-- ::: {style="text-align: left; position: absolute; left: 25%; top: 50%; width: 1200px; transform: translate(-50%, -50%)"} -->
@@ -388,15 +388,14 @@ if (length(large_files) > 0) {
 <!-- - It was closely related to a ESA founded project called BiCOME --> 
 
 
-<!-- ## Table of Contents {.toc-page data-state="hide-menubar"} -->
-<!-- <!-- <ul class="menu"></ul> --> -->
-<!-- - [Introduction](#introduction) -->
-<!-- - [Challenges and Solutions](#developing-advanced-methodologies-for-intertidal-vegetation-monitoring) -->
-<!--     - From Hyperspectral to Multispectral Resolution -->
-<!--     - Building of a Neural Network model for Intertidal Vegetation Mapping (DISCOV)  -->
-<!-- - [Invasive Species](#case-study-1-facing-biological-invasions) -->
-<!-- - [Marine Heatwaves](#case-study-2-mapping-the-impact-of-heatwaves-on-intertidal-seagrasses) -->
-<!-- - [Discussion](#discussion-and-overview) -->
+## Table of Contents {.toc-page data-state="hide-menubar"}
+- [Introduction](#introduction)
+- [Challenges and Solutions](#developing-advanced-methodologies-for-intertidal-vegetation-monitoring)
+    - From Hyperspectral to Multispectral Resolution
+    - Building of a Neural Network model for Intertidal Vegetation Mapping (DISCOV)
+- [Invasive Species](#case-study-1-facing-biological-invasions)
+- [Marine Heatwaves](#case-study-2-mapping-the-impact-of-heatwaves-on-intertidal-seagrasses)
+- [Discussion](#discussion-and-overview)
 
 
 
@@ -421,7 +420,6 @@ if (length(large_files) > 0) {
 :::
 
 ```{r map dens_pop}
-#| cache: true
 #| echo: false
 #| eval: false
 #| warning: false
@@ -534,17 +532,17 @@ ggsave("Images/Intro/dens_pop_map.png", dens_pop_map, height=1350*4, width = 950
 
 ```
 
-::: {.fragment .fade-out fragment-index="3"}
-::: {.absolute bottom="-3%" right="-11%"}
-![](Images/Intro/Coms_France.png){height="1350"}
-:::
-:::
+<!-- ::: {.fragment .fade-out fragment-index="3"} -->
+<!-- ::: {.absolute bottom="-3%" right="-11%"} -->
+<!-- ![](Images/Intro/Coms_France.png){height="1350"} -->
+<!-- ::: -->
+<!-- ::: -->
 
-::: {.absolute bottom="-3%" right="-11%" .fragment .fade-in-then-out fragment-index="1"}
-![](Images/Intro/Coms_by_the_Sea.png){height="1350"}
-:::
+<!-- ::: {.absolute bottom="-3%" right="-11%" .fragment .fade-in-then-out fragment-index="1"} -->
+<!-- ![](Images/Intro/Coms_by_the_Sea.png){height="1350"} -->
+<!-- ::: -->
 
-::: {.absolute bottom="-3%" right="-11%" .fragment .fade-in-then-out fragment-index="2"}
+::: {.absolute bottom="-3%" right="-11%" .fragment .fade-out fragment-index="3"}
 ![](Images/Intro/Coms_bands.png){height="1350"}
 :::
 
@@ -552,20 +550,24 @@ ggsave("Images/Intro/dens_pop_map.png", dens_pop_map, height=1350*4, width = 950
 ![](Images/Intro/dens_pop_map.png){height="1350"}
 :::
 
-::: {.absolute bottom="3%" left="5%" .fragment .fade-in fragment-index="4"}
+::: {.absolute bottom="5%" left="15%" .fragment .fade-in fragment-index="4"}
 ![](Images/Intro/CoastalPopulation.png){height="700"}
 :::
 
+::: {.absolute left="0%" bottom="0%" style="font-size: 60px;"}
+Interface regions where land and sea meet
+:::
+
 ::: {.fragment .fade-out fragment-index="3"}
-::: {.absolute .fragment .fade-in fragment-index="1" left="10%" top="15%" style="font-size: 50px; width: 900px; color: #596f50;"}
+::: {.absolute left="10%" top="15%" style="font-size: 50px; width: 900px; color: #596f50;"}
 - Directly in contact with the sea
 :::
 
-::: {.absolute .fragment .fade-in fragment-index="2" left="10%" top="21%" style="font-size: 50px; width: 900px; color: #739069;"}
+::: {.absolute left="10%" top="21%" style="font-size: 50px; width: 900px; color: #739069;"}
 - 25km away from the sea
 :::
 
-::: {.absolute .fragment .fade-in fragment-index="2" left="10%" top="27%" style="font-size: 50px; width: 900px; color: #7f9a6f;"}
+::: {.absolute left="10%" top="27%" style="font-size: 50px; width: 900px; color: #7f9a6f;"}
 - 50km away from the sea
 :::
 :::
@@ -583,10 +585,10 @@ ggsave("Images/Intro/dens_pop_map.png", dens_pop_map, height=1350*4, width = 950
 :::
 
 ::: {.absolute left="0%" top="35%" .fragment .fade-in fragment-index="4" style="font-size: 50px;"}
--   Globaly: 
+-   Globally: 
 :::
 
-::: {.absolute left="30%" bottom="0%" .fragment .fade-in fragment-index="4" style="font-size: 30px;"}
+::: {.absolute right="5%" bottom="0%" .fragment .fade-in fragment-index="4" style="font-size: 30px;"}
 *Source:* [*Cosby et al. (2024)*](https://doi.org/10.1038/s41598-024-73287-x) *,* [*Reimann et al., (2023)*](https://doi.org/10.1017/cft.2023.3) 
 :::
 
@@ -615,7 +617,6 @@ These economic activities also come with environmental costs, impacting habitats
 :::
 
 ```{r maps coastal activities}
-#| cache: true
 #| echo: false
 #| eval: false
 #| warning: false
@@ -720,8 +721,9 @@ plot_Eol <- ggplot() +
   geom_sf(data = dragage, color = "goldenrod3", fill = "goldenrod3") +
   geom_sf(data = Immersion_sed, color = "goldenrod3", fill = "goldenrod3") +
   geom_sf(data = Aquaculture, color = "darkblue", fill = "darkblue") +
-  geom_sf(data = Eol, color = "darkgreen", fill = "darkgreen") +
+  geom_sf(data = Eol, color = "gold", fill = "gold") +
 
+  
     # geom_sf(data = nantes_l93, fill = "red", color = "black",shape = 21,size = 8) +
 # original polygons (lighter)
   # geom_sf(data = intersecting_polygons, fill = "#6e8962", color = "#6e8962") + 
@@ -737,7 +739,7 @@ plot_ouvrage <- ggplot() +
   geom_sf(data = dragage, color = "goldenrod3", fill = "goldenrod3") +
   geom_sf(data = Immersion_sed, color = "goldenrod3", fill = "goldenrod3") +
   geom_sf(data = Aquaculture, color = "darkblue", fill = "darkblue") +
-  geom_sf(data = Eol, color = "darkgreen", fill = "darkgreen") +
+  geom_sf(data = Eol, color = "gold", fill = "gold") +
   geom_sf(data = Ouvrage, color = "black", fill = "black", linewidth = 2) +
 
     # geom_sf(data = nantes_l93, fill = "red", color = "black",shape = 21,size = 8) +
@@ -810,12 +812,12 @@ Dredging
 Aquaculture
 :::
 
-::: {.absolute left="23%" bottom="0%" .fragment .fade-in fragment-index="4" style="font-size: 50px; color: #31621a;"}
+::: {.absolute left="23%" bottom="0%" .fragment .fade-in fragment-index="4" style="font-size: 50px; color: #ffd700;"}
 Energy Production
 :::
 
 ::: {.absolute left="46%" top="11%" .fragment .fade-in fragment-index="5" style="font-size: 50px; color: black;"}
-Artificialization
+Artificialisation
 :::
 
 ::: {.absolute left="43%" top="56%" .fragment .fade-in fragment-index="6" style="font-size: 50px; color: black;"}
@@ -873,8 +875,8 @@ Erosion
 Alien Species Introduction
 :::
 
-::: {.absolute left="23%" bottom="0%" style="font-size: 50px; color: #31621a;"}
-Energy introduction
+::: {.absolute left="23%" bottom="0%" style="font-size: 50px;"}
+Climate change
 :::
 
 ::: {.absolute left="43%" top="11%" style="font-size: 50px; color: black;"}
@@ -931,8 +933,12 @@ Areas between high and low tide
 ![](Images/Intro/Oyster_reefs.png){height="500"}
 :::
 
+<!-- ::: {.absolute bottom="3%" left="0%"} -->
+<!-- ![](Video/Intro/Philippe_Vigo.mp4){height="500"} -->
+<!-- ::: -->
+
 ::: {.absolute bottom="3%" left="0%"}
-![](Images/Intro/DJI_0485.png){height="500"}
+<video src="Video/Intro/Philippe_Vigo.mp4" height="530" autoplay loop muted playsinline></video>
 :::
 
 ::: {.absolute left="1%" top="19%" style="font-size: 40px; color: black;"}
@@ -967,7 +973,7 @@ Oyster reefs
 ::: {.fragment .fade-out fragment-index="4"}
 ::: {style="position:absolute; top:10%; left:0%; transition: top 1s ease;" .fragment .fade-in fragment-index="1"}
 ::: {.absolute bottom="-5%" .fragment .fade-out fragment-index="2"}
-Soft-bottom substrats
+Soft-bottom substrates
 :::
 ::: {.absolute bottom="-2%" right="7%" style="font-size: 30px;"}
 *Guadalquivir River, Spain*
@@ -996,7 +1002,7 @@ of Vegetation
 
 ::: {.absolute top="10%" right="0%" .fragment .fade-in-then-out fragment-index="1"}
 ::: {.absolute bottom="-5%"}
-Hard-bottom substrats
+Hard-bottom substrates
 :::
 ::: {.absolute bottom="-2%" right="7%" .fragment .fade-out fragment-index="2" style="font-size: 30px;"}
 *Vigo, Spain*
@@ -1060,7 +1066,7 @@ Ecosystem Services
 :::
 
 ::: {.absolute left="2%" top="80%" .fragment .fade-in fragment-index="6"}
-- Nutrient Fixation
+- Eutrophication mitigation
 :::
 :::
 
@@ -1166,7 +1172,7 @@ The science of obtaining information about objects or areas from a distance
 :::
 
 ::: {.absolute top="59%" .fragment .fade-in fragment-index="3"} 
-Applyed to Earth Observation: 
+Applied to Earth Observation: 
 :::
 
 ::: {.absolute top="65%" left="0%" .fragment .fade-in fragment-index="3" data-id="box1" }
@@ -1388,7 +1394,7 @@ Sampling
 :::
 
 ::: {.fragment .fade-in fragment-index="1" style="text-align: center; position: absolute; left: 50%; top: 40%; width:2300px; transform: translate(-50%, -50%)"}
-[Analyzing the potential of multispectral sensors to distinguish macrophytes in soft-bottom intertidal zones at low tide]{style="font-size: 60px"}
+[Analysing the potential of multispectral sensors to distinguish macrophytes in soft-bottom intertidal zones at low tide]{style="font-size: 60px"}
 :::
 
 ::: {.fragment .fade-in fragment-index="2" style="text-align: center; position: absolute; left: 50%; top: 60%; width:2300px; transform: translate(-50%, -50%)"}
@@ -1415,7 +1421,6 @@ Sampling
 :::
 
 ```{r Fig STDvsRAW}
-#| cache: true
 #| echo: false
 #| eval: false
 #| warning: false
@@ -1498,7 +1503,6 @@ ggsave("Images/Part1/Fig_STD_static.png", plot,width = 8, height = 6, units = "i
 ```
 
 ```{r plots for spectral presentation}
-#| cache: true
 #| echo: false
 #| eval: false
 #| warning: false
@@ -1715,6 +1719,42 @@ rendered <- animate(faded, duration = 2, fps = 20, width = 8, height = 6, units 
 
 anim_save("Images/Part1/Figure_Hyperspectral_Faded.gif", animation = rendered)
 
+
+colscale_disc <- c("Chlorophyceae" = "#b3ff1a", 
+              "Magnoliopsida" = "#389318")
+
+faded_zoomed_out <- speclib %>% 
+  dplyr::filter(Class %in% c("B - Chlorophyceae", "C - Magnoliopsida")) %>%
+  mutate(Class = case_when(Class == "B - Chlorophyceae" ~ "Chlorophyceae", 
+                           Class == "C - Magnoliopsida" ~ "Magnoliopsida")) %>% 
+  ggplot()+
+    # geom_line(data = fade_class, mapping = aes(x = Wavelength, y = Ref, group = Class1), color = "grey", alpha = 0.2, linewidth = 1.5)+
+    geom_line(aes(x = Wavelength, y = Ref, color = Class, group = 1L), linewidth = 1.5)+
+
+    scale_color_manual(values=colscale_disc)+
+    theme_Bede()+
+    ylab("Standardised Reflectance")+
+    xlab("Wavelength (nm)")+
+    theme(legend.position = c(0.15, 0.8),
+          legend.text = element_text(size = 12),
+          axis.text.x = element_text(size = 12),
+          axis.text.y = element_text(size = 12))+
+    coord_cartesian(xlim = c(450, 900)) +
+    # ggtitle(paste("Zoom jusqu’à", round(x_max), "nm")) +
+    theme(
+      legend.position = c(0.15, 0.8),
+      legend.text = element_text(size = 12),
+      axis.text.x = element_text(size = 12),
+      axis.text.y = element_text(size = 12)
+    )+ 
+  transition_states(Class,
+                    transition_length = 2,
+                    state_length = 1)
+
+rendered_zoomed_out <- animate(faded_zoomed_out, duration = 2, fps = 20, width = 8, height = 6, units = "in", res = 300, end_pause = 1, rewind = F, renderer = gifski_renderer(loop = T))
+
+anim_save("Images/Part1/Figure_Hyperspectral_Faded_zoomed_out.gif", animation = rendered_zoomed_out)
+
 # ggsave("Images/Part1/Figure_Hyperspectral_Faded.png", faded, width = 8, height = 6)
 ```
 
@@ -1734,14 +1774,14 @@ anim_save("Images/Part1/Figure_Hyperspectral_Faded.gif", animation = rendered)
 
 :::{.absolute bottom="5%" right="33%" .fragment .fade-in-then-out fragment-index="1"}
 
-$$R(\lambda) = \frac{L_{\text{up}}(\lambda)}{L_{\text{down}}(\lambda)}$$
+$$R(\lambda) = \frac{L_{\text{u}}(\lambda)}{L_{\text{d}}(\lambda)}$$
 
 :::
 
 :::{.absolute bottom="2%" right="0%" .fragment .fade-in-then-out fragment-index="1"}
-- $\lambda$ is the Wavelenght
-- $L_{\text{up}}$ is the upwelling radiance
-- $L_{\text{down}}$ is the downwelling radiance
+- $\lambda$ is the Wavelength
+- $L_{\text{u}}$ is the upwelling radiance
+- $L_{\text{d}}$ is the downwelling radiance
 :::
 
 ::: {.absolute top="10%" left="0%" .fragment .fade-in-then-out fragment-index="1"}
@@ -1760,7 +1800,7 @@ $$R_i^*(\lambda) = \frac{R_i(\lambda) - \min(R_i)}{\max(R_i) - \min(R_i)}$$
 
 :::{.absolute top="55%" left="52%" .fragment .fade-in-then-out fragment-index="2"}
 - $R_i(\lambda)$ is the reflectance the the wavelength $\lambda$ of the spectrum $R_i$ 
-- $min(R_i)$ and $max(R_i)$ are the minimum and maxium reflectance of the spectrum $R_i$
+- $min(R_i)$ and $max(R_i)$ are the minimum and maximum reflectance of the spectrum $R_i$
 :::
 
 :::{.absolute top="80%" left="52%" .fragment .fade-in-then-out fragment-index="2"}
@@ -2927,7 +2967,6 @@ Micasense RedEdge-MX Dual
 
 
 ```{r Table1 building}
-#| cache: false
 #| echo: false
 #| eval: false
 #| warning: false
@@ -3034,7 +3073,6 @@ Downwelling Light Sensor
 
 
 ```{r Figure3 text opening}
-#| cache: true
 #| echo: false
 #| eval: false
 #| warning: false
@@ -3129,7 +3167,6 @@ segment<-layout %>%
 ```
 
 ```{r Figure3 building}
-#| cache: true
 #| echo: false
 #| warning: false
 #| eval: false
@@ -4255,7 +4292,6 @@ Florideophyceae
 :::
 
 ```{r VIP}
-#| cache: false
 #| echo: false
 #| warning: false
 #| eval: false
@@ -4435,28 +4471,29 @@ ggsave("Images/Part1/Fig_VIP_Spectra.png", SP_plot, width =10, height = 10, unit
 ![](Images/Part1/Figure_Hyperspectral_Faded.gif){height="800"}
 :::
 
-:::{.absolute top="0%" left="50%" style="font-size: 60px;"}
+:::{.absolute top="0%" left="50%" style="font-size: 50px;"}
 **Similar pigment composition,...**
 
 -  ... but difference in carotenoid to chlorophyll-a ratios ([Repolho et al., 2017](http://doi.org/10.1038/srep41443))
+- ... difference in the cell structure and the water content
 :::
 
 
-:::{.absolute top="25%" left="50%" .fragment .fade-in fragment-index="2" style="font-size: 60px;"}
-**Distinction between green macrophyte possible, ...**
+:::{.absolute top="30%" left="50%" .fragment .fade-in fragment-index="2" style="font-size: 50px;"}
+**Distinction between green macrophyte possible using multispectral resolutions, ...**
 
-- ... and ~530 nm & ~650 nm are key wavelengths
+- ... but ~530 nm & ~650 nm are key wavelengths
 
 :::
 
 
-:::{.absolute top="55%" left="50%" .fragment .fade-in-then-out fragment-index="3" style="font-size: 60px;"}
+:::{.absolute top="60%" left="50%" .fragment .fade-in-then-out fragment-index="3" style="font-size: 50px;"}
 **Green macrophytes often co-occurs in intertidal areas...**
 
 - Ultra high spatial resolution (from 80 to 8mm per pixel)
 :::
 
-:::{.absolute top="55%" left="50%" .fragment .fade-in fragment-index="4" style="font-size: 60px;"}
+:::{.absolute top="60%" left="50%" .fragment .fade-in fragment-index="4" style="font-size: 50px;"}
 **Green macrophytes often co-occurs in intertidal areas...**
 
 - Ultra high spatial resolution (from 80 to 8mm per pixel)
@@ -4466,7 +4503,7 @@ ggsave("Images/Part1/Fig_VIP_Spectra.png", SP_plot, width =10, height = 10, unit
 :::
 
 
-:::{.absolute top="10%" left="5%" .fragment .fade-in fragment-index="4" style="font-size: 60px;"}
+:::{.absolute top="10%" left="5%" .fragment .fade-in fragment-index="4" style="font-size: 50px;"}
 Drone: 0.26 ha ~ 2.5 millions pixels
 
 S2: 25 000 hectares ~ 2.5x Paris
@@ -4680,9 +4717,9 @@ anim_save("Images/Part2/Oyster_gigas.gif", animation = rendered)
 Resilient to:
 
 - Salinity changes
-- Dessication
+- Desiccation
 - Eutrophic conditions
-- Can attach to shells, rocks or colonize soft bottom areas
+- Can attach to shells, rocks or colonise soft bottom areas
 :::
 
 
@@ -4702,17 +4739,17 @@ Resilient to:
 
 
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="11" bottom="5%" left="15%"}
-The transport of acquaculture structures between cultivation sites favorised its **spread across the World**
-:::
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="11" bottom="5%" left="15%"} -->
+<!-- The transport of aquaculture structures between cultivation sites favorised its **spread across the World** -->
+<!-- ::: -->
 
 :::{.fragment .fade-out fragment-index="11"}
 
-::: {.absolute .fragment .fade-in fragment-index="8" bottom="5%" left="15%"}
-The transport of acquaculture structures between cultivation sites favorised its **spread across Europe**
-:::
+<!-- ::: {.absolute .fragment .fade-in fragment-index="8" bottom="5%" left="15%"} -->
+<!-- The transport of aquaculture structures between cultivation sites favorised its **spread across Europe** -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in fragment-index="9" top="15%" left="0%" }
+::: {.absolute .fragment .fade-in fragment-index="9" top="20%" left="0%" }
 :::{.absolute .fragment .fade-out fragment-index="10" top="-7%" left="0%" style="font-size: 30px;"}
 First observation in Europe in the Belon, Brittany, in 1996
 ::: 
@@ -4723,7 +4760,7 @@ Belon Estuary, France, 2024
 ![](Images/Part2/Belon_042024.jpg){height="400" .circular-fade}
 :::
 :::
-::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="16%" left="35%" }
+::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="21%" left="35%" }
 
 :::{.absolute top="-12%" left="10%" style="z-index: 99;"}
 Aveiro, Portugal, 2021
@@ -4746,28 +4783,28 @@ Aveiro, Portugal, 2021
 
 :::
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="15%" left="65%" }
+::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="20%" left="65%" }
 :::{.absolute top="-8%" left="10%"}
 Etel, France, 2024
 :::
 ![](Images/Part2/Etel_20240313.jpg){height="400" .circular-fade}
 :::
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="47%" right="29%" }
+::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="52%" right="29%" }
 :::{.absolute bottom="-8%" right="10%"}
 Auray, France, 2024
 :::
 ![](Images/Part2/Auray_20240407.jpg){height="400" .circular-fade}
 :::
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="47%" right="0%" }
+::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="52%" right="0%" }
 :::{.absolute bottom="-8%" right="10%"}
 Scorff, France, 2024
 :::
 ![](Images/Part2/Scorff_110424.jpg){height="400" .circular-fade}
 :::
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="47%" right="58%" }
+::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="52%" right="58%" }
 :::{.absolute bottom="-8%" right="10%"}
 Saja estuary, Spain, 2024
 :::
@@ -4778,7 +4815,7 @@ Saja estuary, Spain, 2024
 :::{.absolute top="-5%" right="10%"}
 Source: [Mendoza-Segura et al., 2023](https://doi.org/10.3390/jmse11020367)
 :::
-![](Images/Part2/map_invasion_world.png){height="1000"}
+![](Images/Part2/map_invasion_world.png){height="1100"}
 :::
 
 
@@ -4825,7 +4862,7 @@ source: [Buestel et al., 2009](https://archimer.ifremer.fr/doc/00000/7396/6579.p
 :::
 
 ::: {.absolute .fragment .fade-in fragment-index="15" top="20%"}
-**Satellite:**
+**Satellite & Aerial views:**
 
 - Follow the invasion over time
 - Go back in time
@@ -4842,7 +4879,7 @@ source: [Buestel et al., 2009](https://archimer.ifremer.fr/doc/00000/7396/6579.p
 
 ::: {style="font-size: 70px; text-align: center; position: absolute; left: 50%; top: 44%; width: 1800px; transform: translate(-50%, -50%); color: black;"}
 
-First description of *G. vermiculophylla* using remote sensing techniques
+Make the first description of *G. vermiculophylla* spatial distribution using remote sensing techniques
 
 :::
 
@@ -4858,7 +4895,7 @@ Use **DISCOV** to map *G. vermiculophylla* and link its spatial distribution to 
 ## Material & Methods {#material_part2}
 
 
-::: {.fragment .fade-out fragment-index="2" }
+::: {.fragment .fade-out fragment-index="3" }
 ::: {.absolute top="6.5%"}
 *Historical analysis*
 :::
@@ -4901,7 +4938,7 @@ Photo interpretation of images to retrieve the area covered by *G. vermiculophyl
 :::
 
 <!-- ::: {.absolute top="6.5%" .fragment .fade-in-then-out fragment-index="2"} -->
-<!-- *Hyperspectral measurments* -->
+<!-- *Hyperspectral measurements* -->
 <!-- ::: -->
 
 <!-- ::: {.absolute top="15%" .fragment .fade-in-then-out fragment-index="2" style="font-size: 60px;"} -->
@@ -5086,7 +5123,7 @@ Digital Surface Model:
 
 
 ::: {.absolute top="25%" left="0%" .fragment .fade-in fragment-index="8" style="font-size: 60px;"}
-**G**eneralized **L**inear **M**ixed **M**odel 
+**G**eneralised **L**inear **M**ixed **M**odel 
 :::
 
 ::: {.absolute top="40%" left="10%" .fragment .fade-in fragment-index="8" style="font-size: 49px;"}
@@ -6011,7 +6048,6 @@ ggsave("Images/Part2/Belon_DISCOV_void.png",DISCOV_Belon,width = 10, height = 4.
 ```
 
 ```{r RGB Belon}
-#| cache: false
 #| echo: false
 #| warning: false
 #| eval: false
@@ -6076,7 +6112,6 @@ lim_y<- c(as.numeric(ext(Belon_RGB)[3:4]))
 ```
 
 ```{r LiDAR DEM}
-#| cache: false
 #| echo: false
 #| warning: false
 #| eval: false
@@ -6195,7 +6230,6 @@ bathy_Belon <- ggplot()+
 ```
 
 ```{r map angle}
-#| cache: false
 #| echo: false
 #| warning: false
 #| eval: false
@@ -6449,7 +6483,6 @@ Belon estuary, France
 
 
 ```{r Resolution Red Algae}
-#| cache: false
 #| echo: false
 #| warning: false
 #| eval: false
@@ -6720,14 +6753,14 @@ anim_save("Images/Part2/Figure_SRF_RED.gif", animation = rendered)
 **Distribution linked with the topography**
 
 - Inhabit the upper intertidal
-- Resistant to dessication, light and salinity variations
+- Resistant to desiccation, light and salinity variations
 :::
 
 :::{.absolute .fragment .fade-in-then-out fragment-index="3" top="35%" left="45%" style="font-size: 50px;"}
 **Distribution linked with the topography**
 
 - Inhabit the upper intertidal
-- Resistant to dessication, light and salinity variations
+- Resistant to desiccation, light and salinity variations
 - Inhabit flat areas...
 - ...experiencing lower current velocity during tidal exchanges
 :::
@@ -6942,7 +6975,6 @@ df_line <- data.frame(
 ```
 
 ```{r invasion phases}
-#| cache: false
 #| echo: false
 #| warning: false
 #| eval: false
@@ -7125,13 +7157,13 @@ Sources: [Morris et al. (2013)](https://doi.org/10.1016/j.jaridenv.2013.03.013),
 
 - Large number of fragments/individuals has been introduced repeatedly in the environment
 - *G. vermiculophylla* is well adapted to European estuaries and already suited to local climate
-- Ignored by local species, no grazing
+- Ignored by local species, no grasing
 :::
 
 ::: {.absolute top="65%" left="55%" .fragment .fade-in-then-out fragment-index="9"}
 **Remote Sensing can monitor early stages of the invasion...**
 
-- Making it a powerfull tool for early decision making
+- Making it a powerful tool for early decision making
 - Facilitates timely interventions 
 :::
 
@@ -7423,7 +7455,7 @@ Measure variation of seagrass leaves reflectance over time.
 :::
 
 ::: {.absolute .fragment .fade-in-then-out fragment-index="6" top="80%" left="0%" style="font-size: 60px;"}
-Hyperspectral measurment every minute in each tank
+Hyperspectral measurement every minute in each tank
 :::
 
 ::: {.absolute .fragment .fade-in-then-out fragment-index="6" top="5%" left="75%" style="font-size: 60px;"}
@@ -7459,7 +7491,6 @@ Atmospheric heatwave between the 4th of September 2021 and the 7th of September 
 #| echo: false
 #| eval: false
 #| warning: false
-#| cache: true
 #| fig-width: 10
 #| fig-height: 10
 
@@ -7665,7 +7696,7 @@ Plot_Bathy
 ::: {.absolute .fragment .fade-in-then-out fragment-index="14" left="0%" top="30%"}
 ```{r LeafletEmersion}
 #| echo: false
-#| eval: false
+#| eval: true
 #| warning: false
 #| out-width: "1100px"
 #| out-height: "800px"
@@ -7765,38 +7796,38 @@ $$NDVI = \frac{R(NIR)-R(Red)}{R(NIR)+R(Red)}$$
 $$GLI = \frac{[R(Green)-R(Red)]+[R(Green)-R(Blue)]}{(2 \times R(Green) )+ R(Red) + R(Blue) }$$
 :::
   
-  
-::: {.absolute .fragment .fade-in fragment-index="16" top="15%" left="0%" style="text-align: right; font-size: 70px;"}
-- Introduction of the Seagrass Heat Shock Index (SHSI):
-:::
-  
-::: {.absolute .fragment .fade-in fragment-index="16" top="30%" left="0%" style="text-align: left; font-size: 50px;"}
 
-$$
-\text{SHSI} = I_{SHSI} - R(740)
-$$
-:::
+<!-- ::: {.absolute .fragment .fade-in fragment-index="16" top="15%" left="0%" style="text-align: right; font-size: 70px;"} -->
+<!-- - Introduction of the Seagrass Heat Shock Index (SHSI): -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in fragment-index="16" top="50%" left="0%" style="text-align: left; font-size: 50px;"}
-  
-$$
-I_{SHSI} = R(560) + \tau    [R(842) - R(560)]
-$$
-:::
+<!-- ::: {.absolute .fragment .fade-in fragment-index="16" top="30%" left="0%" style="text-align: left; font-size: 50px;"} -->
 
-::: {.absolute .fragment .fade-in fragment-index="16" top="70%" left="0%" style="text-align: left; font-size: 50px;"}
-    
-$$
-\tau = \frac{740 - 560}{842 - 560}
-$$
-:::
-        
-        
-::: {.fragment .fade-in fragment-index="16" .absolute top="30%" right="0%"}
-![](Images/Part3/Plot_explain_SHSI.png){width="1450"}
-:::
-        
-        
+<!-- $$ -->
+<!-- \text{SHSI} = I_{SHSI} - R(740) -->
+<!-- $$ -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in fragment-index="16" top="50%" left="0%" style="text-align: left; font-size: 50px;"} -->
+
+<!-- $$ -->
+<!-- I_{SHSI} = R(560) + \tau    [R(842) - R(560)] -->
+<!-- $$ -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in fragment-index="16" top="70%" left="0%" style="text-align: left; font-size: 50px;"} -->
+
+<!-- $$ -->
+<!-- \tau = \frac{740 - 560}{842 - 560} -->
+<!-- $$ -->
+<!-- ::: -->
+
+
+<!-- ::: {.fragment .fade-in fragment-index="16" .absolute top="30%" right="0%"} -->
+<!-- ![](Images/Part3/Plot_explain_SHSI.png){width="1450"} -->
+<!-- ::: -->
+
+
 
 ## Results {#results_part3} 
 
@@ -8200,7 +8231,6 @@ plot_S2_2
 ::: {.fragment .fade-in fragment-index="12" .absolute top="15%" left="0%" width="2300px" height="1100px"}
 
 ```{r Maps_SHSI}
-#| cache: true
 #| echo: false
 #| eval: true
 #| warning: false
@@ -8354,9 +8384,8 @@ After
 ## Discussion {#discussion_part3} 
 
 ```{r Plot Spectra Stressed}
-#| cache: true
 #| echo: false
-#| eval: false
+#| eval: true
 #| warning: false
 
 library(MapRs)
@@ -8451,7 +8480,7 @@ anim_save("Images/Part3/Figure_Impacted_Seagrass.gif", animation = rendered)
 ::: {.fragment .fade-out fragment-index="3"}
 - Most Sensitive early-metric to flag damage over meadows 
 - Designed to be used by most space missions (Sentinel-2, Pléiades, Wordview-3, SkySat, GeoSat-2...)
-- but also by futur missions (Sentinel-2 Next Generation, LandSat Next)
+- but also by future missions (Sentinel-2 Next Generation, LandSat Next)
 :::
 :::
 
@@ -8493,7 +8522,6 @@ anim_save("Images/Part3/Figure_Impacted_Seagrass.gif", animation = rendered)
 
 
 ```{r making DarkeningIndexMap}
-#| cache: false
 #| echo: false
 #| eval: false
 #| warning: false
@@ -8822,7 +8850,7 @@ ggsave("Images/Part3/HW_Freq_Inten.png", plot, height = 10, width = 9.57, dpi = 
 ::: {.absolute .fragment .fade-in fragment-index="4" top="50%" left="50%" width="1O00px"}
 **Rapid global escalation of HW frequency, intensity and duration**
 
-- How does increasing heatwave pressure affect recovery capacity of Z. noltei?
+- How does increasing heatwave pressure affect recovery capacity of Z. noltii?
 - Can seagrasses maintain resilience under more frequent aerial exposure?
 - Are upper-intertidal meadows approaching a tipping point?
 
@@ -8853,7 +8881,7 @@ ggsave("Images/Part3/HW_Freq_Inten.png", plot, height = 10, width = 9.57, dpi = 
 **DISCOV Algorithm – A Key Output:**
 
 - Dynamic, adaptable, and open-source (GitHub).
-- **Challenge:** Initial underperformance with Rhodophyta due to limited training data.
+- **Challenge:** Initial underperformance with Florideophyceae due to limited training data.
 - **Solution:** Expanded training dataset significantly improved model accuracy & robustness.
 :::
 
@@ -8870,7 +8898,7 @@ ggsave("Images/Part3/HW_Freq_Inten.png", plot, height = 10, width = 9.57, dpi = 
 :::
 
 ::: {.fragment .absolute top="75%" .fade-up fragment-index="4" style="margin-top: 1em;"}
-**Future Direction:** Continue expanding the training dataset (broader geographic/temporal range) to enhance algorithm generalizability.
+**Future Direction:** Continue expanding the training dataset (broader geographic/temporal range) to enhance algorithm generalisability.
 :::
 
 ---
@@ -8953,7 +8981,7 @@ Mapping intertidal oyster farm structures, mesh bag sizes, & table heights (A. R
 :::
 
 ::: {.fragment .absolute bottom="10%" .fade-up fragment-index="4" style="margin-top: 1em;"}
-**Key Benefit:** This synergistic approach balances local accuracy with regional/global scalability, optimizing monitoring efforts.
+**Key Benefit:** This synergistic approach balances local accuracy with regional/global scalability, optimising monitoring efforts.
 :::
 
 ---
@@ -9046,7 +9074,7 @@ DISCOV and ICE CREAMS will be applied to:
 ## Overall Conclusion {#conclusion background-color="#005A9C" color="white"}
 
 ::: {.incremental}
-- This PhD advanced **multi-scale RS techniques** for characterizing intertidal vegetation.
+- This PhD advanced **multi-scale RS techniques** for characterising intertidal vegetation.
 - Developed **novel tools (DISCOV, SHSI)** and provided key insights for:
     - Monitoring ecosystem health and biodiversity.
     - Understanding and quantifying threats (invasive species, heatwaves).
