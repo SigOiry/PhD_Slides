@@ -22,6 +22,11 @@ format:
         barhtml:
             header: "<div class='menubar'></a><ul class='menu'></ul><div class='slide-number'></div><div>"
         scale: 0.8
+  revealjs-options:
+        preloadIframes: true
+        viewDistance: 5
+        pdfSeparateFragments: true
+
 revealjs-plugins:
   - simplemenu
 editor_options: 
@@ -90,7 +95,7 @@ if (length(large_files) > 0) {
 
 ## {.hide data-state="hide-menubar"}
 
-::: {.gradient_box style="text-align: center; position: absolute; left: 50%; top: 22%; width: 1800px; transform: translate(-50%, -50%)"}
+::: {.gradient_box style="text-align: center; position: absolute; left: 50%; top: 22%; width: 1800px; transform: tran0slate(-50%, -50%)"}
 [PhD Thesis Presentation]{style="color: black; font-size: 80px; font-weight: bold; line-height: 1em; margin: 0px; text-align: justify-all;"}
 :::
 
@@ -1193,70 +1198,70 @@ Applied to Earth Observation:
 
 ## Remote Sensing  {auto-animate=true visibility="uncounted" transition="none"}
 
-::: {.fragment .fade-out fragment-index="2"}
+<!-- ::: {.fragment .fade-out fragment-index="2"} -->
+<!-- ::: {.absolute top="6.5%"} -->
+<!-- *From the sky to the sea * -->
+<!-- ::: -->
+
+<!-- ::: {.absolute left="2%" top="18%" style="font-size: 50px;"} -->
+
+<!-- *Resolution Trade-offs* -->
+<!-- ::: -->
+
+<!-- ::: {.absolute top="25%" left="0%" data-id="box1" } -->
+<!-- ![](Images/Intro/Sentinel2_1.png){height="550" .circular-fade} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute top="25%" left="24%" data-id="box3" } -->
+<!-- ![](Images/Intro/Drone_MPB1.png){height="550" .circular-fade} -->
+<!-- ::: -->
+
+
+
+<!-- ::: {.absolute top="10%" right="-0%"} -->
+<!-- ![](Images/Intro/Satellite_resolution.png){height="1100"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute left="0%" top="70%" style="font-size: 40px;"}  -->
+<!-- **Sentinel-2**  -->
+<!-- ::: -->
+
+<!-- ::: {.absolute left="25%" top="70%" style="font-size: 40px;"}  -->
+<!-- **Drone** -->
+<!-- ::: -->
+
+<!-- ::: {.absolute left="1%" top="75%" style="font-size: 35px;"} -->
+
+<!-- 10–60 m spatial resolution -->
+
+<!-- 100 000 km²/image -->
+
+<!-- 5-day revisit -->
+
+<!-- ::: -->
+
+<!-- ::: {.absolute left="26%" top="75%" style="font-size: 35px;"} -->
+
+<!-- cm resolution -->
+
+<!-- Adapted to small-scale studies -->
+
+<!-- Flight planning flexibility -->
+<!-- ::: -->
+<!-- ::: -->
+
 ::: {.absolute top="6.5%"}
-*From the sky to the sea *
-:::
-
-::: {.absolute left="2%" top="18%" style="font-size: 50px;"}
-
-*Resolution Trade-offs*
-:::
-
-::: {.absolute top="25%" left="0%" data-id="box1" }
-![](Images/Intro/Sentinel2_1.png){height="550" .circular-fade}
-:::
-
-::: {.absolute top="25%" left="24%" data-id="box3" }
-![](Images/Intro/Drone_MPB1.png){height="550" .circular-fade}
-:::
-
-
-
-::: {.absolute top="10%" right="-0%"}
-![](Images/Intro/Satellite_resolution.png){height="1100"}
-:::
-
-::: {.absolute left="0%" top="70%" style="font-size: 40px;"} 
-**Sentinel-2** 
-:::
-  
-::: {.absolute left="25%" top="70%" style="font-size: 40px;"} 
-**Drone**
-:::
-  
-::: {.absolute left="1%" top="75%" style="font-size: 35px;"}
-
-10–60 m spatial resolution
-
-100 000 km²/image
-
-5-day revisit
-
-:::
-  
-::: {.absolute left="26%" top="75%" style="font-size: 35px;"}
-
-cm resolution
-
-Adapted to small-scale studies
-
-Flight planning flexibility
-:::
-:::
-
-::: {.absolute top="6.5%" .fragment .fade-in-then-out fragment-index="2"}
 *Fieldwork remains essential to make sense of what satellites see*
 :::
 
 
-::: {.absolute top="-3.5%" right="-10%" .fragment .fade-in-then-out fragment-index="2"}
+::: {.absolute top="-3.5%" right="-10%"}
 
 <video src="Video/Intro/Fildwork_santander2.mp4" height="1450" autoplay loop muted playsinline></video>
 
 :::
 
-::: {.absolute top="15%" left="0%" .fragment .fade-in-then-out fragment-index="2"}
+::: {.absolute top="15%" left="0%"}
 ::: {.absolute bottom="-5%" left="30%"}
 Radiometric calibration
 :::
@@ -1269,7 +1274,7 @@ Radiometric calibration
 ![](Images/Intro/Bede_asd1.jpg){height="450" .circular-fade}
 :::
 
-::: {.absolute top="15%" left="40%" .fragment .fade-in-then-out fragment-index="2"}
+::: {.absolute top="15%" left="40%"}
 ::: {.absolute bottom="-5%" left="25%"}
 Ground truthing
 :::
@@ -1282,7 +1287,7 @@ Ground truthing
 ![](Images/Intro/Quadrats.jpg){height="450" .circular-fade}
 :::
 
-::: {.absolute top="60%" left="0%" .fragment .fade-in-then-out fragment-index="2"}
+::: {.absolute top="60%" left="0%"}
 ::: {.absolute bottom="-5%" left="10%"}
 Features georeferencing
 :::
@@ -1296,7 +1301,7 @@ Features georeferencing
 ![](Images/Intro/Greece_RTK.jpg){height="450" .circular-fade}
 :::
 
-::: {.absolute top="60%" left="27%" .fragment .fade-in-then-out fragment-index="2"}
+::: {.absolute top="60%" left="27%"}
 ::: {.absolute bottom="-5%" left="40%"}
 Sampling
 :::
@@ -2938,7 +2943,7 @@ ggsave(filename = "Images/Part1/map_Drone.svg",
 
 ```
 
-::: {.fragment .fade-out fragment-index="9" }
+::: {.fragment .fade-out fragment-index="10" }
 ::: {.absolute .fragment .fade-in fragment-index="7" bottom="-8%" right="-7.6%"}
 ![](Images/Part1/Map_Drone-01.png){height="1400"}
 :::
@@ -3028,33 +3033,33 @@ save_as_image(ft, "Images/Part1/table_flights.png", res = 400)
 ```
 
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="8" top="10%" left="0%"}
-![](Images/Part1/table_flights.png){width="1950"}
-:::
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="8" top="10%" left="0%"} -->
+<!-- ![](Images/Part1/table_flights.png){width="1950"} -->
+<!-- ::: -->
 
 
-::: {.fragment .fade-out fragment-index="10"}
-::: {.absolute .fragment .fade-in fragment-index="9" top="10%" left="0%"}
-![](Images/Part1/table_flights2.png){width="1950"}
-:::
+<!-- ::: {.fragment .fade-out fragment-index="10"} -->
+<!-- ::: {.absolute .fragment .fade-in fragment-index="9" top="10%" left="0%"} -->
+<!-- ![](Images/Part1/table_flights2.png){width="1950"} -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in fragment-index="9" top="45%" left="3%"}
-![](Images/Part1/grid_high_low.png){width="650"}
-:::
+<!-- ::: {.absolute .fragment .fade-in fragment-index="9" top="45%" left="3%"} -->
+<!-- ![](Images/Part1/grid_high_low.png){width="650"} -->
+<!-- ::: -->
 
 
-::: {.absolute .fragment .fade-in fragment-index="9" bottom="-8%" right="-7.6%"}
-![](Images/Part1/Map_Drone-02.png){height="1400"}
-:::
+<!-- ::: {.absolute .fragment .fade-in fragment-index="9" bottom="-8%" right="-7.6%"} -->
+<!-- ![](Images/Part1/Map_Drone-02.png){height="1400"} -->
+<!-- ::: -->
 
-::: {.absolute top="60%" left="35%" .fragment .fade-in fragment-index="9" style="font-size: 60px;"}
-Sentinel-2: 100 pixels/hectar
+<!-- ::: {.absolute top="60%" left="35%" .fragment .fade-in fragment-index="9" style="font-size: 60px;"} -->
+<!-- Sentinel-2: 100 pixels/hectar -->
 
-Drone 120 m: ~1 500 000 pixels/hectar
+<!-- Drone 120 m: ~1 500 000 pixels/hectar -->
 
-Drone 12 m: ~15 000 000 pixels/hectar
-:::
-:::
+<!-- Drone 12 m: ~15 000 000 pixels/hectar -->
+<!-- ::: -->
+<!-- ::: -->
 
 ::: {.absolute .fragment .fade-in fragment-index="10" top="15%" left="0%"}
 ::: {.absolute top="-7%" left="20%"}
@@ -4468,7 +4473,7 @@ ggsave("Images/Part1/Fig_VIP_Spectra.png", SP_plot, width =10, height = 10, unit
 <!-- ::: -->
 
 ::: {.absolute .fragment .fade-out fragment-index="2" top="10%" left="0%" }
-![](Images/Part1/Figure_Hyperspectral_Faded.gif){height="800"}
+![](Images/Part1/Figure_Hyperspectral_Faded_zoomed_out.gif){height="800"}
 :::
 
 :::{.absolute top="0%" left="50%" style="font-size: 50px;"}
@@ -5546,335 +5551,335 @@ for (i in unique(df$date)) {
 ![](Images/Part2/plot_cover_year/Cover_Gracillaria_vs_Time_2024.png){height="530"}
 :::
 
-::: {.fragment .fade-out fragment-index="16"}
+<!-- ::: {.fragment .fade-out fragment-index="16"} -->
 
-::: {.absolute top="6.5%" .fragment .fade-in fragment-index="8"}
-*Drone flights*
-:::
+<!-- ::: {.absolute top="6.5%" .fragment .fade-in fragment-index="8"} -->
+<!-- *Drone flights* -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in fragment-index="8" bottom="-8%" right="-7.6%"}
-![](Images/Part2/Map_Saja.png){height="1400"}
-:::
-:::
-
-
-```{r DISCOV Saja Map}
-#| echo: false
-#| warning: false
-#| eval: false
-
-library(terra)
-library(tidyverse)
-library(Utilities.Package)
-library(sf)
+<!-- ::: {.absolute .fragment .fade-in fragment-index="8" bottom="-8%" right="-7.6%"} -->
+<!-- ![](Images/Part2/Map_Saja.png){height="1400"} -->
+<!-- ::: -->
+<!-- ::: -->
 
 
+<!-- ```{r DISCOV Saja Map} -->
+<!-- #| echo: false -->
+<!-- #| warning: false -->
+<!-- #| eval: false -->
 
-msk <- "Data/Part2/SajaSouth_32630.shp" %>% 
-  read_sf()
-
-DISCOV_rast <- rast("Data/Part2/Saja/Saja_South_25062024_DISCOV_InvaSea_26112024_pred.tif") %>% 
-  project(crs(msk), method = "near") %>% 
-  crop(msk, mask = T)
-
-img_filtered<-focal(DISCOV_rast, w=7, fun="modal",na.rm=TRUE)
-
-writeRaster(img_filtered, "Data/Part2/Saja/Saja_South_25062024_DISCOV_InvaSea_26112024_pred_7.tif", overwrite = T)
-
-values(img_filtered)[values(img_filtered) == 0] = NA
-names(img_filtered) <- "layer"
-img_filtered<-img_filtered %>% 
-  as.factor()
+<!-- library(terra) -->
+<!-- library(tidyverse) -->
+<!-- library(Utilities.Package) -->
+<!-- library(sf) -->
 
 
 
-target_shp <- read_sf("Data/Part2/model_px_8m_saja.shp")
- 
- for (i in 1:nrow(target_shp)) {
-   
-   shp <- target_shp[i,]
-   
-   img_i <- img_filtered %>% 
-     crop(shp, mask = T)
-   
-   
-   plot_i <-
-  ggplot()+
-  # scale_fill_manual("", 
-  #                   labels = c("Intertidal area", "Land area", "water"),
-  #                   values = c("white", "white","white"))+
-  # geom_sf(data = background_GafHigh,
-  #         mapping = aes(fill = Type),
-  #         show.legend = F, 
-  #         linewidth=0.05,
-  #         alpha=0.4,
-  #         colour="grey30")+
-  # geom_sf(data = background_GafHigh,
-  #         fill = "white",
-  #         show.legend = F, 
-  #         linewidth=0.05,
-  #         alpha=1,
-  #         colour="white")+
-   ggnewscale::new_scale("fill")+
-    tidyterra::geom_spatraster(data = img_i, 
-                               mapping = aes(fill = layer),
-                               maxcell = 500832*8,
-                               show.legend = F)+
-  # geom_sf(data = zoom_extent, 
-  #         fill = "transparent", 
-  #         colour = "black",
-  #         linetype = "dashed", 
-  #         linewidth = 1.5)+
-  # # coord_sf(crs = 4326)+
-  # annotation_custom(ggplotGrob(Gafanha_low_pred_map_zoomed), 
-  #                   xmin = -8.7430,
-  #                   xmax=-8.7427, 
-  #                   ymin = 40.5977) +
-  # geom_path(aes(x,y,group=grp),
-  #           data = data.frame(x = c(-8.7432439,-8.743,-8.7432439,-8.743),
-  #                             y=c(40.5976275,40.5979,40.5975373,40.59771),
-  #                             grp=c(1,1,2,2)),
-            # linetype = "dashed", linewidth = 1.5)+
-  scale_fill_manual(breaks = c(1,2,3,4,5,6,7,8),
-                    values=c("#DAA520", "#b3ff1a", "#389318","#5C2E1A","#b3002d","#A3A3A3","white", "#42c9bc"),
-                    na.value = NA,
-                    name = "",
-                    labels = c("Bacillariophyceae",
-                               "Chlorophyceae",
-                               "Magnoliopsida",
-                               "Phaeophyceae",
-                               "Rhodophyceae",
-                               "Sediment",
-                               "Sunglint",
-                               "Water"))+
-  theme_void()+
-     coord_sf(expand = F)
-   
-   
-   
-   ggsave(paste0("Images/Part2/Pred_sample_Saja_", shp$Target,"_8m.png"), plot_i, height = 10, width = 10)
- }
+<!-- msk <- "Data/Part2/SajaSouth_32630.shp" %>%  -->
+<!--   read_sf() -->
+
+<!-- DISCOV_rast <- rast("Data/Part2/Saja/Saja_South_25062024_DISCOV_InvaSea_26112024_pred.tif") %>%  -->
+<!--   project(crs(msk), method = "near") %>%  -->
+<!--   crop(msk, mask = T) -->
+
+<!-- img_filtered<-focal(DISCOV_rast, w=7, fun="modal",na.rm=TRUE) -->
+
+<!-- writeRaster(img_filtered, "Data/Part2/Saja/Saja_South_25062024_DISCOV_InvaSea_26112024_pred_7.tif", overwrite = T) -->
+
+<!-- values(img_filtered)[values(img_filtered) == 0] = NA -->
+<!-- names(img_filtered) <- "layer" -->
+<!-- img_filtered<-img_filtered %>%  -->
+<!--   as.factor() -->
 
 
+
+<!-- target_shp <- read_sf("Data/Part2/model_px_8m_saja.shp") -->
+
+<!--  for (i in 1:nrow(target_shp)) { -->
+
+<!--    shp <- target_shp[i,] -->
+
+<!--    img_i <- img_filtered %>%  -->
+<!--      crop(shp, mask = T) -->
+
+
+<!--    plot_i <- -->
+<!--   ggplot()+ -->
+<!--   # scale_fill_manual("",  -->
+<!--   #                   labels = c("Intertidal area", "Land area", "water"), -->
+<!--   #                   values = c("white", "white","white"))+ -->
+<!--   # geom_sf(data = background_GafHigh, -->
+<!--   #         mapping = aes(fill = Type), -->
+<!--   #         show.legend = F,  -->
+<!--   #         linewidth=0.05, -->
+<!--   #         alpha=0.4, -->
+<!--   #         colour="grey30")+ -->
+<!--   # geom_sf(data = background_GafHigh, -->
+<!--   #         fill = "white", -->
+<!--   #         show.legend = F,  -->
+<!--   #         linewidth=0.05, -->
+<!--   #         alpha=1, -->
+<!--   #         colour="white")+ -->
+<!--    ggnewscale::new_scale("fill")+ -->
+<!--     tidyterra::geom_spatraster(data = img_i,  -->
+<!--                                mapping = aes(fill = layer), -->
+<!--                                maxcell = 500832*8, -->
+<!--                                show.legend = F)+ -->
+<!--   # geom_sf(data = zoom_extent,  -->
+<!--   #         fill = "transparent",  -->
+<!--   #         colour = "black", -->
+<!--   #         linetype = "dashed",  -->
+<!--   #         linewidth = 1.5)+ -->
+<!--   # # coord_sf(crs = 4326)+ -->
+<!--   # annotation_custom(ggplotGrob(Gafanha_low_pred_map_zoomed),  -->
+<!--   #                   xmin = -8.7430, -->
+<!--   #                   xmax=-8.7427,  -->
+<!--   #                   ymin = 40.5977) + -->
+<!--   # geom_path(aes(x,y,group=grp), -->
+<!--   #           data = data.frame(x = c(-8.7432439,-8.743,-8.7432439,-8.743), -->
+<!--   #                             y=c(40.5976275,40.5979,40.5975373,40.59771), -->
+<!--   #                             grp=c(1,1,2,2)), -->
+<!--             # linetype = "dashed", linewidth = 1.5)+ -->
+<!--   scale_fill_manual(breaks = c(1,2,3,4,5,6,7,8), -->
+<!--                     values=c("#DAA520", "#b3ff1a", "#389318","#5C2E1A","#b3002d","#A3A3A3","white", "#42c9bc"), -->
+<!--                     na.value = NA, -->
+<!--                     name = "", -->
+<!--                     labels = c("Bacillariophyceae", -->
+<!--                                "Chlorophyceae", -->
+<!--                                "Magnoliopsida", -->
+<!--                                "Phaeophyceae", -->
+<!--                                "Rhodophyceae", -->
+<!--                                "Sediment", -->
+<!--                                "Sunglint", -->
+<!--                                "Water"))+ -->
+<!--   theme_void()+ -->
+<!--      coord_sf(expand = F) -->
+
+
+
+<!--    ggsave(paste0("Images/Part2/Pred_sample_Saja_", shp$Target,"_8m.png"), plot_i, height = 10, width = 10) -->
+<!--  } -->
 
 
 
 
-names(img_filtered) <- "layer"
-
-DISCOV_Saja <- ggplot()+
-    tidyterra::geom_spatraster(data = img_filtered, 
-                               mapping = aes(fill = layer),
-                               maxcell = 500832*8)+
-  scale_fill_manual(breaks = c(1,2,3,4,5,6,8),
-                    values=c("#DAA520","#b3ff1a","#389318","#873e23","#b3002d","#a2a3a2","#42c9bc",NA,NA),
-                    na.value = NA,
-                    name = "DISCOV",
-                    labels = c("Bacillariophyceae",
-                               "Chlorophyceae",
-                               "Magnoliopsida",
-                               "Phaeophyceae",
-                               "Florideophyceae",
-                               "Sediment",
-                               "Water"))+
-  # geom_text(aes(x =  ext(DISCOV_rast)[1]+0.04*(ext(DISCOV_rast)[2]-ext(DISCOV_rast)[1]),
-  #               y =  ext(DISCOV_rast)[4]-0.08*(ext(DISCOV_rast)[4]-ext(DISCOV_rast)[3]),
-  #               label = "A"),
-  #               size = 10)+
-  coord_sf(expand = F,
-           xlim = ext(msk)[1:2],
-           ylim = ext(msk)[3:4])+
-  theme_Bede_Map()+
-  # coord_equal()+
-   theme(
-     # axis.text.x = element_text(size = 10, angle = -20, color = NA,hjust = 0),
-         axis.text.y = element_text(size = 15),
-         axis.text.x = element_text(size = 15),
-         # axis.ticks.x = element_blank(),
-         axis.title = element_blank(),
-         plot.background = element_rect(fill = "white", color = NA),
-         legend.background = element_blank(),
-         legend.position = c(0.98,0.98),
-         legend.text = element_text(size = 15),
-         legend.key.size = unit(1,"cm"))
-
-ggsave("Images/Part2/Saja_DISCOV.png",DISCOV_Saja,width = 10, height = 9, dpi = 400)
 
 
-DISCOV_Saja_void <- ggplot()+
-    tidyterra::geom_spatraster(data = img_filtered, 
-                               mapping = aes(fill = layer),
-                               maxcell = 500832*8)+
-  scale_fill_manual(breaks = c(1,2,3,4,5,6,8),
-                    values=c("#DAA520","#b3ff1a","#389318","#873e23","#b3002d","#a2a3a2","#42c9bc",NA,NA),
-                    na.value = NA,
-                    name = "DISCOV",
-                    labels = c("Bacillariophyceae",
-                               "Chlorophyceae",
-                               "Magnoliopsida",
-                               "Phaeophyceae",
-                               "Florideophyceae",
-                               "Sediment",
-                               "Water"))+
-  # geom_text(aes(x =  ext(DISCOV_rast)[1]+0.04*(ext(DISCOV_rast)[2]-ext(DISCOV_rast)[1]),
-  #               y =  ext(DISCOV_rast)[4]-0.08*(ext(DISCOV_rast)[4]-ext(DISCOV_rast)[3]),
-  #               label = "A"),
-  #               size = 10)+
-  coord_sf(expand = F,
-           xlim = ext(msk)[1:2],
-           ylim = ext(msk)[3:4])+
-  theme_Bede_Map()+
-  # coord_equal()+
-   theme(
-     # axis.text.x = element_text(size = 10, angle = -20, color = NA,hjust = 0),
-         axis.text.y = element_text(size = 15),
-         axis.text.x = element_text(size = 15),
-         # axis.ticks.x = element_blank(),
-         axis.title = element_blank(),
-         plot.background = element_rect(fill = "white", color = NA),
-         legend.background = element_blank(),
-         legend.position = c(0.98,0.98),
-         legend.text = element_text(size = 15),
-         legend.key.size = unit(1,"cm"))+
-  theme_void()
+<!-- names(img_filtered) <- "layer" -->
 
-ggsave("Images/Part2/Saja_DISCOV_void.png",DISCOV_Saja_void,width = 10, height = 9, dpi = 400)
-```
+<!-- DISCOV_Saja <- ggplot()+ -->
+<!--     tidyterra::geom_spatraster(data = img_filtered,  -->
+<!--                                mapping = aes(fill = layer), -->
+<!--                                maxcell = 500832*8)+ -->
+<!--   scale_fill_manual(breaks = c(1,2,3,4,5,6,8), -->
+<!--                     values=c("#DAA520","#b3ff1a","#389318","#873e23","#b3002d","#a2a3a2","#42c9bc",NA,NA), -->
+<!--                     na.value = NA, -->
+<!--                     name = "DISCOV", -->
+<!--                     labels = c("Bacillariophyceae", -->
+<!--                                "Chlorophyceae", -->
+<!--                                "Magnoliopsida", -->
+<!--                                "Phaeophyceae", -->
+<!--                                "Florideophyceae", -->
+<!--                                "Sediment", -->
+<!--                                "Water"))+ -->
+<!--   # geom_text(aes(x =  ext(DISCOV_rast)[1]+0.04*(ext(DISCOV_rast)[2]-ext(DISCOV_rast)[1]), -->
+<!--   #               y =  ext(DISCOV_rast)[4]-0.08*(ext(DISCOV_rast)[4]-ext(DISCOV_rast)[3]), -->
+<!--   #               label = "A"), -->
+<!--   #               size = 10)+ -->
+<!--   coord_sf(expand = F, -->
+<!--            xlim = ext(msk)[1:2], -->
+<!--            ylim = ext(msk)[3:4])+ -->
+<!--   theme_Bede_Map()+ -->
+<!--   # coord_equal()+ -->
+<!--    theme( -->
+<!--      # axis.text.x = element_text(size = 10, angle = -20, color = NA,hjust = 0), -->
+<!--          axis.text.y = element_text(size = 15), -->
+<!--          axis.text.x = element_text(size = 15), -->
+<!--          # axis.ticks.x = element_blank(), -->
+<!--          axis.title = element_blank(), -->
+<!--          plot.background = element_rect(fill = "white", color = NA), -->
+<!--          legend.background = element_blank(), -->
+<!--          legend.position = c(0.98,0.98), -->
+<!--          legend.text = element_text(size = 15), -->
+<!--          legend.key.size = unit(1,"cm")) -->
 
-```{r RGB Saja}
-#| echo: false
-#| warning: false
-#| eval: false
-
-library(sf)
-library(terra)
-library(tidyverse)
-library(Utilities.Package)
-
-msk <- "Data/Part2/SajaSouth_32630.shp" %>% 
-  read_sf()
-
-Saja_RGB <- "Data/Part2/Saja/SajaSouth_RGB_LIDAR2.tif" %>% 
-  rast() %>% 
-  crop(msk, mask = T)
-
-# values(Belon_RGB[[1]])[values(Belon_RGB[[1]]) == 0] = NA
-
-# RGB(Belon_RGB) <- 1:3
+<!-- ggsave("Images/Part2/Saja_DISCOV.png",DISCOV_Saja,width = 10, height = 9, dpi = 400) -->
 
 
-lim_x<- c(as.numeric(ext(Saja_RGB)[1:2]))
-lim_y<- c(as.numeric(ext(Saja_RGB)[3:4]))
+<!-- DISCOV_Saja_void <- ggplot()+ -->
+<!--     tidyterra::geom_spatraster(data = img_filtered,  -->
+<!--                                mapping = aes(fill = layer), -->
+<!--                                maxcell = 500832*8)+ -->
+<!--   scale_fill_manual(breaks = c(1,2,3,4,5,6,8), -->
+<!--                     values=c("#DAA520","#b3ff1a","#389318","#873e23","#b3002d","#a2a3a2","#42c9bc",NA,NA), -->
+<!--                     na.value = NA, -->
+<!--                     name = "DISCOV", -->
+<!--                     labels = c("Bacillariophyceae", -->
+<!--                                "Chlorophyceae", -->
+<!--                                "Magnoliopsida", -->
+<!--                                "Phaeophyceae", -->
+<!--                                "Florideophyceae", -->
+<!--                                "Sediment", -->
+<!--                                "Water"))+ -->
+<!--   # geom_text(aes(x =  ext(DISCOV_rast)[1]+0.04*(ext(DISCOV_rast)[2]-ext(DISCOV_rast)[1]), -->
+<!--   #               y =  ext(DISCOV_rast)[4]-0.08*(ext(DISCOV_rast)[4]-ext(DISCOV_rast)[3]), -->
+<!--   #               label = "A"), -->
+<!--   #               size = 10)+ -->
+<!--   coord_sf(expand = F, -->
+<!--            xlim = ext(msk)[1:2], -->
+<!--            ylim = ext(msk)[3:4])+ -->
+<!--   theme_Bede_Map()+ -->
+<!--   # coord_equal()+ -->
+<!--    theme( -->
+<!--      # axis.text.x = element_text(size = 10, angle = -20, color = NA,hjust = 0), -->
+<!--          axis.text.y = element_text(size = 15), -->
+<!--          axis.text.x = element_text(size = 15), -->
+<!--          # axis.ticks.x = element_blank(), -->
+<!--          axis.title = element_blank(), -->
+<!--          plot.background = element_rect(fill = "white", color = NA), -->
+<!--          legend.background = element_blank(), -->
+<!--          legend.position = c(0.98,0.98), -->
+<!--          legend.text = element_text(size = 15), -->
+<!--          legend.key.size = unit(1,"cm"))+ -->
+<!--   theme_void() -->
 
-# NAflag(Saja_RGB) <- 0
+<!-- ggsave("Images/Part2/Saja_DISCOV_void.png",DISCOV_Saja_void,width = 10, height = 9, dpi = 400) -->
+<!-- ``` -->
+
+<!-- ```{r RGB Saja} -->
+<!-- #| echo: false -->
+<!-- #| warning: false -->
+<!-- #| eval: false -->
+
+<!-- library(sf) -->
+<!-- library(terra) -->
+<!-- library(tidyverse) -->
+<!-- library(Utilities.Package) -->
+
+<!-- msk <- "Data/Part2/SajaSouth_32630.shp" %>%  -->
+<!--   read_sf() -->
+
+<!-- Saja_RGB <- "Data/Part2/Saja/SajaSouth_RGB_LIDAR2.tif" %>%  -->
+<!--   rast() %>%  -->
+<!--   crop(msk, mask = T) -->
+
+<!-- # values(Belon_RGB[[1]])[values(Belon_RGB[[1]]) == 0] = NA -->
+
+<!-- # RGB(Belon_RGB) <- 1:3 -->
 
 
+<!-- lim_x<- c(as.numeric(ext(Saja_RGB)[1:2])) -->
+<!-- lim_y<- c(as.numeric(ext(Saja_RGB)[3:4])) -->
 
-target_shp <- read_sf("Data/Part2/model_px_8m_Saja.shp")
- 
- for (i in 1:nrow(target_shp)) {
-   
-   shp <- target_shp[i,]
-   
-   img_i <- Saja_RGB[[1:3]] %>% 
-     crop(shp, mask = T)
-   
-   RGB(img_i) <- 1:3
-   
-   plot(img_i)
-   
-   writeRaster(img_i,paste0("Images/Part2/RGB_sample_Saja_", shp$Target,"_8m.png"), overwrite = T)
- }
+<!-- # NAflag(Saja_RGB) <- 0 -->
 
 
 
+<!-- target_shp <- read_sf("Data/Part2/model_px_8m_Saja.shp") -->
 
-RGB_Saja<- ggplot()+
-   tidyterra::geom_spatraster_rgb(data = Saja_RGB,
-         r = 1,
-         g = 2,
-         b = 3,
-         maxcell = 4010533,
-         max_col_value = 255
-         )+
-  geom_text(aes(x =  ext(Saja_RGB)[1]+0.04*(ext(Saja_RGB)[2]-ext(Saja_RGB)[1]),
-                y =  ext(Saja_RGB)[4]-0.08*(ext(Saja_RGB)[4]-ext(Saja_RGB)[3]),
-                label = "B"),
-                size = 10)+
-    ggspatial::annotation_scale(location = "br",
-                                pad_y = unit(0.5, "cm"),
-                                text_cex=2)+
-   theme_Bede_Map()+
-  coord_sf(expand = F,
-           xlim = ext(msk)[1:2],
-           ylim = ext(msk)[3:4])+
-  # coord_equal()+
-   theme(
-     # axis.text.x = element_text(size = 10, angle = -20, color = NA,hjust = 0),
-         axis.text.y = element_text(size = 15),
-         axis.text.x = element_text(size = 15),
-         # axis.ticks.x = element_blank(),
-         axis.title = element_blank(),
-         plot.background = element_rect(fill = "white", color = NA),
-         legend.background = element_blank(),
-         legend.position = c(0.98,0.98),
-         legend.text = element_text(size = 15),
-         legend.key.size = unit(1,"cm"))
+<!--  for (i in 1:nrow(target_shp)) { -->
 
- 
- ggsave("Images/Part2/Saja_RGB.png",RGB_Saja,width = 10, height = 9, dpi = 400)
-  
+<!--    shp <- target_shp[i,] -->
 
-```
+<!--    img_i <- Saja_RGB[[1:3]] %>%  -->
+<!--      crop(shp, mask = T) -->
 
-::: {.fragment .fade-out fragment-index="12"}
-::: {.absolute .fragment .fade-in fragment-index="8" top="10%" left="0%"}
-![](Images/Part2/Saja_RGB.png){width="1500"}
-:::
-:::
+<!--    RGB(img_i) <- 1:3 -->
 
-::: {.redbox .absolute .fragment .fade-in-then-out fragment-index="9" top="61%" left="26%" width= "30px" height="30px"}
-:::
+<!--    plot(img_i) -->
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="9" top="5%" left="60%"}
-:::{.absolute bottom="-7%" left="10%" style="font-size: 60px;"}
-Chlorophyceae
-:::
+<!--    writeRaster(img_i,paste0("Images/Part2/RGB_sample_Saja_", shp$Target,"_8m.png"), overwrite = T) -->
+<!--  } -->
 
-![](Images/Part2/RGB_sample_Saja_Green_8m.png){width="500"}
-:::
 
-::: {.redbox .absolute .fragment .fade-in-then-out fragment-index="10" top="38%" left="26%" width= "30px" height="30px"}
-:::
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="5%" left="60%"}
-:::{.absolute bottom="-7%" left="5%" style="font-size: 60px;"}
-Florideophyceae
-:::
 
-![](Images/Part2/RGB_sample_Saja_Red_8m.png){width="500"}
-:::
+<!-- RGB_Saja<- ggplot()+ -->
+<!--    tidyterra::geom_spatraster_rgb(data = Saja_RGB, -->
+<!--          r = 1, -->
+<!--          g = 2, -->
+<!--          b = 3, -->
+<!--          maxcell = 4010533, -->
+<!--          max_col_value = 255 -->
+<!--          )+ -->
+<!--   geom_text(aes(x =  ext(Saja_RGB)[1]+0.04*(ext(Saja_RGB)[2]-ext(Saja_RGB)[1]), -->
+<!--                 y =  ext(Saja_RGB)[4]-0.08*(ext(Saja_RGB)[4]-ext(Saja_RGB)[3]), -->
+<!--                 label = "B"), -->
+<!--                 size = 10)+ -->
+<!--     ggspatial::annotation_scale(location = "br", -->
+<!--                                 pad_y = unit(0.5, "cm"), -->
+<!--                                 text_cex=2)+ -->
+<!--    theme_Bede_Map()+ -->
+<!--   coord_sf(expand = F, -->
+<!--            xlim = ext(msk)[1:2], -->
+<!--            ylim = ext(msk)[3:4])+ -->
+<!--   # coord_equal()+ -->
+<!--    theme( -->
+<!--      # axis.text.x = element_text(size = 10, angle = -20, color = NA,hjust = 0), -->
+<!--          axis.text.y = element_text(size = 15), -->
+<!--          axis.text.x = element_text(size = 15), -->
+<!--          # axis.ticks.x = element_blank(), -->
+<!--          axis.title = element_blank(), -->
+<!--          plot.background = element_rect(fill = "white", color = NA), -->
+<!--          legend.background = element_blank(), -->
+<!--          legend.position = c(0.98,0.98), -->
+<!--          legend.text = element_text(size = 15), -->
+<!--          legend.key.size = unit(1,"cm")) -->
 
-::: {.redbox .absolute .fragment .fade-in-then-out fragment-index="11" top="75.5%" left="50%" width= "30px" height="30px"}
-:::
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="11" top="5%" left="60%"}
-:::{.absolute bottom="-7%" left="15%" style="font-size: 60px;"}
-Saltmarshes
-:::
+<!--  ggsave("Images/Part2/Saja_RGB.png",RGB_Saja,width = 10, height = 9, dpi = 400) -->
 
-![](Images/Part2/RGB_sample_Saja_saltmarsh_8m.png){width="500"}
-:::
 
-::: {.fragment .fade-out fragment-index="16"}
-::: {.absolute .fragment .fade-in fragment-index="12" top="10%" left="0%"}
-:::{.absolute top="-3%" right="6%" style="font-size: 60px;"}
-Presence/Absence of Red Algae: 91.1%
-:::
+<!-- ``` -->
 
-![](Images/Part2/Saja_DISCOV.png){width="1500"}
-:::
-:::
+<!-- ::: {.fragment .fade-out fragment-index="12"} -->
+<!-- ::: {.absolute .fragment .fade-in fragment-index="8" top="10%" left="0%"} -->
+<!-- ![](Images/Part2/Saja_RGB.png){width="1500"} -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ::: {.redbox .absolute .fragment .fade-in-then-out fragment-index="9" top="61%" left="26%" width= "30px" height="30px"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="9" top="5%" left="60%"} -->
+<!-- :::{.absolute bottom="-7%" left="10%" style="font-size: 60px;"} -->
+<!-- Chlorophyceae -->
+<!-- ::: -->
+
+<!-- ![](Images/Part2/RGB_sample_Saja_Green_8m.png){width="500"} -->
+<!-- ::: -->
+
+<!-- ::: {.redbox .absolute .fragment .fade-in-then-out fragment-index="10" top="38%" left="26%" width= "30px" height="30px"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="10" top="5%" left="60%"} -->
+<!-- :::{.absolute bottom="-7%" left="5%" style="font-size: 60px;"} -->
+<!-- Florideophyceae -->
+<!-- ::: -->
+
+<!-- ![](Images/Part2/RGB_sample_Saja_Red_8m.png){width="500"} -->
+<!-- ::: -->
+
+<!-- ::: {.redbox .absolute .fragment .fade-in-then-out fragment-index="11" top="75.5%" left="50%" width= "30px" height="30px"} -->
+<!-- ::: -->
+
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="11" top="5%" left="60%"} -->
+<!-- :::{.absolute bottom="-7%" left="15%" style="font-size: 60px;"} -->
+<!-- Saltmarshes -->
+<!-- ::: -->
+
+<!-- ![](Images/Part2/RGB_sample_Saja_saltmarsh_8m.png){width="500"} -->
+<!-- ::: -->
+
+<!-- ::: {.fragment .fade-out fragment-index="16"} -->
+<!-- ::: {.absolute .fragment .fade-in fragment-index="12" top="10%" left="0%"} -->
+<!-- :::{.absolute top="-3%" right="6%" style="font-size: 60px;"} -->
+<!-- Presence/Absence of Red Algae: 91.1% -->
+<!-- ::: -->
+
+<!-- ![](Images/Part2/Saja_DISCOV.png){width="1500"} -->
+<!-- ::: -->
+<!-- ::: -->
 
 <!-- ::: {.blackbox .absolute .fragment .fade-in-then-out fragment-index="13" top="61%" left="26%" width= "30px" height="30px"} -->
 <!-- ::: -->
@@ -7373,25 +7378,25 @@ Heatwaves alter the spectral reflectance of *Zostera noltei* seagrass. This chan
 :::
 :::
 
-::: {.absolute .fragment .fade-out fragment-index="1" top="20%" left="0%"}
+::: {.absolute .fragment .fade-out fragment-index="2" top="20%" left="0%"}
 ![](Images/Part3/Intertidal_Chambers.png){height="700"}
 :::
 
-::: {.absolute .fragment .fade-out fragment-index="1" top="20%" right="0%"}
+::: {.absolute .fragment .fade-out fragment-index="2" top="20%" right="0%"}
 ![](Images/Part3/Benthic_chamber1.jpg){height="850"}
 :::
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="1" top="20%" left="0%"}
-![](Images/Part3/Intertidal_Chambers2.png){height="700"}
-:::
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="1" top="20%" left="0%"} -->
+<!-- ![](Images/Part3/Intertidal_Chambers2.png){height="700"} -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="1" top="40%" left="60%" style="font-size: 80px; color: rgba(54, 128, 74,1);"}
-Experiment Tank
-:::
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="1" top="40%" left="60%" style="font-size: 80px; color: rgba(54, 128, 74,1);"} -->
+<!-- Experiment Tank -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="1" top="50%" left="60%" style="font-size: 80px; color: rgba(125, 52, 64,1);"}
-Storage Tank
-:::
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="1" top="50%" left="60%" style="font-size: 80px; color: rgba(125, 52, 64,1);"} -->
+<!-- Storage Tank -->
+<!-- ::: -->
 
 ::: {.fragment .fade-out fragment-index="5"}
 
@@ -7401,7 +7406,6 @@ Storage Tank
     Your browser does not support the video tag.
   </video>
   </div>
-
 :::
 
 
@@ -7477,7 +7481,7 @@ Treatment
 ![](Images/Part3/plot_Temp_Quiberon1.png){width="1400"}
 :::
 
-::: {.fragment .fade-out fragment-index="11"}
+::: {.fragment .fade-out fragment-index="15"}
 
 ::: {.absolute top="6.5%" left="0%" .fragment .fade-in fragment-index="7"}
 *Satellite Mapping of the impact of Heatwaves on seagrasses*
@@ -7617,145 +7621,145 @@ saveWidget(m, "maps/map_Quiberon_presentation.html", selfcontained = TRUE)
 
 
 
-::: {.fragment .fade-out fragment-index="15"}
-::: {.absolute .fragment .fade-in fragment-index="11" top="10%" left="0%" style="text-align: right; font-size: 70px;"}
-- Litto3D product
-:::
+<!-- ::: {.fragment .fade-out fragment-index="15"} -->
+<!-- ::: {.absolute .fragment .fade-in fragment-index="11" top="10%" left="0%" style="text-align: right; font-size: 70px;"} -->
+<!-- - Litto3D product -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in fragment-index="11" top="20%" left="0%" style="text-align: right; font-size: 60px;"}
-detailed 3D coastal and nearshore mapping
-:::
+<!-- ::: {.absolute .fragment .fade-in fragment-index="11" top="20%" left="0%" style="text-align: right; font-size: 60px;"} -->
+<!-- detailed 3D coastal and nearshore mapping -->
+<!-- ::: -->
 
 
-::: {.absolute .fragment .fade-in fragment-index="11" left="0%" top="30%"}
-```{r LeafletLitto3D}
-#| echo: false
-#| eval: false
-#| warning: false
-#| out-width: "1100px"
-#| out-height: "800px"
+<!-- ::: {.absolute .fragment .fade-in fragment-index="11" left="0%" top="30%"} -->
+<!-- ```{r LeafletLitto3D} -->
+<!-- #| echo: false -->
+<!-- #| eval: false -->
+<!-- #| warning: false -->
+<!-- #| out-width: "1100px" -->
+<!-- #| out-height: "800px" -->
 
-library(tidyverse)
-library(leaflet)
-library(sf)
-library(leafem)
-library(leaflet.extras2)
-library(terra)
+<!-- library(tidyverse) -->
+<!-- library(leaflet) -->
+<!-- library(sf) -->
+<!-- library(leafem) -->
+<!-- library(leaflet.extras2) -->
+<!-- library(terra) -->
 
-Quiberon_Litto3D <- "Data/Part3/Litto_10m_merged_32630.tif" %>% 
-  rast() %>% 
-  project(crs("EPSG:4326"))
+<!-- Quiberon_Litto3D <- "Data/Part3/Litto_10m_merged_32630.tif" %>%  -->
+<!--   rast() %>%  -->
+<!--   project(crs("EPSG:4326")) -->
 
-pal2 <- colorNumeric("viridis", domain = values(Quiberon_Litto3D),na.color = "transparent")
+<!-- pal2 <- colorNumeric("viridis", domain = values(Quiberon_Litto3D),na.color = "transparent") -->
 
-Plot_Bathy <- leaflet() %>%   
-  # addTiles() %>% 
-  setView(lng =-3.121394, lat = 47.585714, zoom = 14) %>% 
-  addMapPane("right", zIndex = 0) %>%
-  addMapPane("left", zIndex = 0) %>%
-  # addProviderTiles(provider = providers$Esri.WorldImagery) %>% 
-    # addProviderTiles(providers$CartoDB, group="carto", layerId = "RGBid", options = pathOptions(pane = "left")) %>% 
-  # addProviderTiles(providers$CartoDB, group="carto", layerId = "DSMid", options = pathOptions(pane = "right")) %>% 
-  addProviderTiles(providers$Esri.WorldImagery,
-                     group = "Toner",
-                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100),
-                                 pathOptions(pane = "left")),
-                     layerId = "RGB"
-                     ) %>%
-  addProviderTiles(providers$OpenStreetMap,
-                     group = "Toner",
-                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100),
-                                 pathOptions(pane = "right")),
-                     layerId = "DSM_pred") %>%
-  addRasterImage(Quiberon_Litto3D,
-                       colors=pal2,
-                       # maxBytes = 200,
-                       options = pathOptions(pane = "right"),
-                       layerId = "DSM_pred") %>%
-  leaflet.extras2::addSidebyside(leftId = "RGB",
-                                  rightId = "DSM_pred") %>%
-  addLegend(pal = pal2, values = values(Quiberon_Litto3D),
-    title = "Bathymetry (m)",
-    group = "DSM_pred")
+<!-- Plot_Bathy <- leaflet() %>%    -->
+<!--   # addTiles() %>%  -->
+<!--   setView(lng =-3.121394, lat = 47.585714, zoom = 14) %>%  -->
+<!--   addMapPane("right", zIndex = 0) %>% -->
+<!--   addMapPane("left", zIndex = 0) %>% -->
+<!--   # addProviderTiles(provider = providers$Esri.WorldImagery) %>%  -->
+<!--     # addProviderTiles(providers$CartoDB, group="carto", layerId = "RGBid", options = pathOptions(pane = "left")) %>%  -->
+<!--   # addProviderTiles(providers$CartoDB, group="carto", layerId = "DSMid", options = pathOptions(pane = "right")) %>%  -->
+<!--   addProviderTiles(providers$Esri.WorldImagery, -->
+<!--                      group = "Toner", -->
+<!--                      options = c(providerTileOptions(minZoom = 8, maxZoom = 100), -->
+<!--                                  pathOptions(pane = "left")), -->
+<!--                      layerId = "RGB" -->
+<!--                      ) %>% -->
+<!--   addProviderTiles(providers$OpenStreetMap, -->
+<!--                      group = "Toner", -->
+<!--                      options = c(providerTileOptions(minZoom = 8, maxZoom = 100), -->
+<!--                                  pathOptions(pane = "right")), -->
+<!--                      layerId = "DSM_pred") %>% -->
+<!--   addRasterImage(Quiberon_Litto3D, -->
+<!--                        colors=pal2, -->
+<!--                        # maxBytes = 200, -->
+<!--                        options = pathOptions(pane = "right"), -->
+<!--                        layerId = "DSM_pred") %>% -->
+<!--   leaflet.extras2::addSidebyside(leftId = "RGB", -->
+<!--                                   rightId = "DSM_pred") %>% -->
+<!--   addLegend(pal = pal2, values = values(Quiberon_Litto3D), -->
+<!--     title = "Bathymetry (m)", -->
+<!--     group = "DSM_pred") -->
 
-Plot_Bathy
-# htmlwidgets::saveWidget(plot, file="Slides/maps/map_Bathy_Quiberon.html", selfcontained = F)
+<!-- Plot_Bathy -->
+<!-- # htmlwidgets::saveWidget(plot, file="Slides/maps/map_Bathy_Quiberon.html", selfcontained = F) -->
 
-```
-:::
-:::
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
 
-::: {.fragment .fade-in-then-out fragment-index="12" .absolute top="25%" right="-5%"}
-![](Images/Part3/plot_waterHeight.png){width="1300"}
-:::
+<!-- ::: {.fragment .fade-in-then-out fragment-index="12" .absolute top="25%" right="-5%"} -->
+<!-- ![](Images/Part3/plot_waterHeight.png){width="1300"} -->
+<!-- ::: -->
 
-::: {.fragment .fade-in-then-out fragment-index="13" .absolute top="25%" right="-5%"}
-![](Images/Part3/WaterHeightPlot.png){width="1300"}
-:::
+<!-- ::: {.fragment .fade-in-then-out fragment-index="13" .absolute top="25%" right="-5%"} -->
+<!-- ![](Images/Part3/WaterHeightPlot.png){width="1300"} -->
+<!-- ::: -->
 
-::: {.absolute .fragment .fade-in-then-out fragment-index="14" left="0%" top="30%"}
-```{r LeafletEmersion}
-#| echo: false
-#| eval: true
-#| warning: false
-#| out-width: "1100px"
-#| out-height: "800px"
+<!-- ::: {.absolute .fragment .fade-in-then-out fragment-index="14" left="0%" top="30%"} -->
+<!-- ```{r LeafletEmersion} -->
+<!-- #| echo: false -->
+<!-- #| eval: true -->
+<!-- #| warning: false -->
+<!-- #| out-width: "1100px" -->
+<!-- #| out-height: "800px" -->
 
-library(tidyverse)
-library(leaflet)
-library(sf)
-library(leafem)
-library(leaflet.extras2)
-library(terra)
+<!-- library(tidyverse) -->
+<!-- library(leaflet) -->
+<!-- library(sf) -->
+<!-- library(leafem) -->
+<!-- library(leaflet.extras2) -->
+<!-- library(terra) -->
 
-stk <- "Data/Part3/Stack_all_variables.tif" %>% 
-  rast() %>% 
-  project(crs("EPSG:4326"))
+<!-- stk <- "Data/Part3/Stack_all_variables.tif" %>%  -->
+<!--   rast() %>%  -->
+<!--   project(crs("EPSG:4326")) -->
 
-EmersionTime <- (stk$emersion_time/60)/4
+<!-- EmersionTime <- (stk$emersion_time/60)/4 -->
 
-pal2 <- colorNumeric("magma", domain = c(10,16),na.color = "transparent")
+<!-- pal2 <- colorNumeric("magma", domain = c(10,16),na.color = "transparent") -->
 
-Plot <- leaflet() %>%   
-  # addTiles() %>% 
-  setView(lng =-3.121394, lat = 47.585714, zoom = 14) %>% 
-  addMapPane("right", zIndex = 0) %>%
-  addMapPane("left", zIndex = 0) %>%
-  # addProviderTiles(provider = providers$Esri.WorldImagery) %>% 
-    # addProviderTiles(providers$CartoDB, group="carto", layerId = "RGBid", options = pathOptions(pane = "left")) %>% 
-  # addProviderTiles(providers$CartoDB, group="carto", layerId = "DSMid", options = pathOptions(pane = "right")) %>% 
-  addProviderTiles(providers$Esri.WorldImagery,
-                     group = "Toner",
-                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100),
-                                 pathOptions(pane = "left")),
-                     layerId = "RGB"
-                     ) %>%
-  addProviderTiles(providers$OpenStreetMap,
-                     group = "Toner",
-                     options = c(providerTileOptions(minZoom = 8, maxZoom = 100),
-                                 pathOptions(pane = "right")),
-                     layerId = "DSM_pred") %>%
-  addRasterImage(EmersionTime,
-                       colors=pal2,
-                       # maxBytes = 200,
-                       options = pathOptions(pane = "right"),
-                       layerId = "DSM_pred") %>%
-  leaflet.extras2::addSidebyside(leftId = "RGB",
-                                  rightId = "DSM_pred") %>%
-  addLegend(pal = pal2, values = c(10,16),
-    title = "Emersion Time per Day (hours)",
-    group = "DSM_pred")
+<!-- Plot <- leaflet() %>%    -->
+<!--   # addTiles() %>%  -->
+<!--   setView(lng =-3.121394, lat = 47.585714, zoom = 14) %>%  -->
+<!--   addMapPane("right", zIndex = 0) %>% -->
+<!--   addMapPane("left", zIndex = 0) %>% -->
+<!--   # addProviderTiles(provider = providers$Esri.WorldImagery) %>%  -->
+<!--     # addProviderTiles(providers$CartoDB, group="carto", layerId = "RGBid", options = pathOptions(pane = "left")) %>%  -->
+<!--   # addProviderTiles(providers$CartoDB, group="carto", layerId = "DSMid", options = pathOptions(pane = "right")) %>%  -->
+<!--   addProviderTiles(providers$Esri.WorldImagery, -->
+<!--                      group = "Toner", -->
+<!--                      options = c(providerTileOptions(minZoom = 8, maxZoom = 100), -->
+<!--                                  pathOptions(pane = "left")), -->
+<!--                      layerId = "RGB" -->
+<!--                      ) %>% -->
+<!--   addProviderTiles(providers$OpenStreetMap, -->
+<!--                      group = "Toner", -->
+<!--                      options = c(providerTileOptions(minZoom = 8, maxZoom = 100), -->
+<!--                                  pathOptions(pane = "right")), -->
+<!--                      layerId = "DSM_pred") %>% -->
+<!--   addRasterImage(EmersionTime, -->
+<!--                        colors=pal2, -->
+<!--                        # maxBytes = 200, -->
+<!--                        options = pathOptions(pane = "right"), -->
+<!--                        layerId = "DSM_pred") %>% -->
+<!--   leaflet.extras2::addSidebyside(leftId = "RGB", -->
+<!--                                   rightId = "DSM_pred") %>% -->
+<!--   addLegend(pal = pal2, values = c(10,16), -->
+<!--     title = "Emersion Time per Day (hours)", -->
+<!--     group = "DSM_pred") -->
 
-Plot
+<!-- Plot -->
 
-# htmlwidgets::saveWidget(plot, file="Slides/maps/map_Bathy_Quiberon.html", selfcontained = F)
+<!-- # htmlwidgets::saveWidget(plot, file="Slides/maps/map_Bathy_Quiberon.html", selfcontained = F) -->
 
-```
-:::
+<!-- ``` -->
+<!-- ::: -->
 
-::: {.fragment .fade-in-then-out fragment-index="14" .absolute top="25%" right="-5%"}
-![](Images/Part3/Emersion_time.gif){width="1300"}
-:::
+<!-- ::: {.fragment .fade-in-then-out fragment-index="14" .absolute top="25%" right="-5%"} -->
+<!-- ![](Images/Part3/Emersion_time.gif){width="1300"} -->
+<!-- ::: -->
 
 
 
@@ -8886,7 +8890,7 @@ ggsave("Images/Part3/HW_Freq_Inten.png", plot, height = 10, width = 9.57, dpi = 
 :::
 
 ::: {.absolute .fragment .fade-in-then-out fragment-index="1" bottom="0%" right="0%"}
-![](Images/Part1/Figure_Hyperspectral_Faded.gif){width="1200"}
+![](Images/Part1/Figure_Hyperspectral_Faded_zoomed_out.gif){width="1200"}
 :::
 
 ::: {.absolute .fragment .fade-in-then-out fragment-index="2" bottom="0%" right="0%"}
